@@ -91,7 +91,7 @@
 				.set($left, {autoAlpha: 0, rotation: 180, transformOrigin: '50% 50%'}, 'a')
 				.staggerTo($paths, dur * 2, {drawSVG: '100%'}, dur / 1.8, 'a+=' + (dur / 2))
                 .to($paths, 0.4, {drawSVG: '0%', fill: '#bab6b0', stroke: 'transparent', strokeWidth: '0px'})
-				.to($left, dur * 1, {rotation: 0, transformOrigin: '50% 50%', autoAlpha: 1})
+				.to($left, dur * 1, {rotation: 0, transformOrigin: '50% 50%', autoAlpha: 1}, '-=0.5')
 
 
 		}
