@@ -94,7 +94,7 @@
                 .to($paths, 0.8, {drawSVG: '0%', fill: '#bab6b0', stroke: 'transparent', strokeWidth: '0px'})
 				.to($left, dur * 1, {ease: Back.easeOut, rotation: 0, transformOrigin: '50% 50%', autoAlpha: 1}, '-=1.6')
                 .fromTo($nodes, dur * 0.3, {scale: 0, transformOrigin: '50% 50%'}, {ease: Back.easeOut, scale: 1, transformOrigin: '50% 50%', autoAlpha: 1}, '-=' + (dur * 1))
-                .to([$text2.querySelectorAll('path'), $text1.querySelectorAll('path')], 0.3,  {fill: '#fff', yoyo:true, repeat: 1})
+                .to([$text2.querySelectorAll('path'), $text1.querySelectorAll('path')], 0.3,  {scale: 1.07, transformOrigin: "50% 50%", fill: '#fff', yoyo:true, repeat: 1})
                // .staggerTo($text2.querySelectorAll('path'), dur / 3.1,  {y: 0, autoAlpha: 1}, dur / 7.85)
 
 		}
