@@ -76,11 +76,10 @@
 
 <style lang="stylus" scoped>
   .jumbo-wrap
-    height: 70vh
+    height: 100vh
 
   .jumbo-logo
-    max-height: 80vh
-    height: 70%
+    width: 30%
     margin: 0 auto;
 
 </style>
