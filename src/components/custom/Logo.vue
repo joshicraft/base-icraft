@@ -58,12 +58,12 @@
 		<path class="st0 anim" stroke-width="3" stroke="#000" stroke-miterlimit="10" d="M258.3,96.9c0.9-2.7,3.4-4.6,6.4-4.6c3.8,0,6.8,3.1,6.8,6.8c0,3.8-3.1,6.8-6.8,6.8c-3,0-5.5-1.9-6.4-4.6    h-33.2v16.7h56.4l51.3-57.9c-23.7-25.4-56-42.8-92.2-47.6c-0.3,0-0.7-0.1-1-0.1c-4.8-0.6-9.7-1-14.6-1.1v17.5v15.9v21.4v15.9v14.7    H258.3z"/>
 		<path class="st0 anim" stroke-width="3" stroke="#000" stroke-miterlimit="10" d="M356.4,93.4c-2.5-4.7-5.2-9.2-8.1-13.6l-58.1,65.6h-65.1v17.5h69.8L356.4,93.4z"/>
 		<path class="st0 anim" stroke-width="3" stroke="#000" stroke-miterlimit="10" d="M225.1,140.9h63.1L345.7,76c-3.1-4.3-6.4-8.5-9.9-12.5l-52.3,59h-58.4v3.4v9.5V140.9z"/>
-		<path class="st0" d="M267.1,99.2c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C266,101.5,267.1,100.5,267.1,99.2z"/>
-		<path class="st0" d="M356.2,179.3c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C355.1,181.6,356.2,180.6,356.2,179.3z"/>
-		<path class="st0" d="M302.9,282.2c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C301.8,284.5,302.9,283.5,302.9,282.2z"/>
-		<path class="st0" d="M325.7,194.3c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C324.6,196.7,325.7,195.6,325.7,194.3z"/>
-		<path class="st0" d="M320.2,259.1c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C319.2,261.5,320.2,260.4,320.2,259.1z"/>
-		<path class="st0" d="M340.9,238.9c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C339.9,241.2,340.9,240.2,340.9,238.9z"/>
+		<path class="st0 anim-2" d="M267.1,99.2c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C266,101.5,267.1,100.5,267.1,99.2z"/>
+		<path class="st0 anim-2" d="M356.2,179.3c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C355.1,181.6,356.2,180.6,356.2,179.3z"/>
+		<path class="st0 anim-2" d="M302.9,282.2c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C301.8,284.5,302.9,283.5,302.9,282.2z"/>
+		<path class="st0 anim-2" d="M325.7,194.3c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C324.6,196.7,325.7,195.6,325.7,194.3z"/>
+		<path class="st0 anim-2" d="M320.2,259.1c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C319.2,261.5,320.2,260.4,320.2,259.1z"/>
+		<path class="st0 anim-2" d="M340.9,238.9c0-1.3-1.1-2.4-2.4-2.4c-1.3,0-2.4,1.1-2.4,2.4c0,1.3,1.1,2.4,2.4,2.4    C339.9,241.2,340.9,240.2,340.9,238.9z"/>
 	</g>
 </g>
 </svg>
@@ -80,19 +80,22 @@
             let $left = $svg.querySelector("#left-flake_1_")
             let $right = $svg.querySelector("#logo-circut")
 			let $paths = $right.querySelectorAll('.anim')
+			let $nodes = $right.querySelectorAll('.anim-2')
 			let t_l = new TimelineMax({delay: 0.5})
 
 			let dur = 1
 
 			t_l
-                .staggerFromTo($text1.querySelectorAll('path'), dur / 3.1, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 2.55, 'a')
-                .staggerFromTo($text2.querySelectorAll('path'), dur / 3.3, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 7.85, 'a')
+                .staggerFromTo($text1.querySelectorAll('path'), dur / 2.8, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 2.55, 'a')
+                .staggerFromTo($text2.querySelectorAll('path'), dur / 3.1, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 7.85, 'a')
 				.set($paths, {drawSVG: '0%'}, 'a')
 				.set($left, {autoAlpha: 0, rotation: 180, transformOrigin: '50% 50%'}, 'a')
-				.staggerTo($paths, dur * 2, {drawSVG: '100%'}, dur / 1.8, 'a+=' + (dur / 2))
-                .to($paths, 0.4, {drawSVG: '0%', fill: '#bab6b0', stroke: 'transparent', strokeWidth: '0px'})
-				.to($left, dur * 1, {rotation: 0, transformOrigin: '50% 50%', autoAlpha: 1}, '-=0.5')
-
+				.staggerTo($paths, dur * 2, {drawSVG: '100%'}, dur / 5.3, 'a+=' + (dur / 2))
+                .to($paths, 0.8, {drawSVG: '0%', fill: '#bab6b0', stroke: 'transparent', strokeWidth: '0px'})
+				.to($left, dur * 1, {ease: Back.easeOut, rotation: 0, transformOrigin: '50% 50%', autoAlpha: 1}, '-=1.6')
+                .fromTo($nodes, dur * 0.3, {scale: 0, transformOrigin: '50% 50%'}, {ease: Back.easeOut, scale: 1, transformOrigin: '50% 50%', autoAlpha: 1}, '-=' + (dur * 1))
+                .to([$text2.querySelectorAll('path'), $text1.querySelectorAll('path')], 0.3,  {fill: '#fff', yoyo:true, repeat: 1})
+               // .staggerTo($text2.querySelectorAll('path'), dur / 3.1,  {y: 0, autoAlpha: 1}, dur / 7.85)
 
 		}
 	}
@@ -108,6 +111,8 @@
 	.st1{clip-path:url(#SVGID_2_);}
 
 	#logo-circut
+		.anim-2
+			opacity: 0
 		.anim
 			stroke-width 3
 			stroke: #BAB6B0
