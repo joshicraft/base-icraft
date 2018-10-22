@@ -106,13 +106,14 @@
 
 			t_l
 				.call(soundB.play)
+
                 .staggerFromTo($text1.querySelectorAll('path'), dur / 2.8, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 2.55, 'a')
                 .staggerFromTo($text2.querySelectorAll('path'), dur / 3.1, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 7.85, 'a')
 				.set($paths, {drawSVG: '0%'}, 'a')
 				.set($left, {autoAlpha: 0, rotation: 180, transformOrigin: '50% 50%'}, 'a')
 				.staggerTo($paths, dur * 2, {drawSVG: '100%'}, dur / 5.3, 'a+=' + (dur / 2))
                 .call(soundA.play)
-                .to($paths, 1.2, {drawSVG: '0%', fill: '#bab6b0', stroke: 'transparent', strokeWidth: '0px'})
+                .to([$text2.querySelectorAll('path'), $text1.querySelectorAll('path'), $paths], 1.2, {stroke: '#b0b0b0', fill: 'rgba(244, 244, 240, 0.05)'})
 
 				.to($left, dur * 1, {ease: Back.easeOut, rotation: 0, transformOrigin: '50% 50%', autoAlpha: 1}, '-=1.6')
                 .fromTo($nodes, dur * 0.3, {scale: 0, transformOrigin: '50% 50%'}, {ease: Back.easeOut, scale: 1, transformOrigin: '50% 50%', autoAlpha: 1}, '-=' + (dur * 1))
@@ -129,16 +130,22 @@
         width: 100%
         height: 100%
 
-	.st0{fill:#BAB6B0;}
+	.st0
+		fill: transparent
+		stroke: #006494
+
 	.st1{clip-path:url(#SVGID_2_);}
 
 	#logo-circut
 		.anim-2
 			opacity: 0
 		.anim
-			stroke-width 3
-			stroke: #BAB6B0
+			stroke-width 2
+			stroke: #006494
 			fill: transparent
-
+			
+	#left-flake_1_
+		.st0
+			stroke-width 3
 
 </style>
