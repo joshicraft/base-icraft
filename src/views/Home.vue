@@ -28,7 +28,7 @@
     </v-container>
 
     <alpha-hero
-      src="/static/home-parallax.png"
+      src="/static/home-parallaxs.png"
       :height="$vuetify.breakpoint.mdAndUp ? 500 : 'auto'"
       :jumbotron="false"
       dark
