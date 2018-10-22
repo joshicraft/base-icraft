@@ -98,8 +98,9 @@
 <style scoped lang="stylus">
     svg
         display: block
-        width: 100%
         height: 100%
+
+
     .st0 {
         fill: #BAB6B0;
     }

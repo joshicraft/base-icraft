@@ -14,11 +14,13 @@
             :img="heroImage"
             :alt="heroImage"
     >
+      <div class="z0 bg-gradient"></div>
       <v-fade-transition mode="out-in">
         <v-container
           fill-height
           :key="$route.path"
           v-if="isBooted"
+          class="z1"
         >
           <v-layout align-center>
             <v-fade-transition mode="out-in">
@@ -118,4 +120,19 @@
     width: 30%
     margin: 0 auto;
 
+
+
+  .z1
+    z-index: 1
+    position relative
+
+  .bg-gradient
+    z-index: 0
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events none
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(197,197,197,0.5) 100%);
 </style>
