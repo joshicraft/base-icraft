@@ -70,7 +70,7 @@
       heroVideo () {
           let path = '/static/video/'
           let size = ''
-          let name = '006'
+          let name = '007'
           //let bp = this.$vuetify.breakpoint
           //
           // if (bp.smAndDown) {
