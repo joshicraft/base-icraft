@@ -5,14 +5,14 @@
         <v-card img="/static/feature1.png" height="250px" />
       </v-flex>
       <v-flex xs12 md8 :pl-5="$vuetify.breakpoint.mdAndUp">
-        <h2 class="title mb-3" v-text="$t('Views.Services.heading1')" />
-        <p v-text="$t('Views.Services.headingText1')" />
+        <h2 class="title mb-3" v-text="heading1" />
+        <p v-text="headingText1" />
       </v-flex>
       <v-flex xs12 sm8 md6 mb-5 class="py-5">
-        <h2 class="title mb-3" v-text="$t('Views.Services.heading2')" />
-        <p v-text="$t('Views.Services.headingText2a')" />
-        <p v-text="$t('Views.Services.headingText2b')" />
-        <p v-text="$t('Views.Services.headingText2c')" />
+        <h2 class="title mb-3" v-text="heading2" />
+        <p v-text="headingText2a" />
+        <p v-text="headingText2b" />
+        <p v-text="headingText2c" />
       </v-flex>
       <v-flex xs12>
         <v-layout justify-center>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+  import MY_JSON from '../lang/en/Views/Services.json'
   export default {
     metaInfo: {
       title: 'Services',
@@ -37,14 +38,18 @@
         { name: 'description', content: 'Customized vue-cli templates for Vue and Vuetify' }
       ]
     },
-    computed: {
-      testimonial () {
-        return {
-          quote: this.$t('Views.Services.testimonial.quote'),
-          author: this.$t('Views.Services.testimonial.author'),
-          title: this.$t('Views.Services.testimonial.title')
-        }
-      }
+    data () {
+      return MY_JSON
     }
+    // computed: {
+    //   testimonial () {
+    //     return {
+    //       //quote: this.$t('Views.Services.testimonial.quote'),
+    //       quote: MY_JSON.testimonial.quote,
+    //       author: MY_JSON.testimonial.author,
+    //       title: MY_JSON.testimonial.title,
+    //     }
+    //   }
+    // }
   }
 </script>
