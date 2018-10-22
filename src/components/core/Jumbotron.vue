@@ -10,7 +10,10 @@
     <custom-video-background
             id="jumbotron"
             class="vh elevation-6"
-            :sources="[heroVideo + '.mp4', heroVideo + '.ogv']">
+            :sources="[heroVideo + '.mp4', heroVideo + '.ogv']"
+            :img="heroImage"
+            :alt="heroImage"
+    >
       <v-fade-transition mode="out-in">
         <v-container
           fill-height
@@ -63,25 +66,36 @@
       subTitle () {
         return this.$t(`Views.${this.namespace}.jumbotronSubTitle`)
       },
-      heroImage () {
-        return `/static/main-bg.jpeg`
-       // return `/static/${this.namespace.toLowerCase()}-hero.png`
-      },
+        heroImage () {
+            let path = '/static/video/'
+            let size = ''
+            let name = '-vid-bg'
+            let bp = this.$vuetify.breakpoint
+            if (bp.smAndDown) {
+                size = '768'
+            } else if (bp.lgAndDown) {
+                size = '1280'
+            } else {
+                size = '1920'
+            }
+            return path + size + name + (this.ext('.jpg'))
+        },
+
       heroVideo () {
           let path = '/static/video/'
           let size = ''
-          let name = '007'
-          //let bp = this.$vuetify.breakpoint
+          let name = 'vid-bg'
+          let bp = this.$vuetify.breakpoint
           //
-          // if (bp.smAndDown) {
-          //     size = '768'
-          // } else if (bp.mdAndDown) {
-          //     size = '1024'
-          // } else if (bp.lgAndDown) {
-          //     size = '1280'
-          // } else {
-          //     size = '1920'
-          // }
+          if (bp.smAndDown) {
+              size = '_768'
+          } else if (bp.mdAndDown) {
+              size = '_1024'
+          } else if (bp.lgAndDown) {
+              size = '_1280'
+          } else {
+              size = '_1920'
+          }
           return (path + name + size)
       }
     },

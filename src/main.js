@@ -22,6 +22,18 @@ sync(store, router)
 
 Vue.config.productionTip = false
 
+Vue.mixin({
+    data() {
+        return {
+            webp: document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0,
+            ext(type, thumb) {
+                type = type || 'jpg'
+                return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
+            }
+        }
+    }
+})
+
 /* eslint-disable no-new */
 new Vue({
   i18n,
@@ -29,3 +41,5 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+

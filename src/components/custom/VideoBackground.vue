@@ -29,22 +29,22 @@
       }
     },
 
-    computed: {
-      lazyLoaded () {
-        // let lazyLoaded = this.$store.state.app.lazyLoaded
-        // let $this = this
-        // if (lazyLoaded) {
-        //   setTimeout(this.play, 1)
-        // }
-        // return lazyLoaded
-      }
-    },
+    // computed: {
+    //   lazyLoaded () {
+    //     let lazyLoaded = this.$store.state.app.lazyLoaded
+    //     let $this = this
+    //     if (lazyLoaded) {
+    //       setTimeout(this.play, 1)
+    //     }
+    //     return lazyLoaded
+    //   }
+    // },
     mounted () {
       this.setImageUrl()
       this.setContainerHeight()
       window.addEventListener('resize', this.resize)
       document.body.addEventListener('click', this.playVideo)
-      setTimeout(this.play, 100)
+      setTimeout(this.play, 200)
     },
 
     beforeDestroy () {
