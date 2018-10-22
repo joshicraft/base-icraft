@@ -70,10 +70,29 @@
 </template>
 
 <script>
-
+	import createPlayer from 'web-audio-player'
     /* eslint-disable no-undef */
     export default {
         mounted() {
+            let soundA = createPlayer('/static/sound/woosh.mp3')
+            let soundB = createPlayer('/static/sound/electricity.mp3')
+
+            soundA.on('load', () => {
+
+                // start playing audio file=
+
+                // and connect your node somewhere, such as
+                // the AudioContext output so the user can hear it!
+                soundA.node.connect(soundA.context.destination)
+            })
+            soundB.on('load', () => {
+
+                // start playing audio file=
+
+                // and connect your node somewhere, such as
+                // the AudioContext output so the user can hear it!
+                soundB.node.connect(soundB.context.destination)
+            })
             let $svg = document.getElementById('logo-svg')
             let $text1 = $svg.querySelector("#logo-title-2_1_")
             let $text2 = $svg.querySelector("#logo-title-1_1_")
@@ -86,12 +105,15 @@
 			let dur = 1
 
 			t_l
+				.call(soundB.play)
                 .staggerFromTo($text1.querySelectorAll('path'), dur / 2.8, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 2.55, 'a')
                 .staggerFromTo($text2.querySelectorAll('path'), dur / 3.1, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 7.85, 'a')
 				.set($paths, {drawSVG: '0%'}, 'a')
 				.set($left, {autoAlpha: 0, rotation: 180, transformOrigin: '50% 50%'}, 'a')
 				.staggerTo($paths, dur * 2, {drawSVG: '100%'}, dur / 5.3, 'a+=' + (dur / 2))
-                .to($paths, 0.8, {drawSVG: '0%', fill: '#bab6b0', stroke: 'transparent', strokeWidth: '0px'})
+                .call(soundA.play)
+                .to($paths, 1.2, {drawSVG: '0%', fill: '#bab6b0', stroke: 'transparent', strokeWidth: '0px'})
+
 				.to($left, dur * 1, {ease: Back.easeOut, rotation: 0, transformOrigin: '50% 50%', autoAlpha: 1}, '-=1.6')
                 .fromTo($nodes, dur * 0.3, {scale: 0, transformOrigin: '50% 50%'}, {ease: Back.easeOut, scale: 1, transformOrigin: '50% 50%', autoAlpha: 1}, '-=' + (dur * 1))
                 .to([$text2.querySelectorAll('path'), $text1.querySelectorAll('path')], 0.3,  {scale: 1.07, transformOrigin: "50% 50%", fill: '#fff', yoyo:true, repeat: 1})
@@ -116,7 +138,7 @@
 		.anim
 			stroke-width 3
 			stroke: #BAB6B0
-			fill: none
+			fill: transparent
 
 
 </style>
