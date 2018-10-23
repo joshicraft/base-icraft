@@ -1,5 +1,5 @@
 <template>
-	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="logo-svg" x="0px" y="0px" viewBox="0 0 438 450.9" style="enable-background:new 0 0 438 450.9;" xml:space="preserve">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="logo-svg" x="0px" y="0px" viewBox="0 0 438 450.9" style="enable-background:new 0 0 438 450.9;" xml:space="preserve">
 <g id="text_1_">
 	<g id="logo-title-2_1_">
 		<path class="st0" d="M40.3,397l-4,9.2H29l17.8-40.3h7.3l17.8,40.3h-7.3l-4-9.2H40.3z M57.8,390.7l-7.3-16.6l-7.3,16.6H57.8z"/>
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-	import createPlayer from 'web-audio-player'
+    import createPlayer from 'web-audio-player'
     /* eslint-disable no-undef */
     export default {
         mounted() {
@@ -98,31 +98,133 @@
             let $text2 = $svg.querySelector("#logo-title-1_1_")
             let $left = $svg.querySelector("#left-flake_1_")
             let $right = $svg.querySelector("#logo-circut")
-			let $paths = $right.querySelectorAll('.anim')
-			let $nodes = $right.querySelectorAll('.anim-2')
-			let t_l = new TimelineMax({delay: 0.5})
+            let $paths = $right.querySelectorAll('.anim')
+            let $nodes = $right.querySelectorAll('.anim-2')
+            let t_l = new TimelineMax({delay: 0.5})
 
-			let dur = 1
+            let dur = 1
 
-			t_l
-				.call(soundB.play)
+            t_l
+                .call(
+                    soundB.play
+                )
+                .set(
+                    $paths,
+                    {
+                        drawSVG: '0%'
+                    },
+                    'a'
+                )
+                .set(
+                    $left,
+                    {
+                        autoAlpha: 0,
+                        rotation: 180,
+                        transformOrigin: '50% 50%'
+                    },
+                    'a')
+                .staggerTo(
+                    $paths,
+					dur * 2,
+                    {
+                        drawSVG: '100%'
+                    },
+                    dur / 5.3,
+                    'a+=' + (dur / 2)
+                )
+                .call(
+                    soundA.play,
+                    [],
+                    this,
+                    '-=0.5'
+                )
+                .to(
+                    [$text2.querySelectorAll('path'), $text1.querySelectorAll('path')],
+                    1.2,
+                    {
+                        stroke: '#b0b0b0'
+                    },
+                    'b')
+                .to(
+                    [$paths],
+                    0.3,
+                    {
+                        stroke: '#fff',
+						strokeWidth: 2,
+                        fill: '#fff'
+                    },
+                    'b')
+                // .to(
+                //     [$paths],
+                //     1.2,
+                //     {
+                //         stroke: '#b0b0b0',
+                //         fill: 'rgba(244, 244, 240, 0.05)'
+                //     })
+                .fromTo(
+                    $nodes,
+                    dur * 0.3,
+                    {
+                        scale: 0, transformOrigin: '50% 50%'
+                    },
+                    {
+                        ease: Back.easeOut,
+                        scale: 1,
+                        transformOrigin: '50% 50%',
+                        autoAlpha: 1
+                    },
+                    '-=' + (dur * 1)
+                )
+                .to(
+                    $left,
+                    dur * 1,
+                    {
+                        ease: Back.easeOut,
+                        rotation: 0,
+                        transformOrigin: '50% 50%',
+                        autoAlpha: 1
+                    },
+                    '-=1.6'
+                )
+                .staggerFromTo(
+                    $text1.querySelectorAll('path'),
+                    dur * 0.15,
+                    {
+                        y: -20, autoAlpha: 0
+                    },
+                    {
+                        y: 0,
+                        autoAlpha: 1
+                    },
+					dur * 0.075,
+					'-=1.5'
+				)
+                .staggerFromTo(
+                    $text2.querySelectorAll('path'),
+                    dur * 0.075,
+                    {
+                        y: -10, autoAlpha: 0
+                    },
+                    {
+                        y: 0,
+                        autoAlpha: 1
+                    },
+					dur * 0.03,
+					'-=1'
+				)
+                .to(
+                    [$text2.querySelectorAll('path'), $text1.querySelectorAll('path')],
+                    0.3,
+                    {
+                        scale: 1.1,
+                        transformOrigin: "50% 50%",
+                        fill: '#fff',
+                        yoyo: true,
+                        repeat: 1
+                    })
 
-                .staggerFromTo($text1.querySelectorAll('path'), dur / 2.8, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 2.55, 'a')
-                .staggerFromTo($text2.querySelectorAll('path'), dur / 3.1, {y: -20, autoAlpha: 0}, {y: 0, autoAlpha: 1}, dur / 7.85, 'a')
-				.set($paths, {drawSVG: '0%'}, 'a')
-				.set($left, {autoAlpha: 0, rotation: 180, transformOrigin: '50% 50%'}, 'a')
-				.staggerTo($paths, dur * 2, {drawSVG: '100%'}, dur / 5.3, 'a+=' + (dur / 2))
-                .call(soundA.play)
-                .to([$text2.querySelectorAll('path'), $text1.querySelectorAll('path')], 1.2, {stroke: '#b0b0b0'}, 'b')
-                .to([$paths], 1.2, {stroke: '#b0b0b0', fill: 'rgba(244, 244, 240, 0.05)'}, 'b')
-
-				.to($left, dur * 1, {ease: Back.easeOut, rotation: 0, transformOrigin: '50% 50%', autoAlpha: 1}, '-=1.6')
-                .fromTo($nodes, dur * 0.3, {scale: 0, transformOrigin: '50% 50%'}, {ease: Back.easeOut, scale: 1, transformOrigin: '50% 50%', autoAlpha: 1}, '-=' + (dur * 1))
-                .to([$text2.querySelectorAll('path'), $text1.querySelectorAll('path')], 0.3,  {scale: 1.07, transformOrigin: "50% 50%", fill: '#fff', yoyo:true, repeat: 1})
-               // .staggerTo($text2.querySelectorAll('path'), dur / 3.1,  {y: 0, autoAlpha: 1}, dur / 7.85)
-
-		}
-	}
+        }
+    }
 </script>
 
 <style scoped lang="stylus">
@@ -131,30 +233,32 @@
         width: 100%
         height: 100%
 
-	.st0
-		fill: transparent
-		stroke: #006494
+    .st0
+        fill: transparent
+        stroke: #006494
 
-	.st1{clip-path:url(#SVGID_2_);}
+    .st1 {
+        clip-path: url(#SVGID_2_);
+    }
 
-	#logo-circut
-		.anim-2
-			opacity: 0
-		.anim
-			stroke-width 3
-			stroke: #006494
-			fill: transparent
+    #logo-circut
+        .anim-2
+            opacity: 0
+        .anim
+            stroke-width 3
+            stroke: #006494
+            fill: transparent
 
-	#left-flake_1_
-		.st0
-			stroke-width 3
+    #left-flake_1_
+        .st0
+            stroke-width 3
 
-	#flake-right
-		opacity 0
-		visibility hidden
+    #flake-right
+        opacity 0
+        visibility hidden
 
-	#text_1_
-		.st0
-			fill: #cacaca
-			stroke-width 0
+    #text_1_
+        .st0
+            fill: #cacaca
+            stroke-width 0
 </style>
