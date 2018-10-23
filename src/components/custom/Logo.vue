@@ -149,8 +149,12 @@
 		.st0
 			stroke-width 3
 
+	#flake-right
+		opacity 0
+		visibility hidden
+
 	#text_1_
-		 .st0
-			 fill: #cacaca
-			 stroke-width 0
+		.st0
+			fill: #cacaca
+			stroke-width 0
 </style>
