@@ -184,7 +184,7 @@
                         transformOrigin: '50% 50%',
                         autoAlpha: 1
                     },
-                    '-=1.6'
+                    '-=2.2'
                 )
                 .staggerFromTo(
                     $text1.querySelectorAll('path'),
@@ -261,4 +261,6 @@
         .st0
             fill: #cacaca
             stroke-width 0
+
+
 </style>
