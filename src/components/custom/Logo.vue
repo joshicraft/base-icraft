@@ -100,7 +100,7 @@
             let $right = $svg.querySelector("#logo-circut")
             let $paths = $right.querySelectorAll('.anim')
             let $nodes = $right.querySelectorAll('.anim-2')
-            let t_l = new TimelineMax({delay: 0.5})
+            let t_l = new TimelineMax({delay: 0.1})
 
             let dur = 1
 
@@ -145,22 +145,22 @@
                         stroke: '#b0b0b0'
                     },
                     'b')
-                .to(
-                    [$paths],
-                    0.3,
-                    {
-                        stroke: '#fff',
-						strokeWidth: 2,
-                        fill: '#fff'
-                    },
-                    'b')
                 // .to(
                 //     [$paths],
-                //     1.2,
+                //     0.3,
                 //     {
-                //         stroke: '#b0b0b0',
-                //         fill: 'rgba(244, 244, 240, 0.05)'
-                //     })
+                //         stroke: '#fff',
+				// 		strokeWidth: 2,
+                //         fill: '#fff'
+                //     },
+                //     'b')
+                .to(
+                    [$paths],
+                    1.2,
+                    {
+                        stroke: '#b0b0b0',
+                        fill: 'rgba(244, 244, 240, 0.05)'
+                    })
                 .fromTo(
                     $nodes,
                     dur * 0.3,
@@ -246,7 +246,7 @@
             opacity: 0
         .anim
             stroke-width 3
-            stroke: #006494
+            stroke: #f0f0f0
             fill: transparent
 
     #left-flake_1_
