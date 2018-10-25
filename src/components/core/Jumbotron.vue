@@ -17,15 +17,15 @@
             <div class="z0 bg-gradient"></div>
             <div class="vid-bg-vector">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 934" style="enable-background:new 0 0 1902 934;" xml:space="preserve">
-                    <g>
-                        <path class="st0" d="M0,761.7c0,0,485,175.3,1117,175.3s787-84,787-84v84H0L0,761.7z"/>
-                    </g>
+
+                    <path class="st0" d="M0,761.7c0,0,485,175.3,1117,175.3s787-84,787-84v84H0L0,761.7z"/>
+
                 </svg>
             </div>
             <div class="vid-bg-vector">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 934" style="enable-background:new 0 0 1902 934;" xml:space="preserve">
                     <g>
-                        <path class="st1" d="M0,805c0,0,485,132,1117,132s785-66,785-66l2,66H0L0,805z"/>
+                        <path class="st1" d="M0,802c0,0,485,132,1117,132s785-66,785-66l2,66H0L0,802z"/>
                     </g>
                 </svg>
             </div>
@@ -62,7 +62,7 @@
             <!--</v-img>-->
             <div
                     @click="goTo('#view')"
-                    v-if="!isScrolling && $vuetify.breakpoint.mdAndUp"
+                    v-if="!scrolling && $vuetify.breakpoint.mdAndUp"
                     class="scroll-wheel-wrap scrollwheel"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 58.5 84.2" style="enable-background:new 0 0 58.5 84.2;" xml:space="preserve">
@@ -83,7 +83,7 @@
 
         methods: {
             goTo () {
-                this.scrolling = false
+                this.scrolling = true
                 // this.$children[0].$refs.video.pause()
                 this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
             }
@@ -139,9 +139,7 @@
         mounted() {
             setTimeout(() => {
                 this.isBooted = true
-
             }, 200)
-
         }
     }
 </script>
@@ -224,6 +222,7 @@
         -webkit-animation: slide-bottom 1s ease-in-out infinite both;
         animation: slide-bottom 1s ease-in-out infinite both;
     }
+
     @-webkit-keyframes slide-bottom {
         0% {
             fill: #ccc
@@ -242,13 +241,13 @@
             transform: translateY(0px);
         }
     }
+
     @keyframes slide-bottom {
         0% {
             fill: #ccc
             -webkit-transform: translateY(0px) scaleY(0.75);
             transform: translateY(0px) scaleY(0.75);
         }
-
         50% {
             fill: #fff
         }
