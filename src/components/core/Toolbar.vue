@@ -49,7 +49,7 @@
             ...mapMutations('app', ['toggleDrawer']),
             onScroll() {
                 if ((window.pageYOffset ||
-                    document.documentElement.scrollTop || 0) > window.innerHeight) {
+                    document.documentElement.scrollTop || 0) > window.innerHeight - 70) {
                     this.isScrolling = true
                     let tl = new TimelineMax()
                     let $svg = this.$el.querySelector('svg')
