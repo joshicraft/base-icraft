@@ -219,33 +219,40 @@
     }
     @-webkit-keyframes slide-bottom {
         0% {
-            fill: #aaa
-            -webkit-transform: translateY(0);
-            transform: translateY(0);
+            fill: #ccc
+            -webkit-transform: translateY(0px) scaleY(0.75);
+            transform: translateY(0px) scaleY(0.75);
         }
         50% {
             fill: #fff
         }
+        85% {
+            -webkit-transform: translateY(8px) scaleY(1);
+            transform: translateY(8px) scaleY(1);
+        }
         100% {
             fill: #aaa
-            -webkit-transform: translateY(12px);
-            transform: translateY(12px);
+            transform: translateY(0px);
         }
     }
     @keyframes slide-bottom {
         0% {
             fill: #ccc
-            -webkit-transform: translateY(0);
-            transform: translateY(0);
+            -webkit-transform: translateY(0px) scaleY(0.75);
+            transform: translateY(0px) scaleY(0.75);
         }
 
         50% {
             fill: #fff
         }
+        85% {
+
+            -webkit-transform: translateY(8px) scaleY(1);
+            transform: translateY(8px) scaleY(1);
+        }
         100% {
             fill: #aaa
-            -webkit-transform: translateY(12px);
-            transform: translateY(12px);
+            transform: translateY(0px);
         }
     }
 
