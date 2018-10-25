@@ -164,7 +164,9 @@
         pointer-events none
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(197, 197, 197, 0.5) 100%);
 
-
+    svg
+        -webkit-filter: drop-shadow(0px 0px 7px rgba(0,0,0,0.25));
+        filter: drop-shadow(0px 0px 7px rgba(0,0,0,0.25));
 
     @media (orientation: portrait)
         .jumbo-logo

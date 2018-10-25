@@ -262,5 +262,7 @@
             fill: #cacaca
             stroke-width 0
 
-
+	svg
+		-webkit-filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.45));
+		filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.45));
 </style>

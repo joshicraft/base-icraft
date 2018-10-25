@@ -57,8 +57,8 @@
                     let $text2 = $svg.querySelector(".logo-text-2")
                     let $logoIcon = $svg.querySelector(".logo-icon")
                     tl
-                        .to([$text2, $text1], 0.6, {x: -40, autoAlpha:0}, 'a')
-                        .to([$logoIcon], 0.5, {ease: Back.easeOut, scale: 1, x: 0, rotation: 90, transformOrigin: '50% 50%'}, 'a')
+                        .to([$text2, $text1], 0.6, {x: 0, autoAlpha:0}, 'a')
+                        .to([$logoIcon], 0.5, {x: 0, autoAlpha:1, rotation: 90, transformOrigin: '50% 50%'}, 'a')
                     //    .to([$svg], 0.2, {y: 31, transformOrigin: '50% 50%'}, '-=0.1')
                 } else {
                     this.isScrolling = false
@@ -69,7 +69,7 @@
                     let $logoIcon = $svg.querySelector(".logo-icon")
                     tl
 
-                        .to([$logoIcon], 0.5, {scale: 0, x:-0, rotation: 0, transformOrigin: '50% 50%'}, 'a')
+                        .to([$logoIcon], 0.5, {x: -185, rotation: 0, autoAlpha:1, transformOrigin: '50% 50%'}, 'a')
                         .to([$text2, $text1], 0.7, {x: -200, autoAlpha:1}, 'a')
                        // .to([$svg], 0.2, {y: 0, x: 0, transformOrigin: '50% 50%'}, '-=0.1')
                 }
@@ -80,10 +80,13 @@
 
 <style lang="stylus">
     .toolbar-svg-wrapper
-        height: 100%;
+        height: 100%
+        position: relative
+        left -16px
         svg
             width: auto
             height: 100%
+
     .logo-text-1, .logo-text-2
         opacity 0
 </style>

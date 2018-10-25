@@ -8,10 +8,10 @@
 
 <script>
   export default {
-    metaInfo () {
-      return {
-        titleTemplate: '%s — Alpha Theme'
-      }
-    }
+    // metaInfo () {
+    //   return {
+    //     titleTemplate: '%s — Alpha Theme'
+    //   }
+    // }
   }
 </script>

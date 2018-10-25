@@ -6,6 +6,7 @@
         align-center
         wrap
       >
+        <h1 class="mb-5">WORK IN PROGRESS</h1>
         <v-flex xs12 mb-5>
           <alpha-card-feature :features="cardFeatures" />
         </v-flex>
@@ -62,9 +63,9 @@
 <script>
   export default {
     metaInfo: {
-      title: 'Vuetify Alpha',
+      title: 'Anderson Air Conditioning & Electrical',
       meta: [
-        { name: 'description', content: 'Customized vue-cli templates for Vue and Vuetify' }
+        { name: 'description', content: 'Top Quality Electrician and Air Conditioning Services located in the greater Auckland region' }
       ]
     },
     computed: {
