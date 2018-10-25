@@ -19,10 +19,17 @@
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 934" style="enable-background:new 0 0 1902 934;" xml:space="preserve">
                     <g>
                         <path class="st0" d="M0,761.7c0,0,485,175.3,1117,175.3s787-84,787-84v84H0L0,761.7z"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="vid-bg-vector">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 934" style="enable-background:new 0 0 1902 934;" xml:space="preserve">
+                    <g>
                         <path class="st1" d="M0,805c0,0,485,132,1117,132s785-66,785-66l2,66H0L0,805z"/>
                     </g>
                 </svg>
             </div>
+
             <v-fade-transition mode="out-in">
                 <v-container
                         fill-height
