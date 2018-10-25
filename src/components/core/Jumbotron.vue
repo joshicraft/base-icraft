@@ -223,8 +223,11 @@
             -webkit-transform: translateY(0);
             transform: translateY(0);
         }
+        50% {
+            fill: #fff
+        }
         100% {
-            fill: white
+            fill: #aaa
             -webkit-transform: translateY(12px);
             transform: translateY(12px);
         }
@@ -235,8 +238,12 @@
             -webkit-transform: translateY(0);
             transform: translateY(0);
         }
+
+        50% {
+            fill: #fff
+        }
         100% {
-            fill: #555
+            fill: #aaa
             -webkit-transform: translateY(12px);
             transform: translateY(12px);
         }

@@ -82,11 +82,15 @@
     .toolbar-svg-wrapper
         height: 100%
         position: relative
-        left -16px
+        left -24px
         svg
             width: auto
             height: 100%
 
     .logo-text-1, .logo-text-2
         opacity 0
+
+    @media only screen and (max-width: 959px)
+        .toolbar-svg-wrapper
+            left -16px
 </style>
