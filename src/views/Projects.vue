@@ -14,9 +14,9 @@
 <script>
   export default {
     metaInfo: {
-      title: 'Projects',
+      title: 'Projects of Anderson Air Conditioning & Electrical',
       meta: [
-        { name: 'description', content: 'Customized vue-cli templates for Vue and Vuetify' }
+        { name: 'description', content: "Here's but a few of the Electrical and Air Conditioning projects we've worked on" }
       ]
     },
     computed: {

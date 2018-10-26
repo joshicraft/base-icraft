@@ -1,3 +1,4 @@
 export default {
-  drawer: null
+  drawer: null,
+  lazyLoaded: null
 }

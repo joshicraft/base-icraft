@@ -33,23 +33,13 @@
   import MY_JSON from '../lang/en/Views/Services.json'
   export default {
     metaInfo: {
-      title: 'Services',
+      title: 'Services of Anderson Air Conditioning & Electrical',
       meta: [
-        { name: 'description', content: 'Customized vue-cli templates for Vue and Vuetify' }
+        { name: 'description', content: 'AACE offers a wide range of Air Conditioning and Electrical Services' }
       ]
     },
     data () {
       return MY_JSON
     }
-    // computed: {
-    //   testimonial () {
-    //     return {
-    //       //quote: this.$t('Views.Services.testimonial.quote'),
-    //       quote: MY_JSON.testimonial.quote,
-    //       author: MY_JSON.testimonial.author,
-    //       title: MY_JSON.testimonial.title,
-    //     }
-    //   }
-    // }
   }
 </script>

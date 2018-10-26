@@ -49,9 +49,9 @@
 <script>
   export default {
     metaInfo: {
-      title: 'Contact',
+      title: 'Contact Anderson Air Conditioning & Electrical',
       meta: [
-        { name: 'description', content: 'Customized vue-cli templates for Vue and Vuetify' }
+        { name: 'description', content: 'To get find out more about what we can offer you, get in touch today!' }
       ]
     },
   }

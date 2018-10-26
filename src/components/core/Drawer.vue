@@ -26,6 +26,7 @@
 <script>
   // Utilities
   import { mapMutations } from 'vuex'
+  import links from '../../lang/en/Layout/Drawer'
 
   export default {
     computed: {
@@ -38,12 +39,7 @@
         }
       },
       items () {
-        return [
-          {
-            text: this.$t('Layout.Drawer.home'),
-            to: '/'
-          }
-        ]
+        return links
       }
     },
 

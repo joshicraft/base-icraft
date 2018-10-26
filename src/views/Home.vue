@@ -65,7 +65,7 @@
     metaInfo: {
       title: 'Anderson Air Conditioning & Electrical',
       meta: [
-        { name: 'description', content: 'Top Quality Electrician and Air Conditioning Services located in the greater Auckland region' }
+        { name: 'description', content: 'Top Quality Electrician and Air Conditioning Services situated in the greater Auckland region.' }
       ]
     },
     computed: {
