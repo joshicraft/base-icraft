@@ -15,20 +15,9 @@
                 :alt="heroImage"
         >
             <div class="z0 bg-gradient"></div>
-            <div class="vid-bg-vector">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 934" style="enable-background:new 0 0 1902 934;" xml:space="preserve">
 
-                    <path class="st0" d="M0,761.7c0,0,485,175.3,1117,175.3s787-84,787-84v84H0L0,761.7z"/>
+            <custom-background-vector></custom-background-vector>
 
-                </svg>
-            </div>
-            <div class="vid-bg-vector">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 934" style="enable-background:new 0 0 1902 934;" xml:space="preserve">
-                    <g>
-                        <path class="st1" d="M0,802c0,0,485,132,1117,132s785-66,785-66l2,66H0L0,802z"/>
-                    </g>
-                </svg>
-            </div>
 
             <v-fade-transition mode="out-in">
                 <v-container
@@ -40,14 +29,18 @@
                     <v-layout align-center>
                         <v-fade-transition mode="out-in">
                             <v-layout
+                                    column
                                     justify-center
                                     align-center
                                     text-xs-center
                                     :key="$route.path"
+                                    class="title"
                             >
                                 <div class="jumbo-logo">
                                     <custom-logo></custom-logo>
                                 </div>
+                                <h1>{{title}}</h1>
+                                <h2>{{subTitle}}</h2>
                                 <!--<h1 class="display-2 white&#45;&#45;text" v-html="title" />-->
                                 <!--<div-->
                                 <!--class="subheading white&#45;&#45;text"-->
@@ -76,8 +69,11 @@
 </template>
 
 <script>
+    import SplitText from '../../plugins/split-text'
+    import * as CONTENT from '../../lang/en/Views'
     export default {
         data: () => ({
+            scrolling: false,
             isBooted: false
         }),
 
@@ -97,10 +93,12 @@
                 return this.$route.name
             },
             title() {
-                return this.$t(`Views.${this.namespace}.jumbotronTitle`)
+                return CONTENT[this.namespace].jumbotronTitle
+              //  return this.$t(`Views.${this.namespace}.jumbotronTitle`)
             },
             subTitle() {
-                return this.$t(`Views.${this.namespace}.jumbotronSubTitle`)
+                return CONTENT[this.namespace].jumbotronSubTitle
+                // return this.$t(`Views.${this.namespace}.jumbotronSubTitle`)
             },
             heroImage() {
                 let path = '/static/video/'
@@ -139,25 +137,19 @@
         mounted() {
             setTimeout(() => {
                 this.isBooted = true
+                setTimeout(() => {
+                    new SplitText(document.querySelector('.title h1'), 1, 0.2)
+                    new SplitText(document.querySelector('.title h2'), 2)
+                }, 1)
             }, 200)
+
         }
     }
 </script>
 
 <style lang="stylus" scoped>
 
-    .vid-bg-vector
-        position: absolute;
-        top 0
-        left 0
-        width 100%
-        height 100%
-        svg
-            width: 100%;
-            /* height: 100%; */
-            display: block;
-            position: absolute;
-            bottom: 0;
+
 
     .jumbo-wrap
         height: 100vh
@@ -166,13 +158,24 @@
         width: 30%
         margin: 0 auto;
 
-    .st0 {
-        fill: #CECECE;
-    }
+    .title
+        color: rgb(202, 202, 202)
+        h1
+            text-shadow: #222 1px 0 10px;
+            //  display: none
+            font-size: 3.6em
+            letter-spacing 6px
+            font-weight 500
+            transform scaleY(0.9)
+        h2
+            text-shadow: #222 1px 0 10px;
+            //   display: none
+            letter-spacing 3.5px
+            font-size: 1em;
+            font-weight: 300
+            transform scaleY(0.95)
 
-    .st1 {
-        fill: #FAFAFA;
-    }
+
 
     .st10{fill:none;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}
 
@@ -204,7 +207,7 @@
         box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
         background rgba(200, 200, 200, 0.5)
 
-    .bg-gradient
+    .bg-gradient, .bg-img
         z-index: 0
         width: 100%;
         height: 100%;
@@ -212,7 +215,13 @@
         top: 0;
         left: 0;
         pointer-events none
+
+    .bg-gradient
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(197, 197, 197, 0.5) 100%);
+
+    .bg-img
+        opacity: 0.05
+        background-image url('/static/testimonial-bg-8.png')
 
     svg
         -webkit-filter: drop-shadow(0px 0px 7px rgba(0,0,0,0.25));
@@ -222,6 +231,7 @@
         -webkit-animation: slide-bottom 1s ease-in-out infinite both;
         animation: slide-bottom 1s ease-in-out infinite both;
     }
+
 
     @-webkit-keyframes slide-bottom {
         0% {

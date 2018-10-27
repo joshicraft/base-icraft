@@ -1,6 +1,6 @@
 <template>
   <div
-    class="alpha-testimonial"
+    class="alpha-testimonial align-center justify-space-around"
     :class="[dark ? 'alpha-testimonial--dark' : '']"
   >
     <div class="alpha-testimonial__content">

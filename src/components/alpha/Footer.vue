@@ -4,12 +4,12 @@
       <v-layout
         row
         wrap
-        class="blue-grey darken-2 fill-height"
+        class="grey darken-4 fill-height"
       >
         <v-flex
           xs12
           sm3
-          class="pa-5 blue-grey darken-3"
+          class="pa-5 grey darken-4"
         >
           <h5 class="title pb-3" v-text="company" />
           <ul>
@@ -43,7 +43,7 @@
             tile
             flat
             dark
-            class="blue-grey darken-4 text-xs-center"
+            class="grey darken-3 text-xs-center"
           >
             <v-card-text>
               <slot />
@@ -110,7 +110,7 @@
 
 <style lang="stylus">
   .alpha-footer
-    background: #303c42
+    background: #cacaca
     color: #fff
     display: block
     padding: 0 !important
