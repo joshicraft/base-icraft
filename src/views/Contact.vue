@@ -1,6 +1,6 @@
 <template>
     <v-container fill-height class="mb-5">
-        <v-layout justify-space-between wrap dark>
+        <v-layout justify-space-between align-center wrap dark>
             <v-flex xs12 md7 dark>
                 <v-card dark class="pa-4 form-wrap">
                     <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
