@@ -2,12 +2,12 @@
     <v-container fill-height class="mb-5">
         <v-layout justify-space-between wrap dark>
             <v-flex xs12 md7 dark>
-                <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
-                <p class="mb-4" v-text="this.bakedContent.Contact.headingText1"/>
-                <v-card dark>
+
+                <v-card dark class="pa-4">
+                    <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
+                    <p class="mb-4" v-text="this.bakedContent.Contact.headingText1"/>
                     <v-form
                             v-if="!submitted"
-                            class="pa-3"
                             ref="form"
                             v-model="valid"
                             method="POST"
@@ -17,7 +17,7 @@
                     >
 
                         <v-text-field
-                                prepend-icon="mdi-account"
+                                prepend-icon="account_box"
                                 v-model="name"
                                 :rules="nameRules"
                                 label="name"
@@ -27,7 +27,7 @@
                         ></v-text-field>
 
                         <v-text-field
-                                prepend-icon="mdi-email"
+                                prepend-icon="email"
                                 v-model="email"
                                 :rules="emailRules"
                                 label="E-mail"
@@ -36,7 +36,14 @@
                                 required
                         ></v-text-field>
                         <v-text-field
-                                prepend-icon="mdi-message-text"
+                                prepend-icon="phone"
+                                label="phone"
+                                name="phone"
+                                type="number"
+                                required
+                        ></v-text-field>
+                        <v-text-field
+                                prepend-icon="message"
                                 v-model="message"
                                 :rules="messageRules"
                                 label="Message"
@@ -46,14 +53,14 @@
                         ></v-text-field>
 
                     </v-form>
-                    <v-card-actions class="mt-3" v-if="!submitted">
+                    <v-card-actions class="mt-5" v-if="!submitted">
                         <v-spacer/>
                         <v-btn
-                                class="px-5 mr-3"
+                                class="mr-3"
                                 color="warning"
                                 @click="clear">clear</v-btn>
                         <v-btn
-                                class="px-5"
+                                class=""
                                 color="primary"
                                 :disabled="!valid"
                                 @click="handleSubmit"
@@ -66,13 +73,90 @@
             <v-flex xs12 md4>
                 <v-card dark class="pa-3">
                     <div >
-                            <custom-logo-side></custom-logo-side>
+                        <custom-logo-side white></custom-logo-side>
                     </div>
+                    <v-card-title class="headline">
+                        Contact Details
+                    </v-card-title>
+
                     <v-card-text>
-                        <div v-text="this.bakedContent.Contact.phone" class="mb-3"/>
-                        <div v-text="this.bakedContent.Contact.address"/>
-                        <div v-text="this.bakedContent.Contact.cityState"/>
-                        <div v-text="this.bakedContent.Contact.zip"/>
+                        <v-layout mb-2 justify-start align-center row>
+                            <v-icon
+                                    sm
+                            >phone
+                            </v-icon>
+                            <a class="ml-2 p-format" :href="'tel:' + contact.phone"  v-text="contact.phone">
+                            </a>
+                        </v-layout>
+                        <v-layout mb-2 justify-start align-center row>
+                            <v-icon
+                                    sm
+                            >home
+                            </v-icon>
+                            <p class="ml-2 p-format" v-text="contact.address">
+                            </p>
+                        </v-layout>
+                        <v-layout justify-start align-start row>
+                            <v-icon
+                                    sm
+                            >access_time
+                            </v-icon>
+                            <v-layout justify-start column>
+                                <p class="ml-2 p-format" v-text="contact.hours.weekday">
+                                </p>
+                                <p class="ml-2 p-format" v-text="contact.hours.weekend">
+                                </p>
+                            </v-layout>
+                        </v-layout>
+                    </v-card-text>
+                    <v-card-title class="subheading">
+                        People
+                    </v-card-title>
+                    <v-card-text
+                            v-for="(person, i) in contact.people"
+                            :key="i"
+                    >
+                        <v-layout mb-2 justify-start align-center row>
+                            <v-icon
+                                    sm
+                            >person_pin
+                            </v-icon>
+                            <p class="ml-2 p-format" v-text="person.name">
+                            </p>
+                        </v-layout>
+                        <v-layout mb-2 justify-start align-center row>
+                            <v-icon
+                                    sm
+                            >label
+                            </v-icon>
+                            <p class="ml-2 p-format" v-text="person.title">
+                            </p>
+                        </v-layout>
+                        <v-layout mb-2 justify-start align-center row>
+                            <v-icon
+                                    sm
+                            >smartphone
+                            </v-icon>
+                            <a
+                                    class="ml-2 p-format"
+                                    :href="'tel:' + person.mobile"
+                                    v-text="person.mobile">
+                            </a>
+                        </v-layout>
+                        <v-layout
+                                justify-start
+                                row
+                        >
+                            <v-icon
+                                    sm
+                            >email
+                            </v-icon>
+                            <a
+                                    class="ml-2 p-format"
+                                    :mailto="person.email"
+                                    v-text="person.email">
+                            </a>
+                        </v-layout>
                     </v-card-text>
                 </v-card>
             </v-flex>
@@ -93,7 +177,6 @@
         data () {
             return {
                 submitted: null,
-                contact: this.$t('Views.Contact'),
                 valid: false,
                 name: '',
                 nameRules: [
@@ -110,8 +193,14 @@
                     v => !!v || 'Message must be valid',
                     v => (v && v.length >= 10) || 'Your message must be more than 10 characters'
                 ],
+                phone: '',
                 select: null
             }
+        },
+        computed: {
+          contact () {
+              return this.bakedContent.Contact
+          }
         },
         methods: {
 
@@ -119,7 +208,7 @@
                 this.$refs.form.reset()
             },
             submitToServer() {
-                let data = JSON.stringify({name: this.name, message: this.message, email: this.email})
+                let data = JSON.stringify({name: this.name, message: this.message, email: this.email, phone: this.phone})
                 return new Promise((resolve, reject) => {
                     fetch(`/.netlify/functions/contact-sendgrid`, {
                         method: 'POST',
@@ -149,4 +238,7 @@
 <style lang="stylus" scoped>
     .logo-text-2, .logo-text-1
         opacity 1
+
+    .p-format
+        margin-bottom: 0
 </style>

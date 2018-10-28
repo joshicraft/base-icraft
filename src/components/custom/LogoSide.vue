@@ -1,5 +1,5 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 1229.4 289.1">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 1229.4 289.1" :class="{'white-fill': white}">
         <g class="logo-text" :class="{'hide-text': hideText}">
             <g class="logo-text-2">
                 <path class="st0"
@@ -94,6 +94,10 @@
 <script>
     export default {
         props: {
+            white: {
+              type: Boolean,
+              default: false
+            },
             hideText:{
                 type: Boolean,
                 default: false
@@ -117,4 +121,7 @@
     .st1 {
         fill: #100D0E;
     }
+    .white-fill
+        .st0
+            fill white
 </style>

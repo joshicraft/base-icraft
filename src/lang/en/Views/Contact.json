@@ -1,11 +1,35 @@
 {
   "jumbotronTitle": "CONTACT",
   "jumbotronSubTitle": "HOW YOU CAN GET IN TOUCH",
-  "heading1": "We\"d Love to Hear From You!",
-  "headingText1": "To request more informaiton, please fill out and submit the form below",
-  "phone": "(561) 284 - 5555",
-  "address": "555 Main Street",
-  "cityState": "Boca Raton, FL",
-  "zip": "33555",
-  "submit": "Submit"
+  "heading1": "Got a question or want to know more?",
+  "headingText1": "Fill out the form below or get in touch via phone or email",
+  "phone": "+",
+  "email": "+",
+  "address": "+",
+  "cityState": "+",
+  "zip": "+",
+  "hours": {
+    "weekday": "Mon - Fri: 7:30am - 5:30pm",
+    "weekend": "Sat: 8:00am - 12:30pm"
+  },
+  "map": {
+    "zoom": 17,
+    "center": {
+      "lat": -36.960861,
+      "lng": 174.8920137
+    },
+    "markers": [
+      {
+        "title": "icraft"
+      }
+    ]
+  },
+  "people": [
+    {
+      "name": "Andrew Anderson",
+      "title": "Managing Director",
+      "mobile": "+",
+      "email": "andrew@aace.co.nz"
+    }
+  ]
 }

@@ -18,6 +18,7 @@ import router from '@/router'
 import store from '@/store'
 import * as CONTENT from './lang/en/Views'
 // Sync store with router
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 sync(store, router)
 
 Vue.config.productionTip = false

@@ -5,6 +5,7 @@
       <v-layout
         row
         wrap
+        justify-space-between
         class="grey darken-4 fill-height"
       >
         <v-flex
@@ -26,16 +27,70 @@
             </li>
           </ul>
         </v-flex>
+
         <v-flex
-          xs12 sm3
-          class="pa-5"
-          v-for="(item, i) in categories"
-          :key="i"
+                xs12
+                sm4
+                class="pa-5 grey darken-4"
         >
-          <h5 class="title pb-3" v-text="item.text" />
+          <h5 class="title pb-3">
+            Contact
+          </h5>
           <ul>
-            <li v-for="(n, i) in item.items" :key="i">
-              <a :href="n.href" v-text="n.text" />
+            <li>
+              <v-layout justify-start row>
+                <v-icon
+                        dark
+                        class="mr-3"
+                >
+                  phone
+                </v-icon>
+                <a class="p-format" :href="'tel:' + contact.phone" v-text="contact.phone">
+                </a>
+              </v-layout>
+            </li>
+            <li>
+              <v-layout justify-start row>
+                <v-icon
+                        dark
+                        class="mr-3"
+                >
+                  email
+                </v-icon>
+                <a
+                          class="p-format"
+                          :href="'mailto:' + contact.email"
+                          v-text="contact.email">
+                  </a>
+              </v-layout>
+            </li>
+            <li>
+              <v-layout justify-start row>
+                <v-icon
+                        dark
+                        class="mr-3"
+                >
+                  home
+                </v-icon>
+                <p class="p-format" v-text="contact.address">
+                </p>
+              </v-layout>
+            </li>
+            <li>
+              <v-layout justify-start row>
+                <v-icon
+                        dark
+                        class="mr-3"
+                >
+                  access_time
+                </v-icon>
+                <v-layout justify-start column>
+                  <p class="p-format" v-text="contact.hours.weekday">
+                  </p>
+                  <p class="p-format" v-text="contact.hours.weekend">
+                  </p>
+                </v-layout>
+              </v-layout>
             </li>
           </ul>
         </v-flex>
@@ -74,6 +129,9 @@
       twitter: String
     },
     computed: {
+      contact () {
+        return this.bakedContent.Contact
+      },
       computedSocial () {
         if (this.social.length) return this.social
 
@@ -110,6 +168,7 @@
 </script>
 
 <style lang="stylus">
+
   .v-footer
     position: relative;
   .alpha-footer
@@ -129,6 +188,7 @@
       padding: 0
 
       li
+        max-height: 1.6em;
         margin-bottom: 10px
 
       a
