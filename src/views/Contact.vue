@@ -47,6 +47,7 @@
                         ></v-text-field>
                         <v-text-field
                                 prepend-icon="phone"
+                                v-model="phone"
                                 label="phone"
                                 name="phone"
                                 type="number"
@@ -63,7 +64,7 @@
                         ></v-text-field>
 
                     </v-form>
-                    <v-card-actions class="mt-5" v-if="!submitted">
+                    <v-card-actions class="mt-5">
                         <v-spacer/>
                         <v-btn
                                 class="mr-3"
