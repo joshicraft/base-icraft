@@ -9,7 +9,7 @@
                     <v-flex
                             :class="{'slide-in':submitted}"
                             justify-center
-                            align-center 
+                            align-center
                             class="v-form-success">
                         <div class="wrap">
                             <h1>Thank you for your message!</h1>
@@ -265,7 +265,8 @@
         top 0
         height 100%
         width 100%
-        transition translateX 0.3s easeOut
+        transition left 0.3s easeOut
+        z-index 1
     .slide-in
-        transfrom translateX(100%)
+        left 0
 </style>
