@@ -266,8 +266,17 @@
         top 0
         height 100%
         width 100%
-        transition left 0.3s easeOut
+        transition left 0.3s ease-out
         z-index 1
+        display flex
+        text-align center
+        background #5a5a5a
+        h1
+            font-weight 400
+        h2
+            font-weight 200
+
+            
     .slide-in
         left 0
 </style>
