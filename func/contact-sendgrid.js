@@ -7,8 +7,7 @@ exports.handler = function (event, context, callback) {
     let msg = {
         to: process.env.CONTACT_MAIL_TO,
         from: process.env.CONTACT_MAIL_FROM,
-        subject: 'Website Contact Form',
-        text: 'Someone has filled out a form on your website, check out the message they left and get in touch with them :)',
+        subject: 'Someone has filled out a form on your website!',
         html: ''
     }
     let template = `
@@ -186,11 +185,11 @@ exports.handler = function (event, context, callback) {
                                     valign="top"
                                     bgcolor="#ffffff">
                                   <h1 style="text-align: center;"><span style="color:#2D2D2D;">Contact Details</span></h1>
-                                  <div style="text-align: center;">${body.name}</div>
-                                  <div style="text-align: center;">${body.email}</div>
-                                  <div style="text-align: center;">${body.phone || 'No Phone'}</div>
+                                  <div style="text-align: center;"><span style="font-weight: bold; color:#2D2D2D;">Name:&nbsp;</span>${body.name}</div>
+                                  <div style="text-align: center;"><span style="font-weight: bold; color:#2D2D2D;">Name:&nbsp;</span>${body.email}</div>
+                                  <div style="text-align: center;"><span style="font-weight: bold; color:#2D2D2D;">Name:&nbsp;</span>${body.phone || 'No Phone Provided'}</div>
                                   <h1 style="text-align: center;"><span style="color:#2D2D2D;">Message</span></h1>
-                                  <div style="text-align: center;">${body.message}</div>
+                                  <div style="text-align: center;"><span style="font-weight: bold; color:#2D2D2D;">Name:&nbsp;</span>${body.message}</div>
                                 </td>
                               </tr>
                             </table>
