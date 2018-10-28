@@ -1,23 +1,17 @@
+/* eslint-disable no-console */
 const sgMail = require('@sendgrid/mail')
 exports.handler = function (event, context, callback) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-  let body = JSON.parse(event.body)
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    let body = JSON.parse(event.body)
 
-  let msg = {
-    to: process.env.CONTACT_MAIL_TO,
-    from: process.env.CONTACT_MAIL_FROM,
-    subject: 'Website Contact Form',
-    text: 'Someone has filled out a form on your website, check out the message they left and get in touch with them :)',
-    html: `<p>You have a new contact request</p>
-            <h3>Contact Details</h3>
-    <ul>
-    <li>Name: ${body.name}</li>
-  <li>Email: ${body.email}</li>
-  </ul>
-  <h3>Message</h3>
-  <p>${body.message}</p>`
-  }
-  let template = `
+    let msg = {
+        to: process.env.CONTACT_MAIL_TO,
+        from: process.env.CONTACT_MAIL_FROM,
+        subject: 'Website Contact Form',
+        text: 'Someone has filled out a form on your website, check out the message they left and get in touch with them :)',
+        html: ''
+    }
+    let template = `
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html data-editor-version="2" class="sg-campaigns" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -146,7 +140,7 @@ exports.handler = function (event, context, callback) {
                                    style="display: none !important; mso-hide: all; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">
                               <tr>
                                 <td role="module-content">
-                                  <p>This is the preheader text.</p>
+                                  <p>Your website has got a message via the ICRAFT mail service</p>
                                 </td>
                               </tr>
                             </table>
@@ -173,13 +167,13 @@ exports.handler = function (event, context, callback) {
 
                             <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
                               <tr>
-                                <td style="padding:34px 23px 34px 23px;background-color:#ececec;"
+                                <td style="padding:34px 23px 34px 23px;background-color:#ffffff;"
                                     height="100%"
                                     valign="top"
                                     bgcolor="#ffffff">
-                                  <h1 style="text-align: center;"><font color="#2d2d2d">It looks like you&#39;ve got a message</font></h1>
+                                  <h1 style="text-align: center;"><font color="#2d2d2d">It looks like someone filled out a contact form</font></h1>
 
-                                  <div style="text-align: center;">They&#39;ve left you with the contact details and message below, go and check it out.</div>
+                                  <div style="text-align: center;">They&#39;ve left you with their contact details and message below</div>
 
                                 </td>
                               </tr>
@@ -187,14 +181,14 @@ exports.handler = function (event, context, callback) {
 
                             <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
                               <tr>
-                                <td style="padding:34px 23px 34px 23px;background-color:#ececec;"
+                                <td style="padding:34px 23px 34px 23px;background-color:#ffffff;"
                                     height="100%"
                                     valign="top"
                                     bgcolor="#ffffff">
                                   <h1 style="text-align: center;"><span style="color:#2D2D2D;">Contact Details</span></h1>
                                   <div style="text-align: center;">${body.name}</div>
                                   <div style="text-align: center;">${body.email}</div>
-                                  <div style="text-align: center;">${body.phone}</div>
+                                  <div style="text-align: center;">${body.phone || 'No Phone'}</div>
                                   <h1 style="text-align: center;"><span style="color:#2D2D2D;">Message</span></h1>
                                   <div style="text-align: center;">${body.message}</div>
                                 </td>
@@ -279,7 +273,9 @@ exports.handler = function (event, context, callback) {
                                                 valign="top"
                                                 bgcolor="#32a9d6">
                                               <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">ICRAFT - EMAIL SERVICE</span></div>
-                                              <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">116 North Road Clevedon</span></div>
+                                              <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">Address: 116 North Road Clevedon</span></div>
+                                              <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">Email: support@icraft.co.nz</span></div>
+                                              <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">Website: <a href="www.icraft.co.nz">www.icraft.co.nz</a></span></div>
                                             </td>
                                           </tr>
                                         </table>
@@ -321,16 +317,17 @@ exports.handler = function (event, context, callback) {
 </body>
 </html>
   `
-  console.log(body)
-  msg.html = template
-  console.log(`
-  Contact
-  form
-  sent
-  from: ${process.env.CONTACT_MAIL_FROM},
-  to: ${process.env.CONTACT_MAIL_TO},
-  with name:
-  ${body.name}
-`)
-  sgMail.send(msg)
+    console.log(body)
+    msg.html = template
+    console.log(`
+      Contact
+      form
+      sent
+      from: ${process.env.CONTACT_MAIL_FROM},
+      to: ${process.env.CONTACT_MAIL_TO},
+      with name:
+      ${body.name}
+    `)
+    sgMail.send(msg)
+    callback()
 }
