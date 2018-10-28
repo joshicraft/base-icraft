@@ -71,6 +71,13 @@
 <script>
     import SplitText from '../../plugins/split-text'
     import * as CONTENT from '../../lang/en/Views'
+    import createPlayer from 'web-audio-player'
+    let soundA = createPlayer('/static/sound/woosh.mp3')
+
+    soundA.on('load', () => {
+        soundA.node.connect(soundA.context.destination)
+    })
+    /* eslint-disable no-undef */
     export default {
         data: () => ({
             scrolling: false,
@@ -93,11 +100,11 @@
                 return this.$route.name
             },
             title() {
-                return CONTENT[this.namespace].jumbotronTitle
+                return CONTENT[this.namespace].jumbotronTitle || ''
               //  return this.$t(`Views.${this.namespace}.jumbotronTitle`)
             },
             subTitle() {
-                return CONTENT[this.namespace].jumbotronSubTitle
+                return CONTENT[this.namespace].jumbotronSubTitle || ''
                 // return this.$t(`Views.${this.namespace}.jumbotronSubTitle`)
             },
             heroImage() {
@@ -138,9 +145,83 @@
             setTimeout(() => {
                 this.isBooted = true
                 setTimeout(() => {
-                    new SplitText(document.querySelector('.title h1'), 1, 0.2)
-                    new SplitText(document.querySelector('.title h2'), 2)
-                }, 1)
+
+                    let $svg = document.getElementById('logo-svg')
+                    let $left = $svg.querySelector("#left-flake_1_")
+                    let $right = $svg.querySelector("#logo-circut")
+                    let $paths = $right.querySelectorAll('.anim')
+                    let $nodes = $right.querySelectorAll('.anim-2')
+                    let t_l = new TimelineMax({delay: 0.1})
+
+                    let dur = 1
+
+                    t_l
+                        .set(
+                            $paths,
+                            {
+                                drawSVG: '0%'
+                            },
+                            'a'
+                        )
+                        .set(
+                            $left,
+                            {
+                                autoAlpha: 0,
+                                rotation: 180,
+                                transformOrigin: '50% 50%'
+                            },
+                            'a')
+                        .staggerTo(
+                            $paths,
+                            dur * 2,
+                            {
+                                drawSVG: '100%'
+                            },
+                            dur / 5.3,
+                            'a+=' + (dur / 2)
+                        )
+                        .call(
+                            soundA.play,
+                            [],
+                            this,
+                            '-=1.2'
+                        )
+                        .to(
+                            [$paths],
+                            1.2,
+                            {
+                                stroke: '#b0b0b0',
+                                fill: 'rgba(244, 244, 240, 0.05)'
+                            })
+                        .fromTo(
+                            $nodes,
+                            dur * 0.3,
+                            {
+                                scale: 0, transformOrigin: '50% 50%'
+                            },
+                            {
+                                ease: Back.easeOut,
+                                scale: 1,
+                                transformOrigin: '50% 50%',
+                                autoAlpha: 1
+                            },
+                            '-=' + (dur * 1)
+                        )
+                        .to(
+                            $left,
+                            dur * 1,
+                            {
+                                ease: Back.easeOut,
+                                rotation: 0,
+                                transformOrigin: '50% 50%',
+                                autoAlpha: 1
+                            },
+                            '-=2.2'
+                        )
+
+                    new SplitText(document.querySelector('.title h1'), 1.8, 0.16)
+                    new SplitText(document.querySelector('.title h2'), 2.2, 0.055)
+                }, 100)
             }, 200)
 
         }
@@ -148,14 +229,12 @@
 </script>
 
 <style lang="stylus" scoped>
-
-
-
-    .jumbo-wrap
-        height: 100vh
+    #jumbotron
+        height: 100vh !important
 
     .jumbo-logo
         width: 30%
+        max-height 50%
         margin: 0 auto;
 
     .title
@@ -163,14 +242,15 @@
         h1
             text-shadow: #222 1px 0 10px;
             //  display: none
-            font-size: 3.6em
+            font-size: 3em
             letter-spacing 6px
+            margin-left: 3px;
             font-weight 500
             transform scaleY(0.9)
         h2
             text-shadow: #222 1px 0 10px;
             //   display: none
-            letter-spacing 3.5px
+            letter-spacing 2px
             font-size: 1em;
             font-weight: 300
             transform scaleY(0.95)
@@ -275,5 +355,10 @@
     @media (orientation: portrait)
         .jumbo-logo
             width: 70%
+
+    @media (max-width: 470px), (max-width: 740px) and (orientation: landscape)
+        .title
+
+            font-size: 1em !important
 
 </style>

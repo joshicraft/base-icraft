@@ -1,5 +1,6 @@
 <template>
   <v-footer>
+    <custom-background-vector changeFill="st3" :top="false"></custom-background-vector>
     <v-container fluid class="alpha-footer">
       <v-layout
         row
@@ -109,6 +110,8 @@
 </script>
 
 <style lang="stylus">
+  .v-footer
+    position: relative;
   .alpha-footer
     background: #cacaca
     color: #fff

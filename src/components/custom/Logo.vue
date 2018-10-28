@@ -70,164 +70,16 @@
 </template>
 
 <script>
-    import createPlayer from 'web-audio-player'
-    /* eslint-disable no-undef */
+
     export default {
         mounted() {
-            let soundA = createPlayer('/static/sound/woosh.mp3')
-            let soundB = createPlayer('/static/sound/electricity.mp3')
-
-            soundA.on('load', () => {
-
-                // start playing audio file=
-
-                // and connect your node somewhere, such as
-                // the AudioContext output so the user can hear it!
-                soundA.node.connect(soundA.context.destination)
-            })
-            soundB.on('load', () => {
-
-                // start playing audio file=
-
-                // and connect your node somewhere, such as
-                // the AudioContext output so the user can hear it!
-                soundB.node.connect(soundB.context.destination)
-            })
-            let $svg = document.getElementById('logo-svg')
-            let $text1 = $svg.querySelector("#logo-title-2_1_")
-            let $text2 = $svg.querySelector("#logo-title-1_1_")
-            let $left = $svg.querySelector("#left-flake_1_")
-            let $right = $svg.querySelector("#logo-circut")
-            let $paths = $right.querySelectorAll('.anim')
-            let $nodes = $right.querySelectorAll('.anim-2')
-            let t_l = new TimelineMax({delay: 0.1})
-
-            let dur = 1
-
-            t_l
-                // .call(
-                //     soundB.play
-                // )
-                .set(
-                    $paths,
-                    {
-                        drawSVG: '0%'
-                    },
-                    'a'
-                )
-                .set(
-                    $left,
-                    {
-                        autoAlpha: 0,
-                        rotation: 180,
-                        transformOrigin: '50% 50%'
-                    },
-                    'a')
-                .staggerTo(
-                    $paths,
-					dur * 2,
-                    {
-                        drawSVG: '100%'
-                    },
-                    dur / 5.3,
-                    'a+=' + (dur / 2)
-                )
-                .call(
-                    soundA.play,
-                    [],
-                    this,
-                    '-=0.2'
-                )
-                // .to(
-                //     [$text2.querySelectorAll('path'), $text1.querySelectorAll('path')],
-                //     1.2,
-                //     {
-                //         stroke: '#b0b0b0'
-                //     },
-                //     'b')
-                // .to(
-                //     [$paths],
-                //     0.3,
-                //     {
-                //         stroke: '#fff',
-				// 		strokeWidth: 2,
-                //         fill: '#fff'
-                //     },
-                //     'b')
-                .to(
-                    [$paths],
-                    1.2,
-                    {
-                        stroke: '#b0b0b0',
-                        fill: 'rgba(244, 244, 240, 0.05)'
-                    })
-                .fromTo(
-                    $nodes,
-                    dur * 0.3,
-                    {
-                        scale: 0, transformOrigin: '50% 50%'
-                    },
-                    {
-                        ease: Back.easeOut,
-                        scale: 1,
-                        transformOrigin: '50% 50%',
-                        autoAlpha: 1
-                    },
-                    '-=' + (dur * 1)
-                )
-                .to(
-                    $left,
-                    dur * 1,
-                    {
-                        ease: Back.easeOut,
-                        rotation: 0,
-                        transformOrigin: '50% 50%',
-                        autoAlpha: 1
-                    },
-                    '-=2.2'
-                )
-                // .staggerFromTo(
-                //     $text1.querySelectorAll('path'),
-                //     dur * 0.15,
-                //     {
-                //         y: -20, autoAlpha: 0
-                //     },
-                //     {
-                //         y: 0,
-                //         autoAlpha: 1
-                //     },
-				// 	dur * 0.075,
-				// 	'-=1.5'
-				// )
-                // .staggerFromTo(
-                //     $text2.querySelectorAll('path'),
-                //     dur * 0.075,
-                //     {
-                //         y: -10, autoAlpha: 0
-                //     },
-                //     {
-                //         y: 0,
-                //         autoAlpha: 1
-                //     },
-				// 	dur * 0.03,
-				// 	'-=1'
-				// )
-                // .to(
-                //     [$text2.querySelectorAll('path'), $text1.querySelectorAll('path')],
-                //     0.3,
-                //     {
-                //         scale: 1.1,
-                //         transformOrigin: "50% 50%",
-                //         fill: '#fff',
-                //         yoyo: true,
-                //         repeat: 1
-                //     })
 
         }
     }
 </script>
 
 <style scoped lang="stylus">
+
     svg
         display: block
         width: 100%
@@ -237,9 +89,9 @@
         fill: transparent
         stroke: #006494
 
-    .st1 {
-        clip-path: url(#SVGID_2_);
-    }
+    /*.st1*/
+        /*clip-path: url(#SVGID_2_);*/
+
 
     #logo-circut
         .anim-2
@@ -261,7 +113,6 @@
         .st0
             fill: #cacaca
             stroke-width 0
-
 	svg
 		-webkit-filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.45));
 		filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.45));

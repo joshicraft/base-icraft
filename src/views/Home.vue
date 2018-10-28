@@ -26,7 +26,7 @@
                 class="mt-5"
         >
             <custom-background-vector position="top" :top="false"></custom-background-vector>
-            <custom-background-vector changeFill="st3" :top="false"></custom-background-vector>
+
 
             <v-container
                     fill-height

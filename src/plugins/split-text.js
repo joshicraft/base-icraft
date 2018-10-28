@@ -7,7 +7,7 @@ const SplitText = (e, delay, dur) => {
     let words = []
     let typeAnimation
     let tweenDel = 1
-    let height = 20
+    let height = 15
 
     if (e.length !== undefined) {
         e = Array.from(e)
@@ -29,6 +29,7 @@ const SplitText = (e, delay, dur) => {
             y: -height,
             opacity: 0,
             position: 'relative',
+            className: 'split-char',
             display: char === '*' ? 'none' : 'inline-block'
         })
         chars.push(charElm)
@@ -68,6 +69,7 @@ const SplitText = (e, delay, dur) => {
                     TweenMax.set(symbolElm, {
                         y: -symbolElm,
                         opacity: 0,
+                        className: 'split-char',
                         position: 'relative',
                         display: char === '*' ? 'none' : 'inline-block'
                     })
