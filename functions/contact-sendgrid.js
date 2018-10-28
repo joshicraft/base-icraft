@@ -140,7 +140,7 @@ exports.handler = function (event, context, callback) {
                                    style="display: none !important; mso-hide: all; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">
                               <tr>
                                 <td role="module-content">
-                                  <p>This is the preheader text.</p>
+                                  <p>Your website has got a message via the ICRAFT mail service</p>
                                 </td>
                               </tr>
                             </table>
@@ -171,9 +171,9 @@ exports.handler = function (event, context, callback) {
                                     height="100%"
                                     valign="top"
                                     bgcolor="#ffffff">
-                                  <h1 style="text-align: center;"><font color="#2d2d2d">It looks like you&#39;ve got a message</font></h1>
+                                  <h1 style="text-align: center;"><font color="#2d2d2d">It looks like someone filled out a contact form</font></h1>
 
-                                  <div style="text-align: center;">They&#39;ve left you with the contact details and message below, go and check it out.</div>
+                                  <div style="text-align: center;">They&#39;ve left you with their contact details and message below</div>
 
                                 </td>
                               </tr>
@@ -188,7 +188,7 @@ exports.handler = function (event, context, callback) {
                                   <h1 style="text-align: center;"><span style="color:#2D2D2D;">Contact Details</span></h1>
                                   <div style="text-align: center;">${body.name}</div>
                                   <div style="text-align: center;">${body.email}</div>
-                                  <div style="text-align: center;">${body.phone}</div>
+                                  <div style="text-align: center;">${body.phone || 'No Phone'}</div>
                                   <h1 style="text-align: center;"><span style="color:#2D2D2D;">Message</span></h1>
                                   <div style="text-align: center;">${body.message}</div>
                                 </td>
@@ -273,7 +273,9 @@ exports.handler = function (event, context, callback) {
                                                 valign="top"
                                                 bgcolor="#32a9d6">
                                               <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">ICRAFT - EMAIL SERVICE</span></div>
-                                              <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">116 North Road Clevedon</span></div>
+                                              <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">Address: 116 North Road Clevedon</span></div>
+                                              <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">Email: support@icraft.co.nz</span></div>
+                                              <div style="font-size: 10px; line-height: 150%; margin: 0px; text-align: right;"><span style="color:#ffffff;">Website: <a href="www.icraft.co.nz">www.icraft.co.nz</a></span></div>
                                             </td>
                                           </tr>
                                         </table>
