@@ -2,8 +2,8 @@
     <v-container fill-height class="mb-5">
         <v-layout justify-space-between wrap dark>
             <v-flex xs12 md7 dark>
-                <h2 class="headline mb-2" v-text="$t('Views.Contact.heading1')"/>
-                <p class="mb-4" v-text="$t('Views.Contact.headingText1')"/>
+                <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
+                <p class="mb-4" v-text="this.bakedContent.Contact.headingText1"/>
                 <v-card dark>
                     <v-form
                             v-if="!submitted"
@@ -64,17 +64,15 @@
                 </v-card>
             </v-flex>
             <v-flex xs12 md4>
-                <v-card dark>
-                    <div class="pa-3">
-                        <div class="toolbar-svg-wrapper my-3">
+                <v-card dark class="pa-3">
+                    <div >
                             <custom-logo-side></custom-logo-side>
-                        </div>
                     </div>
                     <v-card-text>
-                        <div v-text="$t('Views.Contact.phone')" class="mb-3"/>
-                        <div v-text="$t('Views.Contact.address')"/>
-                        <div v-text="$t('Views.Contact.cityState')"/>
-                        <div v-text="$t('Views.Contact.zip')"/>
+                        <div v-text="this.bakedContent.Contact.phone" class="mb-3"/>
+                        <div v-text="this.bakedContent.Contact.address"/>
+                        <div v-text="this.bakedContent.Contact.cityState"/>
+                        <div v-text="this.bakedContent.Contact.zip"/>
                     </v-card-text>
                 </v-card>
             </v-flex>

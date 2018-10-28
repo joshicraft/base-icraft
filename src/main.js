@@ -16,7 +16,7 @@ import App from './App'
 import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
-
+import * as CONTENT from './lang/en/Views'
 // Sync store with router
 sync(store, router)
 
@@ -29,7 +29,8 @@ Vue.mixin({
             ext(type, thumb) {
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
-            }
+            },
+            bakedContent: CONTENT
         }
     }
 })

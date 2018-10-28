@@ -61,27 +61,6 @@
                         </v-carousel-item>
                     </v-carousel>
                     </v-flex>
-                    <!--<v-window v-model="onboarding" :cycle="true">-->
-                        <!--<v-window-item-->
-                                <!--xs12-->
-                                <!--sm6-->
-                                <!--v-for="(testimonial, i) in testimonials"-->
-                                <!--:key="i"-->
-                        <!--&gt;-->
-                            <!--<v-layout-->
-                                    <!--align-center-->
-                                    <!--justify-center-->
-                                    <!--fill-height-->
-                                    <!--tag="v-card-text"-->
-                            <!--&gt;-->
-                                <!--<alpha-testimonial-->
-                                        <!--:author="testimonial.author"-->
-                                        <!--:title="testimonial.title"-->
-                                        <!--:quote="testimonial.quote"-->
-                                <!--/>-->
-                            <!--</v-layout>-->
-                        <!--</v-window-item>-->
-                    <!--</v-window>-->
                 </v-layout>
             </v-container>
         </alpha-hero>
@@ -89,8 +68,6 @@
 </template>
 
 <script>
-    import CONTENT from '../lang/en/Views/Home.json'
-
     export default {
         metaInfo: {
             title: 'Anderson Air Conditioning & Electrical',
@@ -121,10 +98,10 @@
         },
         computed: {
             cardFeatures() {
-                return CONTENT.cardFeatures
+                return this.bakedContent.Home.cardFeatures
             },
             testimonials() {
-                return CONTENT.testimonials
+                return this.bakedContent.Home.testimonials
             }
         }
     }

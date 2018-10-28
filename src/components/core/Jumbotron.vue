@@ -70,7 +70,6 @@
 
 <script>
     import SplitText from '../../plugins/split-text'
-    import * as CONTENT from '../../lang/en/Views'
     import createPlayer from 'web-audio-player'
     let soundA = createPlayer('/static/sound/woosh.mp3')
 
@@ -100,11 +99,11 @@
                 return this.$route.name
             },
             title() {
-                return CONTENT[this.namespace].jumbotronTitle || ''
+                return this.bakedContent[this.namespace].jumbotronTitle
               //  return this.$t(`Views.${this.namespace}.jumbotronTitle`)
             },
             subTitle() {
-                return CONTENT[this.namespace].jumbotronSubTitle || ''
+                return this.bakedContent[this.namespace].jumbotronSubTitle
                 // return this.$t(`Views.${this.namespace}.jumbotronSubTitle`)
             },
             heroImage() {
