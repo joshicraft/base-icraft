@@ -12,6 +12,8 @@
   </v-app>
 </template>
 <style lang="stylus">
+  .v-content
+    padding-top: 64px !important
   .container
     max-width: 1280px
 </style>
