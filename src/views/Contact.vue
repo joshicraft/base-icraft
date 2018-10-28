@@ -2,8 +2,7 @@
     <v-container fill-height class="mb-5">
         <v-layout justify-space-between wrap dark>
             <v-flex xs12 md7 dark>
-
-                <v-card dark class="pa-4">
+                <v-card dark class="pa-4 form-wrap">
                     <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
                     <p class="mb-4" v-text="this.bakedContent.Contact.headingText1"/>
                     <v-flex
@@ -257,6 +256,9 @@
     .logo-text-2, .logo-text-1
         opacity 1
 
+    .form-wrap
+        overflow hidden
+
     .p-format
         margin-bottom: 0
 
@@ -270,13 +272,13 @@
         z-index 1
         display flex
         text-align center
-        background #5a5a5a
+        background #424242
         h1
             font-weight 400
         h2
             font-weight 200
 
-            
+
     .slide-in
         left 0
 </style>
