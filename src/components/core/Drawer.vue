@@ -5,8 +5,7 @@
     v-model="inputValue"
     left
   >
-    <custom-background-vector fill="#5a5a5a"></custom-background-vector>
-    <custom-background-vector fill="#5a5a5a" position="top"></custom-background-vector>
+    <custom-background-vector v-if="visible" fill="#5a5a5a" right position="right"></custom-background-vector>
     <v-list>
       <v-list-tile>
         <v-spacer />
@@ -32,6 +31,9 @@
 
   export default {
     computed: {
+      visible () {
+          return this.$store.state.app.drawer
+      },
       inputValue: {
         get () {
           return this.$store.state.app.drawer
@@ -50,3 +52,8 @@
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  .v-navigation-drawer
+    overflow visible
+</style>
