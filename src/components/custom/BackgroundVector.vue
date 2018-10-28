@@ -15,7 +15,7 @@
         <div class="wrap" v-if="right">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 175.947 1902.886">
             <path fill="#A5A5A5" d="M0.136,1902.969c0,0,175.333-485,175.333-1117s-84-787-84-787h84v1904H0.136z"/>
-            <path fill="#FAFAFA" d="M43.947,1902.886c0,0,130.417-484.667,130.417-1116.667S109.416-1.031,109.416-1.031l66.531-0.083v1904    H43.947z"/>
+            <path  :style="{'fill': fill}" d="M43.947,1902.886c0,0,130.417-484.667,130.417-1116.667S109.416-1.031,109.416-1.031l66.531-0.083v1904    H43.947z"/>
             </svg>
         </div>
     </div>
@@ -93,7 +93,7 @@
     .right
         left calc(100% - 1px)
         bottom initial
-        height 100%
+        height 101%
         width initial
         min-height initial
         min-width: 150px
