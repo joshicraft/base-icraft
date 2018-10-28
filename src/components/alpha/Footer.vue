@@ -171,6 +171,10 @@
 
   .v-footer
     position: relative;
+
+  .p-format
+      margin-bottom: 0
+
   .alpha-footer
     background: #cacaca
     color: #fff
