@@ -1,6 +1,6 @@
 <template>
   <v-footer>
-    <custom-background-vector changeFill="st3" :top="false"></custom-background-vector>
+    <custom-background-vector fill="#212121" position="full-bot" :top="false"></custom-background-vector>
     <v-container fluid class="alpha-footer">
       <v-layout
         row

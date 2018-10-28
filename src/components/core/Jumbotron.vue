@@ -14,7 +14,7 @@
                 :img="heroImage"
                 :alt="heroImage"
         >
-            <div class="z0 bg-gradient"></div>
+            <div class="z0 bg-gradient" id="jumbo-gradient"></div>
 
             <custom-background-vector></custom-background-vector>
 

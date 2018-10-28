@@ -5,6 +5,8 @@
     v-model="inputValue"
     left
   >
+    <custom-background-vector fill="#5a5a5a"></custom-background-vector>
+    <custom-background-vector fill="#5a5a5a" position="top"></custom-background-vector>
     <v-list>
       <v-list-tile>
         <v-spacer />

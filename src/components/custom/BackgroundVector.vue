@@ -8,7 +8,7 @@
         </div>
         <div class="wrap" v-if="bot">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 176.667">
-                <path class="st1"
+                <path class="st1" :style="{'fill': fill}"
                       d="M0,44.667c0,0,484.667,130.417,1116.667,130.417S1902,110.667,1902,110.667l2,66H0V44.667z"/>
             </svg>
         </div>
@@ -18,6 +18,10 @@
 <script>
     export default {
         props: {
+            fill: {
+                type: String,
+                default: '#FAFAFA'
+            },
             position: {
                 type: String,
                 default: 'bottom'
@@ -59,7 +63,7 @@
     .st1
         fill: #FAFAFA;
 
-    .st3
+    .full-bot
         bottom: calc(100% - 1px);
         transform scaleX(-1)
         path

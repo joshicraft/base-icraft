@@ -1,10 +1,10 @@
 <template>
   <v-container fill-height class="mb-5">
-    <v-layout justify-space-between wrap>
-      <v-flex xs12 md5>
+    <v-layout justify-space-between wrap dark>
+      <v-flex xs12 md7 dark>
         <h2 class="headline mb-2" v-text="$t('Views.Contact.heading1')" />
         <p class="mb-4" v-text="$t('Views.Contact.headingText1')" />
-        <v-card>
+        <v-card dark>
           <v-card-text>
             <v-text-field
               label="Name"
@@ -27,8 +27,8 @@
           </v-card-actions>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm3>
-        <v-card>
+      <v-flex xs12 md4>
+        <v-card dark>
           <div class="pa-3">
             <div class="toolbar-svg-wrapper my-3">
               <custom-logo-side></custom-logo-side>
@@ -56,3 +56,8 @@
     },
   }
 </script>
+
+<style lang="stylus" scoped>
+  .logo-text-2, .logo-text-1
+    opacity 1
+</style>

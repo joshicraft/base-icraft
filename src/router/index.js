@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * Vue Router
  *
@@ -43,6 +44,28 @@ const router = new Router({
     return { x: 0, y: 0 }
   }
 })
+
+router.beforeEach((to, from, next) => {
+    setTimeout(() => {
+        let jumbo = document.querySelector('#jumbotron')
+        if (!jumbo) {
+            next()
+            return
+        }
+        let gradient = jumbo.querySelector('#jumbo-gradient')
+        let duration = 0.6
+        let scrollPos = window.pageYOffset ||
+            document.documentElement.scrollTop
+        let tL = new TimelineMax()
+        tL
+            .to(window, scrollPos === 0 ? 0 : 0.35, {scrollTo: {y: 0}}, 'a')
+            .call(next)
+            .to(gradient, duration, {autoAlpha: 0.4})
+            .to(gradient, duration, {autoAlpha: 1})
+
+    }, 1)
+})
+
 
 Vue.use(Meta)
 

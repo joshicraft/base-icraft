@@ -8,7 +8,7 @@
             v-scroll="onScroll"
     >
         <div class="toolbar-svg-wrapper">
-            <custom-logo-side></custom-logo-side>
+            <custom-logo-side :hide-text="true"></custom-logo-side>
         </div>
         <v-spacer/>
         <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
@@ -53,24 +53,22 @@
                     this.isScrolling = true
                     let tl = new TimelineMax()
                     let $svg = this.$el.querySelector('svg')
-                    let $text1 = $svg.querySelector(".logo-text-1")
-                    let $text2 = $svg.querySelector(".logo-text-2")
+                    let $text = $svg.querySelector(".logo-text")
                     let $logoIcon = $svg.querySelector(".logo-icon")
                     tl
-                        .to([$text2, $text1], 0.6, {x: 0, autoAlpha:0}, 'a')
+                        .to([$text], 0.6, {x: 0, autoAlpha:0}, 'a')
                         .to([$logoIcon], 0.5, {x: 0, autoAlpha:1, rotation: 90, transformOrigin: '50% 50%'}, 'a')
                     //    .to([$svg], 0.2, {y: 31, transformOrigin: '50% 50%'}, '-=0.1')
                 } else {
                     this.isScrolling = false
                     let tl = new TimelineMax()
                     let $svg = this.$el.querySelector('svg')
-                    let $text1 = $svg.querySelector(".logo-text-1")
-                    let $text2 = $svg.querySelector(".logo-text-2")
+                    let $text = $svg.querySelector(".logo-text")
                     let $logoIcon = $svg.querySelector(".logo-icon")
                     tl
 
                         .to([$logoIcon], 0.5, {x: -185, rotation: 0, autoAlpha:1, transformOrigin: '50% 50%'}, 'a')
-                        .to([$text2, $text1], 0.7, {x: -200, autoAlpha:1}, 'a')
+                        .to([$text], 0.7, {x: -200, autoAlpha:1}, 'a')
                        // .to([$svg], 0.2, {y: 0, x: 0, transformOrigin: '50% 50%'}, '-=0.1')
                 }
             }
@@ -87,8 +85,8 @@
             width: auto
             height: 100%
 
-    .logo-text-1, .logo-text-2
-        opacity 0
+    /*.logo-text-1, .logo-text-2*/
+        /*opacity 0*/
 
     @media only screen and (max-width: 959px)
         .toolbar-svg-wrapper

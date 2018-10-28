@@ -1,6 +1,6 @@
 <template>
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 1229.4 289.1">
-        <g>
+        <g class="logo-text" :class="{'hide-text': hideText}">
             <g class="logo-text-2">
                 <path class="st0"
                       d="M351.9,144.7l-9.1,20.7h-16.4l40.1-91h16.4l40.1,91h-16.4l-9.1-20.7H351.9z M391.2,130.5L374.7,93l-16.5,37.5    H391.2z"/>
@@ -92,7 +92,14 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        props: {
+            hideText:{
+                type: Boolean,
+                default: false
+            }
+        }
+    }
 </script>
 
 <style scoped lang="stylus">
@@ -100,6 +107,8 @@
         display: block
         height: 100%
 
+    .hide-text
+        opacity: 0
 
     .st0 {
         fill: #BAB6B0;
