@@ -5,23 +5,26 @@
                 <v-card dark class="pa-4 form-wrap">
                     <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
                     <p class="mb-4" v-text="this.bakedContent.Contact.headingText1"/>
-                    <v-flex
+                    <div v-if="submitting" class="progress-wrap">
+                        <v-progress-circular
+                                :size="100"
+                                color="primary"
+                                indeterminate
+                        ></v-progress-circular>
+                    </div>
+                    <v-layout
                             :class="{'slide-in':submitted}"
                             justify-center
                             align-center
+                            column
                             class="v-form-success">
                         <div class="wrap">
-                            <h1>Thank you for your message!</h1>
-                            <h2>We'll be in touch shortly</h2>
+                            <h1>{{submitStatus.t1}}</h1>
+                            <p>{{submitStatus.t2}}</p>
                         </div>
-                    </v-flex>
-                    <div v-if="submitting" class="progress-wrap">
-                    <v-progress-circular
-                            :size="100"
-                            color="primary"
-                            indeterminate
-                    ></v-progress-circular>
-                    </div>
+                        <v-btn class="mt-5" v-if="failed" @click="resetForm">TRY AGAIN</v-btn>
+                    </v-layout>
+
                     <v-form
 
                             ref="form"
@@ -193,6 +196,11 @@
         },
         data () {
             return {
+                submitStatus: {
+                  t1: '',
+                  t2: ''
+                },
+                failed: false,
                 submitting: null,
                 submitted: null,
                 valid: false,
@@ -221,7 +229,10 @@
           }
         },
         methods: {
-
+            resetForm () {
+              this.submitted=false
+              this.failed=false
+            },
             clear () {
                 this.$refs.form.reset()
             },
@@ -246,14 +257,20 @@
                 })
             },
             handleSubmit(e) {
+                this.failed = false
                 this.submitting = true
                 this.submitToServer().then(response => {
                     if (Number(response.status) !== 200) {
+                        this.submitStatus.t1 = "Opp's, looks like an error occurred :("
+                        this.submitStatus.t2 = 'Try fill out the form again or get in touch via phone or email.'
+                        this.failed = true
                         console.log('Error submitting the form.')
                     } else {
+                        this.submitStatus.t1 = 'Thank you for your message!'
+                        this.submitStatus.t2 = 'We\'ll be in touch shortly'
                         console.log('Form was submitted!')
-                        this.submitted = true
                     }
+                    this.submitted = true
                     this.submitting = false
                 })
                 e.preventDefault()
@@ -284,9 +301,9 @@
         text-align center
         background #424242
         h1
-            font-weight 400
-        h2
-            font-weight 200
+            font-weight 100
+        p
+            font-weight 100
 
 
     .slide-in
