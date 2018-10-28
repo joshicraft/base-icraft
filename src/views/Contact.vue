@@ -6,8 +6,18 @@
                 <v-card dark class="pa-4">
                     <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
                     <p class="mb-4" v-text="this.bakedContent.Contact.headingText1"/>
+                    <v-flex
+                            :class="{'slide-in':submitted}"
+                            justify-center
+                            align-center 
+                            class="v-form-success">
+                        <div class="wrap">
+                            <h1>Thank you for your message!</h1>
+                            <h2>We'll be in touch shortly</h2>
+                        </div>
+                    </v-flex>
                     <v-form
-                            v-if="!submitted"
+
                             ref="form"
                             v-model="valid"
                             method="POST"
@@ -208,7 +218,14 @@
                 this.$refs.form.reset()
             },
             submitToServer() {
-                let data = JSON.stringify({name: this.name, message: this.message, email: this.email, phone: this.phone})
+                let data = JSON.stringify(
+                    {
+                        name: this.name,
+                        message: this.message,
+                        email: this.email,
+                        phone: this.phone
+                    }
+                )
                 return new Promise((resolve, reject) => {
                     fetch(`/.netlify/functions/contact-sendgrid`, {
                         method: 'POST',
@@ -241,4 +258,14 @@
 
     .p-format
         margin-bottom: 0
+
+    .v-form-success
+        position: absolute;
+        left: 100%
+        top 0
+        height 100%
+        width 100%
+        transition translateX 0.3s easeOut
+    .slide-in
+        transfrom translateX(100%)
 </style>
