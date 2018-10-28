@@ -15,6 +15,13 @@
                             <h2>We'll be in touch shortly</h2>
                         </div>
                     </v-flex>
+                    <div v-if="submitting" class="progress-wrap">
+                    <v-progress-circular
+                            :size="100"
+                            color="primary"
+                            indeterminate
+                    ></v-progress-circular>
+                    </div>
                     <v-form
 
                             ref="form"
@@ -186,6 +193,7 @@
         },
         data () {
             return {
+                submitting: null,
                 submitted: null,
                 valid: false,
                 name: '',
@@ -238,6 +246,7 @@
                 })
             },
             handleSubmit(e) {
+                this.submitting = true
                 this.submitToServer().then(response => {
                     if (Number(response.status) !== 200) {
                         console.log('Error submitting the form.')
@@ -245,6 +254,7 @@
                         console.log('Form was submitted!')
                         this.submitted = true
                     }
+                    this.submitting = false
                 })
                 e.preventDefault()
             }
@@ -281,4 +291,21 @@
 
     .slide-in
         left 0
+
+    .progress-wrap
+        background rgba(50,50,50, 0.5)
+        position: absolute;
+        top: 0;
+        left: 0;
+        width 100%
+        height 100%
+        z-index 2
+
+    .v-progress-circular
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
 </style>
