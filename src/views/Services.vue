@@ -14,17 +14,7 @@
         <p v-text="headingText2b" />
         <p v-text="headingText2c" />
       </v-flex>
-      <v-flex xs12>
-        <v-layout justify-center>
-          <v-flex xs12 sm10 md8>
-            <alpha-testimonial
-              :author="testimonial.author"
-              :title="testimonial.title"
-              :quote="testimonial.quote"
-            />
-          </v-flex>
-        </v-layout>
-      </v-flex>
+
     </v-layout>
   </v-container>
 </template>
