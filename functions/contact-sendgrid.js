@@ -1,23 +1,17 @@
+/* eslint-disable no-console */
 const sgMail = require('@sendgrid/mail')
 exports.handler = function (event, context, callback) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-  let body = JSON.parse(event.body)
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    let body = JSON.parse(event.body)
 
-  let msg = {
-    to: process.env.CONTACT_MAIL_TO,
-    from: process.env.CONTACT_MAIL_FROM,
-    subject: 'Website Contact Form',
-    text: 'Someone has filled out a form on your website, check out the message they left and get in touch with them :)',
-    html: `<p>You have a new contact request</p>
-            <h3>Contact Details</h3>
-    <ul>
-    <li>Name: ${body.name}</li>
-  <li>Email: ${body.email}</li>
-  </ul>
-  <h3>Message</h3>
-  <p>${body.message}</p>`
-  }
-  let template = `
+    let msg = {
+        to: process.env.CONTACT_MAIL_TO,
+        from: process.env.CONTACT_MAIL_FROM,
+        subject: 'Website Contact Form',
+        text: 'Someone has filled out a form on your website, check out the message they left and get in touch with them :)',
+        html: ''
+    }
+    let template = `
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html data-editor-version="2" class="sg-campaigns" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -321,16 +315,17 @@ exports.handler = function (event, context, callback) {
 </body>
 </html>
   `
-  console.log(body)
-  msg.html = template
-  console.log(`
-  Contact
-  form
-  sent
-  from: ${process.env.CONTACT_MAIL_FROM},
-  to: ${process.env.CONTACT_MAIL_TO},
-  with name:
-  ${body.name}
-`)
-  sgMail.send(msg)
+    console.log(body)
+    msg.html = template
+    console.log(`
+      Contact
+      form
+      sent
+      from: ${process.env.CONTACT_MAIL_FROM},
+      to: ${process.env.CONTACT_MAIL_TO},
+      with name:
+      ${body.name}
+    `)
+    sgMail.send(msg)
+    callback()
 }
