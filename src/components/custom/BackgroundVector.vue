@@ -1,19 +1,20 @@
 <template>
     <div class="vid-bg-vector" :class="position + ' ' + changeFill">
+
         <div class="wrap" v-if="top && !right">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 176.667">
+            <svg preserveAspectRatio="xMinYMax meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 176.667">
                 <path class="st0" d="M-0.083,0.855c0,0,485,175.333,1117,175.333s787-84,787-84v84h-1904V0.855z"/>
 
             </svg>
         </div>
         <div class="wrap" v-if="bot && !right">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 176.667">
+            <svg preserveAspectRatio="xMinYMax meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 176.667">
                 <path class="st1" :style="{'fill': fill}"
                       d="M0,44.667c0,0,484.667,130.417,1116.667,130.417S1902,110.667,1902,110.667l2,66H0V44.667z"/>
             </svg>
         </div>
         <div class="wrap" v-if="right">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 175.947 1902.886">
+            <svg preserveAspectRatio="xMinYMax meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 175.947 1902.886">
             <path fill="#A5A5A5" d="M0.136,1902.969c0,0,175.333-485,175.333-1117s-84-787-84-787h84v1904H0.136z"/>
             <path  :style="{'fill': fill}" d="M43.947,1902.886c0,0,130.417-484.667,130.417-1116.667S109.416-1.031,109.416-1.031l66.531-0.083v1904    H43.947z"/>
             </svg>
@@ -54,6 +55,8 @@
 
 <style scoped lang="stylus">
 
+
+
     .wrap
         position: absolute;
         bottom: -1px;
@@ -93,7 +96,8 @@
     .right
         left calc(100% - 1px)
         bottom initial
-        height 101%
+        height 102%
+        top: -1%
         width initial
         min-height initial
         min-width: 150px

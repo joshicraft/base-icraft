@@ -70,12 +70,12 @@
 
 <script>
     import SplitText from '../../plugins/split-text'
-    import createPlayer from 'web-audio-player'
-    let soundA = createPlayer('/static/sound/woosh.mp3')
-
-    soundA.on('load', () => {
-        soundA.node.connect(soundA.context.destination)
-    })
+    // import createPlayer from 'web-audio-player'
+    // let soundA = createPlayer('/static/sound/woosh.mp3')
+    //
+    // soundA.on('load', () => {
+    //     soundA.node.connect(soundA.context.destination)
+    // })
     /* eslint-disable no-undef */
     export default {
         data: () => ({
@@ -179,19 +179,19 @@
                             dur / 5.3,
                             'a+=' + (dur / 2)
                         )
-                        .call(
-                            soundA.play,
-                            [],
-                            this,
-                            '-=1.2'
-                        )
+                        // .call(
+                        //     soundA.play,
+                        //     [],
+                        //     this,
+                        //     '-=1.2'
+                        // )
                         .to(
                             [$paths],
                             1.2,
                             {
                                 stroke: '#b0b0b0',
                                 fill: 'rgba(244, 244, 240, 0.05)'
-                            })
+                            }, '-=1.2')
                         .fromTo(
                             $nodes,
                             dur * 0.3,
@@ -230,6 +230,10 @@
 <style lang="stylus" scoped>
     #jumbotron
         height: 100vh !important
+        z-index 2
+
+    .VideoBg__content
+        position: relative;
 
     .jumbo-logo
         width: 30%

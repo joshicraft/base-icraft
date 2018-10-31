@@ -1,7 +1,11 @@
 <template>
     <v-container fill-height class="mb-5">
-        <v-layout justify-space-between align-center wrap dark>
-            <v-flex xs12 md7 dark>
+        <v-layout class="content-wrap" justify-space-between align-center wrap dark>
+            <v-flex md1 class="img-wrap">
+
+                    <img src="/static/device-iphone-contact.png"/>
+            </v-flex>
+            <v-flex xs12 md5 dark>
                 <v-card dark class="pa-4 form-wrap">
                     <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
                     <p class="mb-4" v-text="this.bakedContent.Contact.headingText1"/>
@@ -90,7 +94,9 @@
                     </v-card-actions>
                 </v-card>
             </v-flex>
-            <v-flex xs12 md4>
+
+
+            <v-flex xs12 md3>
                 <v-card dark class="pa-3">
                     <div >
                         <custom-logo-side white></custom-logo-side>
@@ -308,6 +314,11 @@
 
     .slide-in
         left 0
+
+    .img-wrap
+
+    .content-wrap
+        position: relative;
 
     .progress-wrap
         background rgba(50,50,50, 0.5)

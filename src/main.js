@@ -1,5 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import 'babel-polyfill'
 import Vue from 'vue'
 
 // Components
@@ -17,6 +18,7 @@ import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
 import * as CONTENT from './lang/en/Views'
+
 // Sync store with router
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 sync(store, router)

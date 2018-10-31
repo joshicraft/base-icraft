@@ -47,7 +47,7 @@ const SplitText = (e, delay, dur) => {
         wordElm.appendChild(charElm)
     }
     e.forEach((elm) => {
-        elm.classList += 'split-animation'
+        elm.classList.add('split-animation')
         wordCount = string.split(' ').length
         TweenMax.set(e, {text: '', opacity: 1, perspective: '400px'})
         elm.innerHTML = ''

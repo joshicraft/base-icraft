@@ -11,6 +11,7 @@
     "@mdi/font": "^2.5.94",
     "@sendgrid/mail": "^6.3.1",
     "axios": "^0.17.1",
+    "babel-polyfill": "^6.26.0",
     "gsap": "^2.0.2",
     "material-design-icons-iconfont": "^4.0.2",
     "netlify-lambda": "^1.0.2",
