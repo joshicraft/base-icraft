@@ -14,7 +14,8 @@
         <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
             <v-btn
                     v-for="(item, i) in items"
-                    :active-class="!isScrolling ? 'primary--text' : undefined"
+
+                    :class="getCurrentRouteClass(item)"
                     :key="i"
                     :to="item.to"
                     flat
@@ -40,6 +41,7 @@
         }),
 
         computed: {
+
             items() {
                 return this.$t('Layout.View.items')
             }
@@ -47,6 +49,9 @@
 
         methods: {
             ...mapMutations('app', ['toggleDrawer']),
+            getCurrentRouteClass (item) {
+                return this.$route.name === item.text ? 'primary--text' : ''
+            },
             onScroll() {
                 if ((window.pageYOffset ||
                     document.documentElement.scrollTop || 0) > window.innerHeight - 70) {

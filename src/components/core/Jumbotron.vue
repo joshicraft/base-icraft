@@ -9,7 +9,7 @@
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
 
-                <v-btn id="contact-ico" @click="gotToContact" fab dark medium color="primary">
+                <v-btn v-if="$route.name !== 'Contact'" id="contact-ico" @click="gotToContact" fab dark medium color="primary">
                     <v-icon dark>mdi-phone</v-icon>
                 </v-btn>
 
@@ -46,7 +46,6 @@
             <!--</v-img>-->
             <div
                     @click="goTo('#view')"
-                    v-if="!scrolling && $vuetify.breakpoint.mdAndUp"
                     class="scroll-wheel-wrap scrollwheel"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 58.5 84.2" style="enable-background:new 0 0 58.5 84.2;" xml:space="preserve">
