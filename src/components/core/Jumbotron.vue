@@ -1,12 +1,5 @@
 <template>
     <v-fade-transition mode="out-in">
-        <!--<v-img-->
-        <!--v-if="namespace"-->
-        <!--:key="$route.path"-->
-        <!--:src="heroImage"-->
-        <!--class="jumbo-wrap"-->
-        <!--gradient="to top, rgba(100, 90, 70, .95), rgba(30, 40, 30, .95)"-->
-        <!--&gt;-->
         <custom-video-background
                 id="jumbotron"
                 class="vh"
@@ -15,6 +8,10 @@
                 :alt="heroImage"
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
+
+                <v-btn id="contact-ico" @click="gotToContact" fab dark medium color="primary">
+                    <v-icon dark>mdi-phone</v-icon>
+                </v-btn>
 
             <custom-background-vector></custom-background-vector>
 
@@ -41,12 +38,6 @@
                                 </div>
                                 <h1>{{title}}</h1>
                                 <h2>{{subTitle}}</h2>
-                                <!--<h1 class="display-2 white&#45;&#45;text" v-html="title" />-->
-                                <!--<div-->
-                                <!--class="subheading white&#45;&#45;text"-->
-                                <!--v-html="subTitle"-->
-                                <!--v-if="subTitle"-->
-                                <!--/>-->
                             </v-layout>
                         </v-fade-transition>
                     </v-layout>
@@ -84,9 +75,15 @@
         }),
 
         methods: {
+            gotToContact () {
+                this.$router.push('Contact')
+                setTimeout(() => {
+                    this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
+                }, 2000)
+
+            },
             goTo () {
                 this.scrolling = true
-                // this.$children[0].$refs.video.pause()
                 this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
             }
         },
@@ -100,11 +97,9 @@
             },
             title() {
                 return this.bakedContent[this.namespace].jumbotronTitle
-              //  return this.$t(`Views.${this.namespace}.jumbotronTitle`)
             },
             subTitle() {
                 return this.bakedContent[this.namespace].jumbotronSubTitle
-                // return this.$t(`Views.${this.namespace}.jumbotronSubTitle`)
             },
             heroImage() {
                 let path = '/static/video/'
@@ -126,7 +121,7 @@
                 let size = ''
                 let name = 'vid-bg'
                 let bp = this.$vuetify.breakpoint
-                //
+
                 if (bp.smAndDown) {
                     size = '_768'
                 } else if (bp.mdAndDown) {
@@ -179,12 +174,6 @@
                             dur / 5.3,
                             'a+=' + (dur / 2)
                         )
-                        // .call(
-                        //     soundA.play,
-                        //     [],
-                        //     this,
-                        //     '-=1.2'
-                        // )
                         .to(
                             [$paths],
                             1.2,
@@ -243,22 +232,26 @@
     .title
         color: rgb(202, 202, 202)
         h1
-            text-shadow: #222 1px 0 10px;
-            //  display: none
+            text-shadow: #222 1px 0 10px
             font-size: 3em
             letter-spacing 6px
             margin-left: 3px;
             font-weight 500
             transform scaleY(0.9)
         h2
-            text-shadow: #222 1px 0 10px;
-            //   display: none
+            text-shadow: #222 1px 0 10px
             letter-spacing 2px
             font-size: 1em;
             font-weight: 300
             transform scaleY(0.95)
 
-
+    #contact-ico
+        right 20px
+        top 0
+        bottom 0
+        margin auto
+        position: fixed;
+        z-index: 5;
 
     .st10{fill:none;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}
 

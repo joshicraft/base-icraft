@@ -1,11 +1,10 @@
 <template>
     <v-container fill-height class="mb-5">
         <v-layout class="content-wrap" justify-space-between align-center wrap dark>
-            <v-flex md1 class="img-wrap">
-
-                    <img src="/static/device-iphone-contact.png"/>
-            </v-flex>
-            <v-flex xs12 md5 dark>
+            <!--<v-flex md1 class="img-wrap">-->
+                <!--<img src="/static/device-iphone-contact.png"/>-->
+            <!--</v-flex>-->
+            <v-flex xs12 lg7 mx2 dark>
                 <v-card dark class="pa-4 form-wrap">
                     <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
                     <p class="mb-4" v-text="this.bakedContent.Contact.headingText1"/>
@@ -66,7 +65,7 @@
                                 type="number"
                                 required
                         ></v-text-field>
-                        <v-text-field
+                        <v-textarea
                                 prepend-icon="message"
                                 v-model="message"
                                 :rules="messageRules"
@@ -74,7 +73,7 @@
                                 name="message"
                                 type="text"
                                 required
-                        ></v-text-field>
+                        ></v-textarea>
 
                     </v-form>
                     <v-card-actions class="mt-5">
@@ -94,9 +93,7 @@
                     </v-card-actions>
                 </v-card>
             </v-flex>
-
-
-            <v-flex xs12 md3>
+            <v-flex xs12 md4>
                 <v-card dark class="pa-3">
                     <div >
                         <custom-logo-side white></custom-logo-side>
