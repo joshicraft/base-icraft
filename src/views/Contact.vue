@@ -249,7 +249,8 @@
                     }
                 )
                 return new Promise((resolve, reject) => {
-                    fetch(`/.netlify/functions/contact-sendgrid`, {
+                    let api = process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : '/.netlify/functions'
+                    fetch(api + '/contact-sendgrid', {
                         method: 'POST',
                         body: data
                     }).then(response => {
@@ -273,6 +274,10 @@
                         this.submitStatus.t2 = 'We\'ll be in touch shortly'
                         console.log('Form was submitted!')
                     }
+                    this.submitted = true
+                    this.submitting = false
+                }).catch(() => {
+                    this.failed = true
                     this.submitted = true
                     this.submitting = false
                 })

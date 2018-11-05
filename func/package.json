@@ -2,5 +2,10 @@
   "name": "functions",
   "description": "functions",
   "dependencies": {
+    "axios": "^0.17.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-object-assign": "^7.0.0"
   }
 }

@@ -9,8 +9,25 @@
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
 
-                <v-btn v-if="$route.name !== 'Contact'" id="contact-ico" @click="gotToContact" fab dark medium color="primary">
-                    <v-icon dark>mdi-phone</v-icon>
+                <v-btn
+                        v-if="$route.name !== 'Contact'"
+                        id="contact-ico"
+                        @click="gotToContact"
+                        fab
+                        dark
+                        medium
+                        :small="$vuetify.breakpoint.smAndDown"
+                        color="primary"
+                        :class="$vuetify.breakpoint.smAndDown ? 'bot' : ''"
+                        class="darken-3"
+
+                >
+                    <v-icon
+                            large
+                            :medium="$vuetify.breakpoint.mdAndDown"
+                            dark
+                    >mdi-phone
+                    </v-icon>
                 </v-btn>
 
             <custom-background-vector></custom-background-vector>
@@ -245,12 +262,15 @@
             transform scaleY(0.95)
 
     #contact-ico
-        right 20px
+        right 15px
         top 0
         bottom 0
         margin auto
-        position: fixed;
-        z-index: 5;
+        position: fixed
+        z-index: 50
+        &.bot
+            top initial
+            bottom: 15px
 
     .st10{fill:none;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}
 
