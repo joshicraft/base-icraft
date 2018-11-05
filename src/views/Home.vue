@@ -12,7 +12,7 @@
                     <alpha-card-feature :features="cardFeatures"/>
                 </v-flex>
                 <v-flex xs12 mb-3>
-                    <h2>{{ $t('Views.Home.testimonialsTitle') }}</h2>
+                    <h2>{{ this.bakedViews.Home.testimonialsTitle }}</h2>
                 </v-flex>
             </v-layout>
         </v-container>
@@ -98,10 +98,10 @@
         },
         computed: {
             cardFeatures() {
-                return this.bakedContent.Home.cardFeatures
+                return this.bakedViews.Home.cardFeatures
             },
             testimonials() {
-                return this.bakedContent.Home.testimonials
+                return this.bakedViews.Home.testimonials
             }
         }
     }

@@ -20,7 +20,6 @@
 </template>
 
 <script>
-  import MY_JSON from '../lang/en/Views/Services.json'
   export default {
     metaInfo: {
       title: 'Services of Anderson Air Conditioning & Electrical',
@@ -29,7 +28,7 @@
       ]
     },
     data () {
-      return MY_JSON
+      return this.bakedViews.Services
     }
   }
 </script>

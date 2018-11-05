@@ -6,8 +6,8 @@
             <!--</v-flex>-->
             <v-flex xs12 lg7 mx2 dark>
                 <v-card dark class="pa-4 form-wrap">
-                    <h2 class="headline mb-2" v-text="this.bakedContent.Contact.heading1"/>
-                    <p class="mb-4" v-text="this.bakedContent.Contact.headingText1"/>
+                    <h2 class="headline mb-2" v-text="this.bakedViews.Contact.heading1"/>
+                    <p class="mb-4" v-text="this.bakedViews.Contact.headingText1"/>
                     <div v-if="submitting" class="progress-wrap">
                         <v-progress-circular
                                 :size="100"
@@ -228,7 +228,7 @@
         },
         computed: {
           contact () {
-              return this.bakedContent.Contact
+              return this.bakedViews.Contact
           }
         },
         methods: {

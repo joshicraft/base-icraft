@@ -21,10 +21,10 @@
     },
     computed: {
       categories () {
-        return this.$t('Views.Projects.categories')
+        return this.bakedViews.Projects.categories
       },
       projects () {
-        return this.$t('Views.Projects.projects')
+          return this.bakedViews.Projects.projects
       }
     }
   }

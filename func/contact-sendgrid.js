@@ -41,11 +41,11 @@ exports.handler = function (event, content, cb) {
         ],
         from: {
             email: process.env.CONTACT_MAIL_FROM,
-            name: 'ICRAFT'
+            name: 'ICRAFT - Email Service'
         },
         reply_to: {
             email: process.env.CONTACT_MAIL_FROM,
-            name: 'ICRAFT'
+            name: 'ICRAFT - Email Service'
         },
         template_id: process.env.CONTACT_TEMPLATE_ID
     }
@@ -81,7 +81,7 @@ exports.handler = function (event, content, cb) {
             },
             template_id: process.env.SENT_TEMPLATE_ID
         }
-        post(options).then(()=>{cb()}).catch(error => {
+        return post(options).then(()=>{cb()}).catch(error => {
             console.log('ERROR - Sender')
             cb(error)
         })

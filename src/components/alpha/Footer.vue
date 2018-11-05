@@ -130,7 +130,7 @@
     },
     computed: {
       contact () {
-        return this.bakedContent.Contact
+        return this.bakedViews.Contact
       },
       computedSocial () {
         if (this.social.length) return this.social

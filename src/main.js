@@ -14,11 +14,11 @@ import { sync } from 'vuex-router-sync'
 
 // Application imports
 import App from './App'
-import i18n from '@/i18n'
+// import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
 import * as CONTENT from './lang/en/Views'
-
+// import all from './lang/en'
 // Sync store with router
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 sync(store, router)
@@ -33,14 +33,16 @@ Vue.mixin({
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
-            bakedContent: CONTENT
+            bakedViews: CONTENT.default.en.Views,
+            bakedLayout: CONTENT.default.en.Layout,
+            all: ''
         }
     }
 })
 
 /* eslint-disable no-new */
 new Vue({
-  i18n,
+  // i18n,
   router,
   store,
   render: h => h(App)

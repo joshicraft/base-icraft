@@ -43,7 +43,8 @@
         computed: {
 
             items() {
-                return this.$t('Layout.View.items')
+                // return this.$t('Layout.View.items')
+                return this.bakedLayout.View.items
             }
         },
 
