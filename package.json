@@ -37,14 +37,6 @@
     "stylus-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.17"
   },
-  "proxy": {
-    "/.netlify/functions": {
-      "target": "http://localhost:9000",
-      "pathRewrite": {
-        "^/\\.netlify/functions": ""
-      }
-    }
-  },
   "eslintConfig": {
     "root": true,
     "env": {
