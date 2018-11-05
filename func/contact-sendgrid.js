@@ -59,6 +59,7 @@ exports.handler = function (event, content, cb) {
         },
         template_id: process.env.CONTACT_TEMPLATE_ID
     }
+
     post(options).then(() => {
         options.data = {
             personalizations: [
