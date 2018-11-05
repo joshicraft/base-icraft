@@ -40,7 +40,6 @@
     "stylus-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.17"
   },
-  "proxy": {},
   "eslintConfig": {
     "root": true,
     "env": {
