@@ -5,26 +5,16 @@ let axios = require('axios')
 var options = {
     method: 'POST',
     url: 'https://api.sendgrid.com/v3/mail/send',
-    headers:
-        {
-            'cache-control': 'no-cache',
-            'Content-Type': 'application/json',
-            authorization: 'Bearer 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'
-        },
+    headers: {
+        'content-type': 'application/json',
+        'authorization': 'Bearer ' + process.env.SENDGRID_API_KEY,
+    },
     body: {},
     json: true
 };
 
-const post = (opt, cb) => {
+const post = (opt) => {
     return axios(opt)
-        .then(() => {
-            //cb()
-        })
-        .catch((error) => {
-            console.log('ERROR')
-            console.log(error.response)
-            cb(error)
-        })
 }
 
 exports.handler = function (event, content, cb) {
@@ -91,9 +81,13 @@ exports.handler = function (event, content, cb) {
             },
             template_id: process.env.SENT_TEMPLATE_ID
         }
-        post(options).then(cb).catch(error => {
+        post(options).then(()=>{cb()}).catch(error => {
+            console.log('ERROR - Sender')
             cb(error)
         })
+    }).catch(error => {
+        console.log('ERROR - Recipient')
+        cb(error)
     })
 
 }

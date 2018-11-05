@@ -5258,19 +5258,23 @@ module.exports = {
 /*!*****************************!*\
   !*** ./contact-sendgrid.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.function.name */ "../node_modules/core-js/modules/es6.function.name.js");
+/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.array.iterator */ "../node_modules/core-js/modules/es6.array.iterator.js");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es6.promise */ "../node_modules/core-js/modules/es6.promise.js");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es7.promise.finally */ "../node_modules/core-js/modules/es7.promise.finally.js");
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_3__);
 
 
-__webpack_require__(/*! core-js/modules/es6.function.name */ "../node_modules/core-js/modules/es6.function.name.js");
 
-__webpack_require__(/*! core-js/modules/es6.array.iterator */ "../node_modules/core-js/modules/es6.array.iterator.js");
 
-__webpack_require__(/*! core-js/modules/es6.promise */ "../node_modules/core-js/modules/es6.promise.js");
-
-__webpack_require__(/*! core-js/modules/es7.promise.finally */ "../node_modules/core-js/modules/es7.promise.finally.js");
 
 /* eslint-disable no-console */
 var axios = __webpack_require__(/*! axios */ "../node_modules/axios/index.js");
@@ -5279,21 +5283,15 @@ var options = {
   method: 'POST',
   url: 'https://api.sendgrid.com/v3/mail/send',
   headers: {
-    'cache-control': 'no-cache',
-    'Content-Type': 'application/json',
-    authorization: 'Bearer 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'
+    'content-type': 'application/json',
+    'authorization': 'Bearer ' + process.env.SENDGRID_API_KEY
   },
   body: {},
   json: true
 };
 
-var post = function post(opt, cb) {
-  return axios(opt).then(function () {//cb()
-  }).catch(function (error) {
-    console.log('ERROR');
-    console.log(error.response);
-    cb(error);
-  });
+var post = function post(opt) {
+  return axios(opt);
 };
 
 exports.handler = function (event, content, cb) {
@@ -5349,9 +5347,15 @@ exports.handler = function (event, content, cb) {
       },
       template_id: process.env.SENT_TEMPLATE_ID
     };
-    post(options).then(cb).catch(function (error) {
+    post(options).then(function () {
+      cb();
+    }).catch(function (error) {
+      console.log('ERROR - Sender');
       cb(error);
     });
+  }).catch(function (error) {
+    console.log('ERROR - Recipient');
+    cb(error);
   });
 };
 
