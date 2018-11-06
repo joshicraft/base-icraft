@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && npm run copy-admin-files",
     "lint": "vue-cli-service lint",
+    "copy-admin-files": "copyfiles admin/**/*.html admin/**/*.yml ./dist",
     "start:lambda": "netlify-lambda serve func -c webpack.server.js",
     "build:lambda": "netlify-lambda build func"
   },
@@ -14,6 +15,7 @@
     "@sendgrid/mail": "^6.3.1",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "copyfiles": "^2.1.0",
     "glob-fs": "^0.1.7",
     "gsap": "^2.0.2",
     "material-design-icons-iconfont": "^4.0.2",
