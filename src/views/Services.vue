@@ -25,7 +25,7 @@
                         justify-space-between
                         align-content-space-between
                         d-flex>
-                    <v-flex  light class="pa-3">
+                    <v-flex light class="pa-3">
                         <v-img
                                 :src="service.image"
                                 height="300px"
@@ -50,86 +50,64 @@
                             </v-layout>
                         </v-img>
                         <v-layout>
-                        <v-flex
-                                row
-                                lg3
-                                v-for="(packageItem, p) in service.items"
-                                :key="p"
-                        >
-                            <v-card
-                                    column
-
-                                    class="elevation-3 fill-height d-flex justify-space-between"
+                            <v-flex
+                                    row
+                                    lg3
+                                    v-for="(packageItem, p) in service.items"
+                                    :key="p"
                             >
-                                <v-card-title class="">
-                                    <h1>{{ packageItem.name }}</h1>
 
-                                </v-card-title>
-                                <v-card-title class="">
-                                    <p class="">{{ packageItem.title }}</p>
-                                </v-card-title>
-                                <!--<v-card-title class="">-->
+                                <v-card
+                                        class="elevation-3 column"
+                                >
+                                    <div>
+                                    <v-card-title class="">
+                                        <h1>{{ packageItem.name }}</h1>
+
+                                    </v-card-title>
+                                    <v-card-title class="">
+                                        <p class="">{{ packageItem.title }}</p>
+                                    </v-card-title>
+                                    <!--<v-card-title class="">-->
                                     <!--<p class="">{{ packageItem.subTitle }}</p>-->
-                                <!--</v-card-title>-->
-                                <v-list two-line>
-                                    <v-list-group
+                                    <!--</v-card-title>-->
+                                    </div>
+                                    <v-list two-line class="list">
+                                        <v-list-group
 
-                                    v-model="packageItem.active"
+                                                v-model="packageItem.active"
 
-                                    >
+                                        >
 
-                                    <v-list-tile slot="activator">
+                                            <v-list-tile slot="activator">
 
-                                        <v-list-tile-content>
+                                                <v-list-tile-content>
 
-                                            <!--<h1 ></h1>-->
-                                            <!--<h2>{{ i.title }}</h2>-->
-                                            <h3>Contents</h3>
-                                        </v-list-tile-content>
-                                    </v-list-tile>
+                                                    <!--<h1 ></h1>-->
+                                                    <!--<h2>{{ i.title }}</h2>-->
+                                                    <h3>Contents</h3>
+                                                </v-list-tile-content>
+                                            </v-list-tile>
 
-                                    <v-list-tile
-                                            v-for="subItem in packageItem.items"
-                                            :key="subItem.text"
-                                    >
+                                            <v-list-tile
+                                                    v-for="subItem in packageItem.items"
+                                                    :key="subItem.text"
+                                            >
 
-                                        <v-list-tile-action>
-                                            <v-icon>{{ subItem.icon }}</v-icon>
-                                        </v-list-tile-action>
-                                        <v-list-tile-content>
-                                            <v-list-tile-title>{{ subItem.text }}</v-list-tile-title>
-                                        </v-list-tile-content>
+                                                <v-list-tile-action>
+                                                    <v-icon>{{ subItem.icon }}</v-icon>
+                                                </v-list-tile-action>
+                                                <v-list-tile-content>
+                                                    <v-list-tile-title>{{ subItem.text }}</v-list-tile-title>
+                                                </v-list-tile-content>
 
-                                    </v-list-tile>
-                                    </v-list-group>
-                                </v-list>
-                            </v-card>
-                        </v-flex>
+                                            </v-list-tile>
+                                        </v-list-group>
+                                    </v-list>
+                                </v-card>
+                            </v-flex>
                         </v-layout>
-                        <!--<v-list-tile v-for="i in item.items" :key="i.name">-->
-                        <!--<v-list-tile-action>-->
-                        <!--<v-icon large>mdi-package-variant-closed</v-icon>-->
-                        <!--</v-list-tile-action>-->
-
-                        <!--<v-list-tile-content>-->
-                        <!--<v-list-tile-title>{{i.name}}</v-list-tile-title>-->
-                        <!--<v-list-tile-sub-title></v-list-tile-sub-title>-->
-                        <!--</v-list-tile-content>-->
-                        <!--<v-list>-->
-                        <!---->
-                        <!--<v-list-tile v-for="j in i.items" :key="j">-->
-
-                        <!--<v-list-tile-content>-->
-                        <!--<v-list-tile-title>{{j}}</v-list-tile-title>-->
-                        <!--<v-list-tile-sub-title></v-list-tile-sub-title>-->
-                        <!--</v-list-tile-content>-->
-                        <!--</v-list-tile>-->
-                        <!--</v-list>-->
-                        <!--</v-list-tile>-->
-
-
                     </v-flex>
-
                 </v-flex>
             </v-layout>
         </v-container>
@@ -138,6 +116,7 @@
 
 <script>
     import VLabel from 'vuetify/lib/components/VLabel/VLabel'
+
     export default {
         components: {VLabel},
         metaInfo: {
@@ -155,7 +134,10 @@
 </script>
 
 <style lang="stylus" scoped>
-    .fill-height
+    .column
+        min-height 400px
         flex-direction column
-        height 100%
+        position: relative;
+
+
 </style>

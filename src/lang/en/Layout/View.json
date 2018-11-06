@@ -2,19 +2,33 @@
   "items": [
     {
       "to": "/",
-      "text": "Home"
+      "text": "Home",
+      "icon": "home"
     },
     {
       "to": "/services",
-      "text": "Services"
+      "text": "Services",
+      "icon": "build"
     },
     {
       "to": "/projects",
-      "text": "Projects"
+      "text": "Projects",
+      "icon": "settings"
+    },
+    {
+      "to": "/logo",
+      "text": "logo",
+      "icon": "photo_album"
+    },
+    {
+      "to": "/info-questionnaire",
+      "text": "questions",
+      "icon": "photo_album"
     },
     {
       "to": "/contact",
-      "text": "Contact"
+      "text": "Contact",
+      "icon": "phone"
     }
   ]
 }

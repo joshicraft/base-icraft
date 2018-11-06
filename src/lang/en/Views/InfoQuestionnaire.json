@@ -1,0 +1,64 @@
+{
+  "jumbotronTitle": "MORE ABOUT YOU",
+  "jumbotronSubTitle": "Our friendly team would like to hear from you so get in touch today!",
+  "heading1": "The goal of this document is to help the team at iCreate to get to know what (Business Name Here) is about. ",
+  "heading2": "This helps us to fill the website with consistent and correct content that will effectively communicate (Business Name Here) to its potential customers.",
+  "heading3": "Below is a list of questions that will help you provide the good information. You don't have to answer everything and you don't have to make it pretty... that's our job ;).",
+  "heading4": "If you have the time, spend 2-4 solid hours on this and try to think about what information potential customers would benefit from knowing.",
+  "heading5": "If any of the questions request website links, take extra effort to provide them because these will improve how many potential customers will visit the website.",
+  "questions": [
+    {
+      "title": "Brief",
+      "question": "In 1-2 sentences, describe what (Business Name Here) is about. Describe things like values, what you care about, slogans ect."
+    },
+    {
+      "title": "Year of establishment",
+      "question": "How long has (Business Name Here) been operating?"
+    },
+    {
+      "title": "Contact",
+      "question": "What contact information you’d like to list on the website. Include things like email addresses, mobile phone numbers, office phone numbers and physical addresses."
+    },
+    {
+      "title": "Awards, Praise, Notoriety",
+      "question": "If (Business Name Here) has won any awards, given praise by a public (or well known in your industry) individual or mentioned positively in a blog, news article or media story. Provide a list of these along with links, pictures, videos or articles."
+    },
+    {
+      "title": "Services",
+      "question": "Break down the services (Business Name Here) offers. Write a list of these with a brief 1 - 2 sentence description about each. If you'd like to advertise cost, provide the costing details too."
+    },
+    {
+      "title": "Products",
+      "question": "Break down the products (Business Name Here) offers. Write a list of these with a brief description of each product. If you'd like to advertise cost, provide the costing details too. If you have any documentation of these, send those through too."
+    },
+    {
+      "title": "Projects",
+      "question": "Write a list of any previous projects that (Business Name Here) is most proud of. Include things like locations, names and scope of the projects, include things that are descriptive of the project. If you can, include any testimonials that you have available."
+    },
+    {
+      "title": "Testimonials",
+      "question": "If (Business Name Here) has got permission to quote a previous customer that has praised, complimented or said generally good things about (Business Name Here). Provide a list including each quote, name of the quoter, and if available the organisation of the quoter."
+    },
+    {
+      "title": "Partners",
+      "question": "If (Business Name Here) is associated with any other companies that you’d like to display, praise, actively work with, provide a list of each partner including their name, slogan and website. It's a good idea to request permission of the partner before displaying them on the website too."
+    },
+    {
+      "title": "Health and Safety",
+      "question": "If (Business Name Here) is subject you any Health and Safety Regulations, provide a list of what the regulations are and how you enforce them. If there are links to the regulations, send them through too."
+    },
+    {
+      "title": "Qualifications",
+      "question": "If (Business Name Here) or it’s team members/employees has earned any qualifications such as certificates, provide a list of what the qualifications are and where they were received from. If there are links to the regulations, send them through too."
+    },
+    {
+      "title": "Charities, Sponsorships",
+      "question": "If (Business Name Here) has donated or are actively donating to a charity or are sponsoring a local sport, club, team or business; provide a list with the name of the charity or sponsorship, how long you've been involved, how you get involved and any relevant website links."
+    },
+    {
+      "title": "Media",
+      "question": "Send through any images, videos, logos or designs associated with your business, shop, locations, previous projects, services, products, community engagement, and team members. You can email us the media or request a link to our cloud store so you can drop the media in there. Please label the media so we know how to organise them :)"
+    }
+  ],
+  "submit": "Submit"
+}

@@ -1,0 +1,57 @@
+{
+  "jumbotronTitle": "WHO WE ARE",
+  "jumbotronSubTitle": "We like to keep you up to date with who we are and what we're about",
+  "jumbotronSubSubTitle": "Scroll down to find out more.",
+  "safety": {
+    "heading1": "Practices, Standards and Health And Safety",
+    "headingText1": "Certified Welding goes the extra mile to make sure our services, products and safety meet the highest standards. Here's how we do it.",
+    "items": [
+      {
+        "heading1": "Safety Manager",
+        "headingText1": "Certified Welding employs a full-time health and safety manager.",
+        "icon": "helmet"
+      },
+      {
+        "heading1": "Site Safe",
+        "headingText1": "Certified Welding is member of site safe New Zealand.",
+        "icon": "shield"
+      },
+      {
+        "heading1": "Equipment",
+        "headingText1": "We regularly get our equipment tested and certified.",
+        "icon": "tools"
+      },
+      {
+        "heading1": "Training",
+        "headingText1": "Our staff go through comprehensive training so they can do their jobs effectively and safely.",
+        "icon": "guarantee-certificate"
+      },
+      {
+        "heading1": "H.E.R.A",
+        "headingText1": "Certified Welding is a member of Heavy Engineering Research Association of New Zealand.",
+        "icon": "engineer"
+      },
+      {
+        "heading1": "Standards",
+        "headingText1": "All of Certified Welding’s work is in accordance with AS/NZS 5131:2016.",
+        "icon": "checklist"
+      }
+    ]
+  },
+  "community": {
+    "heading1": "The Local Community",
+    "headingText1": "We like to keep active in our community by donating to charities and sponsoring clubs. Check out how we get involved.",
+    "to": "/community",
+    "icon": "people"
+  },
+  "about": {
+    "heading1": "About Certified Welding",
+    "headingText1": "Our workshop is located in the industrial sector of Auckland's East Tamaki.",
+    "headingText2": "Certified Welding was established in 1973 and has been operating for the past 45 Years! The current managing director is a 3rd generation family member to be proudly at the helm.",
+    "contact": {
+      "heading1": "Get in touch",
+      "to": "/contact"
+    },
+    "icon": "info"
+  }
+}

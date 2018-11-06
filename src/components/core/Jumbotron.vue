@@ -133,7 +133,7 @@
             },
 
             heroVideo() {
-                let path = '/static/video/'
+                let path = '/static/video/3'
                 let size = ''
                 let name = 'vid-bg'
                 let bp = this.$vuetify.breakpoint
@@ -147,7 +147,7 @@
                 } else {
                     size = '_1920'
                 }
-                return (path + name + size)
+                return (path)
             }
         },
 
@@ -156,75 +156,75 @@
                 this.isBooted = true
                 setTimeout(() => {
 
-                    let $svg = document.getElementById('logo-svg')
-                    let $left = $svg.querySelector("#left-flake_1_")
-                    let $right = $svg.querySelector("#logo-circut")
-                    let $paths = $right.querySelectorAll('.anim')
-                    let $nodes = $right.querySelectorAll('.anim-2')
-                    let t_l = new TimelineMax({delay: 0.1})
-
-                    let dur = 1
-
-                    t_l
-                        .set(
-                            $paths,
-                            {
-                                drawSVG: '0%'
-                            },
-                            'a'
-                        )
-                        .set(
-                            $left,
-                            {
-                                autoAlpha: 0,
-                                rotation: 180,
-                                transformOrigin: '50% 50%'
-                            },
-                            'a')
-                        .staggerTo(
-                            $paths,
-                            dur * 2,
-                            {
-                                drawSVG: '100%'
-                            },
-                            dur / 5.3,
-                            'a+=' + (dur / 2)
-                        )
-                        .to(
-                            [$paths],
-                            1.2,
-                            {
-                                stroke: '#b0b0b0',
-                                fill: 'rgba(244, 244, 240, 0.05)'
-                            }, '-=1.2')
-                        .fromTo(
-                            $nodes,
-                            dur * 0.3,
-                            {
-                                scale: 0, transformOrigin: '50% 50%'
-                            },
-                            {
-                                ease: Back.easeOut,
-                                scale: 1,
-                                transformOrigin: '50% 50%',
-                                autoAlpha: 1
-                            },
-                            '-=' + (dur * 1)
-                        )
-                        .to(
-                            $left,
-                            dur * 1,
-                            {
-                                ease: Back.easeOut,
-                                rotation: 0,
-                                transformOrigin: '50% 50%',
-                                autoAlpha: 1
-                            },
-                            '-=2.2'
-                        )
-
-                    new SplitText(document.querySelector('.title h1'), 1.8, 0.16)
-                    new SplitText(document.querySelector('.title h2'), 2.2, 0.055)
+                    // let $svg = document.getElementById('logo-svg')
+                    // let $left = $svg.querySelector("#left-flake_1_")
+                    // let $right = $svg.querySelector("#logo-circut")
+                    // let $paths = $right.querySelectorAll('.anim')
+                    // let $nodes = $right.querySelectorAll('.anim-2')
+                    // let t_l = new TimelineMax({delay: 0.1})
+                    //
+                    // let dur = 1
+                    //
+                    // t_l
+                    //     .set(
+                    //         $paths,
+                    //         {
+                    //             drawSVG: '0%'
+                    //         },
+                    //         'a'
+                    //     )
+                    //     .set(
+                    //         $left,
+                    //         {
+                    //             autoAlpha: 0,
+                    //             rotation: 180,
+                    //             transformOrigin: '50% 50%'
+                    //         },
+                    //         'a')
+                    //     .staggerTo(
+                    //         $paths,
+                    //         dur * 2,
+                    //         {
+                    //             drawSVG: '100%'
+                    //         },
+                    //         dur / 5.3,
+                    //         'a+=' + (dur / 2)
+                    //     )
+                    //     .to(
+                    //         [$paths],
+                    //         1.2,
+                    //         {
+                    //             stroke: '#b0b0b0',
+                    //             fill: 'rgba(244, 244, 240, 0.05)'
+                    //         }, '-=1.2')
+                    //     .fromTo(
+                    //         $nodes,
+                    //         dur * 0.3,
+                    //         {
+                    //             scale: 0, transformOrigin: '50% 50%'
+                    //         },
+                    //         {
+                    //             ease: Back.easeOut,
+                    //             scale: 1,
+                    //             transformOrigin: '50% 50%',
+                    //             autoAlpha: 1
+                    //         },
+                    //         '-=' + (dur * 1)
+                    //     )
+                    //     .to(
+                    //         $left,
+                    //         dur * 1,
+                    //         {
+                    //             ease: Back.easeOut,
+                    //             rotation: 0,
+                    //             transformOrigin: '50% 50%',
+                    //             autoAlpha: 1
+                    //         },
+                    //         '-=2.2'
+                    //     )
+                    //
+                    // new SplitText(document.querySelector('.title h1'), 1.8, 0.16)
+                    // new SplitText(document.querySelector('.title h2'), 2.2, 0.055)
                 }, 100)
             }, 200)
 
@@ -241,22 +241,18 @@
         position: relative;
 
     .jumbo-logo
-        width: 30%
+        width: 20%
         max-height 50%
-        margin: 0 auto;
+        margin: 0 auto 3em auto;
 
     .title
         color: rgb(202, 202, 202)
         h1
-            text-shadow: #222 1px 0 10px
             font-size: 3em
-            letter-spacing 6px
             margin-left: 3px;
             font-weight 500
             transform scaleY(0.9)
         h2
-            text-shadow: #222 1px 0 10px
-            letter-spacing 2px
             font-size: 1em;
             font-weight: 300
             transform scaleY(0.95)
