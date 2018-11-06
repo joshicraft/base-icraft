@@ -112,10 +112,10 @@
                 return this.$route.name
             },
             title() {
-                return this.bakedViews[this.namespace].jumbotronTitle
+                return this.bakedViews[this.namespace].jumbotronTitle || ''
             },
             subTitle() {
-                return this.bakedViews[this.namespace].jumbotronSubTitle
+                return this.bakedViews[this.namespace].jumbotronSubTitle || ''
             },
             heroImage() {
                 let path = '/static/video/'
