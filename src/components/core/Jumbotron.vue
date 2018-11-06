@@ -246,7 +246,7 @@
         margin: 0 auto 3em auto;
 
     .title
-        color: rgb(202, 202, 202)
+        color: #438ccb
         h1
             font-size: 3em
             margin-left: 3px;
@@ -308,7 +308,7 @@
         pointer-events none
 
     .bg-gradient
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(197, 197, 197, 0.5) 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(28, 35, 43, 0.9) 100%);
 
     .bg-img
         opacity: 0.05

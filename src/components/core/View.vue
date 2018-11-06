@@ -15,3 +15,7 @@
     // }
   }
 </script>
+<style lang="stylus" scoped>
+  .v-content
+    /*background #438ccb;*/
+</style>

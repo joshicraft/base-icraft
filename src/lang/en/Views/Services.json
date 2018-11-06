@@ -7,11 +7,11 @@
       "name": "Websites",
       "title": "Take a look at our packages",
       "subTitle": "Built with the latest technology and current design trends, our packages suite a variety of needs.",
-      "image": "static/img/cert-weld/narek/preview/c",
+      "image": "static/web-pack-1.jpg",
       "items": [
         {
           "name": "SILVER",
-          "title": "For those who want something simple.",
+          "title": "For those who want something simple with basic features.",
           "subTitle": "For the most basic of needs",
           "items": [
             {
@@ -80,7 +80,7 @@
           ]
         },
         {
-          "name": "Platinum",
+          "name": "PLATINUM",
           "title": "For those who want and or need something that stands out above the rest.",
           "subTitle": "For the most basic of needs",
           "items": [
@@ -123,8 +123,8 @@
           ]
         },
         {
-          "name": "E-Commerce",
-          "title": "Using Shoppify",
+          "name": "E-COMMERCE",
+          "title": "Using Shoppify to provide a complete online store experience.",
           "subTitle": "For those who have a range of products they wish to sell online",
           "items": [
             {

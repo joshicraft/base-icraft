@@ -71,10 +71,10 @@
         min-height: 200px;
         overflow hidden
     .st0
-        fill: #CECECE;
+        fill: #23608d;
 
     .st1
-        fill: #FAFAFA;
+        fill: #fff;
 
     .full-bot
         bottom: calc(100% - 1px);
