@@ -9,10 +9,10 @@ public_folder: /images/uploads
 collections:
   - name: pages
     label: Pages
-    files:
     - file: src/lang/en/Views/Home.json
       label: Home
       name: Home
+      format: json
       widget: object
       fields:
       - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
