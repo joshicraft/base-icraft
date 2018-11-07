@@ -25,32 +25,41 @@
                     d-flex>
                 <v-flex light class="pa-3">
                     <v-img
-                            class="relative elevation-3"
+                            class="relative pack-img"
                             :src="service.image"
-                            height="400px"
+
                     >
+
                         <v-layout
-                                class="z1 pa-5"
+                                class="z1 pa-5 title-1 d-flex"
                                 column
                                 fill-height
+
+                                wrap
                         >
-
-                            <v-spacer></v-spacer>
-
+                            <v-flex lg6 sm12  fill-height>
+                                <v-layout column justify-center fill-height>
                             <v-card-title class="white--text">
                                 <h1>{{ service.name }}</h1>
-
                             </v-card-title>
                             <v-card-title class="white--text">
-                                <h2 class="">{{ service.title }}</h2>
+                                <h3 class="">{{ service.subTitle }}</h3>
                             </v-card-title>
                             <v-card-title class="white--text">
-                                <p class="">{{ service.subTitle }}</p>
+                                <p class="">{{ service.disclaimer }}</p>
                             </v-card-title>
+                                </v-layout>
+                            </v-flex>
                         </v-layout>
                         <div class="bg-gradient"></div>
+                        <custom-background-vector>
+                        </custom-background-vector>
+                        <custom-background-vector position="top" flip="flip-x">
+                        </custom-background-vector>
                     </v-img>
-                    <v-layout row wrap>
+                    <h1 class="my-5">PACKAGES</h1>
+                    <v-layout row wrap mt-4>
+
                         <v-flex
                                 lg3
                                 md3
@@ -62,18 +71,16 @@
                             <v-card
                                     md6
                                     dark
-                                    class="elevation-3 column"
+                                    class="elevation-6 column"
                             >
-                                <div class="top-content">
-                                    <v-card-title class="text-lg-center">
-                                        <h1>{{ packageItem.name }}</h1>
-                                    </v-card-title>
-                                    <v-card-title class="text-lg-center">
-                                        <p class="">{{ packageItem.title }}</p>
-                                    </v-card-title>
-                                    <!--<v-card-title class="">-->
-                                    <!--<p class="">{{ packageItem.subTitle }}</p>-->
-                                    <!--</v-card-title>-->
+                                <div class="top-content pt-4 pl-4 pr-4 pb-1">
+                                    <v-flex row >
+                                        <h1 :class="packageItem.iconColor + '--text'">{{ packageItem.name }}</h1>
+                                        <v-icon mt-2 large :color="packageItem.iconColor">{{ packageItem.icon }}</v-icon>
+                                    </v-flex>
+                                        <h3 class="mt-4">{{ packageItem.price }}</h3>
+                                        <p class="mt-4">{{ packageItem.title }}</p>
+
                                 </div>
                                 <v-list two-line class="list">
                                     <v-list-group
@@ -119,9 +126,10 @@
 
 <script>
     import VLabel from 'vuetify/lib/components/VLabel/VLabel'
+    import CustomVideoBackground from '../components/custom/VideoBackground'
 
     export default {
-        components: {VLabel},
+        components: {CustomVideoBackground, VLabel},
         metaInfo: {
             title: 'Services of Anderson Air Conditioning & Electrical',
             meta: [
@@ -143,13 +151,17 @@
             border-radius 30px
 </style>
 <style lang="stylus" scoped>
+
+    .pack-img
+        max-height: 450px
+
     .column
-        min-height 300px
+        /*min-height 300px*/
         flex-direction column
         position: relative;
         .top-content
             text-align center
-            min-height: 200px
+            min-height: 300px
     .relative
         position: relative;
 
@@ -157,7 +169,20 @@
         position: relative
         z-index 1
 
+    .top-content
+        h3, p
+            font-weight 100
 
+    .title-1
+        max-width 62%
+        h1
+            font-size: 2.5em
+        h2
+            font-size: 2em
+        h3
+            font-size: 1.5em
+        p
+            font-size: 1em
 
     .bg-gradient
         z-index: 0

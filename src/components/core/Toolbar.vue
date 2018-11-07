@@ -4,7 +4,7 @@
             dark
             :flat="!isScrolling"
             :dense="isScrolling"
-            :color="!isScrolling ? 'transparent' : 'secondary'"
+            :color="!isScrolling ? 'transparent' : 'black'"
             v-scroll="onScroll"
     >
         <div class="toolbar-svg-wrapper">

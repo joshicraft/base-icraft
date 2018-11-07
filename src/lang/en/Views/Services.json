@@ -7,12 +7,16 @@
       "name": "Websites",
       "title": "Take a look at our packages",
       "subTitle": "Built with the latest technology and current design trends, our packages suite a variety of needs.",
+      "disclaimer": "These packages give you an outline of what we can do, each package will be customized to your individual needs. The price's are mere indicators to help you find the best deal.",
       "image": "static/web-1.jpg",
       "items": [
         {
-          "name": "SILVER",
+          "name": "GOLD",
           "title": "For those who want something simple with basic features.",
           "subTitle": "For the most basic of needs",
+          "price": "$599 - $1,099",
+          "icon": "mdi-emoticon-happy",
+          "iconColor": "amber",
           "items": [
             {
               "icon": "mdi-web",
@@ -24,7 +28,7 @@
             },
             {
               "icon": "mdi-file-document-outline",
-              "text": "Web Page up to 2 page"
+              "text": "Web Page - up to 3"
             },
             {
               "icon": "mdi-domain",
@@ -37,13 +41,20 @@
             {
               "icon": "mdi-search-web",
               "text": "SEO"
+            },
+            {
+              "icon": "mdi-account-multiple",
+              "text": "Revisions - up to 2"
             }
           ]
         },
         {
-          "name": "GOLD",
+          "name": "PLATINUM",
           "title": "For those who want something with a few pages and some cool features.",
           "subTitle": "For the most basic of needs",
+          "price": "$1,099 - $3,999",
+          "icon": "mdi-emoticon",
+          "iconColor": "silver",
           "items": [
             {
               "icon": "mdi-web",
@@ -55,7 +66,7 @@
             },
             {
               "icon": "mdi-file-document-outline",
-              "text": "Web Page up to 8"
+              "text": "Web Page - up to 8"
             },
             {
               "icon": "mdi-domain",
@@ -76,13 +87,20 @@
             {
               "icon": "mdi-message-text",
               "text": "Contact Forms"
+            },
+            {
+              "icon": "mdi-account-multiple",
+              "text": "Revisions - up to 3"
             }
           ]
         },
         {
-          "name": "PLATINUM",
+          "name": "DIAMOND",
           "title": "For those who want and or need something that stands out above the rest.",
           "subTitle": "For the most basic of needs",
+          "price": "$3,999 - $14,999",
+          "icon": "mdi-emoticon-cool",
+          "iconColor": "blue",
           "items": [
             {
               "icon": "mdi-web",
@@ -94,7 +112,7 @@
             },
             {
               "icon": "mdi-file-document-outline",
-              "text": "Web Page up to 8"
+              "text": "Web Pages - up to 15"
             },
             {
               "icon": "mdi-domain",
@@ -119,6 +137,18 @@
             {
               "icon": "mdi-monitor-dashboard",
               "text": "Custom Template"
+            },
+            {
+              "icon": "mdi-blogger",
+              "text": "Blog"
+            },
+            {
+              "icon": "mdi-account-multiple",
+              "text": "Revisions - up to 5"
+            },
+            {
+              "icon": "mdi-comment-account",
+              "text": "Chat Bot"
             }
           ]
         },
@@ -126,6 +156,9 @@
           "name": "E-COMMERCE",
           "title": "Using Shoppify to provide a complete online store experience.",
           "subTitle": "For those who have a range of products they wish to sell online",
+          "price": "$1,999 - $9,999",
+          "icon": "mdi-emoticon-excited",
+          "iconColor": "green",
           "items": [
             {
               "icon": "mdi-web",
@@ -137,7 +170,7 @@
             },
             {
               "icon": "mdi-file-document-outline",
-              "text": "Web Page up to 15"
+              "text": "Web Page - up to 15"
             },
             {
               "icon": "mdi-domain",
@@ -162,6 +195,10 @@
             {
               "icon": "mdi-cart",
               "text": "Store"
+            },
+            {
+              "icon": "mdi-account-multiple",
+              "text": "Revisions - up to 3"
             }
           ]
         }

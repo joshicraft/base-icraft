@@ -1,5 +1,5 @@
 <template>
-    <div class="vid-bg-vector" :class="position + ' ' + changeFill">
+    <div class="vid-bg-vector" :class="position + ' ' + changeFill + ' ' + flip">
 
         <div class="wrap" v-if="top && !right">
             <svg preserveAspectRatio="xMinYMax meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 176.667">
@@ -29,6 +29,10 @@
                 type: String,
                 default: '#FAFAFA'
             },
+            flip: {
+                type: String,
+                default: ''
+            },
             position: {
                 type: String,
                 default: 'bottom'
@@ -55,7 +59,8 @@
 
 <style scoped lang="stylus">
 
-
+    .flip-x
+        transform scaleX(-1)
 
     .wrap
         position: absolute;

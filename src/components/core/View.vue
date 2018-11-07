@@ -8,11 +8,12 @@
 
 <script>
   export default {
-    // metaInfo () {
-    //   return {
-    //     titleTemplate: '%s — Alpha Theme'
-    //   }
-    // }
+    metaInfo () {
+        console.log(this.$route.name)
+      return {
+        titleTemplate: '%s'
+      }
+    }
   }
 </script>
 <style lang="stylus" scoped>

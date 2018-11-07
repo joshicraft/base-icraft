@@ -62,7 +62,7 @@ router.beforeEach((to, from, next) => {
         tL
             .to(window, scrollPos === 0 ? 0 : 0.35, {scrollTo: {y: 0}}, 'a')
             .call(next)
-            .to(gradient, duration, {autoAlpha: 0.4})
+            .to(gradient, duration, {autoAlpha: 0.87})
             .to(gradient, duration, {autoAlpha: 1})
 
 
