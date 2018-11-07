@@ -2,43 +2,40 @@ backend:
   name: git-gateway
   branch: master
 
-publish_mode: editorial_workflow
 media_folder: public/static/images/uploads
 public_folder: /images/uploads
 
 
 collections:
-
-- name: pages
-  label: Pages
-  files:
-
-  - file: src/lang/en/Views/Home.json
-    label: Home
-    name: Home
-    widget: object
-    fields:
-    - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
-    - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
-    - {label: Jumbotron Sub Sub Title, name: jumbotronSubSubTitle, widget: string}
-    - {label: Testimonial Title, name: testimonialsTitle, widget: string}
-    - {label: Established, name: establishment, widget: string}
-    - label: Testimonials
-      name: testimonials
-      widget: list
+  - name: pages
+    label: Pages
+    files:
+    - file: src/lang/en/Views/Home.json
+      label: Home
+      name: Home
+      widget: object
       fields:
-      - {label: Author, name: author, widget: string}
-      - {label: Title, name: title, widget: string}
-      - {label: Quote, name: quote, widget: string}
-    - label: Card Features
-      name: cardFeatures
-      widget: list
-      fields:
-      - {label: Name, name: name, widget: string}
-      - {label: Title, name: title, widget: string}
-      - {label: Text, name: text, widget: string}
-      - {label: Sub text, name: subText, widget: string}
-      - {label: Image URL, name: img, widget: string}
-      - {label: Call To Action, name: callToAction, widget: string}
-      - {label: Icon, name: icon, widget: string}
+      - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
+      - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
+      - {label: Jumbotron Sub Sub Title, name: jumbotronSubSubTitle, widget: string}
+      - {label: Testimonial Title, name: testimonialsTitle, widget: string}
+      - {label: Established, name: establishment, widget: string}
+      - label: Testimonials
+        name: testimonials
+        widget: list
+        fields:
+        - {label: Author, name: author, widget: string}
+        - {label: Title, name: title, widget: string}
+        - {label: Quote, name: quote, widget: string}
+      - label: Card Features
+        name: cardFeatures
+        widget: list
+        fields:
+        - {label: Name, name: name, widget: string}
+        - {label: Title, name: title, widget: string}
+        - {label: Text, name: text, widget: string}
+        - {label: Sub text, name: subText, widget: string}
+        - {label: Image URL, name: img, widget: string}
+        - {label: Call To Action, name: callToAction, widget: string}
+        - {label: Icon, name: icon, widget: string}
 
