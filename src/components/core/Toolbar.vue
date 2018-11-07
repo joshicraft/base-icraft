@@ -54,6 +54,7 @@
                 return this.$route.name === item.text ? 'primary--text' : ''
             },
             onScroll() {
+                this.scrolled = true
                 if ((window.pageYOffset ||
                     document.documentElement.scrollTop || 0) > window.innerHeight - 70) {
                     this.isScrolling = true

@@ -16,8 +16,6 @@
                 :class="[{'offset-4-grid': $vuetify.breakpoint.lgAndUp}, $vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-1']"
         >
             <v-flex
-                    lg12
-
                     mb-3
                     v-for="(service, i) in items"
                     :class="[$vuetify.breakpoint.smAndDown ? 'pa-2' : '']"
@@ -27,12 +25,12 @@
                     d-flex>
                 <v-flex light class="pa-3">
                     <v-img
-                            class="relative"
+                            class="relative elevation-3"
                             :src="service.image"
-                            height="300px"
+                            height="400px"
                     >
                         <v-layout
-                                class="z1"
+                                class="z1 pa-5"
                                 column
                                 fill-height
                         >
@@ -52,16 +50,17 @@
                         </v-layout>
                         <div class="bg-gradient"></div>
                     </v-img>
-                    <v-layout>
+                    <v-layout row wrap>
                         <v-flex
-                                row
                                 lg3
-                                md6
+                                md3
+                                sm12
                                 v-for="(packageItem, p) in service.items"
                                 :key="p"
                         >
 
                             <v-card
+                                    md6
                                     dark
                                     class="elevation-3 column"
                             >
@@ -137,6 +136,12 @@
     }
 </script>
 
+<style lang="stylus">
+    .v-list__group__header__append-icon
+        .v-icon
+            background #5a5a5a
+            border-radius 30px
+</style>
 <style lang="stylus" scoped>
     .column
         min-height 300px
@@ -152,6 +157,8 @@
         position: relative
         z-index 1
 
+
+
     .bg-gradient
         z-index: 0
         width: 100%;
@@ -162,5 +169,5 @@
         pointer-events none
 
     .bg-gradient
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(197, 197, 197, 0.5) 100%);
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(100, 100, 100, 0.7) 100%);
 </style>

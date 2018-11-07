@@ -7,7 +7,7 @@
       "name": "Websites",
       "title": "Take a look at our packages",
       "subTitle": "Built with the latest technology and current design trends, our packages suite a variety of needs.",
-      "image": "static/web-pack-1.jpg",
+      "image": "static/web-1.jpg",
       "items": [
         {
           "name": "SILVER",
@@ -175,10 +175,7 @@
         "Browser Coverage",
         "Device Coverage",
         "Web Page (per page)",
-        "Domain",
-        "Email",
-        "Pre-existing Template",
-        "SEO"
+        "Domain"
       ]
     },
     {
@@ -189,10 +186,7 @@
         "Browser Coverage",
         "Device Coverage",
         "Web Page (per page)",
-        "Domain",
-        "Email",
-        "Pre-existing Template",
-        "SEO"
+        "Domain"
       ]
     }
   ]

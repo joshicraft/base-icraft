@@ -46,7 +46,9 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+
     setTimeout(() => {
+
         let jumbo = document.querySelector('#jumbotron')
         if (!jumbo) {
             next()
@@ -63,8 +65,18 @@ router.beforeEach((to, from, next) => {
             .to(gradient, duration, {autoAlpha: 0.4})
             .to(gradient, duration, {autoAlpha: 1})
 
+
     }, 1)
 })
+
+// router.afterEach((to, from) => {
+//     console.log('sssss')
+//     TweenMax.delayedCall(5000, ()=>{
+//         if (!this.scrolled) {
+//            TweenMax.to(window, 0.6, {scrollTo:{y: window.innerHeight}})
+//         }
+//     }, [], this)
+// })
 
 
 Vue.use(Meta)

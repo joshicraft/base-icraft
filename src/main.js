@@ -35,7 +35,8 @@ Vue.mixin({
             },
             bakedViews: CONTENT.default.en.Views,
             bakedLayout: CONTENT.default.en.Layout,
-            all: ''
+            all: '',
+            scrolled: false
         }
     }
 })

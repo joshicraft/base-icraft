@@ -8,10 +8,30 @@
                 :alt="heroImage"
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
-
+                <div class="contact-ico bot-p">
                 <v-btn
                         v-if="$route.name !== 'Contact'"
-                        id="contact-ico"
+                        @click="gotToContact"
+                        fab
+                        dark
+                        medium
+                        :small="$vuetify.breakpoint.smAndDown"
+                        color="primary"
+                        :class="$vuetify.breakpoint.smAndDown ? 'bot' : ''"
+                        class="darken-3"
+
+                >
+                    <v-icon
+                            large
+                            :medium="$vuetify.breakpoint.mdAndDown"
+                            dark
+                    >mdi-message-text
+                    </v-icon>
+                </v-btn>
+            </div>
+            <div class="contact-ico bot-p left-p">
+                <v-btn
+                        v-if="$route.name !== 'Contact'"
                         @click="gotToContact"
                         fab
                         dark
@@ -29,7 +49,7 @@
                     >mdi-phone
                     </v-icon>
                 </v-btn>
-
+            </div>
             <custom-background-vector></custom-background-vector>
 
 
@@ -89,7 +109,13 @@
             scrolling: false,
             isBooted: false
         }),
+            beforeRouteUpdate  (to, from){
 
+                this.scrolled = false
+                TweenMax.killDelayedCallsTo(this.goTo)
+                TweenMax.delayedCall(5000, this.goTo, [".v-container"])
+                next()
+            },
         methods: {
             gotToContact () {
                 this.$router.push('Contact')
@@ -118,22 +144,24 @@
                 return this.bakedViews[this.namespace].jumbotronSubTitle || ''
             },
             heroImage() {
-                let path = '/static/video/'
+                let path = '/static/video/4'
                 let size = ''
-                let name = '-vid-bg'
-                let bp = this.$vuetify.breakpoint
-                if (bp.smAndDown) {
-                    size = '768'
-                } else if (bp.lgAndDown) {
-                    size = '1280'
-                } else {
-                    size = '1920'
-                }
-                return path + size + name + (this.ext('.jpg'))
+                let name = ''
+                // let bp = this.$vuetify.breakpoint
+                // if (bp.smAndDown) {
+                //     size = '768'
+                // } else if (bp.lgAndDown) {
+                //     size = '1280'
+                // } else {
+                //     size = '1920'
+                // }
+                return path + size + name + '.jpg'
+
+                // return path + size + name + (this.ext('.jpg'))
             },
 
             heroVideo() {
-                let path = '/static/video/3'
+                let path = '/static/video/4'
                 let size = ''
                 let name = 'vid-bg'
                 let bp = this.$vuetify.breakpoint
@@ -241,12 +269,15 @@
         position: relative;
 
     .jumbo-logo
+        display none
         width: 20%
         max-height 50%
         margin: 0 auto 3em auto;
 
     .title
-        color: #438ccb
+        /*display none*/
+        color: #fafafa
+        /*color: #438ccb*/
         h1
             font-size: 3em
             margin-left: 3px;
@@ -257,16 +288,21 @@
             font-weight: 300
             transform scaleY(0.95)
 
-    #contact-ico
+    .contact-ico
         right 15px
         top 0
         bottom 0
         margin auto
         position: fixed
         z-index: 50
-        &.bot
+        &.bot-p
             top initial
             bottom: 15px
+        &.left-p
+            right initial
+            left 10px
+
+
 
     .st10{fill:none;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}
 
@@ -308,7 +344,8 @@
         pointer-events none
 
     .bg-gradient
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(28, 35, 43, 0.9) 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.995) 0%, rgba(35, 30, 40, 0.859) 100%);
+        //background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(28, 35, 43, 0.9) 100%);
 
     .bg-img
         opacity: 0.05
@@ -363,9 +400,14 @@
         }
     }
 
-    @media (orientation: portrait)
-        .jumbo-logo
-            width: 70%
+    /*@media (orientation: portrait)*/
+        /*#jumbotron*/
+            /*height: 70vh !important*/
+        /*.jumbo-logo*/
+            /*width: 70%*/
+    /*@media (orientation: portrait) and (max-width: 450px)*/
+        /*#jumbotron*/
+            /*height: 55vh !important*/
 
     @media (max-width: 470px), (max-width: 740px) and (orientation: landscape)
         .title
