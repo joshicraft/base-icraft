@@ -9,7 +9,7 @@ public_folder: /images/uploads
 collections:
   - name: pages
     label: Pages
-    - file: src/lang/en/Views/Home.json
+  - file: src/lang/en/Views/Home.json
       label: Home
       name: Home
       format: json
