@@ -11,7 +11,7 @@ collections:
     name: pages
     files:
       - label: Home
-        file: src/lang/en/Views/Home.json
+        file: ../src/lang/en/Views/Home.json
         name: Home
         format: json
         widget: object
