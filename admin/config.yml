@@ -2,34 +2,33 @@ backend:
   name: git-gateway
   branch: master
 
-public_folder: /uploads
-media_folder: static/uploads
+public_folder: "/uploads"
+media_folder: "static/uploads"
 
 collections:
-  - label: Pages
-    name: pages
+  - label: "Pages"
+    name: "pages"
     files:
-      - label: Home
-        file: ../src/lang/en/Views/Home.json
-        name: Home
-        format: json
-        widget: object
+      - label: "Home"
+        file: "../src/lang/en/Views/Home.json"
+        name: "Home"
+        widget: "object"
         fields:
-          - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
-          - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
-          - {label: Testimonial Title, name: testimonialsTitle, widget: string}
-          - label: Testimonials
-            name: testimonials
-            widget: list
+          - {label: "Jumbotron Title", name: "jumbotronTitle", widget: "string"}
+          - {label: "Jumbotron Sub Title", name: "jumbotronSubTitle", widget: "string"}
+          - {label: "Testimonial Title", name: "testimonialsTitle", widget: "string"}
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
             fields:
-              - {label: Author, name: author, widget: string}
-              - {label: Title, name: title, widget: string}
-              - {label: Quote, name: quote, widget: string}
-          - label: Card Features
-            name: cardFeatures
-            widget: list
+              - {label: "Author", name: "author", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Quote", name: "quote", widget: "string"}
+          - label: "Card Features"
+            name: "cardFeatures"
+            widget: "list"
             fields:
-              - {label: Image, name: img, widget: string}
-              - {label: Title, name: title, widget: string}
-              - {label: Text, name: text, widget: string}
+              - {label: "Image", name: "img", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Text", name: "text", widget: "string"}
 
