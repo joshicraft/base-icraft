@@ -53,7 +53,7 @@ Vue.mixin({
                 this.audio = this.audio || new Audio('/static/sound/click.mp3')
                 this.audio.play()
             },
-            views: this.$t('Layout.View.items'),
+            views: CONTENT.default.en.Views,
             nextRoute () {
                 let route = this.$route.path
                 let routes = this.views
