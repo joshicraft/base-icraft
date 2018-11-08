@@ -10,7 +10,7 @@ collections:
     name: "pages"
     files:
       - label: "Home"
-        file: "../src/lang/en/Views/Home.json"
+        file: "/src/lang/en/Views/Home.json"
         name: "Home"
         widget: "object"
         fields:
