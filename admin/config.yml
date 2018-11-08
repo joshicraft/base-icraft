@@ -3,7 +3,7 @@ backend:
   branch: master
 
 public_folder: static/uploads
-media_folder: dist/static/uploads
+media_folder: /uploads
 
 collections:
   - label: Pages
