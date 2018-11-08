@@ -33,9 +33,78 @@ Vue.mixin({
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
+            fullSizeBracket () {
+                console.log('break')
+                let size = ''
+                if (window.innerWidth > 1600) {
+                    size = 2000
+                } else if (window.innerWidth > 1200) {
+                    size = 1600
+                } else if (window.innerWidth > 800) {
+                    size = 1200
+                } else if (window.innerWidth > 400) {
+                    size = 800
+                } else {
+                    size = 400
+                }
+                return size + '/'
+            },
+            playSound () {
+                this.audio = this.audio || new Audio('/static/sound/click.mp3')
+                this.audio.play()
+            },
+            views: this.$t('Layout.View.items'),
+            nextRoute () {
+                let route = this.$route.path
+                let routes = this.views
+                let nextIndex = routes.findIndex(i => i.to === route)
+                if (nextIndex === routes.length - 1) {
+                    nextIndex = 0
+                } else {
+                    nextIndex++
+                }
+                return routes[nextIndex]
+            },
+            prevRoute () {
+                let route = this.$route.path
+                let routes = this.views
+                let nextIndex = routes.findIndex(i => i.to === route)
+
+                if (nextIndex === 0) {
+                    nextIndex = routes.length - 1
+                } else {
+                    nextIndex--
+                }
+                return routes[nextIndex]
+            },
+            scroll () {
+                let current = window.pageYOffset
+                let pos = window.innerHeight
+                let tBHeight = document.querySelector('.v-toolbar')
+                tBHeight = tBHeight.getBoundingClientRect().height
+                pos = pos - tBHeight - current
+                this.scrolled = true
+                pos = pos + current
+                TweenMax.to(window, 0.7, {
+                    onStart: ($this) => {
+                        $this.scrolling = true
+                    },
+                    onStartParams: [this],
+                    onComplete: ($this) => {
+                        setTimeout(() => {
+                            $this.scrolling = false
+                        }, 100)
+                    },
+                    onCompleteParams: [this],
+                    delay: 0.2,
+                    scrollTo: {
+                        y: pos,
+                        autoKill: false
+                    }
+                })
+            },
             bakedViews: CONTENT.default.en.Views,
             bakedLayout: CONTENT.default.en.Layout,
-            all: '',
             scrolled: false
         }
     }
