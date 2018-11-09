@@ -18,9 +18,12 @@ import App from './App'
 import router from '@/router'
 import store from '@/store'
 import * as CONTENT from './lang/en/Views'
+
 // import all from './lang/en'
 // Sync store with router
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+
+import './registerServiceWorker'
 sync(store, router)
 
 Vue.config.productionTip = false
