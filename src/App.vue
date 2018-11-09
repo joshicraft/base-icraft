@@ -14,9 +14,10 @@
       <custom-logo></custom-logo>
       </div>
     </div>
+
+
   </v-app>
 </template>
-
 <script>
     /* eslint-disable no-undef,spaced-comment */
 
@@ -124,6 +125,17 @@
   ::-webkit-scrollbar-thumb:active
     background #1a1a1a
 
+  #webchat
+    z-index: 20;
+    position fixed
+    bottom: 0
+    right: 0
+    width: 300px
+    max-height: 400px
+    ul
+      overflow hidden
+      overflow-y scroll
+
   .pointer
     cursor pointer
 
@@ -132,7 +144,8 @@
     visibility hidden
 
   .hide
-    animation: hide 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards
+    opacity 0
+    visibility hidden
 
   .site-loader
     position: fixed;
@@ -142,8 +155,7 @@
     width 100vw
     z-index 1000
     background dodgerblue
-    transition opacity
-
+    transition: opacity 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940), visibility 0.6s
     .load-icon-wrap
       width: 100px
       height: 100px
@@ -153,19 +165,20 @@
       right 0
       bottom 0
       margin auto
-      animation: rotate-in-center 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both;
+      animation: rotate-in-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both;
 
 
   @keyframes rotate-in-center {
     0% {
-      -webkit-transform: rotate(-360deg);
       transform: rotate(-360deg);
-      opacity: 0;
+      opacity 0
+    }
+    75% {
+      transform rotate(0)
+      opacity 1
     }
     100% {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-      opacity: 1;
+      opacity 0
     }
   }
   @keyframes hide {
