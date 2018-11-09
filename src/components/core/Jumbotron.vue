@@ -8,6 +8,7 @@
                 :alt="heroImage"
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
+
                 <div class="contact-ico bot-p">
                 <v-btn
                         v-if="$route.name !== 'Contact'"
@@ -305,6 +306,8 @@
 
 
     .st10{fill:none;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}
+
+
 
     .z1
         z-index: 1

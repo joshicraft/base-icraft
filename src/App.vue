@@ -9,8 +9,22 @@
     <core-view :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(2)"/>
 
     <core-footer v-if="getLoadCount(5)"/>
-    <div class="site-loader" :class="{'hide': loaded}">
-      <div class="load-icon-wrap" v-if="!loaded">
+    <div class="site-loader" :class="{'hide-s': loaded}">
+      <div class="j-bg-svg">
+      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229">
+	<stop offset="0" style="stop-color:#13638C"/>
+	<stop offset="1" style="stop-color:#00FFFF"/>
+</linearGradient>
+<polygon class="st0 poly-right" points="0,100 100,0 100,100 "/>
+<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229" gradientTransform="matrix(-1 0 0 -1 100 100)">
+	<stop offset="0" style="stop-color:#13638C"/>
+	<stop offset="1" style="stop-color:#00FFFF"/>
+</linearGradient>
+<polygon class="st1 poly-left" points="100.1,0 0,100.1 0,0 "/>
+</svg>
+      </div>
+      <div class="load-icon-wrap rotate" v-if="true">
       <custom-logo></custom-logo>
       </div>
     </div>
@@ -36,11 +50,13 @@
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
             })
+            $this.animateLoaded()
             this.loadTicker = setInterval(() => {
-                this.loadCount+=1
-                if(this.loadCount > 5) {
-                    clearInterval(this.loadTicker)
-                }
+                // this.loadCount+=1
+                // if(this.loadCount > 5) {
+                //
+                //     clearInterval($this.loadTicker)
+                // }
             }, 500)
             clearTimeout(this.delayAnimated)
             this.delayAnimated = setTimeout(() => {
@@ -74,6 +90,27 @@
             ...mapGetters('app', ['getLoader']),
             getLoadCount (i) {
                 return i < this.loadCount
+            },
+            increment () {
+                this.loadCount ++
+            },
+            animateLoaded () {
+              let tL = new TimelineMax(),
+                $loader = document.querySelector('.site-loader'),
+                  $logo = $loader.querySelector('.load-icon-wrap'),
+                  $bg = $loader.querySelector('.j-bg-svg')
+                tL
+                    // .to($logo, 1, {rotation: 360, yoyo: true, repeat: -1, autoAlpha: 0}, 'a')
+                    .call(this.increment, [], this, 'a')
+                    .call(this.increment, [], this, 'a+=0.5')
+                    .call(this.increment, [], this, 'a+=1')
+                    .call(this.increment, [], this, 'a+=1.5')
+                    .set($logo, {className: '-=rotate'})
+                    .to($logo, 0.4, {scale: 0.5, autoAlpha: 0}, 'a+=2')
+                    .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=2.5')
+                    .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=2.5')
+                    // .to($bg.querySelector('.poly-left'), 1.4, {className: '+=slide-out-l'}, 'a+=2')
+                    // .to($bg.querySelector('.poly-right'), 1.4, {className: '+=slide-out-r'}, 'a+=2')
             },
             onScroll (e) {
                 if (this.lazyTriggered && !this.getLazy()) {
@@ -153,8 +190,7 @@
     height 100vh
     width 100vw
     z-index 1000
-    background dodgerblue
-    transition: opacity 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940), visibility 0.6s
+    background transparent
     .load-icon-wrap
       width: 100px
       height: 100px
@@ -164,9 +200,32 @@
       right 0
       bottom 0
       margin auto
-      animation: rotate-in-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both;
 
 
+
+  .rotate
+    animation: rotate-in-center 1.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both;
+
+  .slide-out-l
+    animation slide-out-left 1.4s ease-in forwards
+
+  .slide-out-r
+    animation slide-out-right 1.4s ease-in forwards
+
+
+  .j-bg-svg
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    svg
+      display block
+      width 100%
+      height 100%
+
+  .st0{fill:url(#SVGID_1_);}
+  .st1{fill:url(#SVGID_2_);}
 
   @keyframes rotate-in-center {
     0% {
@@ -181,6 +240,7 @@
       opacity 0
     }
   }
+
   @keyframes hide {
     0% {
       opacity: 1;
@@ -190,6 +250,25 @@
       display none
     }
   }
+
+  @keyframes slide-out-left {
+    0% {
+      transform translateX(0)
+    }
+    100% {
+      transform translateX(100px)
+    }
+  }
+
+  @keyframes slide-out-right {
+    0% {
+      transform translateX(0)
+    }
+    100% {
+      transform translateX(-100px)
+    }
+  }
+
 
   .v-content
     padding-top: 64px !important

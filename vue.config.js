@@ -8,5 +8,12 @@ module.exports = {
                 }
             }
         }
+    },
+    css: {
+        loaderOptions: {
+            css: {
+                camelCase: 'none'
+            }
+        }
     }
 }
