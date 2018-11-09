@@ -138,7 +138,6 @@
           spr.row = 0
           return
         }
-        console.log(spr.index)
         if (direction !== 'previous') {
           spr.index++
         }

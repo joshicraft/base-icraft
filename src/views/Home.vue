@@ -70,7 +70,7 @@
 <script>
     export default {
         metaInfo: {
-            title: 'Anderson Air Conditioning & Electrical',
+            title: 'ICRAFT - Design, Websites, Branding - Located in Franklin, South Auckland.',
             meta: [
                 {
                     name: 'description',

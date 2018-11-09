@@ -31,7 +31,6 @@
             }
         },
         mounted () {
-            console.log(this.md)
             let $this = this
             document.body.addEventListener('click', () => {
                 $this.setLazyLoaded(true)
@@ -166,6 +165,7 @@
       bottom 0
       margin auto
       animation: rotate-in-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both;
+
 
 
   @keyframes rotate-in-center {
