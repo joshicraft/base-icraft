@@ -109,6 +109,7 @@
                     .to($logo, 0.4, {scale: 0.5, autoAlpha: 0}, 'a+=2')
                     .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=2.5')
                     .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=2.5')
+                    .set($loader, {display: 'none'})
                     // .to($bg.querySelector('.poly-left'), 1.4, {className: '+=slide-out-l'}, 'a+=2')
                     // .to($bg.querySelector('.poly-right'), 1.4, {className: '+=slide-out-r'}, 'a+=2')
             },
