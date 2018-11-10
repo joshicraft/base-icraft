@@ -16,16 +16,16 @@
 	<stop offset="0" style="stop-color:#13638C"/>
 	<stop offset="1" style="stop-color:#00FFFF"/>
 </linearGradient>
-<polygon class="st0 poly-right" points="0,100 100,0 100,100 "/>
+<polygon class="st0 poly-right anim" points="0,100 100,0 100,100 "/>
 <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229" gradientTransform="matrix(-1 0 0 -1 100 100)">
 	<stop offset="0" style="stop-color:#13638C"/>
 	<stop offset="1" style="stop-color:#00FFFF"/>
 </linearGradient>
-<polygon class="st1 poly-left" points="100.1,0 0,100.1 0,0 "/>
+<polygon class="st1 poly-left anim" points="100.1,0 0,100.1 0,0 "/>
 </svg>
       </div>
       <div class="load-icon-wrap rotate" v-if="true">
-      <custom-logo></custom-logo>
+        <img src="img/logo-b.png"/>
       </div>
     </div>
 
@@ -97,16 +97,15 @@
             animateLoaded () {
               let tL = new TimelineMax(),
                 $loader = document.querySelector('.site-loader'),
-                  $logo = $loader.querySelector('.load-icon-wrap'),
+                  $logo = $loader.querySelector('.load-icon-wrap img'),
                   $bg = $loader.querySelector('.j-bg-svg')
                 tL
-                    // .to($logo, 1, {rotation: 360, yoyo: true, repeat: -1, autoAlpha: 0}, 'a')
+                    // .to($logo, 2, {rotation: 360}, 'a')
                     .call(this.increment, [], this, 'a')
                     .call(this.increment, [], this, 'a+=0.5')
                     .call(this.increment, [], this, 'a+=1')
                     .call(this.increment, [], this, 'a+=1.5')
-                    .set($logo, {className: '-=rotate'})
-                    .to($logo, 0.4, {scale: 0.5, autoAlpha: 0}, 'a+=2')
+                    .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=2')
                     .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=2.5')
                     .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=2.5')
                     .set($loader, {display: 'none'})
@@ -201,6 +200,10 @@
       right 0
       bottom 0
       margin auto
+      img
+        display block
+        width 100%
+        height 100%
 
 
 
@@ -231,14 +234,14 @@
   @keyframes rotate-in-center {
     0% {
       transform: rotate(-360deg);
-      opacity 0
+      //opacity 0
     }
     75% {
       transform rotate(0)
-      opacity 1
+      //opacity 1
     }
     100% {
-      opacity 0
+     // opacity 0
     }
   }
 
