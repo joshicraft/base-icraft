@@ -176,6 +176,7 @@
                 } else {
                     size = '_1920'
                 }
+                console.log(path)
                 return (path)
             }
         },
