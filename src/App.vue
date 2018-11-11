@@ -2,13 +2,13 @@
   <v-app>
     <core-toolbar v-if="getLoadCount(3)"/>
 
-    <core-drawer v-if="getLoadCount(4)"/>
+    <core-drawer v-if="getLoadCount(5)"/>
 
     <core-jumbotron v-if="getLoadCount(1)"/>
 
     <core-view :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(2)"/>
 
-    <core-footer v-if="getLoadCount(5)"/>
+    <core-footer v-if="getLoadCount(4)"/>
     <div class="site-loader" :class="{'hide-s': loaded}">
       <div class="j-bg-svg">
       <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">
@@ -105,6 +105,7 @@
                     .call(this.increment, [], this, 'a+=0.5')
                     .call(this.increment, [], this, 'a+=1')
                     .call(this.increment, [], this, 'a+=1.5')
+                    .call(this.increment, [], this, 'a+=2')
                     .call(this.increment, [], this, 'a+=2')
                     .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=2.5')
                     .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=3')
