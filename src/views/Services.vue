@@ -151,6 +151,8 @@
             border-radius 30px
 </style>
 <style lang="stylus" scoped>
+    /*.max-view-width*/
+        /*width 100% !important*/
 
     .pack-img
         max-height: 450px
