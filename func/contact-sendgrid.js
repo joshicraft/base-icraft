@@ -81,7 +81,7 @@ exports.handler = function (event, content, cb) {
             },
             template_id: process.env.SENT_TEMPLATE_ID
         }
-        return post(options).then(cb).catch(error => {
+        return post(options).then(()=>{cb()}).catch(error => {
             console.log('ERROR - Sender')
             cb(error)
         })
