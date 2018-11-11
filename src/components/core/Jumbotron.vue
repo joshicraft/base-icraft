@@ -8,28 +8,6 @@
                 :alt="heroImage"
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
-
-                <div class="contact-ico bot-p">
-                <v-btn
-                        v-if="$route.name !== 'Contact'"
-                        @click="gotToContact"
-                        fab
-                        dark
-                        medium
-                        :small="$vuetify.breakpoint.smAndDown"
-                        color="primary"
-                        :class="$vuetify.breakpoint.smAndDown ? 'bot' : ''"
-                        class="darken-3"
-
-                >
-                    <v-icon
-                            large
-                            :medium="$vuetify.breakpoint.mdAndDown"
-                            dark
-                    >mdi-message-text
-                    </v-icon>
-                </v-btn>
-            </div>
             <div class="contact-ico bot-p left-p">
                 <v-btn
                         v-if="$route.name !== 'Contact'"
