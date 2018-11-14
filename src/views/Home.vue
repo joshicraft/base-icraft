@@ -83,7 +83,7 @@
                 let api = process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : '/.netlify/functions'
                 fetch(api + '/image-mod', {
                     method: 'POST',
-                    body: data
+                    body: {pie: 'pie'}
                 }).then(response => {
                     resolve(response)
                 }).catch(err => {
