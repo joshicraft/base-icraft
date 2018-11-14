@@ -78,6 +78,19 @@
                 }
             ]
         },
+        mounted () {
+            return new Promise((resolve, reject) => {
+                let api = process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : '/.netlify/functions'
+                fetch(api + '/image-mod', {
+                    method: 'POST',
+                    body: data
+                }).then(response => {
+                    resolve(response)
+                }).catch(err => {
+                    reject(err)
+                })
+            })
+        },
         data() {
             return {
                 length: 3,

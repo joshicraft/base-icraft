@@ -27,7 +27,7 @@ import './registerServiceWorker'
 sync(store, router)
 
 Vue.config.productionTip = false
-
+/* eslint-disable no-undef,spaced-comment */
 Vue.mixin({
     data() {
         return {
@@ -37,7 +37,6 @@ Vue.mixin({
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
             fullSizeBracket () {
-                console.log('break')
                 let size = ''
                 if (window.innerWidth > 1600) {
                     size = 2000

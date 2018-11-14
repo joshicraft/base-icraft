@@ -13,13 +13,17 @@
       <div class="j-bg-svg">
       <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229">
-	<stop offset="0" style="stop-color:#13638C"/>
-	<stop offset="1" style="stop-color:#00FFFF"/>
+	<!--<stop offset="0" style="stop-color:#13638C"/>-->
+	<!--<stop offset="1" style="stop-color:#00FFFF"/>-->
+	<stop offset="0" style="stop-color:#22daff"/>
+	<stop offset="1" style="stop-color:#33cccc"/>
 </linearGradient>
 <polygon class="st0 poly-right anim" points="0,100 100,0 100,100 "/>
 <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229" gradientTransform="matrix(-1 0 0 -1 100 100)">
-	<stop offset="0" style="stop-color:#13638C"/>
-	<stop offset="1" style="stop-color:#00FFFF"/>
+	<!--<stop offset="0" style="stop-color:#13638C"/>-->
+	<!--<stop offset="1" style="stop-color:#00FFFF"/>-->
+	<stop offset="0" style="stop-color:#11daff"/>
+	<stop offset="1" style="stop-color:#33cccc"/>
 </linearGradient>
 <polygon class="st1 poly-left anim" points="100.1,0 0,100.1 0,0 "/>
 </svg>
@@ -108,8 +112,10 @@
                     .call(this.increment, [], this, 'a+=2')
                     .call(this.increment, [], this, 'a+=2')
                     .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=2.5')
-                    .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=3')
-                    .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=3')
+                    .to($bg.querySelector('.poly-left'), 0.3, {x: -3, ease: Back.easeOut}, 'a+=3')
+                    .to($bg.querySelector('.poly-right'), 0.3, {x: 3, ease: Back.easeOut}, 'a+=3')
+                    .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=3.5')
+                    .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=3.5')
                     .set($loader, {display: 'none'})
                     // .to($bg.querySelector('.poly-left'), 1.4, {className: '+=slide-out-l'}, 'a+=2')
                     // .to($bg.querySelector('.poly-right'), 1.4, {className: '+=slide-out-r'}, 'a+=2')
@@ -232,6 +238,8 @@
 
   .st0{fill:url(#SVGID_1_);}
   .st1{fill:url(#SVGID_2_);}
+  //.st0{fill: #44daff}
+  //.st1{fill: #3680ff}
 
   @keyframes rotate-in-center {
     0% {

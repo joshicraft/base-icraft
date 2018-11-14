@@ -14,7 +14,7 @@
           "name": "GOLD",
           "title": "For those who want something simple with basic features.",
           "subTitle": "For the most basic of needs",
-          "price": "$599 - $1,099",
+          "price": "$599 +",
           "icon": "mdi-emoticon-happy",
           "iconColor": "amber",
           "items": [
@@ -52,7 +52,7 @@
           "name": "PLATINUM",
           "title": "For those who want something with a few pages and some cool features.",
           "subTitle": "For the most basic of needs",
-          "price": "$1,099 - $3,999",
+          "price": "$1,199 +",
           "icon": "mdi-emoticon",
           "iconColor": "silver",
           "items": [
@@ -98,7 +98,7 @@
           "name": "DIAMOND",
           "title": "For those who want and or need something that stands out above the rest.",
           "subTitle": "For the most basic of needs",
-          "price": "$3,999 - $14,999",
+          "price": "$3,999 +",
           "icon": "mdi-emoticon-cool",
           "iconColor": "blue",
           "items": [
@@ -156,7 +156,7 @@
           "name": "E-COMMERCE",
           "title": "Using Shoppify to provide a complete online store experience.",
           "subTitle": "For those who have a range of products they wish to sell online",
-          "price": "$1,999 - $9,999",
+          "price": "$1,999 +",
           "icon": "mdi-emoticon-excited",
           "iconColor": "green",
           "items": [

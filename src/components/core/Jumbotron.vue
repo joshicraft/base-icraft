@@ -75,7 +75,7 @@
 </template>
 
 <script>
-    import SplitText from '../../plugins/split-text'
+    // import SplitText from '../../plugins/split-text'
     // import createPlayer from 'web-audio-player'
     // let soundA = createPlayer('/static/sound/woosh.mp3')
     //
@@ -88,7 +88,7 @@
             scrolling: false,
             isBooted: false
         }),
-            beforeRouteUpdate  (to, from){
+            beforeRouteUpdate  (to, from, next){
 
                 this.scrolled = false
                 TweenMax.killDelayedCallsTo(this.goTo)
@@ -141,20 +141,19 @@
 
             heroVideo() {
                 let path = '/static/video/4'
-                let size = ''
-                let name = 'vid-bg'
-                let bp = this.$vuetify.breakpoint
-
-                if (bp.smAndDown) {
-                    size = '_768'
-                } else if (bp.mdAndDown) {
-                    size = '_1024'
-                } else if (bp.lgAndDown) {
-                    size = '_1280'
-                } else {
-                    size = '_1920'
-                }
-                console.log(path)
+                // let size = ''
+                // let name = 'vid-bg'
+                // let bp = this.$vuetify.breakpoint
+                //
+                // if (bp.smAndDown) {
+                //     size = '_768'
+                // } else if (bp.mdAndDown) {
+                //     size = '_1024'
+                // } else if (bp.lgAndDown) {
+                //     size = '_1280'
+                // } else {
+                //     size = '_1920'
+                // }
                 return (path)
             }
         },

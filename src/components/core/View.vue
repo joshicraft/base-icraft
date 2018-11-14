@@ -9,7 +9,6 @@
 <script>
   export default {
     metaInfo () {
-        console.log(this.$route.name)
       return {
         titleTemplate: '%s'
       }
