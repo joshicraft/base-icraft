@@ -123,24 +123,24 @@
                 return this.bakedViews[this.namespace].jumbotronSubTitle || ''
             },
             heroImage() {
-                let path = '/static/video/4'
+                let path = '/static/video/'
                 let size = ''
-                let name = ''
-                // let bp = this.$vuetify.breakpoint
-                // if (bp.smAndDown) {
-                //     size = '768'
-                // } else if (bp.lgAndDown) {
-                //     size = '1280'
-                // } else {
-                //     size = '1920'
-                // }
-                return path + size + name + '.jpg'
+                let name = '-v-bga'
+                let bp = this.$vuetify.breakpoint
+                if (bp.smAndDown) {
+                    size = '768'
+                } else if (bp.lgAndDown) {
+                    size = '1280'
+                } else {
+                    size = '1920'
+                }
+                // return path + size + name + '.jpg'
 
-                // return path + size + name + (this.ext('.jpg'))
+                 return path + size + name + (this.ext('.jpg'))
             },
 
             heroVideo() {
-                let path = '/static/video/2'
+                let path = '/static/video/v-1280'
                 // let size = ''
                 // let name = 'vid-bg'
                 // let bp = this.$vuetify.breakpoint

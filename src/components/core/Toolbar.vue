@@ -5,7 +5,7 @@
             :flat="!isScrolling"
             :dense="isScrolling"
             :color="!isScrolling ? 'transparent' : 'black'"
-
+            v-scroll="onScroll"
     >
         <div class="toolbar-svg-wrapper">
             <custom-logo-side :hide-text="true"></custom-logo-side>

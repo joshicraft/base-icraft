@@ -18,6 +18,42 @@
                 </v-layout>
             </v-container>
         </v-img>
+        <v-img
+
+                src="/static/web-4.jpg"
+                height="100vh"
+
+        >
+
+            <v-container >
+
+                <v-layout align-center justify-center ml-5 mt-5>
+                    <v-flex lg6 pa-5 mt-5 mr-5>
+                        <h1 class="mb-4 mt-3 display-2 font-weight-bold">STUNNING, FAST AND SECURE WEBSITES</h1>
+                        <h3 class="mb-4 display-1">ICRAFTS Top Quality websties are hand crafted to support your brand. They use the latest tech and design trends to keep your visitors engaged.
+                            </h3>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-img>
+        <v-img
+
+                src="/static/web-2.jpg"
+                height="100vh"
+
+        >
+
+            <v-container >
+
+                <v-layout align-center justify-flex-end ml-5 mt-3>
+                    <v-flex lg6 pt-4 pl-5 pb-4 ml-5>
+                        <h1 class="mb-4 display-2 font-weight-bold">CAPTIVATING DIGITAL MARKETING</h1>
+                        <h3 class="mb-4 display-1">ICRAFT can help your customers find you and keep engaged with your business.
+                            </h3>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-img>
         <alpha-hero
                 src="/static/testimonial.jpg"
                 :height="$vuetify.breakpoint.mdAndUp ? 500 : 'auto'"
@@ -86,9 +122,6 @@
             }
         },
         methods: {
-            onScroll (index) {
-                console.log(index)
-            },
             next() {
                 this.onboarding = this.onboarding + 1 === length
                     ? 0
