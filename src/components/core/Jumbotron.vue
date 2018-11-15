@@ -3,7 +3,7 @@
         <custom-video-background
                 id="jumbotron"
                 class="vh"
-                :sources="[heroVideo + '.webm', heroVideo + '.mp4']"
+                :sources="[heroVideo + '.mp4', heroVideo + '.webm']"
                 :img="heroImage"
                 :alt="heroImage"
         >
@@ -140,7 +140,7 @@
             },
 
             heroVideo() {
-                let path = '/static/video/v-1280'
+                let path = '/static/video/v-1440'
                 // let size = ''
                 // let name = 'vid-bg'
                 // let bp = this.$vuetify.breakpoint

@@ -28,6 +28,11 @@
                 videoRatio: null
             }
         },
+        watch: {
+            $route() {
+                this.$refs.video.currentTime = 6
+            }
+        },
 
         // computed: {
         //   lazyLoaded () {
