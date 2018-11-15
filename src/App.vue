@@ -70,6 +70,7 @@
         },
         watch: {
             $route () {
+
                 let $this = this
                 clearTimeout(this.delayAnimated)
                 this.delayAnimated = setTimeout(() => {
@@ -169,6 +170,8 @@
   ::-webkit-scrollbar-thumb:active
     background #1a1a1a
 
+  .v-content
+    padding-top: 0 !important
   #webchat
     z-index: 20;
     position fixed
@@ -290,6 +293,7 @@
     z-index 1
   .no-pad
     padding-bottom: 0 !important
+    padding-top: 0 !important
   .container
     max-width: 1280px
 </style>

@@ -1,0 +1,18 @@
+{
+  "jumbotronTitle": "CRAFT YOUR BRAND IMAGE",
+  "jumbotronSubTitle": "WITH OUR DESIGN SERVICES",
+  "heading1": "",
+  "items": [
+    {
+      "name": "Digital Marketing",
+      "title": "Low teir Package",
+      "subTitle": "For the most basic of needs",
+      "items": [
+        "Browser Coverage",
+        "Device Coverage",
+        "Web Page (per page)",
+        "Domain"
+      ]
+    }
+  ]
+}

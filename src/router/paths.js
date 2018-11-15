@@ -4,27 +4,31 @@ export default [
         view: 'Home'
     },
     {
-        path: '/contact',
+        path: '/contact-icraft',
         view: 'Contact'
     },
     {
-        path: '/projects',
+        path: '/icrafts-portfolio',
         view: 'Projects'
     },
     {
-        path: '/services',
-        view: 'Services'
-    },
-    {
-        path: '/about',
+        path: '/all-about-icraft',
         view: 'About'
     },
     {
-        path: '/logo',
-        view: 'Logo'
+        path: '/digitally-market-your-business',
+        view: 'DigitalMarketing'
     },
     {
-        path: '/info-questionnaire',
-        view: 'InfoQuestionnaire'
+        path: '/get-a-website',
+        view: 'Websites'
+    },
+    {
+        path: '/brand-your-business',
+        view: 'Branding'
+    },
+    {
+        path: '/get-IT-training',
+        view: 'ItSolutions'
     }
 ]

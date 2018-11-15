@@ -1,0 +1,18 @@
+{
+  "jumbotronTitle": "WHAT WE DO",
+  "jumbotronSubTitle": "HERE'S A FEW OF THE THINGS WE DO",
+  "heading1": "",
+  "items": [
+    {
+      "name": "IT Solutions",
+      "title": "Low teir Package",
+      "subTitle": "For the most basic of needs",
+      "items": [
+        "Browser Coverage",
+        "Device Coverage",
+        "Web Page (per page)",
+        "Domain"
+      ]
+    }
+  ]
+}

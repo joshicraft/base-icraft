@@ -15,8 +15,8 @@
       >
         <v-card flat tile>
           <v-img
-            :src="`/static/${feature.img}.png`"
-            :height="cardHeight"
+                  :src="imgC(`/static/${feature.img}.png`)"
+                  :height="cardHeight"
           />
           <v-card-title class="title" v-text="feature.title" />
           <v-card-text v-text="feature.text" />

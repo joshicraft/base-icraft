@@ -40,13 +40,24 @@
     //   }
     // },
     mounted () {
+      let vid = document.querySelector('video')
+      this.video = vid
+      let $this = this
       this.setImageUrl()
       this.setContainerHeight()
       window.addEventListener('resize', this.resize)
       document.body.addEventListener('click', this.playVideo)
       setTimeout(this.play, 200)
+      vid.addEventListener('loadeddata', function() {
+          $this.play()
+      }, false)
     },
 
+        watch: {
+            $route() {
+                this.video.currentTime = 6500
+            }
+        },
     beforeDestroy () {
       window.removeEventListener('resize', this.resize)
     },
@@ -58,11 +69,11 @@
       playVideo () {
         this.setContainerHeight()
         if (this.videoCanPlay()) {
-          this.$refs.video.oncanplay = () => {
+          this.video.oncanplay = () => {
             if (!this.$refs.video) return
-            this.videoRatio = this.$refs.video.videoWidth / this.$refs.video.videoHeight
+            this.videoRatio = this.$refs.videoWidth / this.$refs.videoHeight
             this.setVideoSize()
-            this.$refs.video.style.visibility = 'visible'
+            this.video.style.visibility = 'visible'
           }
         }
       },
@@ -75,7 +86,7 @@
       },
 
       videoCanPlay () {
-        return this.$refs.video && !!this.$refs.video.canPlayType
+        return true
       },
 
       setImageUrl () {
@@ -99,8 +110,8 @@
           height = this.$el.offsetHeight
         }
 
-        this.$refs.video.style.width = width ? `${width}px` : 'auto'
-        this.$refs.video.style.height = height ? `${height}px` : 'auto'
+        this.video.style.width = width ? `${width}px` : 'auto'
+        this.video.style.height = height ? `${height}px` : 'auto'
       },
 
       getMediaType (src) {

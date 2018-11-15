@@ -6,27 +6,28 @@
       "icon": "home"
     },
     {
-      "to": "/services",
-      "text": "Services",
-      "icon": "build"
+      "to": "/digitally-market-your-business",
+      "text": "Digital Marketing"
     },
     {
-      "to": "/projects",
-      "text": "Projects",
+      "to": "/get-a-website",
+      "text": "Websites"
+    },
+    {
+      "to": "/brand-your-business",
+      "text": "Branding"
+    },
+    {
+      "to": "/get-IT-training",
+      "text": "IT Solutions"
+    },
+    {
+      "to": "/icrafts-portfolio",
+      "text": "Portfolio",
       "icon": "settings"
     },
     {
-      "to": "/logo",
-      "text": "logo",
-      "icon": "photo_album"
-    },
-    {
-      "to": "/info-questionnaire",
-      "text": "questions",
-      "icon": "photo_album"
-    },
-    {
-      "to": "/contact",
+      "to": "/contact-icraft",
       "text": "Contact",
       "icon": "phone"
     }

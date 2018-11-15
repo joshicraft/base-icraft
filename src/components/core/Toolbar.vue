@@ -5,7 +5,7 @@
             :flat="!isScrolling"
             :dense="isScrolling"
             :color="!isScrolling ? 'transparent' : 'black'"
-            v-scroll="onScroll"
+
     >
         <div class="toolbar-svg-wrapper">
             <custom-logo-side :hide-text="true"></custom-logo-side>
@@ -51,7 +51,7 @@
         methods: {
             ...mapMutations('app', ['toggleDrawer']),
             getCurrentRouteClass (item) {
-                return this.$route.name === item.text ? 'primary--text' : ''
+                return this.$route.path === item.to ? 'primary--text' : ''
             },
             onScroll() {
                 this.scrolled = true

@@ -5,7 +5,8 @@ import Vue from 'vue'
 
 // Components
 import './components'
-
+// import gm from 'gm';
+// const im = gm.subClass({ imageMagick: true });
 // Plugins
 import './plugins'
 
@@ -23,7 +24,7 @@ import * as CONTENT from './lang/en/Views'
 // Sync store with router
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
-import './registerServiceWorker'
+// import './registerServiceWorker'
 sync(store, router)
 
 Vue.config.productionTip = false
@@ -36,6 +37,11 @@ Vue.mixin({
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
+
+            imgC (img) {
+                  // images.resize(img)
+            },
+            mainBGColor: '#fafafa',
             fullSizeBracket () {
                 let size = ''
                 if (window.innerWidth > 1600) {

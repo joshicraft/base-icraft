@@ -15,5 +15,17 @@ module.exports = {
                 camelCase: 'none'
             }
         }
+    },
+    pwa: {
+        name: 'ICRAFT',
+        themeColor: '#4DBA87',
+        msTileColor: '#000000',
+        appleMobileWebAppCapable: 'yes',
+        appleMobileWebAppStatusBarStyle: 'black'
+    },
+    chainWebpack: config => {
+        config.externals({
+            'sharp': 'node_modules\\sharp\\vendor'
+        })
     }
 }

@@ -1,4 +1,7 @@
 require("dotenv").config();
 module.exports = {
-    mode: "development"
+    mode: "development",
+    externals: {
+        sharp: 'sharp'
+    }
 }

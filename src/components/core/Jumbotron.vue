@@ -3,7 +3,7 @@
         <custom-video-background
                 id="jumbotron"
                 class="vh"
-                :sources="[heroVideo + '.mp4', heroVideo + '.ogv']"
+                :sources="[heroVideo + '.webm', heroVideo + '.mp4']"
                 :img="heroImage"
                 :alt="heroImage"
         >
@@ -29,7 +29,7 @@
                     </v-icon>
                 </v-btn>
             </div>
-            <custom-background-vector></custom-background-vector>
+            <!--<custom-background-vector></custom-background-vector>-->
 
 
             <v-fade-transition mode="out-in">
@@ -52,8 +52,8 @@
                                 <div class="jumbo-logo">
                                     <custom-logo></custom-logo>
                                 </div>
-                                <h1>{{title}}</h1>
-                                <h2>{{subTitle}}</h2>
+                                <h1 class="display-3">{{title}}</h1>
+                                <h2 class="display-1">{{subTitle}}</h2>
                             </v-layout>
                         </v-fade-transition>
                     </v-layout>
@@ -89,7 +89,7 @@
             isBooted: false
         }),
             beforeRouteUpdate  (to, from, next){
-
+                this.currentTime = 50;
                 this.scrolled = false
                 TweenMax.killDelayedCallsTo(this.goTo)
                 TweenMax.delayedCall(5000, this.goTo, [".v-container"])
@@ -140,7 +140,7 @@
             },
 
             heroVideo() {
-                let path = '/static/video/4'
+                let path = '/static/video/2'
                 // let size = ''
                 // let name = 'vid-bg'
                 // let bp = this.$vuetify.breakpoint

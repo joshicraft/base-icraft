@@ -1,4 +1,4 @@
-// let sharp = require('sharp')
+let sharp = require('sharp')
 var fs = require('fs')
     , gm = require('gm').subClass({imageMagick: true})
 

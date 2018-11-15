@@ -1,22 +1,14 @@
 <template>
-    <div class="vid-bg-vector" :class="position + ' ' + changeFill + ' ' + flip">
-
-        <div class="wrap" v-if="top && !right">
+    <div class="vid-bg-vector" :class="position" :style="{width: width, height: height}">
+        <div class="wrap">
             <svg preserveAspectRatio="xMinYMax meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 176.667">
-                <path class="st0" d="M-0.083,0.855c0,0,485,175.333,1117,175.333s787-84,787-84v84h-1904V0.855z"/>
-
+                <path :style="{'fill': fillTop}" d="M-0.083,0.855c0,0,485,175.333,1117,175.333s787-84,787-84v84h-1904V0.855z"/>
             </svg>
         </div>
-        <div class="wrap" v-if="bot && !right">
+        <div class="wrap">
             <svg preserveAspectRatio="xMinYMax meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1902 176.667">
-                <path class="st1" :style="{'fill': fill}"
+                <path :style="{'fill': fill}"
                       d="M0,44.667c0,0,484.667,130.417,1116.667,130.417S1902,110.667,1902,110.667l2,66H0V44.667z"/>
-            </svg>
-        </div>
-        <div class="wrap" v-if="right">
-            <svg preserveAspectRatio="xMinYMax meet" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 175.947 1902.886">
-            <path fill="#A5A5A5" d="M0.136,1902.969c0,0,175.333-485,175.333-1117s-84-787-84-787h84v1904H0.136z"/>
-            <path  :style="{'fill': fill}" d="M43.947,1902.886c0,0,130.417-484.667,130.417-1116.667S109.416-1.031,109.416-1.031l66.531-0.083v1904    H43.947z"/>
             </svg>
         </div>
     </div>
@@ -29,102 +21,71 @@
                 type: String,
                 default: '#FAFAFA'
             },
-            flip: {
+            fillTop: {
                 type: String,
-                default: ''
+                default: '#5A5A5A'
+            },
+            width: {
+                type: String,
+                default: '100%'
+            },
+            height: {
+                type: String,
+                default: '100%'
             },
             position: {
                 type: String,
-                default: 'bottom'
-            },
-            changeFill: {
-                type: String,
-                default: ''
-            },
-            right: {
-                type: Boolean,
-                default: false
-            },
-            bot: {
-                type: Boolean,
-                default: true
-            },
-            top: {
-                type: Boolean,
-                default: true
+                default: 'top-left'
             }
         }
     }
 </script>
 
 <style scoped lang="stylus">
-
-    .flip-x
-        transform scaleX(-1)
-
-    .wrap
-        position: absolute;
-        bottom: -1px;
-        width: 100%
-
-    .vid-bg-vector
-        position: absolute;
-        /*top 0*/
-        left 0
-        width 100%
-        bottom: -1px;
-        min-height: 200px;
-        overflow hidden
-    .st0
-        fill: #23608d;
-
-    .st1
-        fill: #fff;
-
-    .full-bot
-        bottom: calc(100% - 1px);
-        transform scaleX(-1)
-        path
-            fill: #212121;
-
     svg
         position: relative;
         -webkit-filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.25));
-        filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.25));
-        width: calc(100% + 1px);
-        /* height: 100%; */
+        filter drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.25))
+        width: 100%
+        height: 100%
         display: block;
 
-    .top-flip
-        bottom: 100%;
+    .vid-bg-vector
+        position: absolute;
+        top 0
+        left 0
+        //top 1px
+        //left -1px
 
-    .right
-        left calc(100% - 1px)
-        bottom initial
-        height 102%
-        top: -1%
-        width initial
-        min-height initial
-        min-width: 150px
-        z-index: 7;
-        .wrap
-            height 100%
-            bottom initial
+        overflow hidden
+
+    .top-right
+        transform scaleX(-1)
+        right -1px
+        top -1px
+        left initial
+
+    .bot-left
+        transform scaleY(-1)
+        top initial
+        left -1px
+        bottom -1px
+
+    .bot-right
+        transform scale(-1)
+        top initial
+        left initial
+        right -1px
+        bottom -1px
         svg
-            height 100%
-            width initial
-            position absolute
-            transform scaleX(-1)
+            filter drop-shadow(0px 0px -7px rgba(0, 0, 0, 0.25))
 
-    .top
-        bottom: initial;
-        top: -1px;
-        .wrap
-            bottom: initial;
-            top: -1px;
-            transform scaleY(-1)
-        svg
+    .wrap
+        position: absolute;
+        height calc(100% + 2px)
+        width calc(100% + 2px)
+        overflow hidden
 
-            -webkit-filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.25));
-            filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.25));
+
+
 </style>
