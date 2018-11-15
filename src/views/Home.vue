@@ -2,7 +2,7 @@
     <div>
         <v-img
 
-                src="/static/web-3.jpg"
+                :src="imgC('web-3')"
                 height="100vh"
 
         >
@@ -20,7 +20,7 @@
         </v-img>
         <v-img
 
-                src="/static/web-4.jpg"
+                :src="imgC('web-4')"
                 height="100vh"
 
         >
@@ -38,7 +38,7 @@
         </v-img>
         <v-img
 
-                src="/static/web-2.jpg"
+                :src="imgC('web-5')"
                 height="100vh"
 
         >
@@ -55,7 +55,7 @@
             </v-container>
         </v-img>
         <alpha-hero
-                src="/static/testimonial.jpg"
+                :src="imgC('testimonial')"
                 :height="$vuetify.breakpoint.mdAndUp ? 500 : 'auto'"
                 :jumbotron="false"
                 dark>

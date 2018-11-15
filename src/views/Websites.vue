@@ -1,4 +1,15 @@
 <template>
+    <div>
+    <v-flex
+        v-for="(service, i) in items"
+        :key="i"
+    >
+        <custom-video-background
+                id="jumbotron"
+                :sources="['/static/video/2' + '.mp4']"
+                :img="''"
+                :alt="''">
+        </custom-video-background>
     <v-container
             grid-list-lg
             pa-0
@@ -17,18 +28,18 @@
         >
             <v-flex
                     mb-3
-                    v-for="(service, i) in items"
+
                     :class="[$vuetify.breakpoint.smAndDown ? 'pa-2' : '']"
-                    :key="i"
+
                     justify-space-between
                     align-content-space-between
                     d-flex>
                 <v-flex light class="pa-3">
                     <v-img
                             class="relative pack-img"
-                            :src="service.image"
+                            :src="service.image">
 
-                    >
+                    <!--&gt;-->
 
                         <v-layout
                                 class="z1 pa-5 title-1 d-flex"
@@ -52,10 +63,9 @@
                             </v-flex>
                         </v-layout>
                         <div class="bg-gradient"></div>
-                        <custom-background-vector>
+                        <custom-background-vector position="top-left">
                         </custom-background-vector>
-                        <custom-background-vector position="top" flip="flip-x">
-                        </custom-background-vector>
+
                     </v-img>
                     <h1 class="my-5">PACKAGES</h1>
                     <v-layout row wrap mt-4>
@@ -75,12 +85,14 @@
                             >
                                 <custom-bg-vector-corner :fill="mainBGColor" width="100px" height="92px"></custom-bg-vector-corner>
                                 <div class="top-content pt-4 pl-4 pr-4 pb-1">
+
                                     <v-flex row >
                                         <h1 :class="packageItem.iconColor + '--text'">{{ packageItem.name }}</h1>
                                         <v-icon mt-2 large :color="packageItem.iconColor">{{ packageItem.icon }}</v-icon>
                                     </v-flex>
                                         <h3 class="mt-4">{{ packageItem.price }}</h3>
                                         <p class="mt-4">{{ packageItem.title }}</p>
+
 
                                 </div>
                                 <v-list two-line class="list">
@@ -122,7 +134,12 @@
                 </v-flex>
             </v-flex>
         </v-layout>
+
     </v-container>
+
+    </v-flex>
+
+    </div>
 </template>
 
 <script>

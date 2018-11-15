@@ -288,7 +288,7 @@
 
 
   .v-content
-    padding-top: 64px !important
+    padding-top: 0px !important
     padding-bottom: 64px !important
     z-index 1
   .no-pad

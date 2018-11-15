@@ -38,8 +38,31 @@ Vue.mixin({
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
 
-            imgC (img) {
-                  // images.resize(img)
+            imgC (name, img, ext) {
+                console.log(name)
+                let path = '/static/'
+                let size = ''
+                let bp = this.$vuetify.breakpoint
+                let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
+                if (img) {
+                    let width = img.getBoundingClientRect().width
+                    for (let i = 0; i < sizes.length; i ++){
+                        if (sizes[i] < width) {
+                            size = sizes[i]
+                        }
+                    }
+
+                } else {
+                    if (bp.smAndDown) {
+                        size = '768'
+                    } else if (bp.lgAndDown) {
+                        size = '1280'
+                    } else {
+                        size = '1920'
+                    }
+                }
+
+                return path + size + '-' + name + (this.ext(ext || '.jpg'))
             },
             mainBGColor: '#fafafa',
             fullSizeBracket () {
