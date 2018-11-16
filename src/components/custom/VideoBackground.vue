@@ -30,7 +30,7 @@
         },
         watch: {
             $route() {
-                this.$refs.video.currentTime = 5.65
+                 this.$refs.video.currentTime = 5.65
             }
         },
 

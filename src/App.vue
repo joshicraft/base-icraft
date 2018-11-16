@@ -6,7 +6,7 @@
 
     <core-jumbotron v-if="getLoadCount(1)"/>
 
-    <core-view :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(2)"/>
+    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(2)"/>
 
     <core-footer v-if="getLoadCount(4)"/>
     <div class="site-loader" :class="{'hide-s': loaded}">
@@ -43,6 +43,7 @@
     export default {
         data () {
             return {
+                loadTickerCount: 0,
                 loadCount: 0,
                 loader: false,
                 lazyTriggered: null
@@ -55,13 +56,13 @@
                 $this.setLoader(true)
             })
             $this.animateLoaded()
-            this.loadTicker = setInterval(() => {
-                // this.loadCount+=1
-                // if(this.loadCount > 5) {
-                //
-                //     clearInterval($this.loadTicker)
-                // }
-            }, 500)
+            // this.loadTicker = setInterval(() => {
+            //     // this.loadCount+=1
+            //     // if(this.loadCount > 5) {
+            //     //
+            //     //     clearInterval($this.loadTicker)
+            //     // }
+            // }, 500)
             clearTimeout(this.delayAnimated)
             this.delayAnimated = setTimeout(() => {
                 $this.setLazyLoaded(true)
@@ -70,9 +71,10 @@
         },
         watch: {
             $route () {
-
+                console.log('change')
                 let $this = this
                 clearTimeout(this.delayAnimated)
+                this.startLoadTicker()
                 this.delayAnimated = setTimeout(() => {
                     $this.setLazyLoaded(true)
                     $this.setLoader(true)
@@ -82,6 +84,9 @@
         computed: {
             lazyLoaded () {
                 return this.getLazy()
+            },
+            getLoadTickerCount () {
+              return this.loadTickerCount
             },
 
             loaded () {
@@ -98,6 +103,27 @@
             },
             increment () {
                 this.loadCount ++
+            },
+
+            loadTick() {
+                console.log(this.loadTickerCount)
+                this.loadTickerCount++
+            },
+            clearLoadTicker() {
+                this.loadTickerCount = 0
+                TweenMax.killDelayedCallsTo(this.loadTick)
+                if (this.loadTicker && this.loadTicker.kill) {
+                    this.loadTicker.kill()
+                }
+            },
+            startLoadTicker(tickInterval, limit) {
+                limit = limit || 100
+                tickInterval = tickInterval || 1
+                this.clearLoadTicker()
+                this.loadTicker = new TimelineMax()
+                for(let i = 0; i < limit; i ++) {
+                    this.loadTicker.addCallback(this.loadTick, i * tickInterval, [], this)
+                }
             },
             animateLoaded () {
               let tL = new TimelineMax(),
@@ -129,6 +155,7 @@
                 this.lazyTriggered = (window.pageYOffset ||
                     document.documentElement.scrollTop || 0) >
                     (50)
+                console.log('s')
                 if (!this.scrolled) {
                     if (!e) {
                         e = window.event

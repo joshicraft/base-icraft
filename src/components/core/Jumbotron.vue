@@ -2,7 +2,7 @@
         <custom-video-background
                 id="jumbotron"
                 class="vh"
-                :sources="[heroVideo + '.mp4', heroVideo + '.webm', heroVideo + '.ogv']"
+                :sources="[heroVideo + '.mp4', heroVideo + '.ogv']"
                 :img="heroImage"
                 :alt="heroImage"
         >

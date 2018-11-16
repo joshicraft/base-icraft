@@ -36,7 +36,7 @@
                     align-content-space-between
                     d-flex>
                 <v-flex light class="pa-3"
-                        v-if="loaded"
+                        v-if="loadPoint(1)"
                 >
                     <v-img
                             class="relative pack-img"
@@ -74,6 +74,7 @@
                     <v-layout row wrap mt-4>
 
                         <v-flex
+                                v-if="loadPoint(2)"
                                 lg3
                                 md3
                                 sm12
@@ -153,16 +154,16 @@
                 {name: 'description', content: 'AACE offers a wide range of Air Conditioning and Electrical Services'}
             ]
         },
-        data () {
-          return {
-              loaded: null
-          }
+        props: {
+            loadTickerCount: {
+                default: 0,
+                type: Number
+            }
         },
-        mounted () {
-            let $this = this
-          setTimeout(() => {
-              $this.loaded = true
-          }, 500)
+        methods: {
+            loadPoint(i) {
+                return this.loadTickerCount >= i
+            }
         },
         computed: {
             items() {

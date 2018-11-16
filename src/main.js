@@ -11,7 +11,7 @@ import './components'
 import './plugins'
 
 // Sync router with store
-import { sync } from 'vuex-router-sync'
+import {sync} from 'vuex-router-sync'
 
 // Application imports
 import App from './App'
@@ -19,7 +19,7 @@ import App from './App'
 import router from '@/router'
 import store from '@/store'
 import * as CONTENT from './lang/en/Views'
-import { createSimpleTransition } from 'vuetify/es5/util/helpers'
+import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 
 
 // import all from './lang/en'
@@ -43,15 +43,14 @@ Vue.mixin({
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
 
-            imgC (name, img, ext) {
-                console.log(name)
+            imgC(name, img, ext) {
                 let path = '/static/'
                 let size = ''
                 let bp = this.$vuetify.breakpoint
                 let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
                 if (img) {
                     let width = img.getBoundingClientRect().width
-                    for (let i = 0; i < sizes.length; i ++){
+                    for (let i = 0; i < sizes.length; i++) {
                         if (sizes[i] < width) {
                             size = sizes[i]
                         }
@@ -70,7 +69,7 @@ Vue.mixin({
                 return path + size + '-' + name + (this.ext(ext || '.jpg'))
             },
             mainBGColor: '#fafafa',
-            fullSizeBracket () {
+            fullSizeBracket() {
                 let size = ''
                 if (window.innerWidth > 1600) {
                     size = 2000
@@ -85,12 +84,12 @@ Vue.mixin({
                 }
                 return size + '/'
             },
-            playSound () {
+            playSound() {
                 this.audio = this.audio || new Audio('/static/sound/click.mp3')
                 this.audio.play()
             },
             views: CONTENT.default.en.Views,
-            nextRoute () {
+            nextRoute() {
                 let route = this.$route.path
                 let routes = this.views
                 let nextIndex = routes.findIndex(i => i.to === route)
@@ -101,7 +100,7 @@ Vue.mixin({
                 }
                 return routes[nextIndex]
             },
-            prevRoute () {
+            prevRoute() {
                 let route = this.$route.path
                 let routes = this.views
                 let nextIndex = routes.findIndex(i => i.to === route)
@@ -113,7 +112,7 @@ Vue.mixin({
                 }
                 return routes[nextIndex]
             },
-            scroll () {
+            scroll() {
                 let current = window.pageYOffset
                 let pos = window.innerHeight
                 let tBHeight = document.querySelector('.v-toolbar')
@@ -148,10 +147,10 @@ Vue.mixin({
 
 /* eslint-disable no-new */
 new Vue({
-  // i18n,
-  router,
-  store,
-  render: h => h(App)
+    // i18n,
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')
 
 

@@ -1,13 +1,13 @@
 <template>
     <div>
         <v-img
-
+                v-if="loadPoint(1)"
                 :src="imgC('web-3')"
                 height="100vh"
 
         >
 
-            <v-container >
+            <v-container>
 
                 <v-layout align-center ml-5 mt-3>
                     <v-flex lg6 pa-5>
@@ -19,42 +19,45 @@
             </v-container>
         </v-img>
         <v-img
-
+                v-if="loadPoint(2)"
                 :src="imgC('web-4')"
                 height="100vh"
 
         >
 
-            <v-container >
+            <v-container>
 
                 <v-layout align-center justify-center ml-5 mt-5>
                     <v-flex lg6 pa-5 mt-5 mr-5>
                         <h1 class="mb-4 mt-3 display-2 font-weight-bold">STUNNING, FAST AND SECURE WEBSITES</h1>
-                        <h3 class="mb-4 display-1">ICRAFTS Top Quality websties are hand crafted to support your brand. They use the latest tech and design trends to keep your visitors engaged.
-                            </h3>
+                        <h3 class="mb-4 display-1">ICRAFTS Top Quality websties are hand crafted to support your brand.
+                            They use the latest tech and design trends to keep your visitors engaged.
+                        </h3>
                     </v-flex>
                 </v-layout>
             </v-container>
         </v-img>
         <v-img
-
+                v-if="loadPoint(3)"
                 :src="imgC('web-5')"
                 height="100vh"
 
         >
 
-            <v-container >
+            <v-container>
 
                 <v-layout align-center justify-flex-end ml-5 mt-3>
                     <v-flex lg6 pt-4 pl-5 pb-4 ml-5>
                         <h1 class="mb-4 display-2 font-weight-bold">CAPTIVATING DIGITAL MARKETING</h1>
-                        <h3 class="mb-4 display-1">ICRAFT can help your customers find you and keep engaged with your business.
-                            </h3>
+                        <h3 class="mb-4 display-1">ICRAFT can help your customers find you and keep engaged with your
+                            business.
+                        </h3>
                     </v-flex>
                 </v-layout>
             </v-container>
         </v-img>
         <alpha-hero
+                v-if="loadPoint(4)"
                 :src="imgC('testimonial')"
                 :height="$vuetify.breakpoint.mdAndUp ? 500 : 'auto'"
                 :jumbotron="false"
@@ -111,6 +114,12 @@
                 }
             ]
         },
+        props: {
+            loadTickerCount: {
+                default: 0,
+                type: Number
+            }
+        },
         mounted() {
 
         },
@@ -131,6 +140,9 @@
                 this.onboarding = this.onboarding - 1 < 0
                     ? this.length - 1
                     : this.onboarding - 1
+            },
+            loadPoint(i) {
+                return this.loadTickerCount >= i
             }
         },
         computed: {
