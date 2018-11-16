@@ -5,7 +5,6 @@
     v-model="inputValue"
     left
   >
-    <custom-background-vector v-if="visible" fill="#fff" right position="right"></custom-background-vector>
     <v-list>
       <v-list-tile>
         <v-spacer />
