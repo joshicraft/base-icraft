@@ -1,18 +1,33 @@
 [
   {
     "to": "/",
-    "text": "Home"
+    "text": "Home",
+    "icon": "home"
   },
   {
-    "to": "/services",
-    "text": "Services"
+    "to": "/digitally-market-your-business",
+    "text": "Digital Marketing"
   },
   {
-    "to": "/projects",
-    "text": "Projects"
+    "to": "/get-a-website",
+    "text": "Websites"
   },
   {
-    "to": "/contact",
-    "text": "Contact"
+    "to": "/brand-your-business",
+    "text": "Branding"
+  },
+  {
+    "to": "/get-IT-training",
+    "text": "IT Solutions"
+  },
+  {
+    "to": "/icrafts-portfolio",
+    "text": "Portfolio",
+    "icon": "settings"
+  },
+  {
+    "to": "/contact-icraft",
+    "text": "Contact",
+    "icon": "phone"
   }
 ]
