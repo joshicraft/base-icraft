@@ -286,6 +286,20 @@
     }
   }
 
+  .my-transition
+      &-leave-active
+          position: absolute
+
+      &-enter-active, &-leave, &-leave-to
+          transition: opacity 0.4s
+          .title
+            transition: transform 0.4s
+
+      &-enter, &-leave-to
+          opacity: 0
+          .title
+            transform: scale(0.75)
+
 
   .v-content
     padding-top: 0px !important

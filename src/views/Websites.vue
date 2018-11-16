@@ -4,12 +4,12 @@
         v-for="(service, i) in items"
         :key="i"
     >
-        <custom-video-background
-                id="jumbotron"
-                :sources="['/static/video/2' + '.mp4']"
-                :img="''"
-                :alt="''">
-        </custom-video-background>
+        <!--<custom-video-background-->
+                <!--id="jumbotron"-->
+                <!--:sources="['/static/video/2' + '.mp4']"-->
+                <!--:img="''"-->
+                <!--:alt="''">-->
+        <!--</custom-video-background>-->
     <v-container
             grid-list-lg
             pa-0
@@ -18,6 +18,7 @@
             justify-center
             align-center
             class="max-view-width"
+
     >
         <v-layout
                 row
@@ -34,7 +35,9 @@
                     justify-space-between
                     align-content-space-between
                     d-flex>
-                <v-flex light class="pa-3">
+                <v-flex light class="pa-3"
+                        v-if="loaded"
+                >
                     <v-img
                             class="relative pack-img"
                             :src="service.image">
@@ -149,6 +152,17 @@
             meta: [
                 {name: 'description', content: 'AACE offers a wide range of Air Conditioning and Electrical Services'}
             ]
+        },
+        data () {
+          return {
+              loaded: null
+          }
+        },
+        mounted () {
+            let $this = this
+          setTimeout(() => {
+              $this.loaded = true
+          }, 500)
         },
         computed: {
             items() {

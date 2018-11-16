@@ -19,11 +19,16 @@ import App from './App'
 import router from '@/router'
 import store from '@/store'
 import * as CONTENT from './lang/en/Views'
+import { createSimpleTransition } from 'vuetify/es5/util/helpers'
+
 
 // import all from './lang/en'
 // Sync store with router
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
+const myTransition = createSimpleTransition('my-transition')
+
+Vue.component('my-transition', myTransition)
 // import './registerServiceWorker'
 sync(store, router)
 

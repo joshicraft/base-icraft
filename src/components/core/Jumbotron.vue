@@ -1,5 +1,4 @@
 <template>
-    <v-fade-transition mode="out-in">
         <custom-video-background
                 id="jumbotron"
                 class="vh"
@@ -32,7 +31,7 @@
             <!--<custom-background-vector></custom-background-vector>-->
 
 
-            <v-fade-transition mode="out-in">
+            <my-transition mode="out-in">
                 <v-container
                         fill-height
                         :key="$route.path"
@@ -40,7 +39,6 @@
                         class="z1"
                 >
                     <v-layout align-center>
-                        <v-fade-transition mode="out-in">
                             <v-layout
                                     column
                                     justify-center
@@ -55,10 +53,9 @@
                                 <h1 class="display-3">{{title}}</h1>
                                 <h2 class="display-1">{{subTitle}}</h2>
                             </v-layout>
-                        </v-fade-transition>
                     </v-layout>
                 </v-container>
-            </v-fade-transition>
+            </my-transition>
             <!--</v-img>-->
             <div
                     @click="goTo('#view')"
@@ -71,7 +68,6 @@
             </div>
         </custom-video-background>
 
-    </v-fade-transition>
 </template>
 
 <script>
@@ -88,13 +84,6 @@
             scrolling: false,
             isBooted: false
         }),
-            beforeRouteUpdate  (to, from, next){
-                this.currentTime = 50;
-                this.scrolled = false
-                TweenMax.killDelayedCallsTo(this.goTo)
-                TweenMax.delayedCall(5000, this.goTo, [".v-container"])
-                next()
-            },
         methods: {
             gotToContact () {
                 this.$router.push('Contact')

@@ -61,22 +61,31 @@ router.beforeEach((to, from, next) => {
         let tL = new TimelineMax()
         tL
             .to(window, scrollPos === 0 ? 0 : 0.35, {scrollTo: {y: 0}}, 'a')
-            .call(next)
-            .to(gradient, duration, {autoAlpha: 0.87})
-            .to(gradient, duration, {autoAlpha: 1})
+            .to(gradient, duration, {autoAlpha: 0.8})
+            .call(next, [], this, '-=' + duration)
+
+            .to(gradient, duration, {autoAlpha: 1}, '+=' + duration)
 
 
     }, 1)
 })
 
-// router.afterEach((to, from) => {
-//     console.log('sssss')
-//     TweenMax.delayedCall(5000, ()=>{
-//         if (!this.scrolled) {
-//            TweenMax.to(window, 0.6, {scrollTo:{y: window.innerHeight}})
-//         }
-//     }, [], this)
-// })
+router.afterEach((to, from) => {
+    // let jumbo = document.querySelector('#jumbotron')
+    // let gradient = jumbo.querySelector('#jumbo-gradient')
+    // let title = jumbo.querySelector('.title')
+    // let duration = 0.6
+    // new TimelineMax()
+    //     .set(gradient, {autoAlpha: 0.87})
+    //     .set(title, {scale: 0.5})
+    //     .to(gradient, duration, {autoAlpha: 1}, '+=0.3')
+    //     .to(title, duration, {scale: 1}, '-=' + duration)
+    // TweenMax.delayedCall(5000, ()=>{
+    //     if (!this.scrolled) {
+    //        TweenMax.to(window, 0.6, {scrollTo:{y: window.innerHeight}})
+    //     }
+    // }, [], this)
+})
 
 
 Vue.use(Meta)
