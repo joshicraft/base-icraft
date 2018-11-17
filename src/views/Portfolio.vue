@@ -19,6 +19,12 @@
         { name: 'description', content: "Here's but a few of the Electrical and Air Conditioning projects we've worked on" }
       ]
     },
+      props: {
+          loadTickerCount: {
+              default: 0,
+              type: Number
+          }
+      },
     computed: {
       categories () {
         return this.bakedViews.Projects.categories
@@ -26,6 +32,14 @@
       projects () {
           return this.bakedViews.Projects.projects
       }
-    }
+    },
+      methods: {
+          loadLimit(i) {
+              return this.loadTickerCount <= i
+          },
+          loadPoint(i) {
+              return this.loadTickerCount >= i
+          }
+      }
   }
 </script>

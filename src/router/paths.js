@@ -9,7 +9,7 @@ export default [
     },
     {
         path: '/icrafts-portfolio',
-        view: 'Projects'
+        view: 'Portfolio'
     },
     {
         path: '/all-about-icraft',

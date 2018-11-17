@@ -141,6 +141,9 @@
                     ? this.length - 1
                     : this.onboarding - 1
             },
+            loadLimit(i) {
+                return this.loadTickerCount <= i
+            },
             loadPoint(i) {
                 return this.loadTickerCount >= i
             }

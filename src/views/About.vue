@@ -110,6 +110,12 @@
         {name: 'description', content: 'All about Certified Welding, it\'s team and what we care about'}
       ]
     },
+      props: {
+          loadTickerCount: {
+              default: 0,
+              type: Number
+          }
+      },
     computed: {
       safety () {
         return this.$t('Views.About.safety')
@@ -120,7 +126,15 @@
       about () {
         return this.$t('Views.About.about')
       }
-    }
+    },
+      methods: {
+          loadLimit(i) {
+              return this.loadTickerCount <= i
+          },
+          loadPoint(i) {
+              return this.loadTickerCount >= i
+          }
+      }
   }
 </script>
 

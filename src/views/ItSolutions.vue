@@ -7,6 +7,7 @@
             justify-center
             align-center
             class="max-view-width"
+            v-if="loadPoint(1)"
     >
         <v-layout
                 row
@@ -22,7 +23,9 @@
                     :key="i"
                     justify-space-between
                     align-content-space-between
-                    d-flex>
+                    d-flex
+                    v-if="loadPoint(2)"
+            >
                 <v-flex light class="pa-3">
                     <v-img
                             class="relative pack-img"
@@ -66,6 +69,7 @@
                                 sm12
                                 v-for="(packageItem, p) in service.items"
                                 :key="p"
+                                v-if="loadPoint(3)"
                         >
 
                             <v-card
@@ -104,6 +108,7 @@
                                         <v-list-tile
                                                 v-for="subItem in packageItem.items"
                                                 :key="subItem.text"
+                                                v-if="loadPoint(4)"
                                         >
 
                                             <v-list-tile-action>
@@ -133,9 +138,23 @@
                 {name: 'description', content: 'AACE offers a wide range of Air Conditioning and Electrical Services'}
             ]
         },
+        props: {
+            loadTickerCount: {
+                default: 0,
+                type: Number
+            }
+        },
         computed: {
             items() {
                 return this.bakedViews[this.$route.name].items
+            }
+        },
+        methods: {
+            loadLimit(i) {
+                return this.loadTickerCount <= i
+            },
+            loadPoint(i) {
+                return this.loadTickerCount >= i
             }
         }
     }

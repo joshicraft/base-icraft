@@ -197,6 +197,12 @@
                 {name: 'description', content: 'To get find out more about what we can offer you, get in touch today!'}
             ]
         },
+        props: {
+            loadTickerCount: {
+                default: 0,
+                type: Number
+            }
+        },
         data () {
             return {
                 submitStatus: {
@@ -232,6 +238,12 @@
           }
         },
         methods: {
+            loadLimit(i) {
+                return this.loadTickerCount <= i
+            },
+            loadPoint(i) {
+                return this.loadTickerCount >= i
+            },
             resetForm () {
               this.submitted=false
               this.failed=false
