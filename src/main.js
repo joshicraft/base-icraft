@@ -23,7 +23,7 @@ import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 
 // import all from './lang/en'
 // Sync store with router
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
+// import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 const myTransition = createSimpleTransition('my-transition')
 
