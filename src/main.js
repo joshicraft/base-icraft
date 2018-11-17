@@ -5,8 +5,7 @@ import Vue from 'vue'
 
 // Components
 import './components'
-// import gm from 'gm';
-// const im = gm.subClass({ imageMagick: true });
+
 // Plugins
 import './plugins'
 
@@ -42,7 +41,6 @@ Vue.mixin({
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
-
             imgC(name, img, ext) {
                 let path = '/static/'
                 let size = ''
@@ -88,10 +86,9 @@ Vue.mixin({
                 this.audio = this.audio || new Audio('/static/sound/click.mp3')
                 this.audio.play()
             },
-            views: CONTENT.default.en.Views,
             nextRoute() {
                 let route = this.$route.path
-                let routes = this.views
+                let routes = this.bakedViews
                 let nextIndex = routes.findIndex(i => i.to === route)
                 if (nextIndex === routes.length - 1) {
                     nextIndex = 0
@@ -102,7 +99,7 @@ Vue.mixin({
             },
             prevRoute() {
                 let route = this.$route.path
-                let routes = this.views
+                let routes = this.bakedViews
                 let nextIndex = routes.findIndex(i => i.to === route)
 
                 if (nextIndex === 0) {

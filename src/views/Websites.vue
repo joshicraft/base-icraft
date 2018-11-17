@@ -1,8 +1,16 @@
 <template>
     <div>
+        <div class="loader" v-if="loadLimit(2)">
+            <v-progress-circular
+                    :size="50"
+                    color="primary"
+                    indeterminate
+            ></v-progress-circular>
+        </div>
     <v-flex
         v-for="(service, i) in items"
         :key="i"
+        v-if="loadPoint(1)"
     >
         <!--<custom-video-background-->
                 <!--id="jumbotron"-->
@@ -31,12 +39,12 @@
                     mb-3
 
                     :class="[$vuetify.breakpoint.smAndDown ? 'pa-2' : '']"
-
+                    v-if="loadPoint(2)"
                     justify-space-between
                     align-content-space-between
                     d-flex>
                 <v-flex light class="pa-3"
-                        v-if="loadPoint(1)"
+
                 >
                     <v-img
                             class="relative pack-img"
@@ -74,7 +82,7 @@
                     <v-layout row wrap mt-4>
 
                         <v-flex
-                                v-if="loadPoint(2)"
+                                v-if="loadPoint(3)"
                                 lg3
                                 md3
                                 sm12
@@ -118,6 +126,7 @@
                                         </v-list-tile>
 
                                         <v-list-tile
+                                                v-if="loadPoint(4)"
                                                 v-for="subItem in packageItem.items"
                                                 :key="subItem.text"
                                         >
@@ -161,6 +170,9 @@
             }
         },
         methods: {
+            loadLimit(i) {
+                return this.loadTickerCount <= i
+            },
             loadPoint(i) {
                 return this.loadTickerCount >= i
             }
@@ -182,7 +194,14 @@
 <style lang="stylus" scoped>
     /*.max-view-width*/
         /*width 100% !important*/
-
+    .loader
+        position: fixed;
+        left 0
+        right 0
+        bottom 30px
+        margin auto
+        text-align center
+        z-index 100
     .pack-img
         max-height: 450px
 

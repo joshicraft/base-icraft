@@ -30,6 +30,7 @@
         },
         watch: {
             $route() {
+                 this.play()
                  this.$refs.video.currentTime = 5.65
             }
         },
@@ -49,7 +50,16 @@
             this.setContainerHeight()
             window.addEventListener('resize', this.resize)
             document.body.addEventListener('click', this.playVideo)
-            setTimeout(this.play, 200)
+            console.log('video mounted')
+            // setTimeout(this.play, 500)
+            // setTimeout(this.play, 1000)
+            // setTimeout(this.play, 1500)
+            // setTimeout(this.play, 2000)
+            // setTimeout(this.play, 2500)
+            TweenMax.delayedCall(0.5, this.play, [], this)
+            TweenMax.delayedCall(1, this.play, [], this)
+            TweenMax.delayedCall(2, this.play, [], this)
+            this.$refs.video.onloadeddata = this.play
         },
 
         beforeDestroy () {
@@ -58,7 +68,9 @@
 
         methods: {
             play () {
+                console.log('play video')
                 this.playVideo()
+                this.$refs.video.play()
             },
             playVideo () {
                 this.setContainerHeight()
@@ -80,7 +92,7 @@
             },
 
             videoCanPlay () {
-                return this.$refs.video && !!this.$refs.video.canPlayType
+                return this.$refs.video
             },
 
             setImageUrl () {

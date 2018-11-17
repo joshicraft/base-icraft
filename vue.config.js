@@ -8,24 +8,24 @@ module.exports = {
                 }
             }
         }
-    },
-    css: {
-        loaderOptions: {
-            css: {
-                camelCase: 'none'
-            }
-        }
-    },
-    pwa: {
-        name: 'ICRAFT',
-        themeColor: '#4DBA87',
-        msTileColor: '#000000',
-        appleMobileWebAppCapable: 'yes',
-        appleMobileWebAppStatusBarStyle: 'black'
-    },
-    chainWebpack: config => {
-        config.externals({
-            'sharp': 'node_modules\\sharp\\vendor'
-        })
     }
+    // css: {
+    //     loaderOptions: {
+    //         css: {
+    //             camelCase: 'none'
+    //         }
+    //     }
+    // }
+    // pwa: {
+    //     name: 'ICRAFT',
+    //     themeColor: '#4DBA87',
+    //     msTileColor: '#000000',
+    //     appleMobileWebAppCapable: 'yes',
+    //     appleMobileWebAppStatusBarStyle: 'black'
+    // },
+    // chainWebpack: config => {
+    //     config.externals({
+    //         'sharp': 'node_modules\\sharp\\vendor'
+    //     })
+    // }
 }
