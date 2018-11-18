@@ -88,7 +88,7 @@
                                 </div>
                                 <v-list two-line class="list">
                                     <v-list-group
-                                            :append-icon="$vuetify.icons.expand"
+                                            append-icon="mdi-arrow-down"
                                             v-model="packageItem.active"
                                             expand
 
