@@ -24,7 +24,7 @@
             </v-btn>
         </v-toolbar-items>
         <v-btn v-else icon @click="toggleDrawer">
-            <v-icon>menu</v-icon>
+            <v-icon>mdi-menu</v-icon>
         </v-btn>
     </v-toolbar>
 </template>

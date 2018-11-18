@@ -15,7 +15,9 @@ module.exports = {
     configureWebpack: {
         plugins: [
            new VuetifyLoaderPlugin(),
-            new PreloadWebpackPlugin()
+            new PreloadWebpackPlugin({
+                rel: 'preload'
+            })
             // new BundleAnalyzerPlugin(),
         ]
 

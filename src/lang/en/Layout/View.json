@@ -3,7 +3,7 @@
     {
       "to": "/",
       "text": "Home",
-      "icon": "home"
+      "icon": "mdi-home"
     },
     {
       "to": "/digitally-market-your-business",
@@ -24,12 +24,12 @@
     {
       "to": "/icrafts-portfolio",
       "text": "Portfolio",
-      "icon": "settings"
+      "icon": "mdi-settings"
     },
     {
       "to": "/contact-icraft",
       "text": "Contact",
-      "icon": "phone"
+      "icon": "mdi-phone"
     }
   ]
 }

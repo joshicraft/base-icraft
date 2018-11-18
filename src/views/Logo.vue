@@ -21,10 +21,10 @@
         </div>
         <div class="actions">
           <v-btn :disabled="!sprite.paused" @click="previous">previous
-            <v-icon class="ml-3">skip_previous</v-icon>
+            <v-icon class="ml-3">mdi-skip-previous</v-icon>
           </v-btn>
           <v-btn :disabled="sprite.paused" @click="stopTicker">pause
-            <v-icon class="ml-3">pause</v-icon>
+            <v-icon class="ml-3">mdi-pause</v-icon>
           </v-btn>
           <v-progress-circular
             :value="sprite.index / sprite.frames * 100"
@@ -34,10 +34,10 @@
           >{{sprite.index}}
           </v-progress-circular>
           <v-btn :disabled="!sprite.paused" @click="startTicker">play
-            <v-icon class="ml-3">play_arrow</v-icon>
+            <v-icon class="ml-3">mdi-play</v-icon>
           </v-btn>
           <v-btn :disabled="!sprite.paused" @click="next">next
-            <v-icon class="ml-3">skip_next</v-icon>
+            <v-icon class="ml-3">>mdi-skip-next</v-icon>
           </v-btn>
         </div>
       </div>

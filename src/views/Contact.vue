@@ -39,7 +39,7 @@
                     >
 
                         <v-text-field
-                                prepend-icon="account_box"
+                                prepend-icon="mdi-account"
                                 v-model="name"
                                 :rules="nameRules"
                                 label="name"
@@ -49,7 +49,7 @@
                         ></v-text-field>
 
                         <v-text-field
-                                prepend-icon="email"
+                                prepend-icon="mdi-email"
                                 v-model="email"
                                 :rules="emailRules"
                                 label="E-mail"
@@ -58,7 +58,7 @@
                                 required
                         ></v-text-field>
                         <v-text-field
-                                prepend-icon="phone"
+                                prepend-icon="mdi-phone"
                                 v-model="phone"
                                 label="phone"
                                 name="phone"
@@ -66,7 +66,7 @@
                                 required
                         ></v-text-field>
                         <v-textarea
-                                prepend-icon="message"
+                                prepend-icon="mdi-message"
                                 v-model="message"
                                 :rules="messageRules"
                                 label="Message"
@@ -107,7 +107,7 @@
                         <v-layout mb-2 justify-start align-center row>
                             <v-icon
                                     sm
-                            >phone
+                            >mdi-phone
                             </v-icon>
                             <a class="ml-2 p-format" :href="'tel:' + contact.phone" v-text="contact.phone">
                             </a>
@@ -115,7 +115,7 @@
                         <v-layout mb-2 justify-start align-center row>
                             <v-icon
                                     sm
-                            >home
+                            >mdi-home
                             </v-icon>
                             <p class="ml-2 p-format" v-text="contact.address">
                             </p>
@@ -123,7 +123,7 @@
                         <v-layout justify-start align-start row>
                             <v-icon
                                     sm
-                            >access_time
+                            >mdi-clock-outline
                             </v-icon>
                             <v-layout justify-start column>
                                 <p class="ml-2 p-format" v-text="contact.hours.weekday">
@@ -143,7 +143,7 @@
                         <v-layout mb-2 justify-start align-center row>
                             <v-icon
                                     sm
-                            >person_pin
+                            >mdi-account-circle
                             </v-icon>
                             <p class="ml-2 p-format" v-text="person.name">
                             </p>
@@ -151,7 +151,7 @@
                         <v-layout mb-2 justify-start align-center row>
                             <v-icon
                                     sm
-                            >label
+                            >mdi-label
                             </v-icon>
                             <p class="ml-2 p-format" v-text="person.title">
                             </p>
@@ -159,7 +159,7 @@
                         <v-layout mb-2 justify-start align-center row>
                             <v-icon
                                     sm
-                            >smartphone
+                            >mdi-cellphone
                             </v-icon>
                             <a
                                     class="ml-2 p-format"
@@ -173,7 +173,7 @@
                         >
                             <v-icon
                                     sm
-                            >email
+                            >mdi-email
                             </v-icon>
                             <a
                                     class="ml-2 p-format"
@@ -207,6 +207,7 @@
         },
         data() {
             return {
+                content: content,
                 submitStatus: {
                     t1: '',
                     t2: ''
