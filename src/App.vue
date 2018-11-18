@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <core-toolbar/>
+    <core-toolbar v-if="compenetsLoaded"/>
 
-    <core-drawer/>
+    <core-drawer v-if="compenetsLoaded"/>
 
     <core-jumbotron/>
 
-    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"/>
+    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="compenetsLoaded"/>
 
-    <core-footer/>
+    <core-footer v-if="compenetsLoaded"/>
     <!--<div class="site-loader" :class="{'hide-s': loaded}">-->
       <!--<div class="j-bg-svg">-->
       <!--<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">-->
@@ -96,6 +96,9 @@
             getLoadCount (i) {
                 return i < this.loadCount
             },
+            loadComponents () {
+                this.compenetsLoaded = true;
+            },
             increment () {
                 this.loadCount += 0.5
             },
@@ -126,12 +129,7 @@
                   // $bg = $loader.querySelector('.j-bg-svg')
                 tL
                     // .to($logo, 2, {rotation: 360}, 'a')
-                    .call(this.increment, [], this, 'a')
-                    .call(this.increment, [], this, 'a+=0.25')
-                    .call(this.increment, [], this, 'a+=0.5')
-                    .call(this.increment, [], this, 'a+=0.75')
-                    .call(this.increment, [], this, 'a+=1')
-                    .call(this.increment, [], this, 'a+=1.25')
+                    .call(this.loadComponents, [], this, '+=2')
                     // .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=1.25')
                     // .to($bg.querySelector('.poly-left'), 0.3, {x: -3, ease: Back.easeOut}, 'a+=1.6')
                     // .to($bg.querySelector('.poly-right'), 0.3, {x: 3, ease: Back.easeOut}, 'a+=1.6')
