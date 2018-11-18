@@ -15,12 +15,10 @@ module.exports = {
     configureWebpack: {
         plugins: [
            new VuetifyLoaderPlugin(),
-            new PreloadWebpackPlugin({
-                    rel: 'preload',
-                    as: 'css'
-            })
+            new PreloadWebpackPlugin()
             // new BundleAnalyzerPlugin(),
         ]
+
     }
     // css: {
     //     loaderOptions: {
