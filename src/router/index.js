@@ -45,6 +45,10 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+    if (from.name === null) {
+        next()
+        return
+    }
     TweenMax.killAll()
 
     setTimeout(() => {

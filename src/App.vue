@@ -113,28 +113,32 @@
             },
             clearLoadTicker() {
                 this.loadTickerCount = 0
-                TweenMax.killDelayedCallsTo(this.loadTick)
-                if (this.loadTicker && this.loadTicker.kill) {
-                    this.loadTicker.kill()
-                }
+                clearInterval(this.loadTicker)
+                // TweenMax.killDelayedCallsTo(this.loadTick)
+                // if (this.loadTicker && this.loadTicker.kill) {
+                //     this.loadTicker.kill()
+                // }
             },
             startLoadTicker(tickInterval, limit) {
                 limit = limit || 100
                 tickInterval = tickInterval || 1
+
                 this.clearLoadTicker()
-                this.loadTicker = new TimelineMax()
-                for(let i = 0; i < limit; i ++) {
-                    this.loadTicker.addCallback(this.loadTick, i * tickInterval, [], this)
-                }
+                this.loadTicker = setInterval(this.loadTick, tickInterval * 1000)
+                // this.loadTicker = new TimelineMax()
+                // for(let i = 0; i < limit; i ++) {
+                //     this.loadTicker.addCallback(this.loadTick, i * tickInterval, [], this)
+                // }
             },
             animateLoaded () {
-              let tL = new TimelineMax()
-                // $loader = document.querySelector('.site-loader'),
-                  // $logo = $loader.querySelector('.load-icon-wrap img'),
-                  // $bg = $loader.querySelector('.j-bg-svg')
-                tL
-                    // .to($logo, 2, {rotation: 360}, 'a')
-                    .call(this.loadComponents, [], this, '+=2')
+                setTimeout(this.loadComponents, 2000)
+              // let tL = new TimelineMax()
+              //   // $loader = document.querySelector('.site-loader'),
+              //     // $logo = $loader.querySelector('.load-icon-wrap img'),
+              //     // $bg = $loader.querySelector('.j-bg-svg')
+              //   tL
+              //       // .to($logo, 2, {rotation: 360}, 'a')
+              //       .call(this.loadComponents, [], this, '+=2')
                     // .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=1.25')
                     // .to($bg.querySelector('.poly-left'), 0.3, {x: -3, ease: Back.easeOut}, 'a+=1.6')
                     // .to($bg.querySelector('.poly-right'), 0.3, {x: 3, ease: Back.easeOut}, 'a+=1.6')

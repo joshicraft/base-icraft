@@ -50,9 +50,12 @@
             this.setContainerHeight()
             window.addEventListener('resize', this.resize)
             document.body.addEventListener('click', this.playVideo)
-            TweenMax.delayedCall(0.5, this.play, [], this)
-            TweenMax.delayedCall(1, this.play, [], this)
-            TweenMax.delayedCall(2, this.play, [], this)
+            setTimeout(this.play, 500)
+            setTimeout(this.play, 1000)
+            setTimeout(this.play, 2000)
+            // TweenMax.delayedCall(0.5, this.play, [], this)
+            // TweenMax.delayedCall(1, this.play, [], this)
+            // TweenMax.delayedCall(2, this.play, [], this)
             this.$refs.video.onloadeddata = this.play
         },
 
