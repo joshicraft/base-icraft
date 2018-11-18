@@ -1,37 +1,37 @@
 <template>
   <v-app>
-    <core-toolbar v-if="getLoadCount(3)"/>
+    <core-toolbar v-if="getLoadCount(1.5)"/>
 
-    <core-drawer v-if="getLoadCount(5)"/>
+    <core-drawer v-if="getLoadCount(2)"/>
 
-    <core-jumbotron v-if="getLoadCount(1)"/>
+    <core-jumbotron v-if="getLoadCount(0.5)"/>
 
-    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(2)"/>
+    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(1)"/>
 
-    <core-footer v-if="getLoadCount(4)"/>
-    <div class="site-loader" :class="{'hide-s': loaded}">
-      <div class="j-bg-svg">
-      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">
-<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229">
-	<!--<stop offset="0" style="stop-color:#13638C"/>-->
-	<!--<stop offset="1" style="stop-color:#00FFFF"/>-->
-	<stop offset="0" style="stop-color:#22daff"/>
-	<stop offset="1" style="stop-color:#33cccc"/>
-</linearGradient>
-<polygon class="st0 poly-right anim" points="0,100 100,0 100,100 "/>
-<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229" gradientTransform="matrix(-1 0 0 -1 100 100)">
-	<!--<stop offset="0" style="stop-color:#13638C"/>-->
-	<!--<stop offset="1" style="stop-color:#00FFFF"/>-->
-	<stop offset="0" style="stop-color:#11daff"/>
-	<stop offset="1" style="stop-color:#33cccc"/>
-</linearGradient>
-<polygon class="st1 poly-left anim" points="100.1,0 0,100.1 0,0 "/>
-</svg>
-      </div>
-      <div class="load-icon-wrap rotate" v-if="true">
-        <img src="img/logo-b.png"/>
-      </div>
-    </div>
+    <core-footer v-if="getLoadCount(2.5)"/>
+    <!--<div class="site-loader" :class="{'hide-s': loaded}">-->
+      <!--<div class="j-bg-svg">-->
+      <!--<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">-->
+<!--<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229">-->
+	<!--&lt;!&ndash;<stop offset="0" style="stop-color:#13638C"/>&ndash;&gt;-->
+	<!--&lt;!&ndash;<stop offset="1" style="stop-color:#00FFFF"/>&ndash;&gt;-->
+	<!--<stop offset="0" style="stop-color:#22daff"/>-->
+	<!--<stop offset="1" style="stop-color:#33cccc"/>-->
+<!--</linearGradient>-->
+<!--<polygon class="st0 poly-right anim" points="0,100 100,0 100,100 "/>-->
+<!--<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229" gradientTransform="matrix(-1 0 0 -1 100 100)">-->
+	<!--&lt;!&ndash;<stop offset="0" style="stop-color:#13638C"/>&ndash;&gt;-->
+	<!--&lt;!&ndash;<stop offset="1" style="stop-color:#00FFFF"/>&ndash;&gt;-->
+	<!--<stop offset="0" style="stop-color:#11daff"/>-->
+	<!--<stop offset="1" style="stop-color:#33cccc"/>-->
+<!--</linearGradient>-->
+<!--<polygon class="st1 poly-left anim" points="100.1,0 0,100.1 0,0 "/>-->
+<!--</svg>-->
+      <!--</div>-->
+      <!--<div class="load-icon-wrap rotate" v-if="true">-->
+        <!--<img src="img/logo-b.png"/>-->
+      <!--</div>-->
+    <!--</div>-->
 
 
   </v-app>
@@ -97,7 +97,7 @@
                 return i < this.loadCount
             },
             increment () {
-                this.loadCount ++
+                this.loadCount += 0.5
             },
 
             loadTick() {
@@ -120,10 +120,10 @@
                 }
             },
             animateLoaded () {
-              let tL = new TimelineMax(),
-                $loader = document.querySelector('.site-loader'),
-                  $logo = $loader.querySelector('.load-icon-wrap img'),
-                  $bg = $loader.querySelector('.j-bg-svg')
+              let tL = new TimelineMax()
+                // $loader = document.querySelector('.site-loader'),
+                  // $logo = $loader.querySelector('.load-icon-wrap img'),
+                  // $bg = $loader.querySelector('.j-bg-svg')
                 tL
                     // .to($logo, 2, {rotation: 360}, 'a')
                     .call(this.increment, [], this, 'a')
@@ -132,12 +132,12 @@
                     .call(this.increment, [], this, 'a+=0.75')
                     .call(this.increment, [], this, 'a+=1')
                     .call(this.increment, [], this, 'a+=1.25')
-                    .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=1.25')
-                    .to($bg.querySelector('.poly-left'), 0.3, {x: -3, ease: Back.easeOut}, 'a+=1.6')
-                    .to($bg.querySelector('.poly-right'), 0.3, {x: 3, ease: Back.easeOut}, 'a+=1.6')
-                    .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=2.1')
-                    .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=2.1')
-                    .set($loader, {display: 'none'})
+                    // .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=1.25')
+                    // .to($bg.querySelector('.poly-left'), 0.3, {x: -3, ease: Back.easeOut}, 'a+=1.6')
+                    // .to($bg.querySelector('.poly-right'), 0.3, {x: 3, ease: Back.easeOut}, 'a+=1.6')
+                    // .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=2.1')
+                    // .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=2.1')
+                    // .set($loader, {display: 'none'})
                     // .to($bg.querySelector('.poly-left'), 1.4, {className: '+=slide-out-l'}, 'a+=2')
                     // .to($bg.querySelector('.poly-right'), 1.4, {className: '+=slide-out-r'}, 'a+=2')
             },
