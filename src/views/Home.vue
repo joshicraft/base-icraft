@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
         <v-img
                 v-if="loadPoint(1)"
                 :src="imgC('web-3')"
@@ -10,10 +10,14 @@
             <v-container>
 
                 <v-layout align-center ml-5 mt-3>
-                    <v-flex lg6 pa-5>
+                    <v-flex lg6 pa-5 :v-scroll="scrollT">
+                        <div
+
+                        >
                         <h1 class="mb-4 display-2 font-weight-bold">LOOKING TO UPGRADE YOUR DIGITAL PRESENCE?</h1>
                         <h3 class="mb-4 display-1">Here at ICRAFT we provide a range of solutions to help you get online
                             and get noticed.</h3>
+                        </div>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -104,13 +108,14 @@
 </template>
 
 <script>
+    import content from '../lang/en/Views/Home'
     export default {
         metaInfo: {
-            title: 'ICRAFT - Design, Websites, Branding - Located in Franklin, South Auckland.',
+            title: content.headTitle,
             meta: [
                 {
                     name: 'description',
-                    content: 'Top Quality Electrician and Air Conditioning Services situated in the greater Auckland region.'
+                    content: content.headDescription
                 }
             ]
         },
@@ -131,6 +136,15 @@
             }
         },
         methods: {
+            scrollT (e) {
+                let sT = e.target.getBoundingClientRect().y
+
+                if (sT < window.innerHeight / 2 && !e.target.scrollTriggered) {
+                    e.target.scrollTriggered = true
+                    TweenMax.from(e.target, 0.4, {y: 20, autoAlpha: 0})
+                }
+              console.log('s')
+            },
             next() {
                 this.onboarding = this.onboarding + 1 === length
                     ? 0
@@ -150,10 +164,10 @@
         },
         computed: {
             cardFeatures() {
-                return this.bakedViews.Home.cardFeatures
+                return content.cardFeatures
             },
             testimonials() {
-                return this.bakedViews.Home.testimonials
+                return content.testimonials
             }
         }
     }

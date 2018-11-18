@@ -2,12 +2,12 @@
     <v-container fill-height class="mb-5">
         <v-layout class="content-wrap" justify-space-between align-center wrap dark>
             <!--<v-flex md1 class="img-wrap">-->
-                <!--<img src="/static/device-iphone-contact.png"/>-->
+            <!--<img src="/static/device-iphone-contact.png"/>-->
             <!--</v-flex>-->
             <v-flex xs12 lg7 mx2 dark>
                 <v-card dark class="pa-4 form-wrap">
-                    <h2 class="headline mb-2" v-text="this.bakedViews.Contact.heading1"/>
-                    <p class="mb-4" v-text="this.bakedViews.Contact.headingText1"/>
+                    <h2 class="headline mb-2" v-text="content.heading1"/>
+                    <p class="mb-4" v-text="content.headingText1"/>
                     <div v-if="submitting" class="progress-wrap">
                         <v-progress-circular
                                 :size="100"
@@ -81,7 +81,8 @@
                         <v-btn
                                 class="mr-3"
                                 color="warning"
-                                @click="clear">clear</v-btn>
+                                @click="clear">clear
+                        </v-btn>
                         <v-btn
                                 class=""
                                 color="primary"
@@ -95,7 +96,7 @@
             </v-flex>
             <v-flex xs12 md4>
                 <v-card dark class="pa-3">
-                    <div >
+                    <div>
                         <custom-logo-side white></custom-logo-side>
                     </div>
                     <v-card-title class="headline">
@@ -108,7 +109,7 @@
                                     sm
                             >phone
                             </v-icon>
-                            <a class="ml-2 p-format" :href="'tel:' + contact.phone"  v-text="contact.phone">
+                            <a class="ml-2 p-format" :href="'tel:' + contact.phone" v-text="contact.phone">
                             </a>
                         </v-layout>
                         <v-layout mb-2 justify-start align-center row>
@@ -189,12 +190,13 @@
 
 <script>
     /* eslint-disable no-console */
+    import content from '../lang/en/Views/Contact'
 
     export default {
         metaInfo: {
-            title: 'Contact Anderson Air Conditioning & Electrical',
+            title: content.headTitle,
             meta: [
-                {name: 'description', content: 'To get find out more about what we can offer you, get in touch today!'}
+                {name: 'description', content: content.headDescription}
             ]
         },
         props: {
@@ -203,11 +205,11 @@
                 type: Number
             }
         },
-        data () {
+        data() {
             return {
                 submitStatus: {
-                  t1: '',
-                  t2: ''
+                    t1: '',
+                    t2: ''
                 },
                 failed: false,
                 submitting: null,
@@ -233,9 +235,9 @@
             }
         },
         computed: {
-          contact () {
-              return this.bakedViews.Contact
-          }
+            contact() {
+                return content
+            }
         },
         methods: {
             loadLimit(i) {
@@ -244,11 +246,11 @@
             loadPoint(i) {
                 return this.loadTickerCount >= i
             },
-            resetForm () {
-              this.submitted=false
-              this.failed=false
+            resetForm() {
+                this.submitted = false
+                this.failed = false
             },
-            clear () {
+            clear() {
                 this.$refs.form.reset()
             },
             submitToServer() {
@@ -325,17 +327,15 @@
         p
             font-weight 100
 
-
     .slide-in
         left 0
 
     .img-wrap
-
     .content-wrap
         position: relative;
 
     .progress-wrap
-        background rgba(50,50,50, 0.5)
+        background rgba(50, 50, 50, 0.5)
         position: absolute;
         top: 0;
         left: 0;

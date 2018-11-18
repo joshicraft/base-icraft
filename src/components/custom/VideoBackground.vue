@@ -9,7 +9,7 @@
   </section>
 </template>
 <script>
-    /* eslint-disable vue/no-async-in-computed-properties */
+    /* eslint-disable no-undef */
 
     export default {
         name: 'custom-video-background',
@@ -50,12 +50,6 @@
             this.setContainerHeight()
             window.addEventListener('resize', this.resize)
             document.body.addEventListener('click', this.playVideo)
-            console.log('video mounted')
-            // setTimeout(this.play, 500)
-            // setTimeout(this.play, 1000)
-            // setTimeout(this.play, 1500)
-            // setTimeout(this.play, 2000)
-            // setTimeout(this.play, 2500)
             TweenMax.delayedCall(0.5, this.play, [], this)
             TweenMax.delayedCall(1, this.play, [], this)
             TweenMax.delayedCall(2, this.play, [], this)
@@ -68,7 +62,6 @@
 
         methods: {
             play () {
-                console.log('play video')
                 this.playVideo()
                 this.$refs.video.play()
             },

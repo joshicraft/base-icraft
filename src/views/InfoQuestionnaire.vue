@@ -75,14 +75,14 @@
 </template>
 <script>
   /* eslint-disable no-undef */
-
+  import content from '../lang/en/Views/InfoQuestionnaire'
   export default {
-    metaInfo: {
-      title: 'Questions',
-      meta: [
-        {name: 'description', content: 'To help you find out what your business or organisation is about :)'}
-      ]
-    },
+      metaInfo: {
+          title: content.headTitle,
+          meta: [
+              {name: 'description', content: content.headDescription}
+          ]
+      },
     data () {
       return {
         submitted: null,
@@ -107,7 +107,7 @@
     },
     computed: {
       titles () {
-          let data = this.bakedViews[this.$route.name]
+          let data = content
           return {
               h1: data.heading1,
               h2: data.heading2,
@@ -117,7 +117,7 @@
           }
       },
       items () {
-        let items = this.bakedViews[this.$route.name].questions
+        let items = content.questions
         items.forEach((item) => {
           item.message = ''
         })

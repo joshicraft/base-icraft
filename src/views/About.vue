@@ -102,14 +102,15 @@
 </template>
 
 <script>
+    import content from '../lang/en/Views/About'
   export default {
     name: 'about',
-    metaInfo: {
-      title: 'About Us',
-      meta: [
-        {name: 'description', content: 'All about Certified Welding, it\'s team and what we care about'}
-      ]
-    },
+      metaInfo: {
+          title: content.headTitle,
+          meta: [
+              {name: 'description', content: content.headDescription}
+          ]
+      },
       props: {
           loadTickerCount: {
               default: 0,
@@ -118,13 +119,13 @@
       },
     computed: {
       safety () {
-        return this.$t('Views.About.safety')
+        return content.safety
       },
       community () {
-        return this.$t('Views.About.community')
+        return content.community
       },
       about () {
-        return this.$t('Views.About.about')
+        return content.about
       }
     },
       methods: {

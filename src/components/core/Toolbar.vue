@@ -33,10 +33,12 @@
     /* eslint-disable no-undef */
 
     // Utilities
+    import content from '../../lang/en/Layout/View'
     import {mapMutations} from 'vuex'
 
     export default {
         data: () => ({
+
             isScrolling: false
         }),
 
@@ -44,7 +46,7 @@
 
             items() {
                 // return this.$t('Layout.View.items')
-                return this.bakedLayout.View.items
+                return content.items
             }
         },
 

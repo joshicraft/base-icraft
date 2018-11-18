@@ -131,11 +131,12 @@
 </template>
 
 <script>
+    import content from '../lang/en/Views/ItSolutions'
     export default {
         metaInfo: {
-            title: 'Services of Anderson Air Conditioning & Electrical',
+            title: content.headTitle,
             meta: [
-                {name: 'description', content: 'AACE offers a wide range of Air Conditioning and Electrical Services'}
+                {name: 'description', content: content.headDescription}
             ]
         },
         props: {
@@ -146,7 +147,7 @@
         },
         computed: {
             items() {
-                return this.bakedViews[this.$route.name].items
+                return content.items
             }
         },
         methods: {

@@ -12,13 +12,14 @@
 </template>
 
 <script>
+  import content from '../lang/en/Views/Portfolio'
   export default {
-    metaInfo: {
-      title: 'Projects of Anderson Air Conditioning & Electrical',
-      meta: [
-        { name: 'description', content: "Here's but a few of the Electrical and Air Conditioning projects we've worked on" }
-      ]
-    },
+      metaInfo: {
+          title: content.headTitle,
+          meta: [
+              {name: 'description', content: content.headDescription}
+          ]
+      },
       props: {
           loadTickerCount: {
               default: 0,
@@ -27,10 +28,10 @@
       },
     computed: {
       categories () {
-        return this.bakedViews.Projects.categories
+        return content.categories
       },
       projects () {
-          return this.bakedViews.Projects.projects
+          return content.projects
       }
     },
       methods: {

@@ -8,7 +8,10 @@
     export default {
         metaInfo() {
             return {
-                titleTemplate: '%s'
+                titleTemplate: '%s',
+                meta: [
+                    // { name: 'description', content: '%s', vmid: 'description' }
+                ]
             }
         },
         props: {

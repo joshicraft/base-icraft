@@ -64,8 +64,6 @@
 <script>
   /* eslint-disable no-trailing-spaces,no-unused-vars */
 
-  import {TimelineMax, TweenMax} from 'gsap'
-
   export default {
     mounted () {
       this.load()

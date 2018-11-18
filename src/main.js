@@ -20,7 +20,7 @@ import store from '@/store'
 import * as CONTENT from './lang/en/Views'
 import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 
-
+import './registerServiceWorker'
 // import all from './lang/en'
 // Sync store with router
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -28,7 +28,7 @@ import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 const myTransition = createSimpleTransition('my-transition')
 
 Vue.component('my-transition', myTransition)
-// import './registerServiceWorker'
+
 sync(store, router)
 
 Vue.config.productionTip = false
@@ -64,7 +64,7 @@ Vue.mixin({
                     }
                 }
 
-                return path + size + '-' + name + (this.ext(ext || '.jpg'))
+                return path + size + '-' + name + (this.ext(ext || 'jpg'))
             },
             mainBGColor: '#fafafa',
             fullSizeBracket() {

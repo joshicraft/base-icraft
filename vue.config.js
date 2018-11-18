@@ -1,3 +1,4 @@
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 module.exports = {
     devServer: {
         proxy: {
@@ -8,6 +9,11 @@ module.exports = {
                 }
             }
         }
+    },
+    configureWebpack: {
+        plugins: [
+            new VuetifyLoaderPlugin()
+        ]
     }
     // css: {
     //     loaderOptions: {

@@ -71,7 +71,6 @@
         },
         watch: {
             $route () {
-                console.log('change')
                 let $this = this
                 clearTimeout(this.delayAnimated)
                 this.startLoadTicker()
@@ -85,10 +84,6 @@
             lazyLoaded () {
                 return this.getLazy()
             },
-            getLoadTickerCount () {
-              return this.loadTickerCount
-            },
-
             loaded () {
                 return this.getLoader()
             }
@@ -106,7 +101,6 @@
             },
 
             loadTick() {
-                console.log(this.loadTickerCount)
                 this.loadTickerCount++
             },
             clearLoadTicker() {
@@ -133,16 +127,16 @@
                 tL
                     // .to($logo, 2, {rotation: 360}, 'a')
                     .call(this.increment, [], this, 'a')
+                    .call(this.increment, [], this, 'a+=0.25')
                     .call(this.increment, [], this, 'a+=0.5')
+                    .call(this.increment, [], this, 'a+=0.75')
                     .call(this.increment, [], this, 'a+=1')
-                    .call(this.increment, [], this, 'a+=1.5')
-                    .call(this.increment, [], this, 'a+=2')
-                    .call(this.increment, [], this, 'a+=2')
-                    .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=2.5')
-                    .to($bg.querySelector('.poly-left'), 0.3, {x: -3, ease: Back.easeOut}, 'a+=3')
-                    .to($bg.querySelector('.poly-right'), 0.3, {x: 3, ease: Back.easeOut}, 'a+=3')
-                    .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=3.5')
-                    .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=3.5')
+                    .call(this.increment, [], this, 'a+=1.25')
+                    .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=1.25')
+                    .to($bg.querySelector('.poly-left'), 0.3, {x: -3, ease: Back.easeOut}, 'a+=1.6')
+                    .to($bg.querySelector('.poly-right'), 0.3, {x: 3, ease: Back.easeOut}, 'a+=1.6')
+                    .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=2.1')
+                    .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=2.1')
                     .set($loader, {display: 'none'})
                     // .to($bg.querySelector('.poly-left'), 1.4, {className: '+=slide-out-l'}, 'a+=2')
                     // .to($bg.querySelector('.poly-right'), 1.4, {className: '+=slide-out-r'}, 'a+=2')
@@ -155,7 +149,6 @@
                 this.lazyTriggered = (window.pageYOffset ||
                     document.documentElement.scrollTop || 0) >
                     (50)
-                console.log('s')
                 if (!this.scrolled) {
                     if (!e) {
                         e = window.event
