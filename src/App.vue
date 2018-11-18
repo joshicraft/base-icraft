@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <core-toolbar v-if="compenetsLoaded"/>
+    <core-toolbar v-if="getComponentsLoaded"/>
 
-    <core-drawer v-if="compenetsLoaded"/>
+    <core-drawer v-if="getComponentsLoaded"/>
 
     <core-jumbotron/>
 
-    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="compenetsLoaded"/>
+    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getComponentsLoaded"/>
 
-    <core-footer v-if="compenetsLoaded"/>
+    <core-footer v-if="getComponentsLoaded"/>
     <!--<div class="site-loader" :class="{'hide-s': loaded}">-->
       <!--<div class="j-bg-svg">-->
       <!--<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">-->
@@ -43,6 +43,7 @@
     export default {
         data () {
             return {
+                componentsLoaded: null,
                 loadTickerCount: 0,
                 loadCount: 0,
                 loader: false,
@@ -84,6 +85,9 @@
             lazyLoaded () {
                 return this.getLazy()
             },
+            getComponentsLoaded () {
+                return this.componentsLoaded
+            },
             loaded () {
                 return this.getLoader()
             }
@@ -96,8 +100,9 @@
             getLoadCount (i) {
                 return i < this.loadCount
             },
+
             loadComponents () {
-                this.compenetsLoaded = true;
+                this.componentsLoaded = true;
             },
             increment () {
                 this.loadCount += 0.5
