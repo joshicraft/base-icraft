@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
-import  './TweenMax'
+import  'gsap/TweenMax'
+import  'gsap/TimelineMax'
 import  './DrawSVGPlugin'
 import  './ScrollToPlugin.min'

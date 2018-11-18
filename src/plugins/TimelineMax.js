@@ -15,9 +15,9 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 
 	"use strict";
 
-	_gsScope._gsDefine("TimelineMax", ["TimelineLite","TweenLite","easing.Ease"], function(TimelineLite, TweenLite, Ease) {
+	_gsScope._gsDefine("TimelineLite", ["TimelineLite","TweenLite","easing.Ease"], function(TimelineLite, TweenLite, Ease) {
 
-		var TimelineMax = function(vars) {
+		var TimelineLite = function(vars) {
 				TimelineLite.call(this, vars);
 				this._repeat = this.vars.repeat || 0;
 				this._repeatDelay = this.vars.repeatDelay || 0;
@@ -31,11 +31,11 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 			_lazyTweens = TweenLiteInternals.lazyTweens,
 			_lazyRender = TweenLiteInternals.lazyRender,
 			_easeNone = new Ease(null, null, 1, 0),
-			p = TimelineMax.prototype = new TimelineLite();
+			p = TimelineLite.prototype = new TimelineLite();
 
-		p.constructor = TimelineMax;
+		p.constructor = TimelineLite;
 		p.kill()._gc = false;
-		TimelineMax.version = "1.15.0";
+		TimelineLite.version = "1.15.0";
 
 		p.invalidate = function() {
 			this._yoyo = (this.vars.yoyo === true);
@@ -194,7 +194,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				would get transated to 2.8 seconds if the timeline yoyos or 0.2 seconds if it just repeats), there
 				could be a callback or a short tween that's at 2.95 or 3 seconds in which wouldn't render. So
 				we need to push the timeline to the end (and/or beginning depending on its yoyo value). Also we must
-				ensure that zero-duration tweens at the very beginning or end of the TimelineMax work.
+				ensure that zero-duration tweens at the very beginning or end of the TimelineLite work.
 				*/
 				var backwards = (this._yoyo && (prevCycle & 1) !== 0),
 					wrap = (backwards === (this._yoyo && (this._cycle & 1) !== 0)),
@@ -446,7 +446,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 			return this.seek(value, true);
 		};
 
-		return TimelineMax;
+		return TimelineLite;
 
 	}, true);
 
@@ -1150,4 +1150,4 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		require("./TweenLite.js"); //dependency
 		module.exports = getGlobal();
 	}
-}("TimelineMax"));
+}("TimelineLite"));

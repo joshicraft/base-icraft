@@ -164,6 +164,11 @@
                 {name: 'description', content: content.headDescription}
             ]
         },
+        data () {
+            return {
+                content: content
+            }
+        },
         props: {
             loadTickerCount: {
                 default: 0,
@@ -180,7 +185,7 @@
         },
         computed: {
             items() {
-                return content.items
+                return this.content.items
             }
         }
     }

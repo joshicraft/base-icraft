@@ -1,4 +1,4 @@
-import {TweenMax, TimelineMax} from 'gsap'
+import {TweenLite, TimelineMax} from 'gsap'
 
 const SplitText = (e, delay, dur) => {
     let wordCount
@@ -25,7 +25,7 @@ const SplitText = (e, delay, dur) => {
             char += '&ensp;'
         }
         charElm.innerHTML = char
-        TweenMax.set(charElm, {
+        TweenLite.set(charElm, {
             y: -height,
             opacity: 0,
             position: 'relative',
@@ -34,12 +34,12 @@ const SplitText = (e, delay, dur) => {
         })
         chars.push(charElm)
         if (charElm.innerHTML === '*') {
-            typeAnimation.add(TweenMax.to(charElm, dur || 0.05, {
+            typeAnimation.add(TweenLite.to(charElm, dur || 0.05, {
                 opacity: 1,
                 y: 0
             }))
         } else {
-            typeAnimation.add(TweenMax.to(charElm, dur || 0.05, {
+            typeAnimation.add(TweenLite.to(charElm, dur || 0.05, {
                 opacity: 1,
                 y: 0
             }))
@@ -49,14 +49,14 @@ const SplitText = (e, delay, dur) => {
     e.forEach((elm) => {
         elm.classList.add('split-animation')
         wordCount = string.split(' ').length
-        TweenMax.set(e, {text: '', opacity: 1, perspective: '400px'})
+        TweenLite.set(e, {text: '', opacity: 1, perspective: '400px'})
         elm.innerHTML = ''
 
         for (let i = 0; i < wordCount; i++) {
             let char
             let word = wordCount === i ? string : string.split(' ')[i]
             let wordElm = document.createElement('div')
-            TweenMax.set(wordElm, {
+            TweenLite.set(wordElm, {
                 className: '+=' + word,
                 opacity: 1,
                 position: 'relative',
@@ -66,14 +66,14 @@ const SplitText = (e, delay, dur) => {
                 if (word.charAt(0) === '&') {
                     let symbolElm = document.createElement('div')
                     symbolElm.innerHTML = word + '&ensp;'
-                    TweenMax.set(symbolElm, {
+                    TweenLite.set(symbolElm, {
                         y: -symbolElm,
                         opacity: 0,
                         className: 'split-char',
                         position: 'relative',
                         display: char === '*' ? 'none' : 'inline-block'
                     })
-                    typeAnimation.add(TweenMax.to(symbolElm, dur || 0.05, {
+                    typeAnimation.add(TweenLite.to(symbolElm, dur || 0.05, {
                         opacity: 1,
                         y: 0
                     }))

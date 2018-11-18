@@ -33,6 +33,7 @@
     /* eslint-disable no-undef */
 
     // Utilities
+    // import  'vuetify/lib/directives/scroll'
     import content from '../../lang/en/Layout/View'
     import {mapMutations} from 'vuex'
 
@@ -41,7 +42,6 @@
 
             isScrolling: false
         }),
-
         computed: {
 
             items() {
