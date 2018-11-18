@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <core-toolbar v-if="getLoadCount(1.5)"/>
+    <core-toolbar/>
 
-    <core-drawer v-if="getLoadCount(2)"/>
+    <core-drawer/>
 
-    <core-jumbotron v-if="getLoadCount(0.5)"/>
+    <core-jumbotron/>
 
-    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(1)"/>
+    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"/>
 
-    <core-footer v-if="getLoadCount(2.5)"/>
+    <core-footer/>
     <!--<div class="site-loader" :class="{'hide-s': loaded}">-->
       <!--<div class="j-bg-svg">-->
       <!--<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">-->
