@@ -16,7 +16,13 @@ module.exports = {
         plugins: [
            new VuetifyLoaderPlugin(),
             new PreloadWebpackPlugin({
-                rel: 'preload'
+                rel: 'preload',
+                as(entry) {
+                    if (/\.css$/.test(entry)) return 'style';
+                    if (/\.woff$/.test(entry)) return 'font';
+                    if (/\.png$/.test(entry)) return 'image';
+                    return 'script';
+                }
             })
             // new BundleAnalyzerPlugin(),
         ]
