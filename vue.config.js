@@ -16,11 +16,11 @@ module.exports = {
     configureWebpack: {
         plugins: [
            new VuetifyLoaderPlugin(),
-            // new PreloadWebpackPlugin({
-            //     rel: "preload",
-            //     include: "allChunks"
-            // })
-             new BundleAnalyzerPlugin()
+            new PreloadWebpackPlugin({
+                rel: "preload",
+                include: "allChunks"
+            })
+             // new BundleAnalyzerPlugin()
         ]
 
     },
