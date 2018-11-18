@@ -13,8 +13,8 @@ module.exports = {
     },
     configureWebpack: {
         plugins: [
-            new VuetifyLoaderPlugin(),
-            new BundleAnalyzerPlugin(),
+           new VuetifyLoaderPlugin()
+            // new BundleAnalyzerPlugin(),
         ]
     }
     // css: {
