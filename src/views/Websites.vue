@@ -47,6 +47,7 @@
 
                 >
                     <v-img
+                            :alt="service.image"
                             class="relative pack-img"
                             :src="service.image">
 

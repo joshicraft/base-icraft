@@ -1,6 +1,7 @@
 <template>
     <div >
         <v-img
+                :lazy-src="imgC(item.img, false, false, true)"
                 :alt="item.img"
                 v-for="(item, i) in items"
                 :key="i"

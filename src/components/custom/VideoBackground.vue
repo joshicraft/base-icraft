@@ -90,7 +90,7 @@
 
             setImageUrl () {
                 if (this.img) {
-                    this.$el.style.backgroundImage = `url(${this.img})`
+                    this.$el.style.backgroundImage = `url(${this.imgC(this.img)})`
                 }
             },
 

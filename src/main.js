@@ -41,7 +41,7 @@ Vue.mixin({
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
-            imgC(name, img, ext) {
+            imgC(name, img, ext, thumb) {
                 let path = '/static/'
                 let size = ''
                 let bp = this.$vuetify.breakpoint
@@ -62,6 +62,10 @@ Vue.mixin({
                     } else {
                         size = '1920'
                     }
+                }
+
+                if (thumb) {
+                    size = '568'
                 }
 
                 return path + size + '-' + name + (this.ext(ext || 'jpg'))

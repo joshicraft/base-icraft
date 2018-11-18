@@ -3,8 +3,8 @@
                 id="jumbotron"
                 class="vh"
                 :sources="[heroVideo + '.mp4', heroVideo + '.ogv']"
-                :img="heroImage"
-                :alt="heroImage"
+                img="v-bga"
+                alt="Background video image"
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
             <div class="contact-ico bot-p left-p">

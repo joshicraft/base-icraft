@@ -27,6 +27,7 @@
                     d-flex>
                 <v-flex light class="pa-3">
                     <v-img
+                            :alt="service.image"
                             class="relative pack-img"
                             :src="service.image"
 
