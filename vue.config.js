@@ -22,6 +22,11 @@ module.exports = {
             // new BundleAnalyzerPlugin(),
         ]
 
+    },
+    chainWebpack: config => {
+        // remove the prefetch plugin
+        config.plugins.delete('prefetch')
+
     }
     // css: {
     //     loaderOptions: {
