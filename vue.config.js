@@ -1,7 +1,7 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const { VuetifyProgressiveModule } = require('vuetify-loader')
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
     devServer: {
         proxy: {
@@ -15,12 +15,12 @@ module.exports = {
     },
     configureWebpack: {
         plugins: [
-           new VuetifyLoaderPlugin()
+           new VuetifyLoaderPlugin(),
             // new PreloadWebpackPlugin({
             //     rel: "preload",
             //     include: "allChunks"
             // })
-            // new BundleAnalyzerPlugin(),
+             new BundleAnalyzerPlugin()
         ]
 
     },
@@ -51,11 +51,7 @@ module.exports = {
             .use('notProgressive')
             .loader('url-loader')
             .options({limit: 8000})
-            .end();
-        config.module
-            .rule('images')
-            .oneOf('imagesOther')
-            .merge({loader: 'url-loader', options: {limit: 8000}})
+            .end()
     }
     // css: {
     //     loaderOptions: {
