@@ -23,6 +23,7 @@
     "dotenv": "^6.1.0",
     "gsap": "^2.0.2",
     "netlify-lambda": "^1.0.2",
+    "preload-webpack-plugin": "^2.3.0",
     "register-service-worker": "^1.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
