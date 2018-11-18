@@ -23,4 +23,8 @@
     }
 </script>
 <style lang="stylus" scoped>
+    .v-content
+        opacity 0
+        transition opacity 0.25s ease-in
+        opacity 1
 </style>

@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <core-toolbar v-if="getComponentsLoaded"/>
+    <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 4 : 2)"/>
 
-    <core-drawer v-if="getComponentsLoaded"/>
+    <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 4)"/>
 
     <core-jumbotron/>
 
-    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getComponentsLoaded"/>
+    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(3)"/>
 
-    <core-footer v-if="getComponentsLoaded"/>
+    <core-footer v-if="getLoadCount(4)"/>
     <!--<div class="site-loader" :class="{'hide-s': loaded}">-->
       <!--<div class="j-bg-svg">-->
       <!--<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">-->
@@ -105,7 +105,10 @@
                 this.componentsLoaded = true;
             },
             increment () {
-                this.loadCount += 0.5
+                this.loadCount += 1
+                if(this.loadCount > 5){
+                    clearInterval(this.loadComponentsTicker)
+                }
             },
 
             loadTick() {
@@ -131,7 +134,8 @@
                 // }
             },
             animateLoaded () {
-                setTimeout(this.loadComponents, 2000)
+                this.loadComponentsTicker = setInterval(this.increment, 1000)
+                // setTimeout(this.loadComponents, 2000)
               // let tL = new TimelineMax()
               //   // $loader = document.querySelector('.site-loader'),
               //     // $logo = $loader.querySelector('.load-icon-wrap img'),

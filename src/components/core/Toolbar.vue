@@ -6,6 +6,7 @@
             :dense="isScrolling"
             :color="!isScrolling ? 'transparent' : 'black'"
             v-scroll="onScroll"
+            class="_visible"
     >
         <div class="toolbar-svg-wrapper">
             <custom-logo-side :hide-text="true"></custom-logo-side>
@@ -88,6 +89,10 @@
 <style lang="stylus">
     .v-toolbar.v-toolbar--fixed
         z-index 3
+        opacity 0
+        transition opacity 0.3s ease-in
+        opacity 1
+
     .toolbar-svg-wrapper
         height: 100%
         position: relative
@@ -96,6 +101,8 @@
             width: auto
             height: 100%
 
+    ._visible
+        opacity: 1
     /*.logo-text-1, .logo-text-2*/
         /*opacity 0*/
 
