@@ -1,4 +1,5 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
     devServer: {
         proxy: {
@@ -12,7 +13,8 @@ module.exports = {
     },
     configureWebpack: {
         plugins: [
-            new VuetifyLoaderPlugin()
+            new VuetifyLoaderPlugin(),
+            new BundleAnalyzerPlugin(),
         ]
     }
     // css: {

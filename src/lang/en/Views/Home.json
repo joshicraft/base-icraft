@@ -3,21 +3,24 @@
   "headDescription": "Top Quality Websites",
   "jumbotronTitle": "ICRAFT",
   "jumbotronSubTitle": "DIGITAL, WEBSITES, BRANDING",
-  "cardFeatures": [
+  "items": [
     {
-      "title": "Award-winning architecture",
-      "text": "Every achievement begins with a vision. It is built on a foundation of creative concepts and dreams to become something bigger and better. At AlphaConstruction we build with those who follow a vision, not a path.",
-      "img": "feature1"
+      "name": "websites",
+      "title": "LOOKING TO UPGRADE YOUR DIGITAL PRESENCE?",
+      "text": "Here at ICRAFT we provide a range of solutions to help you get online and get noticed.",
+      "img": "web-3"
     },
     {
-      "title": "Relentless pursuit of your vision",
-      "text": "Our commitment to excellence and continous improvement, to building lasting relationships with our clients, and to the team members who create your vision, are the guiding principles that assure successful outcomes on every project we build.",
-      "img": "feature2"
+      "name": "digital marketing",
+      "title": "STUNNING, FAST AND SECURE WEBSITES",
+      "text": "ICRAFTS Top Quality websties are hand crafted to support your brand. They use the latest tech and design trends to keep your visitors engaged.",
+      "img": "web-4"
     },
     {
-      "title": "Your vision - Our mission",
-      "text": "To build an everlasting environment of trust with our clients and team members that will foster customer loyalty by delivering superior service and quality projects.",
-      "img": "feature3"
+      "name": "branding",
+      "title": "CAPTIVATING DIGITAL MARKETING",
+      "text": "ICRAFT can help your customers find you and keep engaged with your business.",
+      "img": "web-5"
     }
   ],
   "testimonialsTitle": "Testimonials",

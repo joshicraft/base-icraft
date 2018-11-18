@@ -1,9 +1,11 @@
 <template>
     <div >
         <v-img
-                v-if="loadPoint(1)"
-                :src="imgC('web-3')"
-                height="100vh"
+                v-for="(item, i) in items"
+                :key="i"
+                v-if="loadPoint(i)"
+                :src="imgC(item.img)"
+                height="75vh"
 
         >
 
@@ -14,54 +16,15 @@
                         <div
 
                         >
-                        <h1 class="mb-4 display-2 font-weight-bold">LOOKING TO UPGRADE YOUR DIGITAL PRESENCE?</h1>
-                        <h3 class="mb-4 display-1">Here at ICRAFT we provide a range of solutions to help you get online
-                            and get noticed.</h3>
+                        <h1 class="mb-4 display-2 font-weight-bold">{{item.title}}</h1>
+                        <h3 class="mb-4 display-1">{{item.text}}</h3>
                         </div>
                     </v-flex>
                 </v-layout>
             </v-container>
         </v-img>
-        <v-img
-                v-if="loadPoint(2)"
-                :src="imgC('web-4')"
-                height="100vh"
-
-        >
-
-            <v-container>
-
-                <v-layout align-center justify-center ml-5 mt-5>
-                    <v-flex lg6 pa-5 mt-5 mr-5>
-                        <h1 class="mb-4 mt-3 display-2 font-weight-bold">STUNNING, FAST AND SECURE WEBSITES</h1>
-                        <h3 class="mb-4 display-1">ICRAFTS Top Quality websties are hand crafted to support your brand.
-                            They use the latest tech and design trends to keep your visitors engaged.
-                        </h3>
-                    </v-flex>
-                </v-layout>
-            </v-container>
-        </v-img>
-        <v-img
-                v-if="loadPoint(3)"
-                :src="imgC('web-5')"
-                height="100vh"
-
-        >
-
-            <v-container>
-
-                <v-layout align-center justify-flex-end ml-5 mt-3>
-                    <v-flex lg6 pt-4 pl-5 pb-4 ml-5>
-                        <h1 class="mb-4 display-2 font-weight-bold">CAPTIVATING DIGITAL MARKETING</h1>
-                        <h3 class="mb-4 display-1">ICRAFT can help your customers find you and keep engaged with your
-                            business.
-                        </h3>
-                    </v-flex>
-                </v-layout>
-            </v-container>
-        </v-img>
         <alpha-hero
-                v-if="loadPoint(4)"
+                v-if="loadPoint(items.length)"
                 :src="imgC('testimonial')"
                 :height="$vuetify.breakpoint.mdAndUp ? 500 : 'auto'"
                 :jumbotron="false"
@@ -130,6 +93,7 @@
         },
         data() {
             return {
+                items: content.items,
                 currentIndex: 0,
                 length: 3,
                 onboarding: 0
