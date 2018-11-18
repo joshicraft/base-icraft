@@ -20,7 +20,7 @@ import store from '@/store'
 import * as CONTENT from './lang/en/Views'
 import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 
-import './registerServiceWorker'
+// import './registerServiceWorker'
 // import all from './lang/en'
 // Sync store with router
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
