@@ -96,7 +96,7 @@
                                     dark
                                     class="elevation-6 column"
                             >
-                                <custom-bg-vector-corner :fill="mainBGColor" width="100px" height="92px"></custom-bg-vector-corner>
+                                <custom-bg-vector-corner fill="#f0f0f0" width="100px" height="92px"></custom-bg-vector-corner>
                                 <div class="top-content pt-4 pl-4 pr-4 pb-1">
 
                                     <v-flex row >
