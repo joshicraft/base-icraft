@@ -1,6 +1,7 @@
 <template>
     <div >
         <v-img
+                :alt="item.img"
                 v-for="(item, i) in items"
                 :key="i"
                 v-if="loadPoint(i)"
