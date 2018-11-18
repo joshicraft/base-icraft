@@ -73,17 +73,8 @@
 </template>
 
 <script>
-    import content from '../lang/en/Views/Home'
+    // import content from '../lang/en/Views/Home'
     export default {
-        metaInfo: {
-            title: content.headTitle,
-            meta: [
-                {
-                    name: 'description',
-                    content: content.headDescription
-                }
-            ]
-        },
         props: {
             loadTickerCount: {
                 default: 0,
@@ -95,7 +86,7 @@
         },
         data() {
             return {
-                items: content.items,
+                items: this.$t('Views.Home.items'),
                 currentIndex: 0,
                 length: 3,
                 onboarding: 0
@@ -129,11 +120,8 @@
             }
         },
         computed: {
-            cardFeatures() {
-                return content.cardFeatures
-            },
             testimonials() {
-                return content.testimonials
+                return this.$t('Views.Home.testimonials')
             }
         }
     }

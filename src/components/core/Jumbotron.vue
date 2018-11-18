@@ -79,10 +79,21 @@
     //     soundA.node.connect(soundA.context.destination)
     // })
     /* eslint-disable no-undef */
+    // let content = () => import (/* webpackChunkName: layout-views */ '../../lang/en/Layout/View').then((data)=>{
+    //     console.log(data)
+    // })
     export default {
+        metaInfo ()  {
+            return {
+                title: this.$t('Views.' + (this.$route.name || 'Home') + '.headTitle'),
+                meta: [
+                    {name: 'description', content: this.$t('Views.' + (this.$route.name || 'Home') + '.headDescription')}
+                ]
+            }
+        },
         data: () => ({
             scrolling: false,
-            isBooted: false
+            isBooted: false,
         }),
         methods: {
             gotToContact () {
@@ -103,13 +114,22 @@
                 return this.$route.path === '/'
             },
             namespace() {
-                return this.$route.name
+                return this.$route.name || 'Home'
+            },
+            getTitle() {
+                this.$t('Views.' + this.namespace + '.headTitle')
+            },
+            getDescription() {
+                this.$t('Views.' + this.namespace + '.headDescription')
             },
             title() {
-                return this.bakedViews[this.namespace].jumbotronTitle || ''
+                return this.$t('Views.' + this.namespace + '.jumbotronTitle')
+                // return content().find ? content().find(data => this.namespace === data.text).jumbotronTitle : ''
+                // return this.content[this.namespace].jumbotronTitle || ''
             },
             subTitle() {
-                return this.bakedViews[this.namespace].jumbotronSubTitle || ''
+                return this.$t('Views.' + this.namespace + '.jumbotronSubTitle')
+                // return this.bakedViews[this.namespace].jumbotronSubTitle || ''
             },
             heroImage() {
                 let path = '/static/video/'

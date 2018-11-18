@@ -102,15 +102,9 @@
 </template>
 
 <script>
-    import content from '../lang/en/Views/About'
+    // import content from '../lang/en/Views/About'
   export default {
     name: 'about',
-      metaInfo: {
-          title: content.headTitle,
-          meta: [
-              {name: 'description', content: content.headDescription}
-          ]
-      },
       props: {
           loadTickerCount: {
               default: 0,
@@ -118,15 +112,15 @@
           }
       },
     computed: {
-      safety () {
-        return content.safety
-      },
-      community () {
-        return content.community
-      },
-      about () {
-        return content.about
-      }
+        safety () {
+            return this.$t('Views.About.safety')
+        },
+        community () {
+            return this.$t('Views.About.community')
+        },
+        about () {
+            return this.$t('Views.About.about')
+        }
     },
       methods: {
           loadLimit(i) {

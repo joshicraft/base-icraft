@@ -75,16 +75,11 @@
 </template>
 <script>
   /* eslint-disable no-undef */
-  import content from '../lang/en/Views/InfoQuestionnaire'
+  // import content from '../lang/en/Views/InfoQuestionnaire'
   export default {
-      metaInfo: {
-          title: content.headTitle,
-          meta: [
-              {name: 'description', content: content.headDescription}
-          ]
-      },
     data () {
       return {
+          content: this.$t('Views.InfoQuestionnaire'),
         submitted: null,
         valid: false,
         name: '',
@@ -107,7 +102,7 @@
     },
     computed: {
       titles () {
-          let data = content
+          let data = this.content
           return {
               h1: data.heading1,
               h2: data.heading2,
@@ -117,7 +112,7 @@
           }
       },
       items () {
-        let items = content.questions
+        let items = this.content.questions
         items.forEach((item) => {
           item.message = ''
         })

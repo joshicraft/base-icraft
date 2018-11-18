@@ -3,33 +3,47 @@
     {
       "to": "/",
       "text": "Home",
-      "icon": "mdi-home"
+      "icon": "mdi-home",
+      "jumbotronTitle": "ICRAFT",
+      "jumbotronSubTitle": "DIGITAL, WEBSITES, BRANDING"
     },
     {
       "to": "/digitally-market-your-business",
-      "text": "Digital Marketing"
+      "text": "Digital Marketing",
+      "jumbotronTitle": "GET YOUR BUSINESS NOTICED",
+      "jumbotronSubTitle": "WE CAN HELP YOUR AUDIENCE FIND YOU"
     },
     {
       "to": "/get-a-website",
-      "text": "Websites"
+      "text": "Websites",
+      "jumbotronTitle": "HAND CRAFTED WEB PRESENCE",
+      "jumbotronSubTitle": "WITH OUR FAST, SECURE AND CUSTOMIZED WEBSITES"
     },
     {
       "to": "/brand-your-business",
-      "text": "Branding"
+      "text": "Branding",
+      "jumbotronTitle": "CRAFT YOUR BRAND IMAGE",
+      "jumbotronSubTitle": "WITH OUR DESIGN SERVICES"
     },
     {
       "to": "/get-IT-training",
-      "text": "IT Solutions"
+      "text": "IT Solutions",
+      "jumbotronTitle": "WHAT WE DO",
+      "jumbotronSubTitle": "HERE'S A FEW OF THE THINGS WE DO"
     },
     {
       "to": "/icrafts-portfolio",
       "text": "Portfolio",
-      "icon": "mdi-settings"
+      "icon": "mdi-settings",
+      "jumbotronTitle": "PROJECTS",
+      "jumbotronSubTitle": "WHAT WE'VE PROUDLY DONE"
     },
     {
       "to": "/contact-icraft",
       "text": "Contact",
-      "icon": "mdi-phone"
+      "icon": "mdi-phone",
+      "jumbotronTitle": "CONTACT",
+      "jumbotronSubTitle": "HOW YOU CAN GET IN TOUCH"
     }
   ]
 }

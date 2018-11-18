@@ -132,14 +132,8 @@
 </template>
 
 <script>
-    import content from '../lang/en/Views/ItSolutions'
+    // import content from '../lang/en/Views/ItSolutions'
     export default {
-        metaInfo: {
-            title: content.headTitle,
-            meta: [
-                {name: 'description', content: content.headDescription}
-            ]
-        },
         props: {
             loadTickerCount: {
                 default: 0,
@@ -148,7 +142,7 @@
         },
         computed: {
             items() {
-                return content.items
+                return this.$t('Views.ItSolutions.items')
             }
         },
         methods: {

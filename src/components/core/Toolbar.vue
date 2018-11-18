@@ -35,7 +35,7 @@
 
     // Utilities
     // import  'vuetify/lib/directives/scroll'
-    import content from '../../lang/en/Layout/View'
+    // import content from '../../lang/en/Layout/View'
     import {mapMutations} from 'vuex'
 
     export default {
@@ -46,8 +46,8 @@
         computed: {
 
             items() {
-                // return this.$t('Layout.View.items')
-                return content.items
+                return this.$t('Layout.View.items')
+                // return content.items
             }
         },
 

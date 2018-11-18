@@ -190,15 +190,9 @@
 
 <script>
     /* eslint-disable no-console */
-    import content from '../lang/en/Views/Contact'
+    // import content from '../lang/en/Views/Contact'
 
     export default {
-        metaInfo: {
-            title: content.headTitle,
-            meta: [
-                {name: 'description', content: content.headDescription}
-            ]
-        },
         props: {
             loadTickerCount: {
                 default: 0,
@@ -207,7 +201,7 @@
         },
         data() {
             return {
-                content: content,
+                content: this.$t('Views.Branding'),
                 submitStatus: {
                     t1: '',
                     t2: ''
@@ -237,7 +231,7 @@
         },
         computed: {
             contact() {
-                return content
+                return this.content
             }
         },
         methods: {

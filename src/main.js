@@ -14,13 +14,13 @@ import {sync} from 'vuex-router-sync'
 
 // Application imports
 import App from './App'
-// import i18n from '@/i18n'
+import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
-import * as CONTENT from './lang/en/Views'
+// import * as CONTENT from './lang/en/Views'
 import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 
-// import './registerServiceWorker'
+import './registerServiceWorker'
 // import all from './lang/en'
 // Sync store with router
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -90,29 +90,6 @@ Vue.mixin({
                 this.audio = this.audio || new Audio('/static/sound/click.mp3')
                 this.audio.play()
             },
-            nextRoute() {
-                let route = this.$route.path
-                let routes = this.bakedViews
-                let nextIndex = routes.findIndex(i => i.to === route)
-                if (nextIndex === routes.length - 1) {
-                    nextIndex = 0
-                } else {
-                    nextIndex++
-                }
-                return routes[nextIndex]
-            },
-            prevRoute() {
-                let route = this.$route.path
-                let routes = this.bakedViews
-                let nextIndex = routes.findIndex(i => i.to === route)
-
-                if (nextIndex === 0) {
-                    nextIndex = routes.length - 1
-                } else {
-                    nextIndex--
-                }
-                return routes[nextIndex]
-            },
             scroll() {
                 let current = window.pageYOffset
                 let pos = window.innerHeight
@@ -139,8 +116,8 @@ Vue.mixin({
                     }
                 })
             },
-            bakedViews: CONTENT.default.en.Views,
-            bakedLayout: CONTENT.default.en.Layout,
+            // bakedViews: CONTENT.default.en.Views,
+            // bakedLayout: CONTENT.default.en.Layout,
             scrolled: false
         }
     }
@@ -148,7 +125,7 @@ Vue.mixin({
 
 /* eslint-disable no-new */
 new Vue({
-    // i18n,
+    i18n,
     router,
     store,
     render: h => h(App)

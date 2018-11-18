@@ -12,14 +12,8 @@
 </template>
 
 <script>
-  import content from '../lang/en/Views/Portfolio'
+  // import content from '../lang/en/Views/Portfolio'
   export default {
-      metaInfo: {
-          title: content.headTitle,
-          meta: [
-              {name: 'description', content: content.headDescription}
-          ]
-      },
       props: {
           loadTickerCount: {
               default: 0,
@@ -28,10 +22,10 @@
       },
     computed: {
       categories () {
-        return content.categories
+        return this.$t('Views.Portfolio.categories')
       },
       projects () {
-          return content.projects
+          return this.$t('Views.Portfolio.projects')
       }
     },
       methods: {

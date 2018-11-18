@@ -157,17 +157,11 @@
 </template>
 
 <script>
-    import content from '../lang/en/Views/Websites'
+    // import content from '../lang/en/Views/Websites'
     export default {
-        metaInfo: {
-            title: content.headTitle,
-            meta: [
-                {name: 'description', content: content.headDescription}
-            ]
-        },
         data () {
             return {
-                content: content
+                content: this.$t('Views.Websites')
             }
         },
         props: {
