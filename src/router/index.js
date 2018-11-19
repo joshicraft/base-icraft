@@ -19,7 +19,9 @@ function route (path, name) {
   return {
     name,
     path,
-    component: (resovle) => import(/* webpackChunkName: `${name}` */
+    component: (resovle) => import(/** webpackChunkName:
+     * @example
+     * name */
       `@/views/${name}.vue`
     ).then(resovle)
   }

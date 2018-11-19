@@ -3,7 +3,7 @@
                 id="jumbotron"
                 class="vh"
                 :sources="[heroVideo + '.mp4', heroVideo + '.ogv']"
-                img="v-bga"
+                :img="imgC('v-bga')"
                 alt="Background video image"
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
@@ -71,17 +71,6 @@
 </template>
 
 <script>
-    // import SplitText from '../../plugins/split-text'
-    // import createPlayer from 'web-audio-player'
-    // let soundA = createPlayer('/static/sound/woosh.mp3')
-    //
-    // soundA.on('load', () => {
-    //     soundA.node.connect(soundA.context.destination)
-    // })
-    /* eslint-disable no-undef */
-    // let content = () => import (/* webpackChunkName: layout-views */ '../../lang/en/Layout/View').then((data)=>{
-    //     console.log(data)
-    // })
     export default {
         metaInfo ()  {
             return {
@@ -116,134 +105,35 @@
             namespace() {
                 return this.$route.name || 'Home'
             },
-            getTitle() {
-                this.$t('Views.' + this.namespace + '.headTitle')
-            },
-            getDescription() {
-                this.$t('Views.' + this.namespace + '.headDescription')
-            },
             title() {
                 return this.$t('Views.' + this.namespace + '.jumbotronTitle')
-                // return content().find ? content().find(data => this.namespace === data.text).jumbotronTitle : ''
-                // return this.content[this.namespace].jumbotronTitle || ''
             },
             subTitle() {
                 return this.$t('Views.' + this.namespace + '.jumbotronSubTitle')
-                // return this.bakedViews[this.namespace].jumbotronSubTitle || ''
             },
-            heroImage() {
+            heroVideo() {
                 let path = '/static/video/'
                 let size = ''
-                let name = '-v-bga'
+                let name = 'v-'
                 let bp = this.$vuetify.breakpoint
+
                 if (bp.smAndDown) {
                     size = '768'
+                } else if (bp.mdAndDown) {
+                    size = '1024'
                 } else if (bp.lgAndDown) {
                     size = '1280'
                 } else {
-                    size = '1920'
+                    size = '1440'
                 }
-                // return path + size + name + '.jpg'
-
-                 return path + size + name + (this.ext('.jpg'))
-            },
-
-            heroVideo() {
-                let path = '/static/video/v-1440'
-                // let size = ''
-                // let name = 'vid-bg'
-                // let bp = this.$vuetify.breakpoint
-                //
-                // if (bp.smAndDown) {
-                //     size = '_768'
-                // } else if (bp.mdAndDown) {
-                //     size = '_1024'
-                // } else if (bp.lgAndDown) {
-                //     size = '_1280'
-                // } else {
-                //     size = '_1920'
-                // }
-                return (path)
+                return (path + name + size)
             }
         },
 
         mounted() {
             setTimeout(() => {
                 this.isBooted = true
-                setTimeout(() => {
-
-                    // let $svg = document.getElementById('logo-svg')
-                    // let $left = $svg.querySelector("#left-flake_1_")
-                    // let $right = $svg.querySelector("#logo-circut")
-                    // let $paths = $right.querySelectorAll('.anim')
-                    // let $nodes = $right.querySelectorAll('.anim-2')
-                    // let t_l = new TimelineMax({delay: 0.1})
-                    //
-                    // let dur = 1
-                    //
-                    // t_l
-                    //     .set(
-                    //         $paths,
-                    //         {
-                    //             drawSVG: '0%'
-                    //         },
-                    //         'a'
-                    //     )
-                    //     .set(
-                    //         $left,
-                    //         {
-                    //             autoAlpha: 0,
-                    //             rotation: 180,
-                    //             transformOrigin: '50% 50%'
-                    //         },
-                    //         'a')
-                    //     .staggerTo(
-                    //         $paths,
-                    //         dur * 2,
-                    //         {
-                    //             drawSVG: '100%'
-                    //         },
-                    //         dur / 5.3,
-                    //         'a+=' + (dur / 2)
-                    //     )
-                    //     .to(
-                    //         [$paths],
-                    //         1.2,
-                    //         {
-                    //             stroke: '#b0b0b0',
-                    //             fill: 'rgba(244, 244, 240, 0.05)'
-                    //         }, '-=1.2')
-                    //     .fromTo(
-                    //         $nodes,
-                    //         dur * 0.3,
-                    //         {
-                    //             scale: 0, transformOrigin: '50% 50%'
-                    //         },
-                    //         {
-                    //             ease: Back.easeOut,
-                    //             scale: 1,
-                    //             transformOrigin: '50% 50%',
-                    //             autoAlpha: 1
-                    //         },
-                    //         '-=' + (dur * 1)
-                    //     )
-                    //     .to(
-                    //         $left,
-                    //         dur * 1,
-                    //         {
-                    //             ease: Back.easeOut,
-                    //             rotation: 0,
-                    //             transformOrigin: '50% 50%',
-                    //             autoAlpha: 1
-                    //         },
-                    //         '-=2.2'
-                    //     )
-                    //
-                    // new SplitText(document.querySelector('.title h1'), 1.8, 0.16)
-                    // new SplitText(document.querySelector('.title h2'), 2.2, 0.055)
-                }, 100)
-            }, 200)
-
+            }, 100)
         }
     }
 </script>

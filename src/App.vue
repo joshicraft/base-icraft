@@ -9,31 +9,6 @@
     <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(3)"/>
 
     <core-footer v-if="getLoadCount(4)"/>
-    <!--<div class="site-loader" :class="{'hide-s': loaded}">-->
-      <!--<div class="j-bg-svg">-->
-      <!--<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100">-->
-<!--<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229">-->
-	<!--&lt;!&ndash;<stop offset="0" style="stop-color:#13638C"/>&ndash;&gt;-->
-	<!--&lt;!&ndash;<stop offset="1" style="stop-color:#00FFFF"/>&ndash;&gt;-->
-	<!--<stop offset="0" style="stop-color:#22daff"/>-->
-	<!--<stop offset="1" style="stop-color:#33cccc"/>-->
-<!--</linearGradient>-->
-<!--<polygon class="st0 poly-right anim" points="0,100 100,0 100,100 "/>-->
-<!--<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="29.2825" y1="40.3713" x2="106.4355" y2="76.229" gradientTransform="matrix(-1 0 0 -1 100 100)">-->
-	<!--&lt;!&ndash;<stop offset="0" style="stop-color:#13638C"/>&ndash;&gt;-->
-	<!--&lt;!&ndash;<stop offset="1" style="stop-color:#00FFFF"/>&ndash;&gt;-->
-	<!--<stop offset="0" style="stop-color:#11daff"/>-->
-	<!--<stop offset="1" style="stop-color:#33cccc"/>-->
-<!--</linearGradient>-->
-<!--<polygon class="st1 poly-left anim" points="100.1,0 0,100.1 0,0 "/>-->
-<!--</svg>-->
-
-      <!--</div>-->
-      <!--<div class="load-icon-wrap rotate" v-if="true">-->
-        <!--<img src="img/logo-b.png"/>-->
-      <!--</div>-->
-    <!--</div>-->
-
 
   </v-app>
 </template>
@@ -58,36 +33,15 @@
                 $this.setLoader(true)
             })
             $this.animateLoaded()
-            // this.loadTicker = setInterval(() => {
-            //     // this.loadCount+=1
-            //     // if(this.loadCount > 5) {
-            //     //
-            //     //     clearInterval($this.loadTicker)
-            //     // }
-            // }, 500)
             clearTimeout(this.delayAnimated)
             this.delayAnimated = setTimeout(() => {
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
             }, 1000)
         },
-        watch: {
-            $route () {
-                let $this = this
-                clearTimeout(this.delayAnimated)
-                this.startLoadTicker()
-                this.delayAnimated = setTimeout(() => {
-                    $this.setLazyLoaded(true)
-                    $this.setLoader(true)
-                }, 3000)
-            }
-        },
         computed: {
             lazyLoaded () {
                 return this.getLazy()
-            },
-            getComponentsLoaded () {
-                return this.componentsLoaded
             },
             loaded () {
                 return this.getLoader()
@@ -101,57 +55,27 @@
             getLoadCount (i) {
                 return i < this.loadCount
             },
-
-            loadComponents () {
-                this.componentsLoaded = true;
-            },
             increment () {
                 this.loadCount += 1
                 if(this.loadCount > 5){
                     clearInterval(this.loadComponentsTicker)
                 }
             },
-
             loadTick() {
                 this.loadTickerCount++
             },
             clearLoadTicker() {
                 this.loadTickerCount = 0
                 clearInterval(this.loadTicker)
-                // TweenMax.killDelayedCallsTo(this.loadTick)
-                // if (this.loadTicker && this.loadTicker.kill) {
-                //     this.loadTicker.kill()
-                // }
             },
             startLoadTicker(tickInterval, limit) {
                 limit = limit || 100
                 tickInterval = tickInterval || 1
-
                 this.clearLoadTicker()
                 this.loadTicker = setInterval(this.loadTick, tickInterval * 1000)
-                // this.loadTicker = new TimelineMax()
-                // for(let i = 0; i < limit; i ++) {
-                //     this.loadTicker.addCallback(this.loadTick, i * tickInterval, [], this)
-                // }
             },
             animateLoaded () {
                 this.loadComponentsTicker = setInterval(this.increment, 1000)
-                // setTimeout(this.loadComponents, 2000)
-              // let tL = new TimelineMax()
-              //   // $loader = document.querySelector('.site-loader'),
-              //     // $logo = $loader.querySelector('.load-icon-wrap img'),
-              //     // $bg = $loader.querySelector('.j-bg-svg')
-              //   tL
-              //       // .to($logo, 2, {rotation: 360}, 'a')
-              //       .call(this.loadComponents, [], this, '+=2')
-                    // .to($logo, 0.4, {autoAlpha: 0, scale: 0.1}, 'a+=1.25')
-                    // .to($bg.querySelector('.poly-left'), 0.3, {x: -3, ease: Back.easeOut}, 'a+=1.6')
-                    // .to($bg.querySelector('.poly-right'), 0.3, {x: 3, ease: Back.easeOut}, 'a+=1.6')
-                    // .to($bg.querySelector('.poly-left'), 1, {x: -100, ease: Circ.easeIn}, 'a+=2.1')
-                    // .to($bg.querySelector('.poly-right'), 1, {x: 100, ease: Circ.easeIn}, 'a+=2.1')
-                    // .set($loader, {display: 'none'})
-                    // .to($bg.querySelector('.poly-left'), 1.4, {className: '+=slide-out-l'}, 'a+=2')
-                    // .to($bg.querySelector('.poly-right'), 1.4, {className: '+=slide-out-r'}, 'a+=2')
             },
             onScroll (e) {
                 if (this.lazyTriggered && !this.getLazy()) {
@@ -204,6 +128,7 @@
 
   .v-content
     padding-top: 0 !important
+
   #webchat
     z-index: 20;
     position fixed
@@ -273,8 +198,6 @@
 
   .st0{fill:url(#SVGID_1_);}
   .st1{fill:url(#SVGID_2_);}
-  //.st0{fill: #44daff}
-  //.st1{fill: #3680ff}
 
   @keyframes rotate-in-center {
     0% {
@@ -323,7 +246,7 @@
           position: absolute
 
       &-enter-active, &-leave, &-leave-to
-          transition: opacity 0.5s
+          transition: opacity 0.1s
           .title
             transition: transform 0.5s
 
