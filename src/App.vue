@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 0 : 0)"/>
+    <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 4 : 2)"/>
 
-    <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
+    <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 4)"/>
 
     <core-jumbotron/>
 
-    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(3)"/>
+    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(4)"/>
 
-    <core-footer v-if="getLoadCount(3)"/>
+    <core-footer v-if="getLoadCount(4)"/>
 
   </v-app>
 </template>
@@ -151,28 +151,6 @@
     opacity 0
     visibility hidden
 
-  .site-loader
-    position: fixed;
-    top 0
-    left 0
-    height 100vh
-    width 100vw
-    z-index 1000
-    background transparent
-    .load-icon-wrap
-      width: 100px
-      height: 100px
-      position absolute
-      top 0
-      left 0
-      right 0
-      bottom 0
-      margin auto
-      img
-        display block
-        width 100%
-        height 100%
-
 
 
   .rotate
@@ -199,56 +177,15 @@
   .st0{fill:url(#SVGID_1_);}
   .st1{fill:url(#SVGID_2_);}
 
-  @keyframes rotate-in-center {
-    0% {
-      transform: rotate(-360deg);
-      //opacity 0
-    }
-    75% {
-      transform rotate(0)
-      //opacity 1
-    }
-    100% {
-     // opacity 0
-    }
-  }
-
-  @keyframes hide {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      display none
-    }
-  }
-
-  @keyframes slide-out-left {
-    0% {
-      transform translateX(0)
-    }
-    100% {
-      transform translateX(100px)
-    }
-  }
-
-  @keyframes slide-out-right {
-    0% {
-      transform translateX(0)
-    }
-    100% {
-      transform translateX(-100px)
-    }
-  }
 
   .my-transition
       &-leave-active
           position: absolute
 
       &-enter-active, &-leave, &-leave-to
-          transition: opacity 0.05s
+          transition: opacity 0.35s
           .title
-            transition: transform 0.05s
+            transition: transform 0.4s
 
       &-enter, &-leave-to
           opacity: 0
@@ -260,9 +197,11 @@
     padding-top: 0px !important
     padding-bottom: 64px !important
     z-index 1
+
   .no-pad
     padding-bottom: 0 !important
     padding-top: 0 !important
+
   .container
     max-width: 1280px
 </style>
