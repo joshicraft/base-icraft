@@ -19,8 +19,8 @@ module.exports = {
             new PreloadWebpackPlugin({
                 rel: "preload",
                 include: "allChunks"
-            }),
-            new BundleAnalyzerPlugin()
+            })
+            // new BundleAnalyzerPlugin()
         ]
 
     },
