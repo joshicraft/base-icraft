@@ -27,6 +27,7 @@
 <!--</linearGradient>-->
 <!--<polygon class="st1 poly-left anim" points="100.1,0 0,100.1 0,0 "/>-->
 <!--</svg>-->
+
       <!--</div>-->
       <!--<div class="load-icon-wrap rotate" v-if="true">-->
         <!--<img src="img/logo-b.png"/>-->
