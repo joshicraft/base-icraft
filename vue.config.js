@@ -50,8 +50,8 @@ module.exports = {
                 ),
                 threshold: 10240,
                 minRatio: 0.8
-            }),
-             new BundleAnalyzerPlugin()
+            })
+             // new BundleAnalyzerPlugin()
         ]
 
     },
