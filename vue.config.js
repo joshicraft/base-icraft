@@ -20,7 +20,7 @@ module.exports = {
     },
     configureWebpack: {
         plugins: [
-            new VuetifyLoaderPlugin(),
+            // new VuetifyLoaderPlugin(),
             new PreloadWebpackPlugin({
                 rel: "preload",
                 include: "allChunks"
@@ -45,7 +45,11 @@ module.exports = {
             // }),
             new CompressionWebpackPlugin({
                 algorithm: 'gzip',
-                test: /\.js(\?.*)?$/i
+                test: new RegExp(
+                    '\\.(js|css)$'
+                ),
+                threshold: 10240,
+                minRatio: 0.8
             })
             // new BundleAnalyzerPlugin()
         ]
