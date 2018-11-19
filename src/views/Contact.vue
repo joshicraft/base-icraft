@@ -25,7 +25,7 @@
                             <h1>{{submitStatus.t1}}</h1>
                             <p>{{submitStatus.t2}}</p>
                         </div>
-                        <v-btn class="mt-5" v-if="failed" @click="resetForm">TRY AGAIN</v-btn>
+                        <v-btn aria-label="form-try-again" class="mt-5" v-if="failed" @click="resetForm">TRY AGAIN</v-btn>
                     </v-layout>
 
                     <v-form
@@ -79,11 +79,13 @@
                     <v-card-actions class="mt-5">
                         <v-spacer/>
                         <v-btn
+                                aria-label="clear-form"
                                 class="mr-3"
                                 color="warning"
                                 @click="clear">clear
                         </v-btn>
                         <v-btn
+                                aria-label="submit-form"
                                 class=""
                                 color="primary"
                                 :disabled="!valid"

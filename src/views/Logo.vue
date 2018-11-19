@@ -20,10 +20,10 @@
                class="sprite"/>
         </div>
         <div class="actions">
-          <v-btn :disabled="!sprite.paused" @click="previous">previous
+          <v-btn aria-label="previous-logo" :disabled="!sprite.paused" @click="previous">previous
             <v-icon class="ml-3">mdi-skip-previous</v-icon>
           </v-btn>
-          <v-btn :disabled="sprite.paused" @click="stopTicker">pause
+          <v-btn aria-label="pause-logo" :disabled="sprite.paused" @click="stopTicker">pause
             <v-icon class="ml-3">mdi-pause</v-icon>
           </v-btn>
           <v-progress-circular
@@ -33,10 +33,10 @@
             size="60"
           >{{sprite.index}}
           </v-progress-circular>
-          <v-btn :disabled="!sprite.paused" @click="startTicker">play
+          <v-btn aria-label="play-logo" :disabled="!sprite.paused" @click="startTicker">play
             <v-icon class="ml-3">mdi-play</v-icon>
           </v-btn>
-          <v-btn :disabled="!sprite.paused" @click="next">next
+          <v-btn aria-label="next-logo" :disabled="!sprite.paused" @click="next">next
             <v-icon class="ml-3">>mdi-skip-next</v-icon>
           </v-btn>
         </div>

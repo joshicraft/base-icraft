@@ -55,12 +55,14 @@
           <v-card-actions class="mt-3" v-if="!submitted">
             <v-spacer/>
             <v-btn
-              class="px-5 mr-3"
+                    aria-label="clear-form"
+                    class="px-5 mr-3"
               color="warning"
               @click="clear">clear
             </v-btn>
             <v-btn
-              class="px-5"
+                    aria-label="submit-form"
+                    class="px-5"
               color="primary"
               :disabled="!valid"
               @click="handleSubmit"

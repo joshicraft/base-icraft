@@ -9,6 +9,7 @@
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
             <div class="contact-ico bot-p left-p">
                 <v-btn
+                        aria-label="go-to-contact"
                         v-if="$route.name !== 'Contact'"
                         @click="gotToContact"
                         fab

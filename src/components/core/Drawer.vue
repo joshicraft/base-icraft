@@ -8,7 +8,7 @@
     <v-list>
       <v-list-tile>
         <v-spacer />
-        <v-btn icon @click="toggleDrawer">
+        <v-btn aria-label="close-menu"  icon @click="toggleDrawer">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-list-tile>

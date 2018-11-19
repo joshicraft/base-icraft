@@ -37,7 +37,7 @@
             >
               <h2 class="mb-4">{{community.heading1}}</h2>
               <p class="subheading mb-4">{{community.headingText1}}</p>
-              <v-btn class="ml-0" href="/community">Community
+              <v-btn aria-label="Community" class="ml-0" href="/community">Community
                 <v-icon class="ml-3">{{community.icon}}</v-icon>
               </v-btn>
             </v-card>

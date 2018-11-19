@@ -14,6 +14,8 @@
         <v-spacer/>
         <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
             <v-btn
+
+                    :aria-label="item.to + '-toolbar'"
                     v-for="(item, i) in items"
 
                     :class="getCurrentRouteClass(item)"
@@ -24,7 +26,7 @@
                 <span v-text="item.text"/>
             </v-btn>
         </v-toolbar-items>
-        <v-btn v-else icon @click="toggleDrawer">
+        <v-btn aria-label="show-hide-menu" v-else icon @click="toggleDrawer">
             <v-icon>mdi-menu</v-icon>
         </v-btn>
     </v-toolbar>
