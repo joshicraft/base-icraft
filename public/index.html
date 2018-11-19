@@ -27,7 +27,7 @@
         transition: top .3s ease-out
       }
 
-      .loader img {
+      .loader div {
         position: absolute;
         width: 50px;
         height: 50px;
@@ -38,7 +38,9 @@
         top: 0;
         margin: auto
       }
-
+      .s3{fill:#243883;}
+      .s4{fill:#438CCB;}
+      .s5{fill:#23608D;}
       .hide- {
         top: -100%
       }
@@ -54,7 +56,15 @@
       <strong>We're sorry but ICRAFT doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div class="loader" id="site-loader">
-      <img class="rotate" alt="loading-img" src="/img/logo-b.png"/>
+      <div class="rotate">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 218.1 217.5">
+          <g>
+            <polygon class="s3" points="54.7,0.7 54.7,54.9 108.9,54.9 108.9,109.1 54.7,109.1 54.7,163.3 217.3,163.3 217.3,109.1     163.1,109.1 163.1,54.9 217.3,54.9 217.3,0.7   "></polygon>
+            <polygon class="s4" points="0.5,109 0.5,217.5 163.1,217.5 217.3,163.3 54.7,163.3 54.7,109.1 108.9,109.1 108.9,54.9 54.7,54.9       "></polygon>
+            <polygon class="s5" points="163.1,217.5 217.3,163.3 54.7,163.3 0.5,217.5   "></polygon>
+          </g>
+        </svg>
+      </div>
     </div>
     <div id="app"></div>
     <!-- built files will be auto injected -->
