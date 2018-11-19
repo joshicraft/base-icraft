@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <div class="loader" :class="{'hide-' : loaded}">
-      <img class="rotate" src="/img/logo-b.png"/>
-    </div>
+
     <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 4 : 2)"/>
 
     <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 4)"/>
@@ -38,6 +36,7 @@
             $this.animateLoaded()
             clearTimeout(this.delayAnimated)
             this.delayAnimated = setTimeout(() => {
+                document.getElementById('site-loader').classList.add('hide-')
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
             }, 2000)
@@ -173,6 +172,8 @@
 
   .hide-
     top -100%
+    img
+      animation: d
     /*opacity 0*/
     /*visibility hidden*/
   .rotate
@@ -218,9 +219,9 @@
           position: absolute
 
       &-enter-active, &-leave, &-leave-to
-          transition: opacity 0.35s
+          transition: opacity 0.6s
           .title
-            transition: transform 0.4s
+            transition: transform 0.6s
 
       &-enter, &-leave-to
           opacity: 0
