@@ -246,9 +246,9 @@
           position: absolute
 
       &-enter-active, &-leave, &-leave-to
-          transition: opacity 0.1s
+          transition: opacity 0.05s
           .title
-            transition: transform 0.5s
+            transition: transform 0.05s
 
       &-enter, &-leave-to
           opacity: 0
