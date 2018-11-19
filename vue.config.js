@@ -21,10 +21,10 @@ module.exports = {
     configureWebpack: {
         plugins: [
             // new VuetifyLoaderPlugin(),
-            new PreloadWebpackPlugin({
-                rel: "preload",
-                include: "allChunks"
-            }),
+            // new PreloadWebpackPlugin({
+            //     rel: "preload",
+            //     include: "allChunks"
+            // }),
             // new HtmlWebpackPlugin({
             //     filename: process.env.NODE_ENV === 'testing'
             //         ? './public/index.html'
@@ -50,8 +50,8 @@ module.exports = {
                 ),
                 threshold: 10240,
                 minRatio: 0.8
-            })
-            // new BundleAnalyzerPlugin()
+            }),
+             new BundleAnalyzerPlugin()
         ]
 
     },
