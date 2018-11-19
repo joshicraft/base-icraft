@@ -1,5 +1,8 @@
 <template>
   <v-app>
+    <div class="loader" :class="{'hide-' : loaded}">
+      <img class="rotate" src="/img/logo-b.png"/>
+    </div>
     <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 4 : 2)"/>
 
     <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 4)"/>
@@ -37,7 +40,7 @@
             this.delayAnimated = setTimeout(() => {
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
-            }, 1000)
+            }, 2000)
         },
         computed: {
             lazyLoaded () {
@@ -147,12 +150,31 @@
     opacity 0
     visibility hidden
 
-  .hide
-    opacity 0
-    visibility hidden
 
+  .loader
+    z-index 2000
+    position: fixed
+    width 100%
+    height 100%
+    top 0
+    let 0
+    background-color #56a3ff
+    transition top 0.3s ease-out
+    img
+      position: absolute;
+      width: 50px
+      height 50px
+      display block
+      left 0
+      right 0
+      bottom 0
+      top 0
+      margin auto
 
-
+  .hide-
+    top -100%
+    /*opacity 0*/
+    /*visibility hidden*/
   .rotate
     animation: rotate-in-center 1.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both;
 
@@ -177,6 +199,19 @@
   .st0{fill:url(#SVGID_1_);}
   .st1{fill:url(#SVGID_2_);}
 
+  @keyframes rotate-in-center {
+    0% {
+      transform: rotate(-360deg);
+      //opacity 0
+    }
+    75% {
+      transform rotate(0)
+      //opacity 1
+    }
+    100% {
+     // opacity 0
+    }
+  }
 
   .my-transition
       &-leave-active
