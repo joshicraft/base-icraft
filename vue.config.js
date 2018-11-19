@@ -51,7 +51,7 @@ module.exports = {
                 threshold: 10240,
                 minRatio: 0.8
             })
-              // new BundleAnalyzerPlugin()
+               // new BundleAnalyzerPlugin()
         ]
 
     },
@@ -61,6 +61,10 @@ module.exports = {
         config.plugin('vuetify-loader')
             .use(VuetifyLoaderPlugin);
         // config.plugin('workbox')
+        if (process.env.npm_config_argv.indexOf('--report') != -1) {
+            config.plugin('webpack-bundle-analyzer')
+                .use(BundleAnalyzerPlugin);
+        }
         config.module
             .rule('vue')
             .use('vue-loader')

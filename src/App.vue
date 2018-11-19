@@ -149,35 +149,10 @@
     opacity 0
     visibility hidden
 
-
-  .loader
-    z-index 2000
-    position: fixed
-    width 100%
-    height 100%
-    top 0
-    let 0
-    background-color #56a3ff
-    transition top 0.3s ease-out
-    img
-      position: absolute;
-      width: 50px
-      height 50px
-      display block
-      left 0
-      right 0
-      bottom 0
-      top 0
-      margin auto
-
   .hide-
     top -100%
     img
       animation: d
-    /*opacity 0*/
-    /*visibility hidden*/
-  .rotate
-    animation: rotate-in-center 1.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both;
 
   .slide-out-l
     animation slide-out-left 1.4s ease-in forwards
