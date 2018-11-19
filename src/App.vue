@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 4 : 2)"/>
+    <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 0 : 0)"/>
 
-    <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 4)"/>
+    <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
 
     <core-jumbotron/>
 
     <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(3)"/>
 
-    <core-footer v-if="getLoadCount(4)"/>
+    <core-footer v-if="getLoadCount(3)"/>
 
   </v-app>
 </template>
