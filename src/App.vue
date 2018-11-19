@@ -35,12 +35,12 @@
             })
             $this.animateLoaded()
             clearTimeout(this.delayAnimated)
-            console.log(window.startLoadTime)
+            console.log(new Date().getTime() - window.startLoadTime)
             this.delayAnimated = setTimeout(() => {
                 document.getElementById('site-loader').classList.add('hide-')
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
-            }, 1000)
+            }, 100)
         },
         computed: {
             lazyLoaded () {
