@@ -39,7 +39,7 @@
                 document.getElementById('site-loader').classList.add('hide-')
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
-            }, 2000)
+            }, 1000)
         },
         computed: {
             lazyLoaded () {
