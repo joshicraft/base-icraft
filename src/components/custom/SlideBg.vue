@@ -366,7 +366,7 @@
                 let pos = $e.getBoundingClientRect().y
                 if (pos < window.innerHeight / 2.5 && !$e.scrollAnimated) {
                     new TimelineMax()
-                        .fromTo($iris, 0.3, {scale: 0}, {scale: 1, ease: Bounce.easeOut})
+                        .to($iris, 0.3, {scale: 1, ease: Bounce.easeOut})
                         .to($iris.querySelector('.iris-1'), 0.3, {rotation: 360, transformOrigin: '50% 50%'}, '-=' + .15)
                         .to($iris.querySelector('.iris-2'), 0.3, {rotation: 180, transformOrigin: '50% 50%'}, '-=' + .15)
                         .to($iris.querySelector('.iris-3'), 0.3, {rotation: -180, transformOrigin: '50% 50%'}, '-=' + .15)
@@ -435,7 +435,7 @@
         right 0
         bottom 0
         margin  auto
-        transform scale(0)
+        //transform scale(0)
 
     .iris-animate
         animation-delay 0.5s
