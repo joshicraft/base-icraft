@@ -367,6 +367,7 @@
 <style scoped lang="stylus">
     .st0{
         fill:#231F20;
+        opacity 0.5
     }
     .st1{
         fill:none;
@@ -399,18 +400,13 @@
 
     .iris
         position absolute
-        width 100px
-        height 100px
+        width 200px
+        height 200px
         top 0
         left 0
         right 0
         bottom 0
         margin  auto
-        //transform scale(0)
-
-    .iris-animate
-        animation-delay 0.5s
-        animation heartbeat 1s ease-in forwards
 
     .wipe
         position: absolute;
@@ -424,66 +420,4 @@
         width 100%
         height 100%
 
-    @keyframes left-out {
-        10% {
-            transform: translateX(-4%)
-            animation-timing-function: ease-in;
-        }
-        17% {
-            transform:translateX(-2%)
-            animation-timing-function: ease-out;
-        }
-        33% {
-            transform: translateX(-3%)
-            animation-timing-function: ease-in;
-        }
-        100% {
-            transform: translateX(-100%)
-            animation-timing-function: ease-out
-        }
-    }
-    @keyframes right-out {
-        10% {
-            transform: translateX(4%)
-            animation-timing-function: ease-in;
-        }
-        17% {
-            transform:translateX(2%)
-            animation-timing-function: ease-out;
-        }
-        33% {
-            transform: translateX(3%)
-            animation-timing-function: ease-in;
-        }
-        100% {
-            transform: translateX(100%)
-            animation-timing-function: ease-out
-        }
-    }
-
-    @keyframes heartbeat {
-        from {
-        transform: scale(1);
-        animation-timing-function: ease-out;
-        }
-        10% {
-        transform: scale(0.91) rotate(30deg);
-        animation-timing-function: ease-in;
-        }
-        17% {
-        transform: scale(0.98) rotate(10deg);
-        animation-timing-function: ease-out;
-        }
-        33% {
-        transform: scale(0.87) rotate(60deg);
-        animation-timing-function: ease-in;
-        }
-        45% {
-        transform: scale(1) rotate(0deg);
-        animation-timing-function: ease-out;
-        }
-        100% {
-            transform: scale(0) rotate(360deg);
-        }
-    }
 </style>

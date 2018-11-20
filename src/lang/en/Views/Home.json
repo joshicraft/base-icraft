@@ -5,19 +5,19 @@
   "jumbotronSubTitle": "DIGITAL, WEBSITES, BRANDING",
   "items": [
     {
-      "name": "websites",
+      "name": "intro",
       "title": "LOOKING TO UPGRADE YOUR DIGITAL PRESENCE?",
       "text": "Here at ICRAFT we provide a range of solutions to help you get online and get noticed.",
       "img": "web-3"
     },
     {
-      "name": "digital marketing",
+      "name": "websites",
       "title": "STUNNING, FAST AND SECURE WEBSITES",
       "text": "ICRAFTS Top Quality websties are hand crafted to support your brand. They use the latest tech and design trends to keep your visitors engaged.",
-      "img": "web-4"
+      "img": "web-1"
     },
     {
-      "name": "branding",
+      "name": "digital marketing",
       "title": "CAPTIVATING DIGITAL MARKETING",
       "text": "ICRAFT can help your customers find you and keep engaged with your business.",
       "img": "web-5"

@@ -90,5 +90,6 @@
 </script>
 
 <style scoped lang="stylus">
-
+    .title-a
+        opacity 0
 </style>
