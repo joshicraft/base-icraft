@@ -42,6 +42,7 @@
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
             }, timeLoad * 1.2)
+            setTimeout(this.mountFBChat, 4000)
         },
         watch: {
             $route (frm, to) {
@@ -65,6 +66,13 @@
             ...mapMutations('app', ['setLoader']),
             ...mapGetters('app', ['getLazy']),
             ...mapGetters('app', ['getLoader']),
+            mountFBChat () {
+                var js, fjs = document.getElementsByTagName(s)[0];
+                if (d.getElementById('facebook-jssdk')) return;
+                js = d.createElement('script'); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            },
             getLoadCount (i) {
                 return i < this.loadCount
             },
