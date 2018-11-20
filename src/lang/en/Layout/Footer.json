@@ -7,20 +7,20 @@
   "rights": "All Rights reserved.",
   "social": [
     {
-      "text": "Services",
-      "href": "/services"
+      "text": "Websites",
+      "to": "Websites"
     },
     {
-      "text": "Projects",
-      "href": "/projects"
+      "text": "Branding",
+      "to": "Branding"
     },
     {
-      "text": "Our Team",
-      "href": "/team"
+      "text": "IT Solutions",
+      "to": "IT Solutions"
     },
     {
-      "text": "Commitment to the Community",
-      "href": "/community"
+      "text": "Contact",
+      "to": "Contact"
     }
 
   ],

@@ -15,7 +15,7 @@
           <h5 class="title pb-3" v-text="company" />
           <ul>
             <li v-for="(item, i) in computedSocial" :key="i">
-              <a :href="item.href" class="layout align-center">
+              <a :to="item.to" class="layout align-center">
                 <v-icon
                   dark
                   class="mr-3"
@@ -42,7 +42,7 @@
                         dark
                         class="mr-3"
                 >
-                  phone
+                  mdi-phone
                 </v-icon>
                 <a class="p-format" :href="'tel:' + contact.phone" v-text="contact.phone">
                 </a>
@@ -54,7 +54,7 @@
                         dark
                         class="mr-3"
                 >
-                  email
+                  mdi-email
                 </v-icon>
                 <a
                           class="p-format"
@@ -69,7 +69,7 @@
                         dark
                         class="mr-3"
                 >
-                  home
+                  mdi-home
                 </v-icon>
                 <p class="p-format" v-text="contact.address">
                 </p>
@@ -81,7 +81,7 @@
                         dark
                         class="mr-3"
                 >
-                  access_time
+                  mdi-clock-outline
                 </v-icon>
                 <v-layout justify-start column>
                   <p class="p-format" v-text="contact.hours.weekday">

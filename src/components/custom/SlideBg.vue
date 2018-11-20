@@ -397,7 +397,8 @@
         z-index 20
         width 100%
         height 100%
-
+        pointer-events none
+        
     .iris
         position absolute
         width 200px
@@ -415,7 +416,8 @@
         width 100%
         height 100%
         opacity 0.5
-        filter drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.55))
+
+        //filter drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.55))
     svg
         width 100%
         height 100%

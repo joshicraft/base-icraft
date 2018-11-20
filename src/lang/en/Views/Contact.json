@@ -5,11 +5,11 @@
   "jumbotronSubTitle": "HOW YOU CAN GET IN TOUCH",
   "heading1": "Got a question or want to know more?",
   "headingText1": "Fill out the form below or get in touch via phone or email",
-  "phone": "+",
-  "email": "+",
-  "address": "+",
-  "cityState": "+",
-  "zip": "+",
+  "phone": "02102859043",
+  "email": "contact@icraft.co.nz",
+  "address": "116 North Road Clevedon",
+  "cityState": "Auckland",
+  "zip": "2582",
   "hours": {
     "weekday": "Mon - Fri: 7:30am - 5:30pm",
     "weekend": "Sat: 8:00am - 12:30pm"

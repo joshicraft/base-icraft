@@ -2,7 +2,7 @@
     <v-layout
             align-center lg12
             class="relative overflow-hidden"
-            :class="{'row-reverse': i%2===0}"
+            :class="{'row-reverse': i%2===0, 'c-1' : i%2===0, 'c-2': i%2!==0}"
             v-scroll="scrollH"
     >
             <slide-bg :left="i%2!==0"></slide-bg>
@@ -15,10 +15,11 @@
             >
             </v-img>
 
-            <v-flex lg6 pa-5 >
+            <v-flex lg6 pa-5 class="d-flex" justify-center>
                 <div class="title-a">
-                <h1 class="mb-4 display-2 font-weight-bold">{{item.title}}</h1>
-                <h3 class="mb-4 display-1">{{item.text}}</h3>
+                <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
+                <h3 class="mb-4">{{item.text}}</h3>
+                    <v-btn>Go To</v-btn>
                 </div>
             </v-flex>
 
@@ -92,4 +93,26 @@
 <style scoped lang="stylus">
     .title-a
         opacity 0
+        max-width 64%
+        width 70%
+        h1
+            line-height 1.1
+            font-size 2.85em
+        h3
+            line-height 1.2
+            font-size 1.85em
+            font-weight 100
+        button
+            font-weight bold
+            margin-left 0
+    .c-1
+        background #e8e8e8
+    .c-2
+        background #dcdcdc
+
+    @media (max-width: 500px)
+        .title-a
+            max-width 100%
+            text-align center
+            /*font-size 12px*/
 </style>
