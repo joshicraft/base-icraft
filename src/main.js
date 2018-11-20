@@ -40,6 +40,7 @@ Vue.mixin({
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
+
             imgC(name, img, ext, thumb) {
                 let path = '/static/'
                 let size = ''

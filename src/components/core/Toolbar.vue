@@ -6,7 +6,7 @@
             :dense="isScrolling"
             :color="!isScrolling ? 'transparent' : 'black'"
             v-scroll="onScroll"
-            class="_visible"
+            class="_visible elevation-0"
     >
         <div class="toolbar-svg-wrapper">
             <custom-logo-side :hide-text="true"></custom-logo-side>
@@ -14,10 +14,8 @@
         <v-spacer/>
         <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
             <v-btn
-
                     :aria-label="item.to + '-toolbar'"
                     v-for="(item, i) in items"
-
                     :class="getCurrentRouteClass(item)"
                     :key="i"
                     :to="item.to"

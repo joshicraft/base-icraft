@@ -257,4 +257,10 @@
 
   .container
     max-width: 1280px
+
+  .relative
+    position: relative
+
+  .row-reverse
+    flex-direction row-reverse
 </style>

@@ -1,29 +1,11 @@
 <template>
     <div >
-        <v-img
-                :lazy-src="imgC(item.img, false, false, true)"
-                :alt="item.img"
-                v-for="(item, i) in items"
-                :key="i"
-                v-if="loadPoint(i)"
-                :src="imgC(item.img)"
-                height="95vh"
-
-        >
-            <slide-bg :left="i%2===0"></slide-bg>
-            <v-container>
-
-                <v-layout align-center ml-5 mt-3>
-                    <v-flex lg6 pa-5 >
-                        <title-scroll :data="item"></title-scroll>
-                        <!--<div>-->
-                            <!--<h1 class="mb-4 display-2 font-weight-bold">{{item.title}}</h1>-->
-                            <!--<h3 class="mb-4 display-1">{{item.text}}</h3>-->
-                        <!--</div>-->
-                    </v-flex>
-                </v-layout>
-            </v-container>
-        </v-img>
+        <v-layout
+                  v-for="(item, i) in items"
+                  :key="i"
+                  >
+            <home-section :item="item" :i="i"></home-section>
+        </v-layout>
         <alpha-hero
                 alt="testimonial picture"
                 v-if="loadPoint(items.length)"
@@ -73,19 +55,14 @@
 </template>
 
 <script>
-    // import content from '../lang/en/Views/Home'
-    import SlideBg from '../components/custom/SlideBg'
-    import TitleScroll from '../components/custom/TitleScroll'
+    import HomeSection from '../components/custom/HomeSection'
     export default {
-        components: {TitleScroll, SlideBg},
+        components: {HomeSection},
         props: {
             loadTickerCount: {
                 default: 0,
                 type: Number
             }
-        },
-        mounted() {
-
         },
         data() {
             return {

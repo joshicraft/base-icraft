@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap" v-scroll="scrollX">
+    <div class="wrap" >
         <svg v-if="left" preserveAspectRatio="none" class="wipe wipe-left"
              viewBox="0 0 500 500">
             <polygon  class="ss0" points="0,0 500,0 240,250 500,500 0,500 "/>
@@ -358,36 +358,7 @@
         },
         methods: {
             scrollX () {
-                let $e = this.$el
-                let $left = $e.querySelector('.wipe-left')
-                let $right = $e.querySelector('.wipe-right')
-                let $iris = $e.querySelector('.iris')
-                let $irisRings = [$iris.querySelector('.iris-1'), $iris.querySelector('.iris-2'), $iris.querySelector('.iris-3'), $iris.querySelector('.iris-4')]
-                let pos = $e.getBoundingClientRect().y
-                if (pos < window.innerHeight / 2.5 && !$e.scrollAnimated) {
-                    new TimelineMax()
-                        .to($iris, 0.3, {scale: 1, ease: Bounce.easeOut})
-                        .to($iris.querySelector('.iris-1'), 0.3, {rotation: 360, transformOrigin: '50% 50%'}, '-=' + .15)
-                        .to($iris.querySelector('.iris-2'), 0.3, {rotation: 180, transformOrigin: '50% 50%'}, '-=' + .15)
-                        .to($iris.querySelector('.iris-3'), 0.3, {rotation: -180, transformOrigin: '50% 50%'}, '-=' + .15)
-                        .to($iris.querySelector('.iris-4'), 0.3, {rotation: 360, transformOrigin: '50% 50%'}, '-=' + .15)
-                        .to($iris, 0.3, {scale: 0, ease: Bounce.easeOut})
-                        .to($left ? $left : $right, 0.5, {x: $left ? '-100%' : '100%'})
 
-                    // $left.classList.add('left-out')
-                    // $right.classList.add('right-out')
-                    // $iris.classList.add('iris-animate')
-                    $e.scrollAnimated = true
-                } else if ($e.scrollAnimated && pos > window.innerHeight - 300) {
-                    $e.scrollAnimated = false
-                    new TimelineMax()
-                        .from($iris, 0.2, {scale: 1, ease: Bounce.easeOut})
-                        .to($irisRings, 0.2, {rotation: 0})
-                        .to($left ? $left : $right, 0.3, {x: '0%'})
-                    // $left.classList.remove('left-out')
-                    // $right.classList.remove('right-out')
-                    // $iris.classList.remove('iris-animate')
-                }
             }
         }
     }
