@@ -42,6 +42,12 @@
                 $this.setLoader(true)
             }, 100)
         },
+        watch: {
+            $route () {
+                clearTimeout(this.delayAnimated)
+                this.startLoadTicker()
+            }
+        },
         computed: {
             lazyLoaded () {
                 return this.getLazy()
