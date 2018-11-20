@@ -44,6 +44,7 @@
         },
         watch: {
             $route () {
+                document.getElementById('home-loader').classList.add('hide-')
                 clearTimeout(this.delayAnimated)
                 this.startLoadTicker()
             }
