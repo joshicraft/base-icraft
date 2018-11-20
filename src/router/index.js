@@ -19,8 +19,8 @@ function route (path, name) {
   return {
     name,
     path,
-    component: (resovle) => import(/** webpackChunkName:
-     * name
+    component: (resovle) => import(/** webpackChunkName: [index]
+     webpackPrefetch: false
      */
       `@/views/${name}.vue`
     ).then(resovle)
