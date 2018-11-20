@@ -4,6 +4,7 @@
             :height="height"
             :src="src"
             :class="classes"
+            :alt="src"
     >
       <slot name="default" />
     </v-parallax>

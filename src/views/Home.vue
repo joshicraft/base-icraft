@@ -26,6 +26,7 @@
             </v-container>
         </v-img>
         <alpha-hero
+                alt="testimonial picture"
                 v-if="loadPoint(items.length)"
                 :src="imgC('testimonial')"
                 :height="$vuetify.breakpoint.mdAndUp ? 500 : 'auto'"

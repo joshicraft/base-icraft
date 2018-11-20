@@ -29,24 +29,27 @@
         },
         mounted () {
             let $this = this
+            let timeLoad = new Date().getTime() - window.startLoadTime
             document.body.addEventListener('click', () => {
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
             })
             $this.animateLoaded()
             clearTimeout(this.delayAnimated)
-            console.log(new Date().getTime() - window.startLoadTime)
+            console.log('Time to Load: ' + timeLoad)
             this.delayAnimated = setTimeout(() => {
                 document.getElementById('home-loader').classList.add('hide-')
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
-            }, 100)
+            }, timeLoad * 1.2)
         },
         watch: {
-            $route () {
-                document.getElementById('home-loader').classList.add('hide-')
-                clearTimeout(this.delayAnimated)
-                this.startLoadTicker()
+            $route (frm, to) {
+                if(to.name) {
+                    document.getElementById('home-loader').classList.add('hide-')
+                    clearTimeout(this.delayAnimated)
+                }
+                this.startLoadTicker(false)
             }
         },
         computed: {
