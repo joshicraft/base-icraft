@@ -367,10 +367,10 @@
                 if (pos < window.innerHeight / 2.5 && !$e.scrollAnimated) {
                     new TimelineMax()
                         .fromTo($iris, 0.3, {scale: 0}, {scale: 1, ease: Bounce.easeOut})
-                        .to($iris.querySelector('.iris-1'), 0.3, {rotation: 360, transformOrigin: '50% 50%'})
-                        .to($iris.querySelector('.iris-2'), 0.3, {rotation: 180, transformOrigin: '50% 50%'})
-                        .to($iris.querySelector('.iris-3'), 0.3, {rotation: -180, transformOrigin: '50% 50%'})
-                        .to($iris.querySelector('.iris-4'), 0.3, {rotation: 360, transformOrigin: '50% 50%'})
+                        .to($iris.querySelector('.iris-1'), 0.3, {rotation: 360, transformOrigin: '50% 50%'}, '-=' + .15)
+                        .to($iris.querySelector('.iris-2'), 0.3, {rotation: 180, transformOrigin: '50% 50%'}, '-=' + .15)
+                        .to($iris.querySelector('.iris-3'), 0.3, {rotation: -180, transformOrigin: '50% 50%'}, '-=' + .15)
+                        .to($iris.querySelector('.iris-4'), 0.3, {rotation: 360, transformOrigin: '50% 50%'}, '-=' + .15)
                         .to($iris, 0.3, {scale: 0, ease: Bounce.easeOut})
                         .to($left ? $left : $right, 0.5, {x: $left ? '-100%' : '100%'})
 
@@ -447,6 +447,7 @@
         left 0
         width 100%
         height 100%
+        opacity 0.5
         filter drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.55))
     svg
         width 100%

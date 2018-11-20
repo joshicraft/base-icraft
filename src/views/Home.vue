@@ -14,13 +14,12 @@
             <v-container>
 
                 <v-layout align-center ml-5 mt-3>
-                    <v-flex lg6 pa-5 :v-scroll="scrollT">
-                        <div
-
-                        >
-                        <h1 class="mb-4 display-2 font-weight-bold">{{item.title}}</h1>
-                        <h3 class="mb-4 display-1">{{item.text}}</h3>
-                        </div>
+                    <v-flex lg6 pa-5 >
+                        <title-scroll :data="item"></title-scroll>
+                        <!--<div>-->
+                            <!--<h1 class="mb-4 display-2 font-weight-bold">{{item.title}}</h1>-->
+                            <!--<h3 class="mb-4 display-1">{{item.text}}</h3>-->
+                        <!--</div>-->
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -76,8 +75,9 @@
 <script>
     // import content from '../lang/en/Views/Home'
     import SlideBg from '../components/custom/SlideBg'
+    import TitleScroll from '../components/custom/TitleScroll'
     export default {
-        components: {SlideBg},
+        components: {TitleScroll, SlideBg},
         props: {
             loadTickerCount: {
                 default: 0,
@@ -96,15 +96,6 @@
             }
         },
         methods: {
-            scrollT (e) {
-                let sT = e.target.getBoundingClientRect().y
-
-                if (sT < window.innerHeight / 2 && !e.target.scrollTriggered) {
-                    e.target.scrollTriggered = true
-                    TweenMax.from(e.target, 0.4, {y: 20, autoAlpha: 0})
-                }
-              console.log('s')
-            },
             next() {
                 this.onboarding = this.onboarding + 1 === length
                     ? 0

@@ -207,6 +207,29 @@
      // opacity 0
     }
   }
+  @keyframes jello-diagonal-2 {
+    10% {
+    transform: skew(0deg 0deg);
+    }
+    30% {
+    transform: skew(-25deg -25deg);
+    }
+    40% {
+    transform: skew(15deg, 15deg);
+    }
+    50% {
+    transform: skew(-15deg, -15deg);
+    }
+    65% {
+    transform: skew(5deg, 5deg);
+    }
+    75% {
+    transform: skew(-5deg, -5deg);
+    }
+    100% {
+    transform: skew(0deg 0deg);
+    }
+  }
 
   .my-transition
       &-leave-active

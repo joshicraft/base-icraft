@@ -47,9 +47,69 @@
         top: -100%
       }
 
-      .rotate {
-        -webkit-animation: rotate-in-center 1.4s cubic-bezier(.25,.46,.45,.94) infinite both;
-        animation: rotate-in-center 1.4s cubic-bezier(.25,.46,.45,.94) infinite both
+      .loading-anim {
+        -webkit-animation: jello-diagonal-2 0.8s infinite both;
+        animation: jello-diagonal-2 0.8s infinite both;
+      }
+      @-webkit-keyframes jello-diagonal-2 {
+        0% {
+          -webkit-transform: skew(0deg 0deg);
+          transform: skew(0deg 0deg);
+        }
+        30% {
+          -webkit-transform: skew(-25deg -25deg);
+          transform: skew(-25deg -25deg);
+        }
+        40% {
+          -webkit-transform: skew(15deg, 15deg);
+          transform: skew(15deg, 15deg);
+        }
+        50% {
+          -webkit-transform: skew(-15deg, -15deg);
+          transform: skew(-15deg, -15deg);
+        }
+        65% {
+          -webkit-transform: skew(5deg, 5deg);
+          transform: skew(5deg, 5deg);
+        }
+        75% {
+          -webkit-transform: skew(-5deg, -5deg);
+          transform: skew(-5deg, -5deg);
+        }
+        100% {
+          -webkit-transform: skew(0deg 0deg);
+          transform: skew(0deg 0deg);
+        }
+      }
+      @keyframes jello-diagonal-2 {
+        0% {
+          -webkit-transform: skew(0deg 0deg);
+          transform: skew(0deg 0deg);
+        }
+        30% {
+          -webkit-transform: skew(-25deg -25deg);
+          transform: skew(-25deg -25deg);
+        }
+        40% {
+          -webkit-transform: skew(15deg, 15deg);
+          transform: skew(15deg, 15deg);
+        }
+        50% {
+          -webkit-transform: skew(-15deg, -15deg);
+          transform: skew(-15deg, -15deg);
+        }
+        65% {
+          -webkit-transform: skew(5deg, 5deg);
+          transform: skew(5deg, 5deg);
+        }
+        75% {
+          -webkit-transform: skew(-5deg, -5deg);
+          transform: skew(-5deg, -5deg);
+        }
+        100% {
+          -webkit-transform: skew(0deg 0deg);
+          transform: skew(0deg 0deg);
+        }
       }
     </style>
     <script>
@@ -61,7 +121,7 @@
       <strong>We're sorry but ICRAFT doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="home-loader">
-      <div class="rotate">
+      <div class="loading-anim">
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 218.1 217.5">
           <g>
             <polygon class="s3" points="54.7,0.7 54.7,54.9 108.9,54.9 108.9,109.1 54.7,109.1 54.7,163.3 217.3,163.3 217.3,109.1     163.1,109.1 163.1,54.9 217.3,54.9 217.3,0.7   "></polygon>
