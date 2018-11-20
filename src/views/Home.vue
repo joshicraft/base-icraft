@@ -4,7 +4,8 @@
                   v-for="(item, i) in items"
                   :key="i"
                   >
-            <home-section :item="item" :i="i"></home-section>
+            <home-section v-if="loadPoint(i)"
+                          :item="item" :i="i"></home-section>
         </v-layout>
         <alpha-hero
                 alt="testimonial picture"
