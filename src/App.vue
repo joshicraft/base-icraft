@@ -1,15 +1,15 @@
 <template>
   <v-app>
 
-    <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 4 : 2)"/>
+    <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 1)"/>
 
-    <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 4)"/>
+    <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
 
     <core-jumbotron/>
 
-    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(4)"/>
+    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(2)"/>
 
-    <core-footer v-if="getLoadCount(4)"/>
+    <core-footer v-if="getLoadCount(2)"/>
 
   </v-app>
 </template>
@@ -37,7 +37,7 @@
             clearTimeout(this.delayAnimated)
             console.log(new Date().getTime() - window.startLoadTime)
             this.delayAnimated = setTimeout(() => {
-                document.getElementById('site-loader').classList.add('hide-')
+                document.getElementById('home-loader').classList.add('hide-')
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
             }, 100)
