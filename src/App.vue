@@ -41,7 +41,7 @@
                 document.getElementById('home-loader').classList.add('hide-')
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
-            }, timeLoad * 1.2)
+            }, timeLoad < 1000 ? 1000 : timeLoad)
             setTimeout(this.mountFBChat, 4000)
         },
         watch: {
@@ -193,8 +193,6 @@
       width 100%
       height 100%
 
-  .st0{fill:url(#SVGID_1_);}
-  .st1{fill:url(#SVGID_2_);}
 
   @keyframes rotate-in-center {
     0% {

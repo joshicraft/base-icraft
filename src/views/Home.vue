@@ -7,10 +7,10 @@
                 :key="i"
                 v-if="loadPoint(i)"
                 :src="imgC(item.img)"
-                height="75vh"
+                height="95vh"
 
         >
-
+            <slide-bg :left="i%2===0"></slide-bg>
             <v-container>
 
                 <v-layout align-center ml-5 mt-3>
@@ -75,7 +75,9 @@
 
 <script>
     // import content from '../lang/en/Views/Home'
+    import SlideBg from '../components/custom/SlideBg'
     export default {
+        components: {SlideBg},
         props: {
             loadTickerCount: {
                 default: 0,
