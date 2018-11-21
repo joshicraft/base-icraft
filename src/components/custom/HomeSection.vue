@@ -6,6 +6,7 @@
             v-scroll="scrollH"
     >
             <slide-bg :left="i%2!==0"></slide-bg>
+
             <v-img
                     lg6
                     :lazy-src="imgC(item.img, false, false, true)"
@@ -22,6 +23,13 @@
                     <v-btn @click="linkTo(item.to)"class="ml-0">{{item.button}}</v-btn>
                 </div>
             </v-flex>
+        <div class="directions">
+            <div class="directions-down">
+                <v-btn fab alt="down arrow" @click="goToNext()">
+                <v-icon large>mdi-arrow-down</v-icon>
+                </v-btn>
+            </div>
+        </div>
 
     </v-layout>
 </template>
@@ -40,6 +48,9 @@
         methods:{
             linkTo (to) {
               this.$router.push({name: to})
+            },
+            goToNext () {
+              this.$vuetify.goTo(window.pageYOffset + window.innerHeight)
             },
             scrollH(){
                 let $e = this.$el,
@@ -64,7 +75,7 @@
                         .to($iris.querySelector('.iris-4'), 0.3, {rotation: 360, transformOrigin: '50% 50%'}, '-=' + .15)
                         .fromTo($title, 1.2, {y: 60, autoAlpha: 0}, {y: 0, autoAlpha: 1}, '-=0.7')
                         .to($iris, 0.3, {scale: 0, ease: Bounce.easeOut}, '-=0.5')
-                        .to($left ? $left : $right, 0.5, {x: $left ? '-100%' : '100%'}, '-=0.2')
+                        .to($left ? $left : $right, 0.5, {x: $left ? '-50%' : '50%'}, '-=0.2')
                 } else if ($e.scrollAnimated && pos > window.innerHeight - 2) {
                     $e.scrollAnimated = false
                     $left = $e.querySelector('.wipe-left')
@@ -84,6 +95,12 @@
 </script>
 
 <style scoped lang="stylus">
+    .directions
+        position: absolute
+        left: 50%
+        bottom calc(50%-35px)
+        transform: translateX(-50%)
+
     .title-a
         opacity 0
         max-width 64%

@@ -2,13 +2,13 @@
     <div class="wrap" >
         <svg v-if="left" preserveAspectRatio="none" class="wipe wipe-left"
              viewBox="0 0 500 500">
-            <polygon  class="ss0" points="0,0 500,0 240,250 500,500 0,500 "/>
+            <polygon  class="ss0" points="0,0 500,0 250,250 500,500 0,500 "/>
 
         </svg>
         <svg v-else preserveAspectRatio="none" class="wipe wipe-right"
              viewBox="0 0 500 500">
 
-            <polygon class="ss1" points="500,0 0,0 260,250 0,500 500,500 "/>
+            <polygon class="ss1" points="500,0 0,0 250,250 0,500 500,500 "/>
         </svg>
         <svg version="1.1" class="iris"
              viewBox="0 0 500 500">
@@ -398,7 +398,7 @@
         width 100%
         height 100%
         pointer-events none
-        
+
     .iris
         position absolute
         width 200px

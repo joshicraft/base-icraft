@@ -6,8 +6,8 @@
             <!--</v-flex>-->
             <v-flex xs12 lg7 mx2 dark>
                 <v-card dark class="pa-4 form-wrap">
-                    <h2 class="headline mb-2" v-text="content.heading1"/>
-                    <p class="mb-4" v-text="content.headingText1"/>
+                    <h2 class="headline mb-2" v-text="contact.heading1"/>
+                    <p class="mb-4" v-text="contact.headingText1"/>
                     <div v-if="submitting" class="progress-wrap">
                         <v-progress-circular
                                 :size="100"
@@ -98,7 +98,7 @@
             </v-flex>
             <v-flex xs12 md4>
                 <v-card dark class="pa-3">
-                    <div>
+                    <div class="contact-logo">
                         <custom-logo-side white></custom-logo-side>
                     </div>
                     <v-card-title class="headline">
@@ -203,7 +203,6 @@
         },
         data() {
             return {
-                content: this.$t('Views.Branding'),
                 submitStatus: {
                     t1: '',
                     t2: ''
@@ -233,7 +232,7 @@
         },
         computed: {
             contact() {
-                return this.content
+                return this.$t('Views.Contact')
             }
         },
         methods: {
@@ -326,8 +325,10 @@
 
     .slide-in
         left 0
-
-    .img-wrap
+    .contact-logo
+        height 100px
+        svg
+            height 100%
     .content-wrap
         position: relative;
 
