@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-parallax
-            :height="height"
+            height="100vh"
             :src="src"
             :class="classes"
             :alt="src"

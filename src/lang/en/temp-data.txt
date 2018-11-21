@@ -1,0 +1,22 @@
+
+Drawer.json
+    {
+    "to": "/digitally-market-your-business",
+    "text": "Digital Marketing"
+    },
+
+View.json
+    {
+    "to": "/digitally-market-your-business",
+    "text": "Digital Marketing",
+    "jumbotronTitle": "GET YOUR BUSINESS NOTICED",
+    "jumbotronSubTitle": "WE CAN HELP YOUR AUDIENCE FIND YOU"
+    },
+
+Home.json
+    {
+    "name": "digital marketing",
+    "title": "CAPTIVATING DIGITAL MARKETING",
+    "text": "ICRAFT can help your customers find you and keep engaged with your business.",
+    "img": "web-5"
+    }

@@ -11,7 +11,7 @@
                     :lazy-src="imgC(item.img, false, false, true)"
                     :alt="item.img"
                     :src="imgC(item.img)"
-                    height="95vh"
+                    height="100vh"
             >
             </v-img>
 
@@ -19,7 +19,7 @@
                 <div class="title-a">
                 <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
                 <h3 class="mb-4">{{item.text}}</h3>
-                    <v-btn>Go To</v-btn>
+                    <v-btn @click="linkTo(item.to)"class="ml-0">{{item.button}}</v-btn>
                 </div>
             </v-flex>
 
@@ -35,18 +35,11 @@
             item: {
                 type: Object,
                 default: {}
-            },
-            loadTickerCount: {
-                default: 0,
-                type: Number
             }
         },
         methods:{
-            loadLimit(i) {
-                return this.loadTickerCount <= i
-            },
-            loadPoint(i) {
-                return this.loadTickerCount >= i
+            linkTo (to) {
+              this.$router.push({name: to})
             },
             scrollH(){
                 let $e = this.$el,

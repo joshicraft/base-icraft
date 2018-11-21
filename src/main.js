@@ -40,6 +40,22 @@ Vue.mixin({
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
+            loadTickerCount: 0,
+
+            loadTick() {
+                console.log(this.loadTickerCount)
+                this.loadTickerCount+=1
+            },
+            clearLoadTicker() {
+                this.loadTickerCount = 0
+                clearInterval(this.loadTicker)
+            },
+            startLoadTicker(tickInterval, limit) {
+                limit = limit || 100
+                tickInterval = tickInterval || 1
+                this.clearLoadTicker()
+                this.loadTicker = setInterval(this.loadTick.bind(this), tickInterval * 1000)
+            },
 
             imgC(name, img, ext, thumb) {
                 let path = '/static/'

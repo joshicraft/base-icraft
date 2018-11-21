@@ -11,7 +11,6 @@
                 alt="testimonial picture"
                 v-if="loadPoint(items.length)"
                 :src="imgC('testimonial')"
-                :height="$vuetify.breakpoint.mdAndUp ? 500 : 'auto'"
                 :jumbotron="false"
                 dark>
             <v-container

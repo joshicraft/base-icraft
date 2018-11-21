@@ -18,22 +18,44 @@
                 <!--:img="''"-->
                 <!--:alt="''">-->
         <!--</custom-video-background>-->
-    <v-container
-            grid-list-lg
-            pa-0
-            pb-4
-            d-flex
-            justify-center
-            align-center
-            class="max-view-width"
+        <v-img
+                :alt="service.image"
+                class="relative pack-img"
+                :src="service.image">
 
-    >
+            <!--&gt;-->
+
+            <v-layout
+                    class="z1 pa-5 title-1 d-flex"
+                    column
+                    fill-height
+                    align-center
+                    justify-center
+                    wrap
+                    d-flex
+            >
+                <v-flex lg6 sm12  d-flex fill-height>
+                    <v-layout column justify-center fill-height>
+                        <v-card-title class="white--text">
+                            <h1>{{ service.name }}</h1>
+                        </v-card-title>
+                        <v-card-title class="white--text">
+                            <h3 class="">{{ service.subTitle }}</h3>
+                        </v-card-title>
+                        <v-card-title class="white--text">
+                            <p class="">{{ service.disclaimer }}</p>
+                        </v-card-title>
+                    </v-layout>
+                </v-flex>
+            </v-layout>
+            <div class="bg-gradient"></div>
+
+        </v-img>
         <v-layout
                 row
                 wrap
                 justify-center
                 align-start
-                :class="[{'offset-4-grid': $vuetify.breakpoint.lgAndUp}, $vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-1']"
         >
             <v-flex
                     mb-3
@@ -45,41 +67,19 @@
                     d-flex>
                 <v-flex light class="pa-3"
 
-                >
-                    <v-img
-                            :alt="service.image"
-                            class="relative pack-img"
-                            :src="service.image">
+                ><h1 class="my-5">PACKAGES</h1>
 
-                    <!--&gt;-->
+                    <v-container
+                            grid-list-lg
+                            pa-0
+                            pb-4
+                            d-flex
+                            justify-center
+                            align-center
+                            class="max-view-width"
 
-                        <v-layout
-                                class="z1 pa-5 title-1 d-flex"
-                                column
-                                fill-height
+                    >
 
-                                wrap
-                        >
-                            <v-flex lg6 sm12  fill-height>
-                                <v-layout column justify-center fill-height>
-                            <v-card-title class="white--text">
-                                <h1>{{ service.name }}</h1>
-                            </v-card-title>
-                            <v-card-title class="white--text">
-                                <h3 class="">{{ service.subTitle }}</h3>
-                            </v-card-title>
-                            <v-card-title class="white--text">
-                                <p class="">{{ service.disclaimer }}</p>
-                            </v-card-title>
-                                </v-layout>
-                            </v-flex>
-                        </v-layout>
-                        <div class="bg-gradient"></div>
-                        <custom-background-vector position="top-left">
-                        </custom-background-vector>
-
-                    </v-img>
-                    <h1 class="my-5">PACKAGES</h1>
                     <v-layout row wrap mt-4>
 
                         <v-flex
@@ -145,11 +145,12 @@
                             </v-card>
                         </v-flex>
                     </v-layout>
+                    </v-container>
+
                 </v-flex>
             </v-flex>
         </v-layout>
 
-    </v-container>
 
     </v-flex>
 

@@ -8,20 +8,35 @@
       "name": "intro",
       "title": "LOOKING TO UPGRADE YOUR DIGITAL PRESENCE?",
       "text": "Here at ICRAFT we provide a range of solutions to help you get online and get noticed.",
-      "img": "web-3"
+      "img": "web-3",
+      "button": "GET IN TOUCH",
+      "to": "Contact"
     },
     {
       "name": "websites",
       "title": "STUNNING, FAST AND SECURE WEBSITES",
       "text": "ICRAFTS Top Quality websties are hand crafted to support your brand. They use the latest tech and design trends to keep your visitors engaged.",
-      "img": "web-1"
+      "img": "web-1",
+      "button": "MORE HERE",
+      "to": "Websites"
     },
     {
-      "name": "digital marketing",
-      "title": "CAPTIVATING DIGITAL MARKETING",
-      "text": "ICRAFT can help your customers find you and keep engaged with your business.",
-      "img": "web-5"
+      "name": "branding",
+      "title": "PERSONALISED BRANDED CONTENT",
+      "text": "From Logo's to Flyer's to Business Cards and everything in between. We create unique and impacting content that helps your business stand out for the right reasons.",
+      "img": "b-card",
+      "button": "LEARN MORE",
+      "to": "Branding"
+    },
+    {
+      "name": "it solutions",
+      "title": "IMPROVE YOUR WORKFLOW TOOLS",
+      "text": "This modern age is full of helpful tools to help you focus on what you do best. ICRAFT can help find the right tools for you.",
+      "img": "web-1",
+      "button": "MORE HERE",
+      "to": "ItSolutions"
     }
+
   ],
   "testimonialsTitle": "Testimonials",
   "testimonials": [
