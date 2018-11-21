@@ -85,15 +85,20 @@
                 }
             },
             loadTick() {
+                console.log(this.loadTickerCount)
                 this.loadTickerCount++
+                if(this.loadTickerCount > this.tickerLimit){
+                    clearInterval(this.loadTicker)
+                }
             },
             clearLoadTicker() {
                 this.loadTickerCount = 0
                 clearInterval(this.loadTicker)
             },
             startLoadTicker(tickInterval, limit) {
-                limit = limit || 100
+                limit = limit || 15
                 tickInterval = tickInterval || 1
+                this.tickerLimit = limit
                 this.clearLoadTicker()
                 this.loadTicker = setInterval(this.loadTick, tickInterval * 1000)
             },

@@ -25,9 +25,12 @@
             </v-flex>
         <div class="directions">
             <div class="directions-down">
-                <v-btn fab alt="down arrow" @click="goToNext()">
-                <v-icon large>mdi-arrow-down</v-icon>
-                </v-btn>
+                <v-tooltip bottom>
+                    <v-btn slot="activator" fab alt="down arrow" @click="goToNext()">
+                        <v-icon large>mdi-arrow-down</v-icon>
+                    </v-btn>
+                    <span>Next</span>
+                </v-tooltip>
             </div>
         </div>
 
@@ -98,7 +101,8 @@
     .directions
         position: absolute
         left: 50%
-        bottom calc(50%-35px)
+        margin-top: -2px
+        margin-left: -1px
         transform: translateX(-50%)
 
     .title-a
