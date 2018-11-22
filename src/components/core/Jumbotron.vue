@@ -2,8 +2,8 @@
         <custom-video-background
                 id="jumbotron"
                 class="vh"
-                :sources="[heroVideo + '.mp4', heroVideo + '.ogv']"
-                :img="imgC('v-bga')"
+                :sources="[heroVideo + '.mp4']"
+                :img="imgC('v-bga', false, false, false, 'video/')"
                 alt="Background video image"
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
@@ -48,9 +48,6 @@
                                     :key="$route.path"
                                     class="title"
                             >
-                                <div class="jumbo-logo">
-                                    <custom-logo></custom-logo>
-                                </div>
                                 <h1 class="display-3">{{title}}</h1>
                                 <h2 class="display-1">{{subTitle}}</h2>
                             </v-layout>
@@ -125,8 +122,9 @@
                 } else if (bp.lgAndDown) {
                     size = '1280'
                 } else {
-                    size = '1440'
+                    size = '1920'
                 }
+                // return '/static/video/1_2'
                 return (path + name + size)
             }
         },

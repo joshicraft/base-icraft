@@ -80,17 +80,17 @@
                         .to($iris, 0.3, {scale: 0, ease: Bounce.easeOut}, '-=0.5')
                         .to($left ? $left : $right, 0.5, {x: $left ? '-50%' : '50%'}, '-=0.2')
                 } else if ($e.scrollAnimated && pos > window.innerHeight - 2) {
-                    $e.scrollAnimated = false
-                    $left = $e.querySelector('.wipe-left')
-                    $right = $e.querySelector('.wipe-right')
-                    $iris = $e.querySelector('.iris')
-                    $title =$e.querySelector('.title-a')
-                    $irisRings = [$iris.querySelector('.iris-1'), $iris.querySelector('.iris-2'), $iris.querySelector('.iris-3'), $iris.querySelector('.iris-4')]
-                    new TimelineMax()
-                        .set($iris,  {scale: 1})
-                        .set($irisRings, {rotation: 0})
-                        .set($left ? $left : $right, {x: '0%'})
-                        .set($e.querySelector('.title-a'), {y: 60, autoAlpha: 0})
+                    // $e.scrollAnimated = false
+                    // $left = $e.querySelector('.wipe-left')
+                    // $right = $e.querySelector('.wipe-right')
+                    // $iris = $e.querySelector('.iris')
+                    // $title =$e.querySelector('.title-a')
+                    // $irisRings = [$iris.querySelector('.iris-1'), $iris.querySelector('.iris-2'), $iris.querySelector('.iris-3'), $iris.querySelector('.iris-4')]
+                    // new TimelineMax()
+                    //     .set($iris,  {scale: 1})
+                    //     .set($irisRings, {rotation: 0})
+                    //     .set($left ? $left : $right, {x: '0%'})
+                    //     .set($e.querySelector('.title-a'), {y: 60, autoAlpha: 0})
                 }
             }
         }

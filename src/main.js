@@ -40,8 +40,12 @@ Vue.mixin({
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
-            imgC(name, img, ext, thumb) {
-                let path = '/static/'
+            setVideo (video) {
+              this.$set('video', video)
+            },
+            imgC(name, img, ext, thumb, addPath) {
+                console.log(name)
+                let path =  '/static/' + (addPath || '')
                 let size = ''
                 let bp = this.$vuetify.breakpoint
                 let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
@@ -123,7 +127,7 @@ Vue.mixin({
 })
 
 /* eslint-disable no-new */
-new Vue({
+let main = new Vue({
     i18n,
     router,
     store,

@@ -85,7 +85,6 @@
                 }
             },
             loadTick() {
-                console.log(this.loadTickerCount)
                 this.loadTickerCount++
                 if(this.loadTickerCount > this.tickerLimit){
                     clearInterval(this.loadTicker)

@@ -1,12 +1,5 @@
 <template>
     <div>
-        <div class="loader" v-if="loadLimit(2)">
-            <v-progress-circular
-                    :size="50"
-                    color="primary"
-                    indeterminate
-            ></v-progress-circular>
-        </div>
     <v-flex
         v-for="(service, i) in content.items"
         :key="i"
@@ -144,6 +137,12 @@
                                 </v-list>
                             </v-card>
                         </v-flex>
+                        <v-progress-circular
+                                :v-else-if="i === 1 && !loadPoint(3)"
+                                :size="50"
+                                color="primary"
+                                indeterminate
+                        ></v-progress-circular>
                     </v-layout>
                     </v-container>
 
