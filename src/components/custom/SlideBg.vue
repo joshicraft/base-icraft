@@ -2,15 +2,18 @@
     <div class="wrap" >
         <svg v-if="left" preserveAspectRatio="none" class="wipe wipe-left"
              viewBox="0 0 500 500">
-            <polygon  class="ss0" points="0,0 500,0 250,250 500,500 0,500 "/>
+            <!--<polygon  class="ss0" points="0,0 500,0 250,250 500,500 0,500 "/>-->
+
+            <polygon class="ss1" points="0,0 250,0 500,250 250,500 0,500 "/>
 
         </svg>
         <svg v-else preserveAspectRatio="none" class="wipe wipe-right"
              viewBox="0 0 500 500">
+            <polygon  class="ss0" points="0,250 250,0 500,0 500,500 250,500 "/>
+            <!--<polygon class="ss1" points="500,0 0,0 250,250 0,500 500,500 "/>-->
 
-            <polygon class="ss1" points="500,0 0,0 250,250 0,500 500,500 "/>
         </svg>
-        <svg version="1.1" class="iris"
+        <svg version="1.1" class="iris"  :style="{left: left ? '50%' : '-50%'}"
              viewBox="0 0 500 500">
             <g  class="iris-1">
                     <path class="st0" d="M35.3,137.7C73.7,61.5,147.3,14.7,226.5,7l0.3,20.2C154.9,34.7,88.3,77.5,53.3,146.8

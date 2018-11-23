@@ -7,6 +7,34 @@
   "items": [
     {
       "name": "Websites",
+      "features": [
+        {
+          "title": "RESEARCH",
+          "subTitle": "We do our research before digging in.",
+          "subSubTitle": "To get a good insight into your industry and customers, we spend some time looking gathering up all the good stuff.",
+          "img": ""
+        },{
+          "title": "DESIGN",
+          "subTitle": "We strive to utilize the latest design trends. This helps keep visitors engaged and informed when using your super sweet website.",
+          "subSubTitle": "Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
+          "img": ""
+        },{
+          "title": "DEVELOPMENT",
+          "subTitle": "We aim to tinker on the edge of the new tools and services to keep our websites FAST, SECURE and POWERFUL",
+          "subSubTitle": "The World Wide Web has come a long way since its inception by Sir Tim Berners-Lee in 1989. The web moves fast and if you don't adapt, you die. That is why we use the latest tech such as Vue.js, Node.js, Lambda Functions, Optimized Media and variety of other cool Tech.",
+          "img": ""
+        },{
+          "title": "CMS",
+          "subTitle": "We strive to utilize the latest design trends. This helps keep visitors engaged and informed when using your super sweet website.",
+          "subSubTitle": "Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
+          "img": ""
+        },{
+          "title": "SUPPORT",
+          "subTitle": "We strive to utilize the latest design trends. This helps keep visitors engaged and informed when using your super sweet website.",
+          "subSubTitle": "Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
+          "img": ""
+        }
+      ],
       "title": "Take a look at our packages",
       "subTitle": "Built with the latest technology and current design trends, our packages suite a variety of needs.",
       "disclaimer": "These packages give you an outline of what we can do, each package will be customized to your individual needs. The price's are mere indicators to help you find the best deal.",
