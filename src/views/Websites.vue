@@ -101,8 +101,11 @@
                         :key="k"
                         color="blue lighten-2"
                         large
-                        icon="mdi-web"
+                        :icon="f.icon"
                 >
+                    <div slot="opposite">
+                        <h1>{{f.title}}</h1>
+                    </div>
                     <custom-timeline-piece :data="f"></custom-timeline-piece>
                 </v-timeline-item>
             </v-timeline>
@@ -240,12 +243,6 @@
             },
             loadPoint(i) {
                 return this.loadTickerCount >= i
-            },
-            scrollS () {
-                console.log('a')
-            },
-            scrollTimelineItem () {
-                console.log('s')
             },
             topScroll () {
                 let $e = this.$el
