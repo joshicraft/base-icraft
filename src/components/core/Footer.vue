@@ -10,6 +10,7 @@
       &mdash;
       {{ content.rights }}
     </span>
+
   </alpha-footer>
 </template>
 
@@ -30,3 +31,5 @@
     }
   }
 </script>
+
+

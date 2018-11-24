@@ -12,29 +12,29 @@
           "title": "RESEARCH",
           "subTitle": "We do our research before digging in.",
           "subSubTitle": "To get a good insight into your industry and customers, we spend some time looking gathering up all the good stuff.",
-          "img": "",
+          "img": "research",
           "icon": "mdi-book-open-page-variant"
         },{
           "title": "DESIGN",
-          "subTitle": "We strive to utilize the latest design trends. This helps keep visitors engaged and informed when using your super sweet website.",
-          "subSubTitle": "Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
-          "img": "",
+          "subTitle": "Utilizing The Latest Design Trends.",
+          "subSubTitle": "Helping visitors stay engaged and informed when using your super sweet website, Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
+          "img": "design",
           "icon": "mdi-brush"
         },{
           "title": "DEVELOPMENT",
-          "subTitle": "We aim to tinker on the edge of the new tools and services to keep our websites FAST, SECURE and POWERFUL",
+          "subTitle": "Implementing Fast, Secure and Powerful Tech.",
           "subSubTitle": "The World Wide Web has come a long way since its inception by Sir Tim Berners-Lee in 1989. The web moves fast and if you don't adapt, you die. That is why we use the latest tech such as Vue.js, Node.js, Lambda Functions, Optimized Media and variety of other cool Tech.",
-          "img": "",
+          "img": "development",
           "icon": "mdi-code-braces"
         },{
           "title": "SEO",
-          "subTitle": "Helping to get your site noticed through search.",
+          "subTitle": "Getting Your Site Noticed.",
           "subSubTitle": "By populating your site with specific words and information we can make it easier for search engines to find you.",
-          "img": "",
+          "img": "search",
           "icon": "mdi-search-web"
         },{
           "title": "SUPPORT",
-          "subTitle": "We strive to utilize the latest design trends. This helps keep visitors engaged and informed when using your super sweet website.",
+          "subTitle": "Providing Support When Needed.",
           "subSubTitle": "Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
           "img": "",
           "icon": "mdi-account-multiple-check"

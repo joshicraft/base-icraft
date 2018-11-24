@@ -1,4 +1,10 @@
 <template>
+    <div class="relative">
+        <div class="jumbo-bot-arrow">
+            <svg viewBox="0,0,500,100" preserveAspectRatio="none">
+                <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
+            </svg>
+        </div>
         <custom-video-background
                 id="jumbotron"
                 class="vh"
@@ -6,6 +12,7 @@
                 :img="imgC('v-bga', false, false, false, 'video/')"
                 alt="Background video image"
         >
+
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
             <div class="contact-ico bot-p left-p">
                 <v-btn
@@ -65,7 +72,7 @@
                 </svg>
             </div>
         </custom-video-background>
-
+    </div>
 </template>
 
 <script>
@@ -181,9 +188,18 @@
 
 
 
+
+
     .st10{fill:none;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}
 
 
+    .jumbo-bot-arrow
+        z-index 3
+        bottom 1px
+        svg
+            transform translateY(50%)
+        polygon
+            fill #5a5a5a
 
     .z1
         z-index: 1
@@ -198,7 +214,7 @@
         right: 0
         margin: auto
         width: 30px
-        z-index 1
+        z-index 4
         background transparent
         box-shadow: 0px 2px 1px -1px rgba(0,0,0,0), 0px 1px 1px 0px rgba(0,0,0,0), 0px 1px 3px 0px rgba(0,0,0,0);
         transition background 0.3s ease-in, box-shadow 0.4s ease-out

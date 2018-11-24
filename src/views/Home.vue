@@ -6,7 +6,16 @@
                   >
             <home-section v-if="loadPoint(i)"
                           :item="item" :i="i"></home-section>
+
         </v-layout>
+        <div class="relative">
+        <div class="jumbo-bot-arrow">
+            <svg viewBox="0,0,500,100" preserveAspectRatio="none">
+                <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
+            </svg>
+
+        </div>
+        </div>
         <alpha-hero
                 alt="testimonial picture"
                 v-if="loadPoint(items.length)"

@@ -156,6 +156,41 @@
   .v-content
     padding-top: 0 !important
 
+  .c-title
+    h1
+      font-size: 2.75em
+    h2
+      font-size 2.45em
+      font-weight 100
+    h3
+      font-size 2.15em
+      font-weight 100
+    h4
+      font-size 1.76em
+    p
+      font-size 1.23em
+
+  .jumbo-bot-arrow
+    width 100%
+    height: 300px;
+    pointer-events none
+    position absolute
+    margin-top -150px
+    z-index 3
+    svg
+      filter drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.25))
+      position absolute
+      height 100%
+      display: block
+      width: 100%;
+    polygon
+      fill #5a5a5a
+
+  .-arrow-buffer-top
+    padding-top 150px
+  .-arrow-buffer-bot
+    padding-bottom 200px
+
   #webchat
     z-index: 20;
     position fixed
@@ -166,6 +201,7 @@
     ul
       overflow hidden
       overflow-y scroll
+
 
   .pointer
     cursor pointer

@@ -5,6 +5,7 @@
         row
         wrap
         justify-space-between
+        pt-5
         class="grey darken-4 fill-height"
       >
         <v-flex
@@ -29,7 +30,7 @@
 
         <v-flex
                 xs12
-                sm4
+                sm2
                 class="pa-5 grey darken-4"
         >
           <h5 class="title pb-3">
@@ -107,6 +108,12 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <div class="jumbo-bot-arrow">
+      <svg viewBox="0,0,500,100" preserveAspectRatio="none">
+        <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
+      </svg>
+
+    </div>
   </v-footer>
 </template>
 
@@ -167,6 +174,12 @@
   }
 </script>
 
+<style lang="stylus" scoped>
+  .jumbo-bot-arrow
+    top 1px
+    bottom initial
+</style>
+
 <style lang="stylus">
 
   .v-footer
@@ -174,6 +187,8 @@
 
   .p-format
       margin-bottom: 0
+
+
 
   .alpha-footer
     background: #cacaca
