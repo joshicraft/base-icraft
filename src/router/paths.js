@@ -21,7 +21,11 @@ export default [
     },
     {
         path: '/get-a-website',
-        view: 'Websites'
+        view: 'Websites',
+        children: [{
+            path: 'find-the-right-website',
+            view: 'WebsiteQuestions'
+        }]
     },
     {
         path: '/brand-your-business',

@@ -88,7 +88,7 @@
 
 <style lang="stylus">
     .v-toolbar.v-toolbar--fixed
-        z-index 3
+        z-index 4
         opacity 0
         transition opacity 0.5s ease-in
         opacity 1

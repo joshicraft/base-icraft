@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-view></router-view>
         <v-flex
                 v-scroll="topScroll"
                 v-for="(service, i) in content.items"
@@ -19,6 +20,9 @@
                     <h3 class="mb-4 text-lg-center">{{ service.subTitle }}</h3>
                     <p class="text-lg-center">{{ service.disclaimer }}</p>
                 </v-layout>
+            </v-container>
+            <v-container pa-0>
+                <questions :items="content.discover.questions"></questions>
             </v-container>
             <v-layout
                     class="relative -arrow-buffer-bot"
@@ -175,9 +179,10 @@
 <script>
     // import content from '../lang/en/Views/Websites'
     import TimelineProgress from '../components/custom/TimelineProgress'
+    import Questions from '../components/custom/Questions'
 
     export default {
-        components: {TimelineProgress},
+        components: {Questions, TimelineProgress},
         data() {
             return {
                 content: this.$t('Views.Websites')

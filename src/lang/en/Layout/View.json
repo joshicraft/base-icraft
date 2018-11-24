@@ -3,42 +3,29 @@
     {
       "to": "/",
       "text": "Home",
-      "icon": "mdi-home",
-      "jumbotronTitle": "ICRAFT",
-      "jumbotronSubTitle": "DIGITAL, WEBSITES, BRANDING"
+      "icon": "mdi-home"
     },
-
     {
       "to": "/get-a-website",
-      "text": "Websites",
-      "jumbotronTitle": "HAND CRAFTED WEB PRESENCE",
-      "jumbotronSubTitle": "WITH OUR FAST, SECURE AND CUSTOMIZED WEBSITES"
+      "text": "Websites"
     },
     {
       "to": "/brand-your-business",
-      "text": "Branding",
-      "jumbotronTitle": "CRAFT YOUR BRAND IMAGE",
-      "jumbotronSubTitle": "WITH OUR DESIGN SERVICES"
+      "text": "Branding"
     },
     {
       "to": "/get-IT-training",
-      "text": "IT Solutions",
-      "jumbotronTitle": "WHAT WE DO",
-      "jumbotronSubTitle": "HERE'S A FEW OF THE THINGS WE DO"
+      "text": "IT Solutions"
     },
     {
       "to": "/icrafts-portfolio",
       "text": "Portfolio",
-      "icon": "mdi-settings",
-      "jumbotronTitle": "PROJECTS",
-      "jumbotronSubTitle": "WHAT WE'VE PROUDLY DONE"
+      "icon": "mdi-settings"
     },
     {
       "to": "/contact-icraft",
       "text": "Contact",
-      "icon": "mdi-phone",
-      "jumbotronTitle": "CONTACT",
-      "jumbotronSubTitle": "HOW YOU CAN GET IN TOUCH"
+      "icon": "mdi-phone"
     }
   ]
 }

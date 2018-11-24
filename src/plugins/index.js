@@ -1,4 +1,5 @@
 import './vuetify'
 import './request-animation-frame'
+import  {addScrollEvent} from './custom-scroll'
 // import './vue-scroll'
 // import './fb-customer-chat'

@@ -301,6 +301,11 @@
   .relative
     position: relative
 
+  .theme--light.v-stepper--vertical .v-stepper__content:not(:last-child)
+    border-left: 1px solid rgba(0,0,0,0.12);
+
+
+
   .row-reverse
     flex-direction row-reverse
 </style>

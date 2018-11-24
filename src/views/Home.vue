@@ -25,6 +25,7 @@
             <v-container
                     fill-height
                     grid-list-xl
+                    class="-arrow-buffer-top"
 
             >
                 <v-layout

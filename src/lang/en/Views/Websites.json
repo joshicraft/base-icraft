@@ -4,6 +4,184 @@
   "jumbotronTitle": "HAND CRAFTED WEB PRESENCE",
   "jumbotronSubTitle": "WITH OUR FAST, SECURE AND CUSTOMIZED WEBSITES",
   "heading1": "",
+  "discover": {
+    "title": "Website Discovery",
+    "questions": [
+
+          {
+            "name": "products",
+            "title": "Are you wanting to sell product's?",
+            "options": [
+              {
+                "title": "Yes, I want to list lots of products and have an online shopping cart.",
+                "points": [
+                  {
+                    "e-commerce": 4
+                  }
+                ]
+              },
+              {
+                "title": "Yes, but I would only like a few products listed but no shopping cart.",
+                "points": [
+                  {
+                    "e-commerce": 1,
+                    "medium": 2,
+                    "high": 1
+                  }
+                ]
+              },
+              {
+                "title": "No, I only want to list services and other relevant information about my business.",
+                "points": [
+                  {
+                    "e-commerce": -1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "management",
+            "title": "How often would you need to update your website with products, images, or other features?",
+            "options": [
+              {
+                "title": "Daily",
+                "points": [
+                  {
+                    "cms": 4,
+                    "high": 3
+                  }
+                ]
+              },
+              {
+                "title": "Weekly",
+                "points": [
+                  {
+                    "cms": 2,
+                    "medium": 2,
+                    "high": 1
+                  }
+                ]
+              },
+              {
+                "title": "Monthly",
+                "points": [
+                  {
+                    "medium": 2,
+                    "cms": 1
+                  }
+                ]
+              },
+              {
+                "title": "Every 6 - 12 Months",
+                "points": [
+                  {
+                    "low": 1,
+                    "medium": 1,
+                    "cms": -1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "budget",
+            "title": "What is your Budget?",
+            "options": [
+              {
+                "title": "less than $600",
+                "points": [
+                  {
+                    "low": 3
+                  }
+                ]
+              },
+              {
+                "title": "$600 - $,1500",
+                "points": [
+                  {
+                    "medium": 3
+                  }
+                ]
+              },
+              {
+                "title": "$1,500 - $3,500",
+                "points": [
+                  {
+                    "e-commerce": 1,
+                    "high": 1,
+                    "medium": 2
+                  }
+                ]
+              },
+              {
+                "title": "More than $3,500",
+                "points": [
+                  {
+                    "high": 3,
+                    "e-commerce": 2
+                  }
+                ]
+              },
+              {
+                "title": "I don't have one"
+              }
+            ]
+
+          },
+          {
+            "name": "most-important",
+            "title": "Which of these is the most important to you?",
+            "options": [
+              {
+                "title": "Providing lots of information about your business.",
+                "points": [
+                  {
+                    "medium": 2,
+                    "high": 2
+                  }
+                ]
+              },
+              {
+                "title": "Having a website that you have lots of control over.",
+                "points": [
+                  {
+                    "cms": 3
+                  }
+                ]
+              },
+              {
+                "title": "A simple website with little information and features.",
+                "points": [
+                  {
+                    "low": 4
+                  }
+                ]
+              },
+              {
+                "title": "Something the beats all your competition.",
+                "points": [
+                  {
+                    "high": 4
+                  }
+                ]
+              },
+              {
+                "title": "Something the unique and personalized to your business.",
+                "points": [
+                  {
+                    "high": 3,
+                    "medium": 2
+                  }
+                ]
+              },
+              {
+                "title": "None of the above."
+              }
+            ]
+          }
+        ]
+  },
   "items": [
     {
       "name": "Websites",

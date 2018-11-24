@@ -9,5 +9,6 @@ Vue.use(Vuetify, {
     theme,
     directives: {
         Scroll
-    }
+    },
+    iconfont: "mdi"
 })
