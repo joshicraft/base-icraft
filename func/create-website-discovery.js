@@ -6,7 +6,7 @@ const dbExecute = (db, fn) => db.then(fn).finally(() => db.close());
 const mongoString = "mongodb+srv://josh-icraft:" + process.env.MONGO_DB_ATLAS_PW + "@cluster0-vqqfc.mongodb.net/test?retryWrites=true"
 
 function dbConnectAndExecute(dbUrl, fn) {
-    return dbExecute(mongoose.connect(dbUrl, { useMongoClient: true }), fn);
+    return dbExecute(mongoose.connect(dbUrl), fn);
 }
 
 const createErrorResponse = (statusCode, message) => ({
@@ -15,11 +15,12 @@ const createErrorResponse = (statusCode, message) => ({
     body: message || 'Incorrect id',
 });
 
-exports.createWebsiteDiscoveryQuestion = function (event, content, cb) {
+exports.handler = function (event, content, cb) {
     const data = JSON.parse(event.body);
     const newDocument = new WebsiteDiscoveryQuestionsModel({
         createdOn: Date.now(),
-        result: data.result,
+        results: data.results,
+        endResult: data.endResult,
         selections: data.selections
     });
 
@@ -30,7 +31,7 @@ exports.createWebsiteDiscoveryQuestion = function (event, content, cb) {
                 statusCode: 200,
                 body: JSON.stringify({ id: newDocument.id }),
             }))
-            .catch(err => callback(null, createErrorResponse(err.statusCode, err.message)))
+            .catch(err => cb(null, createErrorResponse(err.statusCode, err.message)))
     })
 
 }

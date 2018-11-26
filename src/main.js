@@ -40,8 +40,20 @@ Vue.mixin({
                 type = type || 'jpg'
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
-            setVideo (video) {
-              this.$set('video', video)
+
+            submitToServer(data, method, path) {
+                data = JSON.stringify(data)
+                return new Promise((resolve, reject) => {
+                    let api = process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : '/.netlify/functions'
+                    fetch(api + path, {
+                        method: method,
+                        body: data
+                    }).then(response => {
+                        resolve(response)
+                    }).catch(err => {
+                        reject(err)
+                    })
+                })
             },
             imgC(name, img, ext, thumb, addPath) {
                 console.log(name)

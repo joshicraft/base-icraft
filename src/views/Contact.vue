@@ -249,31 +249,16 @@
             clear() {
                 this.$refs.form.reset()
             },
-            submitToServer() {
-                let data = JSON.stringify(
-                    {
-                        name: this.name,
-                        message: this.message,
-                        email: this.email,
-                        phone: this.phone
-                    }
-                )
-                return new Promise((resolve, reject) => {
-                    let api = process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : '/.netlify/functions'
-                    fetch(api + '/contact-sendgrid', {
-                        method: 'POST',
-                        body: data
-                    }).then(response => {
-                        resolve(response)
-                    }).catch(err => {
-                        reject(err)
-                    })
-                })
-            },
             handleSubmit(e) {
+                let data =  {
+                    name: this.name,
+                    message: this.message,
+                    email: this.email,
+                    phone: this.phone
+                }
                 this.failed = false
                 this.submitting = true
-                this.submitToServer().then(response => {
+                this.submitToServer(data, 'POST', '/contact-sendgrid').then(response => {
                     if (Number(response.status) !== 200) {
                         this.submitStatus.t1 = "Opp's, looks like an error occurred :("
                         this.submitStatus.t2 = 'Try fill out the form again or get in touch via phone or email.'
