@@ -157,6 +157,9 @@
     padding-top: 0 !important
 
   .c-title
+    max-width 999px
+    margin-left auto
+    margin-right auto
     h1
       font-size: 2.75em
     h2
@@ -177,6 +180,7 @@
     position absolute
     margin-top -150px
     z-index 3
+
     svg
       filter drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.25))
       position absolute
@@ -185,6 +189,12 @@
       width: 100%;
     polygon
       fill #5a5a5a
+
+    &.static
+      margin-top 0
+      position static
+      svg
+       position static
 
   .-arrow-buffer-top
     padding-top 150px
@@ -302,7 +312,7 @@
     position: relative
 
   .theme--light.v-stepper--vertical .v-stepper__content:not(:last-child)
-    border-left: 1px solid rgba(0,0,0,0.12);
+    border-left: 0px solid rgba(0,0,0,0.12);
 
 
 

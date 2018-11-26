@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-view></router-view>
+        <!--<router-view></router-view>-->
         <v-flex
                 v-scroll="topScroll"
                 v-for="(service, i) in content.items"
@@ -8,24 +8,42 @@
                 v-if="loadPoint(1)"
         >
             <!--<div class="start-bg-arrow">-->
-                <!--<svg-->
-                        <!--viewBox="0 0 500 50">-->
-                    <!--<polygon class="ss0" points="0,0 250,50 500,0"/>-->
-                <!--</svg>-->
+            <!--<svg-->
+            <!--viewBox="0 0 500 50">-->
+            <!--<polygon class="ss0" points="0,0 250,50 500,0"/>-->
+            <!--</svg>-->
             <!--</div>-->
-
             <v-container class="-arrow-buffer-top">
+                <v-layout column wrap class="c-title">
+                    <h1 class="mt-5 mb-3 text-lg-center">CAN'T DECIDE?</h1>
+                    <h3 class="mb-4 text-lg-center">These questions can help you choose.</h3>
+                    <p class="text-lg-center">Just follow the questions and select the tick boxes for the answers that
+                        relate to you.</p>
+                </v-layout>
+
+            </v-container>
+            <div class="relative">
+                <v-container pa-0>
+                    <questions :data="content.discover"></questions>
+
+                </v-container>
+                <div class="jumbo-bot-arrow static">
+                    <svg viewBox="0,0,500,100" preserveAspectRatio="none">
+                        <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
+                    </svg>
+
+                </div>
+            </div>
+            <v-container>
                 <v-layout column wrap class="c-title">
                     <h1 class="mt-5 mb-3 text-lg-center">PACKAGES</h1>
                     <h3 class="mb-4 text-lg-center">{{ service.subTitle }}</h3>
                     <p class="text-lg-center">{{ service.disclaimer }}</p>
                 </v-layout>
             </v-container>
-            <v-container pa-0>
-                <questions :items="content.discover.questions"></questions>
-            </v-container>
+
             <v-layout
-                    class="relative -arrow-buffer-bot"
+                    class="relative"
                     row
                     wrap
                     justify-center
@@ -125,7 +143,7 @@
                     </v-flex>
                 </v-flex>
 
-                <div class="jumbo-bot-arrow">
+                <div class="jumbo-bot-arrow static">
                     <svg viewBox="0,0,500,100" preserveAspectRatio="none">
                         <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
                     </svg>
@@ -133,33 +151,40 @@
                 </div>
             </v-layout>
             <div class="timeline-wrap">
-            <v-container >
-                <v-layout>
-                    <v-timeline>
-                        <v-timeline-item
+                <v-container>
+                    <v-layout column wrap class="c-title">
+                        <h1 class="mt-5 mb-3 text-lg-center">OUR PROCESS</h1>
+                        <h3 class="mb-4 text-lg-center">6 Steps for Success.</h3>
+                        <p class="text-lg-center">We follow these steps so our end product meets your requirements.</p>
+                    </v-layout>
+                </v-container>
+                <v-container>
+                    <v-layout>
+                        <v-timeline :dense="$vuetify.breakpoint.smAndDown">
+                            <v-timeline-item
 
-                                v-for="(feature, k) in service.features"
-                                :key="k"
-                                :id="k + '-timeline-feature'"
-                                color="blue lighten-2"
-                                large
-                                :icon="feature.icon"
-                        >
-                            <div slot="opposite">
-                                <h1 class="opposite_tl">{{feature.title}}</h1>
-                            </div>
-                            <v-card class="elevation-2">
-                                <v-img :src="imgC(feature.img)" height="200px"></v-img>
-                                <v-card-title class="headline">{{feature.subTitle}}</v-card-title>
-                                <v-card-text>
-                                    {{feature.subSubTitle}}
-                                </v-card-text>
-                            </v-card>
-                        </v-timeline-item>
-                    </v-timeline>
-                    <custom-timeline-progress :items="service.features"></custom-timeline-progress>
-                </v-layout>
-            </v-container>
+                                    v-for="(feature, k) in service.features"
+                                    :key="k"
+                                    :id="k + '-timeline-feature'"
+                                    color="blue lighten-2"
+                                    large
+                                    :icon="feature.icon"
+                            >
+                                <div slot="opposite" v-if="!$vuetify.breakpoint.smAndDown">
+                                    <h1 class="opposite_tl">{{feature.title}}</h1>
+                                </div>
+                                <v-card class="elevation-2">
+                                    <v-img :src="imgC(feature.img)" height="200px"></v-img>
+                                    <v-card-title class="headline">{{feature.subTitle}}</v-card-title>
+                                    <v-card-text>
+                                        {{feature.subSubTitle}}
+                                    </v-card-text>
+                                </v-card>
+                            </v-timeline-item>
+                        </v-timeline>
+                        <custom-timeline-progress :items="service.features"></custom-timeline-progress>
+                    </v-layout>
+                </v-container>
             </div>
 
 

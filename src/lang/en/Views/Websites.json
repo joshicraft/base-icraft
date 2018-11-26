@@ -6,6 +6,16 @@
   "heading1": "",
   "discover": {
     "title": "Website Discovery",
+    "results": {
+      "title": "Our algorithm has discovered that you're after an ",
+      "endTitle" : " site.",
+      "subTitle": "Want to know more a ",
+      "endSubTitle": "solution?",
+      "e-commerce": {
+        "title": "It's all about selling product's online",
+        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
+      }
+    },
     "questions": [
 
           {
@@ -14,29 +24,23 @@
             "options": [
               {
                 "title": "Yes, I want to list lots of products and have an online shopping cart.",
-                "points": [
-                  {
+                "points": {
                     "e-commerce": 4
                   }
-                ]
               },
               {
                 "title": "Yes, but I would only like a few products listed but no shopping cart.",
-                "points": [
-                  {
+                "points":  {
                     "e-commerce": 1,
                     "medium": 2,
                     "high": 1
                   }
-                ]
               },
               {
                 "title": "No, I only want to list services and other relevant information about my business.",
-                "points": [
-                  {
+                "points": {
                     "e-commerce": -1
                   }
-                ]
               }
             ]
           },
@@ -46,41 +50,33 @@
             "options": [
               {
                 "title": "Daily",
-                "points": [
-                  {
+                "points": {
                     "cms": 4,
                     "high": 3
                   }
-                ]
               },
               {
                 "title": "Weekly",
-                "points": [
-                  {
+                "points": {
                     "cms": 2,
                     "medium": 2,
                     "high": 1
                   }
-                ]
               },
               {
                 "title": "Monthly",
-                "points": [
-                  {
+                "points": {
                     "medium": 2,
                     "cms": 1
                   }
-                ]
               },
               {
                 "title": "Every 6 - 12 Months",
-                "points": [
-                  {
+                "points": {
                     "low": 1,
                     "medium": 1,
                     "cms": -1
                   }
-                ]
               }
             ]
           },
@@ -90,38 +86,30 @@
             "options": [
               {
                 "title": "less than $600",
-                "points": [
-                  {
+                "points": {
                     "low": 3
                   }
-                ]
               },
               {
                 "title": "$600 - $,1500",
-                "points": [
-                  {
+                "points": {
                     "medium": 3
                   }
-                ]
               },
               {
                 "title": "$1,500 - $3,500",
-                "points": [
-                  {
+                "points": {
                     "e-commerce": 1,
                     "high": 1,
                     "medium": 2
                   }
-                ]
               },
               {
                 "title": "More than $3,500",
-                "points": [
-                  {
+                "points": {
                     "high": 3,
                     "e-commerce": 2
                   }
-                ]
               },
               {
                 "title": "I don't have one"
@@ -135,45 +123,41 @@
             "options": [
               {
                 "title": "Providing lots of information about your business.",
-                "points": [
-                  {
+                "points": {
                     "medium": 2,
                     "high": 2
                   }
-                ]
               },
               {
                 "title": "Having a website that you have lots of control over.",
-                "points": [
-                  {
+                "points": {
                     "cms": 3
                   }
-                ]
               },
               {
                 "title": "A simple website with little information and features.",
-                "points": [
+                "points":
                   {
                     "low": 4
                   }
-                ]
+
               },
               {
                 "title": "Something the beats all your competition.",
-                "points": [
+                "points":
                   {
                     "high": 4
                   }
-                ]
+
               },
               {
                 "title": "Something the unique and personalized to your business.",
-                "points": [
+                "points":
                   {
                     "high": 3,
                     "medium": 2
                   }
-                ]
+
               },
               {
                 "title": "None of the above."

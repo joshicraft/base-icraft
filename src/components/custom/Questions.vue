@@ -1,95 +1,299 @@
 <template>
-    <v-stepper
-            v-model="e1"
-            vertical
-            editabe
-
-    >
-        <template
-                v-for="(item, i) in items"
-               
-        >
-
-
-        <!--<v-stepper-header>-->
-
-            <v-stepper-step
-                :complete="e1 > i"
-                :step="i+1"
-                @click="e1 = -1"
-
-            >
-                {{item.title}}
-
-            </v-stepper-step>
-                <!---->
-            <!--<v-stepper-step :complete="e1 > 1" step="1"></v-stepper-step>-->
-
-            <!--<v-divider></v-divider>-->
-
-            <!--<v-stepper-step :complete="e1 > 2" step="2">Name of step 2</v-stepper-step>-->
-
-            <!--<v-divider></v-divider>-->
-
-            <!--<v-stepper-step step="3">Name of step 3</v-stepper-step>-->
-        <!--</v-stepper-header>-->
-
-        <!--<v-stepper-items>-->
-            <v-stepper-content
-                    :step="i+1">
-                <v-card
-                        class="mb-5"
+    <v-stepper v-model="e1" class="pa-3">
+        <v-stepper-header class="elevation-0">
+            <template v-for="n in steps">
+                <v-stepper-step
+                        :complete="e1 > n"
+                        :key="`${n}-step`"
+                        :step="n"
+                        editable
+                        class="pa-3"
                 >
+                    {{data.questions[n-1].name}}
+                </v-stepper-step>
+                <v-stepper-step
+                    class="pa-3"
+                    complete-icon="mdi-check"
+                    :edit-icon="`mdi-numeric-${n}-circle-outline`"
+                    :complete="resultsGenerated"
+                    color="success"
+                    :rules="[() => resultsGenerated]"
+                    v-if="n >= steps"
+                    :step="steps + 1"
+                >
+                    Results
+                </v-stepper-step>
+
+                <v-divider
+                        v-if="n !== steps"
+                        :key="n"
+                ></v-divider>
+            </template>
+        </v-stepper-header>
+
+        <v-stepper-items>
+            <v-stepper-content
+                    v-for="n in steps"
+                    :key="`${n}-content`"
+                    :step="n"
+            >
+                <v-card
+                        class="mb-5 elevation-0 grey lighten-3"
+
+                >
+                    <h3 class="pa-4">
+                        {{data.questions[n-1].title}}
+                    </h3>
                     <v-list
+                            class="grey lighten-4"
                             subheader
                             two-line
                     >
-                    <v-list-tile
-                            v-for="(option, c) in item.options"
-                            :key="c"
-                    >
+                        <v-list-tile
+                                v-for="(option, c) in data.questions[n-1].options"
+                                :key="c"
+                        >
+                            <v-list-tile-action>
+                                <v-checkbox v-model="option.checked"></v-checkbox>
+                            </v-list-tile-action>
 
-                        <v-list-tile-action @click="option.checked = !option.checked" >
-                            <v-checkbox v-model="option.checked" :label="option.title"></v-checkbox>
-                        </v-list-tile-action>
-
-                        <!--<v-list-tile-content @click="option.checked = !option.checked">-->
-                            <!--<v-list-tile-title  @click="option.checked = !option.checked">{{option.title}}</v-list-tile-title>-->
-                             <!--&lt;!&ndash;<v-list-tile-sub-title>Subtite</v-list-tile-sub-title>&ndash;&gt;-->
-                        <!--</v-list-tile-content>-->
-                    </v-list-tile>
+                            <v-list-tile-content>
+                                <v-list-tile-title>{{option.title}}</v-list-tile-title>
+                                <!--<v-list-tile-sub-title>Subtite</v-list-tile-sub-title>-->
+                            </v-list-tile-content>
+                        </v-list-tile>
                     </v-list>
+
                 </v-card>
 
                 <v-btn
+                        v-if="n < steps"
                         color="primary"
-                        @click="e1 = i+2"
+                        @click="nextStep(n)"
                 >
-                    Next
+                    Next step
+                    <v-icon class="ml-2">mdi-skip-next</v-icon>
+                </v-btn>
+                <v-btn
+                        v-else
+                        color="primary"
+                        @click="loadResults"
+                        :loading="resultsGenerating"
+                >
+                    {{resultsLoading[0]}}
+                    <v-icon class="ml-2">mdi-play</v-icon>
+                </v-btn>
+                <v-btn
+                        @click="nextStep(0)"
+                        v-if="n >= steps"
+                >
+                    Clear
                 </v-btn>
             </v-stepper-content>
+            <v-stepper-content
+                    class="over"
+                    :step="steps + 1"
+            >
+                <v-card
+                        class="mb-5 elevation-0 grey lighten-4 d-flex justify-center align-center text-lg-center"
+                        height="100px"
 
-        </template>
-        <!--</v-stepper-items>-->
+                >
+                    <h4 v-if="resultsGenerating">{{resultsLoading[resultsLoadingIndex]}}</h4>
+                    <v-flex v-if="resultsGenerated">
+                        <h1>{{data.results.title + resultsInformation + data.results.endTitle}}</h1>
+
+                    </v-flex>
+                </v-card>
+            </v-stepper-content>
+        </v-stepper-items>
     </v-stepper>
+    <!--<v-stepper-->
+    <!--v-model="e1"-->
+    <!--vertical-->
+    <!--&gt;-->
+    <!--<template-->
+    <!--v-for="(item, i) in data.questions"-->
+    <!--&gt;-->
+    <!--<v-stepper-step-->
+    <!--editabe-->
+    <!--:step="i+1"-->
+    <!--&gt;-->
+    <!--<h2>{{item.title}}</h2>-->
+    <!--</v-stepper-step>-->
+    <!--<v-stepper-content-->
+    <!--:step="i+1"-->
+    <!--&gt;-->
+    <!--<v-card-->
+    <!--class="mb-5 elevation-0"-->
+    <!--&gt;-->
+    <!--<v-list-->
+    <!--subheader-->
+    <!--two-line-->
+    <!--&gt;-->
+    <!--<v-list-tile-->
+    <!--v-for="(option, c) in item.options"-->
+    <!--:key="c"-->
+    <!--&gt;-->
+    <!--<v-list-tile-action>-->
+    <!--<v-checkbox v-model="option.checked"></v-checkbox>-->
+    <!--</v-list-tile-action>-->
+
+    <!--<v-list-tile-content>-->
+    <!--<v-list-tile-title>{{option.title}}</v-list-tile-title>-->
+    <!--&lt;!&ndash;<v-list-tile-sub-title>Subtite</v-list-tile-sub-title>&ndash;&gt;-->
+    <!--</v-list-tile-content>-->
+    <!--</v-list-tile>-->
+    <!--</v-list>-->
+    <!--</v-card>-->
+
+    <!--<v-btn-->
+
+    <!--color="primary"-->
+    <!--v-on="{click: e1 < data.questions.length ? e1 = i+1 : loadResults}"-->
+    <!--:loading="resultsGenerating"-->
+    <!--&gt;-->
+    <!--{{e1 < data.questions.length ? "Next Question" : resultsLoading[0]}}-->
+    <!--<v-icon class="ml-2">{{e1 < data.questions.length ? "mdi-skip-next" : 'mdi-play'}}</v-icon>-->
+    <!--</v-btn>-->
+    <!--<v-btn-->
+    <!--@click="el = 0"-->
+    <!--v-if="e1 >= data.questions.length"-->
+    <!--&gt;-->
+    <!--Clear-->
+    <!--</v-btn>-->
+    <!--</v-stepper-content>-->
+    <!--</template>-->
+    <!--<v-layout-->
+    <!--v-if="e1 >= data.questions.length"-->
+    <!--class="mt-5 mx-5 column wrap d-flex"-->
+    <!--&gt;-->
+    <!--<p v-if="resultsGenerating">{{resultsLoading[resultsLoadingIndex]}}</p>-->
+    <!--<v-flex v-if="resultsGenerated">-->
+    <!--<h3>{{data.results.title + resultsInformation + data.results.endTitle}}</h3>-->
+
+    <!--</v-flex>-->
+    <!--</v-layout>-->
+    <!--&lt;!&ndash;<p v-if="resultsGenerating">{{resultsLoading[resultsLoadingIndex]}}</p>&ndash;&gt;-->
+    <!--&lt;!&ndash;</v-stepper-items>&ndash;&gt;-->
+    <!--</v-stepper>-->
 </template>
 
 <script>
     export default {
         props: {
-            items: {
-                default: [],
-                type: Array
+            data: {
+                default: {},
+                type: Object
             }
         },
-        data () {
+        data() {
             return {
-                e1: 0
+                e1: 1,
+                steps: this.data.questions.length,
+                resultsGenerated: false,
+                resultsInformation: '',
+                resultsGenerating: false,
+                resultsLoading: ['Get Results', 'Fetching Entries', 'Indexing Entries', 'Applying Filters', 'Measuring Results', 'Sending Results'],
+                resultsLoadingIndex: 0
+            }
+        },
+        watch: {
+            steps(val) {
+                if (this.e1 > val) {
+                    this.e1 = val
+                }
+            }
+        },
+        computed: {
+            getEl() {
+                return this.el
+            }
+        },
+        methods: {
+            nextStep(n) {
+                if (n === this.steps + 1) {
+                    this.e1 = 1
+                } else {
+                    this.e1 = n + 1
+                }
+                if(n === 0) {
+                    this.el = 1
+                    this.clearQuestions()
+                }
+            },
+            clearQuestions() {
+                this.data.questions.forEach(val => {
+                    val.options.forEach(option => {
+                        if(option.checked) {
+                            console.log(option.title)
+                        }
+                        option.checked = false
+                    })
+                })
+            },
+            processQuestions() {
+                let results = {}
+                let selections = []
+                this.data.questions.forEach(val => {
+                    val.options.forEach(option => {
+                        if (!option.points || !option.checked) {
+                            return
+                        }
+                        selections.push({
+                            title: option.title,
+                            points: option.points
+                        })
+                        Object.keys(option.points).forEach(function (key) {
+                            if (results[key] || results[key] === 0) {
+                                results[key] += option.points[key]
+                            } else {
+                                results[key] = option.points[key]
+                            }
+                        });
+                    })
+                })
+                let max = Object.keys(results).reduce((a, b) => results[a] > results[b] ? a : b)
+                this.resultsInformation = max
+                this.submitQuestions({
+                    endResult: max,
+                    selections: selections,
+                    results: results
+                })
+
+            },
+            submitQuestions(data) {
+                this.submitToServer(data, 'POST', '/create-website-discovery').then(response => {
+                    console.log(response)
+                }).catch((response) => {
+                    console.log(response)
+                })
+            },
+            resultsGeneratingTick() {
+                console.log(this.resultsLoadingIndex)
+                this.resultsLoadingIndex++
+                if (this.resultsLoading.length < this.resultsLoadingIndex) {
+                    clearInterval(this.resultsGeneratingInterval)
+                    this.resultsGenerated = true
+                    this.resultsLoadingIndex = 0
+                    this.resultsGenerating = false
+                }
+            },
+            loadResults() {
+                this.resultsGenerating = true
+                this.resultsLoadingIndex = 1
+                this.resultsGenerated = false
+                this.resultsInformation = false
+                this.nextStep(this.steps)
+                this.processQuestions()
+                this.resultsGeneratingInterval = setInterval(this.resultsGeneratingTick, 300)
             }
         }
     }
 </script>
 
 <style scoped lang="stylus">
-
+    .v-list__tile__title, .v-list__tile__sub-title
+        overflow visible
+        white-space: initial;
 </style>
