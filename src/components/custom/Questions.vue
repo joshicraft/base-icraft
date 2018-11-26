@@ -14,7 +14,6 @@
                 <v-stepper-step
                     class="pa-3"
                     complete-icon="mdi-check"
-                    :edit-icon="`mdi-numeric-${n}-circle-outline`"
                     :complete="resultsGenerated"
                     color="success"
                     :rules="[() => resultsGenerated]"
@@ -96,17 +95,39 @@
             >
                 <v-card
                         class="mb-5 elevation-0 grey lighten-4 d-flex justify-center align-center text-lg-center"
-                        height="100px"
+
 
                 >
                     <h4 v-if="resultsGenerating">{{resultsLoading[resultsLoadingIndex]}}</h4>
-                    <v-flex v-if="resultsGenerated">
-                        <h1>{{data.results.title + resultsInformation + data.results.endTitle}}</h1>
-
+                    <v-flex v-if="resultsGenerated" class="c-title pa-5">
+                        <h1 class="mt-3 mb-3">{{data.results.title + data.results[resultsInformation].name + data.results.endTitle}}</h1>
+                        <h3 class="mb-4">{{data.results[resultsInformation].title}}</h3>
+                        <p>{{data.results[resultsInformation].subTitle}}</p>
                     </v-flex>
                 </v-card>
             </v-stepper-content>
         </v-stepper-items>
+        <v-dialog
+                v-model="dialog"
+                max-width="320"
+        >
+            <v-card>
+                <v-card-title class="headline">You must answer some questions before getting some results.</v-card-title>
+
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                            color="green darken-1"
+                            flat="flat"
+                            @click="dialog = false"
+                    >
+                        Ok, Got it
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-stepper>
     <!--<v-stepper-->
     <!--v-model="e1"-->
@@ -189,6 +210,7 @@
         },
         data() {
             return {
+                dialog: false,
                 e1: 1,
                 steps: this.data.questions.length,
                 resultsGenerated: false,
@@ -211,6 +233,9 @@
             }
         },
         methods: {
+            closeDialog () {
+                this.dialog = false
+            },
             nextStep(n) {
                 if (n === this.steps + 1) {
                     this.e1 = 1
@@ -253,13 +278,19 @@
                         });
                     })
                 })
+                if(Object.keys(results).length === 0 && results.constructor === Object){
+                    return false
+                }
                 let max = Object.keys(results).reduce((a, b) => results[a] > results[b] ? a : b)
                 this.resultsInformation = max
+                console.log(results[max])
+
                 this.submitQuestions({
                     endResult: max,
                     selections: selections,
                     results: results
                 })
+                return true
 
             },
             submitQuestions(data) {
@@ -280,12 +311,19 @@
                 }
             },
             loadResults() {
+
                 this.resultsGenerating = true
                 this.resultsLoadingIndex = 1
                 this.resultsGenerated = false
                 this.resultsInformation = false
+                if(!this.processQuestions()){
+                    this.dialog = true
+                    this.resultsGenerating = false
+                    this.resultsLoadingIndex = 0
+                    return
+                }
                 this.nextStep(this.steps)
-                this.processQuestions()
+
                 this.resultsGeneratingInterval = setInterval(this.resultsGeneratingTick, 300)
             }
         }

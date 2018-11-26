@@ -7,12 +7,33 @@
   "discover": {
     "title": "Website Discovery",
     "results": {
-      "title": "Our algorithm has discovered that you're after an ",
+      "title": "Wohoo! It looks like you're after an ",
       "endTitle" : " site.",
       "subTitle": "Want to know more a ",
       "endSubTitle": "solution?",
       "e-commerce": {
+        "name": "E-Commerce",
         "title": "It's all about selling product's online",
+        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
+      },
+      "cms": {
+        "name": "CMS",
+        "title": "It's all about selling product's online",
+        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
+      },
+      "high": {
+        "name": "Top-Tier",
+        "title": "For those big jobs which stand out above the rest.",
+        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
+      },
+      "medium": {
+        "name": "Medium-Tier",
+        "title": "For those who have want something cool yet",
+        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
+      },
+      "low": {
+        "name": "Low-Tier",
+        "title": "It's all about making the basics look good.",
         "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
       }
     },
