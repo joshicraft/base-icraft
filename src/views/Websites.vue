@@ -34,7 +34,7 @@
 
                 </div>
             </div>
-            <v-container>
+            <v-container id="packages">
                 <v-layout column wrap class="c-title">
                     <h1 class="mt-5 mb-3 text-lg-center">PACKAGES</h1>
                     <h3 class="mb-4 text-lg-center">{{ service.subTitle }}</h3>

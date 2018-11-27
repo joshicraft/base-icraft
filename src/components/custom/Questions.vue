@@ -119,6 +119,7 @@
 
                             <h3 class="mb-4">{{resultsSubTitle()}}</h3>
                             <p>{{resultsSubSubTitle()}}</p>
+                            <v-btn  color="primary" :block="false" @click="$vuetify.goTo('#packages')">Check them out</v-btn>
                         </v-layout>
                         <div v-if="featureResultInformation" class="c-title">
                             <h1  class="mt-5 mb-3">You may also be interested in.</h1>
