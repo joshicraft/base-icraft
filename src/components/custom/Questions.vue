@@ -91,6 +91,7 @@
             </v-stepper-content>
             <v-stepper-content
                     class="over"
+                    :class="{'fade-anim' : resultsGenerated}"
                     :step="steps + 1"
             >
                 <v-card
@@ -98,15 +99,24 @@
 
 
                 >
-                    <h3 class="pa-5" v-if="resultsGenerating">{{resultsLoading[resultsLoadingIndex]}}</h3>
-                    <v-flex v-if="resultsGenerated" class="c-title pa-5">
+                    <v-layout column justify-center align-center v-if="resultsGenerating">
+                        <h3 class="pa-5">{{resultsLoading[resultsLoadingIndex]}}</h3>
+                        <v-progress-circular
+                                :size="100"
+                                color="primary"
+                                indeterminate
+                                class="mb-5"
+                        ></v-progress-circular>
+                    </v-layout>
+                    <v-flex v-else-if="resultsGenerated" class="c-title pa-5">
+                        <h1 class="mt-3 mb-3 lg-6">{{resultsTitle()}}</h1>
                         <v-layout
                                 column
                                 wrap
-                                  class="pa-4 ma-3 elevation-4 primary lighten-1"
+                                  class="pa-4 ma-3 elevation-4 lighten-1"
                         >
-                            <h1 class="mt-3 mb-3">{{resultsTitle()}}</h1>
-                            <v-icon class="mb-4" x-large>{{resultsIcon()}}</v-icon>
+                            <v-icon class="mb-2 lg-6" size="100" color="primary">{{resultsIcon()}}</v-icon>
+
                             <h3 class="mb-4">{{resultsSubTitle()}}</h3>
                             <p>{{resultsSubSubTitle()}}</p>
                         </v-layout>
@@ -117,11 +127,15 @@
                                     v-for="(f, i) in data.results.features"
                                     v-if="f.checked"
                                     lg6
-                                    class="pa-4 ma-3 elevation-4 green lighten-2"
+                                    class="pa-4 ma-3 elevation-4 lighten-2"
                                 >
-                                    <h3 class="mb-4">{{f.title}}</h3>
-                                    <v-icon class="mb-4" x-large>{{f.icon}}</v-icon>
+                                    <v-layout justify-center align-center row wrap>
+                                        <h3 class="mb-4">{{f.title}}</h3>
+
+                                        <v-icon class="mb-4 ml-4" color="primary" x-large>{{f.icon}}</v-icon>
+                                    </v-layout>
                                     <p>{{f.subTitle}}</p>
+
                                 </v-flex>
                             </v-layout>
                             </div>
@@ -151,75 +165,7 @@
             </v-card>
         </v-dialog>
     </v-stepper>
-    <!--<v-stepper-->
-    <!--v-model="e1"-->
-    <!--vertical-->
-    <!--&gt;-->
-    <!--<template-->
-    <!--v-for="(item, i) in data.questions"-->
-    <!--&gt;-->
-    <!--<v-stepper-step-->
-    <!--editabe-->
-    <!--:step="i+1"-->
-    <!--&gt;-->
-    <!--<h2>{{item.title}}</h2>-->
-    <!--</v-stepper-step>-->
-    <!--<v-stepper-content-->
-    <!--:step="i+1"-->
-    <!--&gt;-->
-    <!--<v-card-->
-    <!--class="mb-5 elevation-0"-->
-    <!--&gt;-->
-    <!--<v-list-->
-    <!--subheader-->
-    <!--two-line-->
-    <!--&gt;-->
-    <!--<v-list-tile-->
-    <!--v-for="(option, c) in item.options"-->
-    <!--:key="c"-->
-    <!--&gt;-->
-    <!--<v-list-tile-action>-->
-    <!--<v-checkbox v-model="option.checked"></v-checkbox>-->
-    <!--</v-list-tile-action>-->
 
-    <!--<v-list-tile-content>-->
-    <!--<v-list-tile-title>{{option.title}}</v-list-tile-title>-->
-    <!--&lt;!&ndash;<v-list-tile-sub-title>Subtite</v-list-tile-sub-title>&ndash;&gt;-->
-    <!--</v-list-tile-content>-->
-    <!--</v-list-tile>-->
-    <!--</v-list>-->
-    <!--</v-card>-->
-
-    <!--<v-btn-->
-
-    <!--color="primary"-->
-    <!--v-on="{click: e1 < data.questions.length ? e1 = i+1 : loadResults}"-->
-    <!--:loading="resultsGenerating"-->
-    <!--&gt;-->
-    <!--{{e1 < data.questions.length ? "Next Question" : resultsLoading[0]}}-->
-    <!--<v-icon class="ml-2">{{e1 < data.questions.length ? "mdi-skip-next" : 'mdi-play'}}</v-icon>-->
-    <!--</v-btn>-->
-    <!--<v-btn-->
-    <!--@click="el = 0"-->
-    <!--v-if="e1 >= data.questions.length"-->
-    <!--&gt;-->
-    <!--Clear-->
-    <!--</v-btn>-->
-    <!--</v-stepper-content>-->
-    <!--</template>-->
-    <!--<v-layout-->
-    <!--v-if="e1 >= data.questions.length"-->
-    <!--class="mt-5 mx-5 column wrap d-flex"-->
-    <!--&gt;-->
-    <!--<p v-if="resultsGenerating">{{resultsLoading[resultsLoadingIndex]}}</p>-->
-    <!--<v-flex v-if="resultsGenerated">-->
-    <!--<h3>{{data.results.title + resultsInformation + data.results.endTitle}}</h3>-->
-
-    <!--</v-flex>-->
-    <!--</v-layout>-->
-    <!--&lt;!&ndash;<p v-if="resultsGenerating">{{resultsLoading[resultsLoadingIndex]}}</p>&ndash;&gt;-->
-    <!--&lt;!&ndash;</v-stepper-items>&ndash;&gt;-->
-    <!--</v-stepper>-->
 </template>
 
 <script>
@@ -282,7 +228,7 @@
                 }
             },
             clearQuestions() {
-                this.resultsGenerating = true
+                this.resultsGenerating = false
                 this.resultsLoadingIndex = 1
                 this.resultsGenerated = false
                 this.resultsInformation = false
@@ -332,9 +278,6 @@
                     return false
                 }
                 let max = Object.keys(results).reduce((a, b) => results[a] > results[b] ? a : b)
-                // if(features.some(f => results.indexOf(f) >= 0)){
-                //     return false
-                // }
                 this.resultsInformation = max
                 this.featureResultInformation = Object.keys(features).length !== 0 && !Object.keys(features).some(v => v < 1) ? features : false
                 console.log(this.resultsInformation)
@@ -367,7 +310,7 @@
             loadResults() {
                 this.featureResultInformation = false
                 this.resultsGenerating = true
-                this.resultsLoadingIndex = 1
+                this.resultsLoadingIndex = 0
                 this.resultsGenerated = false
                 this.resultsInformation = false
                 this.resetData()
@@ -378,8 +321,7 @@
                     return
                 }
                 this.nextStep(this.steps)
-
-                this.resultsGeneratingInterval = setInterval(this.resultsGeneratingTick, 300)
+                this.resultsGeneratingInterval = setInterval(this.resultsGeneratingTick, 500)
             }
         }
     }
@@ -388,5 +330,17 @@
 <style scoped lang="stylus">
     .v-list__tile__title, .v-list__tile__sub-title
         overflow visible
-        white-space: initial;
+        white-space: initial
+
+    .fade-anim
+        animation fade-in-out 1s ease-in-out
+
+    @keyframes fade-in-out {
+        0% {
+            opacity 0
+        }
+        100% {
+            oipacity 1
+        }
+    }
 </style>
