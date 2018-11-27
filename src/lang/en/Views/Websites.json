@@ -5,187 +5,292 @@
   "jumbotronSubTitle": "WITH OUR FAST, SECURE AND CUSTOMIZED WEBSITES",
   "heading1": "",
   "discover": {
-    "title": "Website Discovery",
+    "title": "CAN'T DECIDE?",
+    "subTitle": "Websites come in all sorts of shapes and sizes.",
+    "subSubTitle": "We can help you find out. Just follow the questions below and select the tick boxes for the answers that relate to you.",
     "results": {
       "title": "Wohoo! It looks like you're after an ",
-      "endTitle" : " site.",
+      "endTitle": " site.",
       "subTitle": "Want to know more a ",
       "endSubTitle": "solution?",
+      "features": [
+        {
+          "icon": "mdi-search-web",
+          "name": "seo",
+          "title": "SEO",
+          "subTitle": "It looks like you're in need of some Search Engine Optimization (SEO) or digital marketing, this is an different service from a website but helps by driving more people to your website."
+        },
+        {
+          "icon": "mdi-file-cabinet",
+          "name": "cms",
+          "title": "CMS",
+          "subTitle": "A Content Management System (CMS) helps with managing your websites data. It give you the option to update things like images, phone numbers and add blog posts in a way that requires no coding knowledge."
+        },
+        {
+          "icon": "mdi-blogger",
+          "name": "blog",
+          "title": "Blog",
+          "subTitle": "Blogs help with keeping people up to date with the going on in your business and helps with establishing your website with more credibility. This helps search engines like google place your website higher up the list."
+        },
+        {
+          "icon": "mdi-message-text",
+          "name": "form",
+          "title": "Forms",
+          "subTitle": "Form's are features that allow uses to input data into your website and send you information via databases's or email. These can be helpful for enabling people to get in touch with you."
+        }
+      ],
       "e-commerce": {
+        "icon": "mdi-cart",
         "name": "E-Commerce",
         "title": "It's all about selling product's online",
         "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
       },
-      "cms": {
-        "name": "CMS",
-        "title": "It's all about selling product's online",
-        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
-      },
       "high": {
+        "icon": "mdi-gauge-full",
         "name": "Top-Tier",
         "title": "For those big jobs which stand out above the rest.",
-        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
+        "subTitle": "Top-Tier sites usually require a bunch of features, personalized design, cool effects and a whole lot of TLC."
       },
       "medium": {
+        "icon": "mdi-gauge",
         "name": "Medium-Tier",
-        "title": "For those who have want something cool yet",
-        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
+        "title": "For those who have want something cool with a few features.",
+        "subTitle": "These sites are typically 4-8 pages in size, have a couple of cool features like Google Maps or a gallery and come packed with a Contact Form."
       },
       "low": {
+        "icon": "mdi-gauge-low",
         "name": "Low-Tier",
         "title": "It's all about making the basics look good.",
-        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
+        "subTitle": "These sites focus on making the simple look good. They're usually less than 3 pages, come with 1 or 2 features and serve the main purpose of establishing a web presence."
       }
     },
     "questions": [
-
+      {
+        "name": "Products",
+        "title": "Are you wanting to sell product's?",
+        "options": [
           {
-            "name": "products",
-            "title": "Are you wanting to sell product's?",
-            "options": [
-              {
-                "title": "Yes, I want to list lots of products and have an online shopping cart.",
-                "points": {
-                    "e-commerce": 4
-                  }
-              },
-              {
-                "title": "Yes, but I would only like a few products listed but no shopping cart.",
-                "points":  {
-                    "e-commerce": 1,
-                    "medium": 2,
-                    "high": 1
-                  }
-              },
-              {
-                "title": "No, I only want to list services and other relevant information about my business.",
-                "points": {
-                    "e-commerce": -1
-                  }
-              }
-            ]
+            "title": "Yes, I want to list lots of products and have an online shopping cart.",
+            "points": {
+              "e-commerce": 4
+            }
           },
           {
-            "name": "management",
-            "title": "How often would you need to update your website with products, images, or other features?",
-            "options": [
-              {
-                "title": "Daily",
-                "points": {
-                    "cms": 4,
-                    "high": 3
-                  }
-              },
-              {
-                "title": "Weekly",
-                "points": {
-                    "cms": 2,
-                    "medium": 2,
-                    "high": 1
-                  }
-              },
-              {
-                "title": "Monthly",
-                "points": {
-                    "medium": 2,
-                    "cms": 1
-                  }
-              },
-              {
-                "title": "Every 6 - 12 Months",
-                "points": {
-                    "low": 1,
-                    "medium": 1,
-                    "cms": -1
-                  }
-              }
-            ]
+            "title": "Yes, but I would only like a few products listed but no shopping cart.",
+            "points": {
+              "e-commerce": 1,
+              "medium": 2,
+              "high": 1
+            }
           },
           {
-            "name": "budget",
-            "title": "What is your Budget?",
-            "options": [
-              {
-                "title": "less than $600",
-                "points": {
-                    "low": 3
-                  }
-              },
-              {
-                "title": "$600 - $,1500",
-                "points": {
-                    "medium": 3
-                  }
-              },
-              {
-                "title": "$1,500 - $3,500",
-                "points": {
-                    "e-commerce": 1,
-                    "high": 1,
-                    "medium": 2
-                  }
-              },
-              {
-                "title": "More than $3,500",
-                "points": {
-                    "high": 3,
-                    "e-commerce": 2
-                  }
-              },
-              {
-                "title": "I don't have one"
-              }
-            ]
-
-          },
-          {
-            "name": "most-important",
-            "title": "Which of these is the most important to you?",
-            "options": [
-              {
-                "title": "Providing lots of information about your business.",
-                "points": {
-                    "medium": 2,
-                    "high": 2
-                  }
-              },
-              {
-                "title": "Having a website that you have lots of control over.",
-                "points": {
-                    "cms": 3
-                  }
-              },
-              {
-                "title": "A simple website with little information and features.",
-                "points":
-                  {
-                    "low": 4
-                  }
-
-              },
-              {
-                "title": "Something the beats all your competition.",
-                "points":
-                  {
-                    "high": 4
-                  }
-
-              },
-              {
-                "title": "Something the unique and personalized to your business.",
-                "points":
-                  {
-                    "high": 3,
-                    "medium": 2
-                  }
-
-              },
-              {
-                "title": "None of the above."
-              }
-            ]
+            "title": "No, I only want to list services and other relevant information about my business.",
+            "points": {
+              "e-commerce": -1
+            }
           }
         ]
+      },
+      {
+        "name": "Management",
+        "title": "How often would you need to update your website with products, images, or other features?",
+        "options": [
+          {
+            "title": "Daily",
+            "points": {
+              "cms": 4,
+              "high": 3,
+              "blog": 2
+            }
+          },
+          {
+            "title": "Weekly",
+            "points": {
+              "cms": 2,
+              "medium": 2,
+              "high": 1,
+              "blog": 2
+            }
+          },
+          {
+            "title": "Monthly",
+            "points": {
+              "medium": 2,
+              "cms": 1,
+              "blog": 1
+            }
+          },
+          {
+            "title": "Every 6 - 12 Months",
+            "points": {
+              "low": 1,
+              "medium": 1,
+              "cms": -1
+            }
+          }
+        ]
+      },
+      {
+        "name": "Budget",
+        "title": "What is your Budget?",
+        "options": [
+          {
+            "title": "less than $600",
+            "points": {
+              "low": 3
+            }
+          },
+          {
+            "title": "$600 - $,1500",
+            "points": {
+              "medium": 3
+            }
+          },
+          {
+            "title": "$1,500 - $3,500",
+            "points": {
+              "e-commerce": 1,
+              "high": 1,
+              "medium": 2,
+              "form": 1
+            }
+          },
+          {
+            "title": "More than $3,500",
+            "points": {
+              "high": 3,
+              "e-commerce": 2,
+              "form": 2
+            }
+          },
+          {
+            "title": "I don't have one"
+          }
+        ]
+      },
+      {
+        "name": "Most Important",
+        "title": "Which of these is the most important to you?",
+        "options": [
+          {
+            "title": "Providing lots of information about your business.",
+            "points": {
+              "medium": 2,
+              "high": 2
+            }
+          },
+          {
+            "title": "Having a website that you have lots of control over.",
+            "points": {
+              "cms": 3,
+              "medium": 2,
+              "high": 2
+            }
+          },
+          {
+            "title": "A simple website with little information and features.",
+            "points": {
+              "low": 4
+            }
+          },
+          {
+            "title": "Something the beats all your competition.",
+            "points": {
+              "high": 4,
+              "form": 1
+            }
+          },
+          {
+            "title": "Something the unique and personalized to your business.",
+            "points": {
+              "high": 3,
+              "medium": 2
+            }
+          },
+          {
+            "title": "None of the above."
+          }
+        ]
+      },
+      {
+        "name": "Intention",
+        "title": "What is your intended purpose for the website?",
+        "options": [
+          {
+            "title": "To increase sales of your products and or services.",
+            "points": {
+              "medium": 2,
+              "high": 2,
+              "seo": 3,
+              "form": 2
+            }
+          },
+          {
+            "title": "To help establish a strong brand presence.",
+            "points": {
+              "high": 3,
+              "medium": 2
+            }
+          },
+          {
+            "title": "To publish information and advertise services.",
+            "points": {
+              "medium": 2,
+              "blog": 3
+            }
+          },
+          {
+            "title": "None of the above."
+          }
+        ]
+      },
+      {
+        "name": "Industry",
+        "title": "What industry best matches your business?",
+        "options": [
+          {
+            "title": "Professional e.g. Layer or Accountant",
+            "points": {
+              "medium": 2,
+              "low": 1
+            }
+          },
+          {
+            "title": "Health Services.",
+            "points": {
+              "medium": 2
+            }
+          },
+          {
+            "title": "Construction.",
+            "points": {
+              "medium": 2
+            }
+          },
+          {
+            "title": "Agriculture.",
+            "points": {
+              "medium": 2
+            }
+          },
+          {
+            "title": "Manufacturing.",
+            "points": {
+              "medium": 2
+            }
+          },
+          {
+            "title": "Automotive.",
+            "points": {
+              "medium": 2
+            }
+          },
+          {
+            "title": "None of the above."
+          }
+        ]
+      }
+    ]
   },
   "items": [
     {
@@ -197,25 +302,29 @@
           "subSubTitle": "To get a good insight into your industry and customers, we spend some time looking gathering up all the good stuff.",
           "img": "research",
           "icon": "mdi-book-open-page-variant"
-        },{
+        },
+        {
           "title": "DESIGN",
           "subTitle": "Utilizing The Latest Design Trends.",
           "subSubTitle": "Helping visitors stay engaged and informed when using your super sweet website, Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
           "img": "design",
           "icon": "mdi-brush"
-        },{
+        },
+        {
           "title": "DEVELOPMENT",
           "subTitle": "Implementing Fast, Secure and Powerful Tech.",
           "subSubTitle": "The World Wide Web has come a long way since its inception by Sir Tim Berners-Lee in 1989. The web moves fast and if you don't adapt, you die. That is why we use the latest tech such as Vue.js, Node.js, Lambda Functions, Optimized Media and variety of other cool Tech.",
           "img": "development",
           "icon": "mdi-code-braces"
-        },{
+        },
+        {
           "title": "SEO",
           "subTitle": "Getting Your Site Noticed.",
           "subSubTitle": "By populating your site with specific words and information we can make it easier for search engines to find you.",
           "img": "search",
           "icon": "mdi-search-web"
-        },{
+        },
+        {
           "title": "SUPPORT",
           "subTitle": "Providing Support When Needed.",
           "subSubTitle": "Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
@@ -229,11 +338,12 @@
       "image": "static/web-1.jpg",
       "items": [
         {
+          "rank": "low",
           "name": "GOLD",
           "title": "For those who want something simple with basic features.",
           "subTitle": "For the most basic of needs",
           "price": "$599 +",
-          "icon": "mdi-emoticon-happy",
+          "icon": "mdi-medal",
           "iconColor": "amber",
           "items": [
             {
@@ -267,11 +377,12 @@
           ]
         },
         {
+          "rank": "medium",
           "name": "PLATINUM",
           "title": "For those who want something with a few pages and some cool features.",
           "subTitle": "For the most basic of needs",
           "price": "$1,199 +",
-          "icon": "mdi-emoticon",
+          "icon": "mdi-trophy",
           "iconColor": "silver",
           "items": [
             {
@@ -313,11 +424,12 @@
           ]
         },
         {
+          "rank": "high",
           "name": "DIAMOND",
           "title": "For those who want and or need something that stands out above the rest.",
           "subTitle": "For the most basic of needs",
           "price": "$3,999 +",
-          "icon": "mdi-emoticon-cool",
+          "icon": "mdi-diamond",
           "iconColor": "blue",
           "items": [
             {
@@ -371,11 +483,12 @@
           ]
         },
         {
+          "rank": "e-commerce",
           "name": "E-COMMERCE",
           "title": "Using Shoppify to provide a complete online store experience.",
           "subTitle": "For those who have a range of products they wish to sell online",
           "price": "$1,999 +",
-          "icon": "mdi-emoticon-excited",
+          "icon": "mdi-cart",
           "iconColor": "green",
           "items": [
             {

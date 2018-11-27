@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 const WebsiteDiscoveryQuestionsModel = require('../model/WebsiteDiscoveryQuestions.js');
 
-const dbExecute = (db, fn) => db.then(fn).finally(() => db.close());
+const dbExecute = (db, fn) => {
+    return db.then(fn).finally(() => {
+        console.log(db)
+        db.close()
+    })
+}
 
 const mongoString = "mongodb+srv://josh-icraft:" + process.env.MONGO_DB_ATLAS_PW + "@cluster0-vqqfc.mongodb.net/test?retryWrites=true"
 
 function dbConnectAndExecute(dbUrl, fn) {
-    return dbExecute(mongoose.connect(dbUrl), fn);
+    return dbExecute(mongoose.connect(dbUrl, { useNewUrlParser: true }), fn);
 }
 
 const createErrorResponse = (statusCode, message) => ({

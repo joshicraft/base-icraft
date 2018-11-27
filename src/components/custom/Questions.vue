@@ -98,11 +98,33 @@
 
 
                 >
-                    <h4 v-if="resultsGenerating">{{resultsLoading[resultsLoadingIndex]}}</h4>
+                    <h3 class="pa-5" v-if="resultsGenerating">{{resultsLoading[resultsLoadingIndex]}}</h3>
                     <v-flex v-if="resultsGenerated" class="c-title pa-5">
-                        <h1 class="mt-3 mb-3">{{data.results.title + data.results[resultsInformation].name + data.results.endTitle}}</h1>
-                        <h3 class="mb-4">{{data.results[resultsInformation].title}}</h3>
-                        <p>{{data.results[resultsInformation].subTitle}}</p>
+                        <v-layout
+                                column
+                                wrap
+                                  class="pa-4 ma-3 elevation-4 primary lighten-1"
+                        >
+                            <h1 class="mt-3 mb-3">{{resultsTitle()}}</h1>
+                            <v-icon class="mb-4" x-large>{{resultsIcon()}}</v-icon>
+                            <h3 class="mb-4">{{resultsSubTitle()}}</h3>
+                            <p>{{resultsSubSubTitle()}}</p>
+                        </v-layout>
+                        <div v-if="featureResultInformation" class="c-title">
+                            <h1  class="mt-5 mb-3">You may also be interested in.</h1>
+                            <v-layout>
+                                <v-flex
+                                    v-for="(f, i) in data.results.features"
+                                    v-if="f.checked"
+                                    lg6
+                                    class="pa-4 ma-3 elevation-4 green lighten-2"
+                                >
+                                    <h3 class="mb-4">{{f.title}}</h3>
+                                    <v-icon class="mb-4" x-large>{{f.icon}}</v-icon>
+                                    <p>{{f.subTitle}}</p>
+                                </v-flex>
+                            </v-layout>
+                            </div>
                     </v-flex>
                 </v-card>
             </v-stepper-content>
@@ -233,6 +255,18 @@
             }
         },
         methods: {
+            resultsSubSubTitle () {
+                return this.data.results[this.resultsInformation].subTitle
+            },
+            resultsSubTitle () {
+                return this.data.results[this.resultsInformation].title
+            },
+            resultsIcon () {
+                return this.data.results[this.resultsInformation].icon
+            },
+            resultsTitle () {
+              return this.data.results.title + this.data.results[this.resultsInformation].name + this.data.results.endTitle
+            },
             closeDialog () {
                 this.dialog = false
             },
@@ -248,19 +282,28 @@
                 }
             },
             clearQuestions() {
+                this.resultsGenerating = true
+                this.resultsLoadingIndex = 1
+                this.resultsGenerated = false
+                this.resultsInformation = false
                 this.data.questions.forEach(val => {
                     val.options.forEach(option => {
-                        if(option.checked) {
-                            console.log(option.title)
-                        }
                         option.checked = false
                     })
+                })
+                this.resetData()
+            },
+            resetData () {
+                this.data.results.features.forEach(feature => {
+                    feature.checked = false
                 })
             },
             processQuestions() {
                 let results = {}
                 let selections = []
-                this.data.questions.forEach(val => {
+                let features = {}
+                let data = this.data
+                data.questions.forEach(val => {
                     val.options.forEach(option => {
                         if (!option.points || !option.checked) {
                             return
@@ -270,10 +313,17 @@
                             points: option.points
                         })
                         Object.keys(option.points).forEach(function (key) {
+                            let points = option.points[key]
+                            data.results.features.forEach(feature => {
+                                if (feature && feature.name === key) {
+                                    features[key] = (!features[key] ? points : features[key] + points)
+                                    feature.checked = features[key] > 0
+                                }
+                            })
                             if (results[key] || results[key] === 0) {
-                                results[key] += option.points[key]
+                                results[key] += points
                             } else {
-                                results[key] = option.points[key]
+                                results[key] = points
                             }
                         });
                     })
@@ -282,9 +332,13 @@
                     return false
                 }
                 let max = Object.keys(results).reduce((a, b) => results[a] > results[b] ? a : b)
+                // if(features.some(f => results.indexOf(f) >= 0)){
+                //     return false
+                // }
                 this.resultsInformation = max
-                console.log(results[max])
-
+                this.featureResultInformation = Object.keys(features).length !== 0 && !Object.keys(features).some(v => v < 1) ? features : false
+                console.log(this.resultsInformation)
+                console.log(this.featureResultInformation)
                 this.submitQuestions({
                     endResult: max,
                     selections: selections,
@@ -311,11 +365,12 @@
                 }
             },
             loadResults() {
-
+                this.featureResultInformation = false
                 this.resultsGenerating = true
                 this.resultsLoadingIndex = 1
                 this.resultsGenerated = false
                 this.resultsInformation = false
+                this.resetData()
                 if(!this.processQuestions()){
                     this.dialog = true
                     this.resultsGenerating = false
