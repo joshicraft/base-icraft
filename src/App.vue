@@ -173,6 +173,9 @@
     p
       font-size 1.23em
 
+  .-full-viewport-arrow
+    min-height calc(100vh -300px)
+
   .jumbo-bot-arrow
     width 100%
     height: 300px;

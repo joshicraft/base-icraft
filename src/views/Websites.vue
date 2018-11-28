@@ -13,17 +13,65 @@
             <!--<polygon class="ss0" points="0,0 250,50 500,0"/>-->
             <!--</svg>-->
             <!--</div>-->
+            <div class="relative">
             <v-container class="-arrow-buffer-top">
                 <v-layout column wrap class="c-title">
-                    <h1 class="mt-5 mb-3 text-lg-center">CAN'T DECIDE?</h1>
-                    <h3 class="mb-4 text-lg-center">These questions can help you choose.</h3>
-                    <p class="text-lg-center">Just follow the questions and select the tick boxes for the answers that
-                        relate to you.</p>
+                    <h1 class="mt-5 mb-3 text-lg-center">LETS FIND YOU A WEBSITE</h1>
+                    <h3 class="mb-4 text-lg-center">Trying to understand the constantly changing tech jargon and daunting range of options can be a nightmare.</h3>
+                    <p class="text-lg-center">Our goal is to help you find the right solution for your needs. Here you can find out what website will suite you, check out some package ideas and find out about our process.</p>
+                    <v-layout wrap align-center d-flex>
+                        <v-btn
+                            class="primary"
+                            @click="$vuetify.goTo('#discovery')"
+                        >
+                            HELP ME CHOOSE
+                        </v-btn>
+                        <v-btn
+                                class="primary"
+                                @click="$vuetify.goTo('#packages')"
+                        >
+                            find a package
+                        </v-btn>
+                        <v-btn
+                                class="primary"
+                                @click="$vuetify.goTo('#process')"
+                        >
+                            The process
+                        </v-btn>
+                    </v-layout>
+
                 </v-layout>
 
             </v-container>
-            <div class="relative">
-                <v-container pa-0>
+                <div class="jumbo-bot-arrow static">
+                    <svg viewBox="0,0,500,100" preserveAspectRatio="none">
+                        <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
+                    </svg>
+
+                </div>
+            </div>
+
+            <div class="relative" >
+                <v-container id="discovery" class="">
+                    <v-layout column wrap class="c-title">
+                        <h1 class="mt-5 mb-3 text-lg-center">CAN'T DECIDE?</h1>
+                        <h3 class="mb-4 text-lg-center">We've come up with {{content.discover.questions.length}} questions that can help you choose.</h3>
+                        <p class="text-lg-center">To get stuck in, click GET STARTED then follow the questions and select the tick boxes for the answers that
+                            relate to you.</p>
+                        <div class="mx-auto">
+                            <v-btn
+                                    @click="showQuestionFrame"
+                                    class="primary"
+                                    :loading="loadingQuestions"
+                                    v-if="!showQuestions"
+                            >
+                                Get Started
+                            </v-btn>
+                        </div>
+                    </v-layout>
+
+                </v-container>
+                <v-container v-if="showQuestions">
                     <questions :data="content.discover"></questions>
 
                 </v-container>
@@ -43,6 +91,7 @@
             </v-container>
 
             <v-layout
+
                     class="relative"
                     row
                     wrap
@@ -113,8 +162,6 @@
 
                                                     <v-list-tile-content>
 
-                                                        <!--<h1 ></h1>-->
-                                                        <!--<h2>{{ i.title }}</h2>-->
                                                         <h4>{{!packageItem.active ? "SHOW PACKAGE" : "CLOSE"}}</h4>
                                                     </v-list-tile-content>
                                                 </v-list-tile>
@@ -150,7 +197,7 @@
 
                 </div>
             </v-layout>
-            <div class="timeline-wrap">
+            <div class="timeline-wrap" id="process">
                 <v-container>
                     <v-layout column wrap class="c-title">
                         <h1 class="mt-5 mb-3 text-lg-center">OUR PROCESS</h1>
@@ -210,6 +257,8 @@
         components: {Questions, TimelineProgress},
         data() {
             return {
+                loadingQuestions: false,
+                showQuestions: false,
                 content: this.$t('Views.Websites')
             }
         },
@@ -220,6 +269,14 @@
             }
         },
         methods: {
+            showQuestionFrame () {
+                this.loadingQuestions = true
+
+                setTimeout(()=>{
+                    this.showQuestions = true
+                    this.loadingQuestions=false
+                },1111)
+            },
             scrollTimelineItem() {
 
             },
@@ -271,7 +328,7 @@
     }
 
     .v-timeline
-        padding-top 150px
+        /*padding-top 150px*/
         padding-bottom 150px
         &:before
             border: 1px dashed #9a9a9a
