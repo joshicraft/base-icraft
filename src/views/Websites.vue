@@ -22,19 +22,19 @@
                     <v-layout wrap align-center d-flex>
                         <v-btn
                             class="primary"
-                            @click="$vuetify.goTo('#discovery')"
+                            @click="$vuetify.goTo('#discovery', {offset: -200})"
                         >
                             HELP ME CHOOSE
                         </v-btn>
                         <v-btn
                                 class="primary"
-                                @click="$vuetify.goTo('#packages')"
+                                @click="$vuetify.goTo('#packages', {offset: -200})"
                         >
                             find a package
                         </v-btn>
                         <v-btn
                                 class="primary"
-                                @click="$vuetify.goTo('#process')"
+                                @click="$vuetify.goTo('#process', {offset: -200})"
                         >
                             The process
                         </v-btn>
