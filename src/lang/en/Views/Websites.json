@@ -42,20 +42,20 @@
       "e-commerce": {
         "icon": "mdi-cart",
         "name": "E-Commerce",
-        "title": "It's all about selling product's online",
+        "title": "It's all about selling product's online.",
         "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
       },
       "high": {
         "icon": "mdi-gauge-full",
         "name": "Top-Tier",
         "title": "For those big jobs which stand out above the rest.",
-        "subTitle": "Top-Tier sites usually require a bunch of features, personalized design, cool effects and a whole lot of TLC."
+        "subTitle": "Top-Tier sites usually require a bunch of features, personalized design, cool effects and a whole lot of TLC. You'd expect to see more than 7 Pages and some really cool features like chat bots, customized quiz's, integrated databases and some quality customized design."
       },
       "medium": {
         "icon": "mdi-gauge",
         "name": "Medium-Tier",
-        "title": "For those who have want something cool with a few features.",
-        "subTitle": "These sites are typically 4-8 pages in size, have a couple of cool features like Google Maps or a gallery and come packed with a Contact Form."
+        "title": "For those who need something a bit extra.",
+        "subTitle": "These sites are typically 4-8 pages in size, have a couple of cool features like Google Maps or a gallery and come packed with a Contact Form. These are the most common forms of websites and up to 70% of small businesses have one."
       },
       "low": {
         "icon": "mdi-gauge-low",

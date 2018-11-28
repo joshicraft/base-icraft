@@ -246,17 +246,16 @@
       width 100%
       height 100%
 
+  .--rotate-in-center
+    animation rotate-in-center 1.8s infinite both linear
 
   @keyframes rotate-in-center {
     0% {
-      transform: rotate(-360deg);
+      transform: rotate(0deg);
       //opacity 0
     }
-    75% {
-      transform rotate(0)
-      //opacity 1
-    }
     100% {
+      transform rotate(360deg)
      // opacity 0
     }
   }
