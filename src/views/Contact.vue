@@ -1,9 +1,14 @@
 <template>
-    <v-container fill-height class="mb-5">
+    <v-container fill-height class="mb-5 -arrow-buffer-top -arrow-buffer-bot">
         <v-layout class="content-wrap" justify-space-between align-center wrap dark>
             <!--<v-flex md1 class="img-wrap">-->
             <!--<img src="/static/device-iphone-contact.png"/>-->
             <!--</v-flex>-->
+            <div class="c-title text-lg-center mb-5">
+                <h1 class="mt-5 mb-3">WE'D LIKE TO HEAR FROM YOU</h1>
+                <h3 class="mb-4">Use one of the methods below to get in touch.</h3>
+                <p>To find out the best solution for you its best to get in touch with us so we can find out exactly what you're after.</p>
+            </div>
             <v-flex xs12 lg7 mx2 dark>
                 <v-card dark class="pa-4 form-wrap">
                     <h2 class="headline mb-2" v-text="contact.heading1"/>
