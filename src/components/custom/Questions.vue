@@ -116,8 +116,7 @@
                 >
                     <v-layout column justify-center align-center v-if="resultsGenerating">
                         <h3
-                                class="pa-2"
-                                :class="{'pa-5': $vuetify.breakpoint.smAndUp}">{{resultsLoading[resultsLoadingIndex]}}
+                                :class="$vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-2'">{{resultsLoading[resultsLoadingIndex]}}
                         </h3>
                         <v-progress-circular
                                 :size="100"
@@ -128,17 +127,17 @@
                     </v-layout>
                     <v-flex
                             v-else-if="resultsGenerated"
-                            class="c-title no-max pa-2"
-                            :class="{'pa-5': $vuetify.breakpoint.smAndUp}"
+                            class="c-title no-max"
+                            :class="$vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-2'"
                     >
                         <h1 class="mt-2 mb-4 lg-6 text-lg-center">{{resultsTitle()}}</h1>
                         <v-hover>
                             <v-card
                                     slot-scope="{ hover }"
-                                    :class="`elevation-${hover ? 12 : 2}` + (hover ? ' rise-anim': '')"
+                                    :class="`elevation-${hover ? 12 : 2}` + (hover ? ' rise-anim': '') + $vuetify.breakpoint.smAndUp ? ' pa-4' : ' pa-2'"
                                     column
                                     wrap
-                                    class="pa-4 ma-3 lighten-1"
+                                    class="ma-3 lighten-1"
                             >
                                 <v-icon class="mb-2 lg-6" size="100" color="primary">{{resultsIcon()}}</v-icon>
 
@@ -201,8 +200,8 @@
                                 </v-flex>
                         </v-layout>
                         </v-container>
-                        <v-card class="pa-3 ma-3"
-                                :class="{'pa-4': $vuetify.breakpoint.smAndUp}"
+                        <v-card class="ma-3"
+                                :class="$vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-3'"
                         >
                             <p class="text--white">If you'd like a more comprehensive breakdown, enter in your email
                                 below and well send you a PDF via email. </p>
