@@ -1,12 +1,12 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
+// const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const { VuetifyProgressiveModule } = require('vuetify-loader')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-const productionGzipExtensions = ['js', 'css']
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const path = require('path')
-const loadMinified = require('./build/load-minified')
+// const productionGzipExtensions = ['js', 'css']
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const path = require('path')
+// const loadMinified = require('./build/load-minified')
 module.exports = {
     devServer: {
         proxy: {
@@ -20,29 +20,6 @@ module.exports = {
     },
     configureWebpack: {
         plugins: [
-            // new VuetifyLoaderPlugin(),
-            // new PreloadWebpackPlugin({
-            //     rel: "preload",
-            //     include: "allChunks"
-            // }),
-            // new HtmlWebpackPlugin({
-            //     filename: process.env.NODE_ENV === 'testing'
-            //         ? './public/index.html'
-            //         : './dist/index.html',
-            //     template: './public/index.html',
-            //     inject: true,
-            //     minify: {
-            //         removeComments: true,
-            //         collapseWhitespace: true,
-            //         removeAttributeQuotes: true
-            //         // more options:
-            //         // https://github.com/kangax/html-minifier#options-quick-reference
-            //     },
-            //     // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-            //     // chunksSortMode: 'dependency',
-            //     serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname,
-            //         'build/service-worker-prod.js'))}</script>`
-            // }),
             new CompressionWebpackPlugin({
                 algorithm: 'gzip',
                 test: new RegExp(
@@ -51,7 +28,6 @@ module.exports = {
                 threshold: 10240,
                 minRatio: 0.8
             })
-               // new BundleAnalyzerPlugin()
         ]
 
     },

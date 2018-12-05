@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <!--<router-view></router-view>-->
+    <div class="relative">
         <v-flex
                 v-scroll="topScroll"
                 v-for="(service, i) in content.items"
@@ -141,9 +140,10 @@
                                             <v-flex row>
                                                 <h1 :class="packageItem.iconColor + '--text'">{{ packageItem.name
                                                     }}</h1>
-                                                <v-icon mt-2 large :color="packageItem.iconColor">{{ packageItem.icon
+                                                <v-icon mt-2 size="150px" :color="packageItem.iconColor">{{ packageItem.icon
                                                     }}
                                                 </v-icon>
+
                                             </v-flex>
                                             <h3 class="mt-4">{{ packageItem.price }}</h3>
                                             <p class="mt-4">{{ packageItem.title }}</p>
@@ -173,9 +173,9 @@
                                                 >
 
                                                     <v-list-tile-action>
-                                                        <v-icon>{{ subItem.icon }}</v-icon>
+                                                        <v-icon >{{ subItem.icon }}</v-icon>
                                                     </v-list-tile-action>
-                                                    <v-list-tile-content>
+                                                    <v-list-tile-content >
                                                         <v-list-tile-title>{{ subItem.text }}</v-list-tile-title>
                                                     </v-list-tile-content>
 
@@ -208,28 +208,35 @@
                 <v-container>
                     <v-layout>
                         <v-timeline :dense="$vuetify.breakpoint.smAndDown">
-                            <v-timeline-item
-
-                                    v-for="(feature, k) in service.features"
-                                    :key="k"
-                                    :id="k + '-timeline-feature'"
-                                    color="blue lighten-2"
-                                    large
-                                    :icon="feature.icon"
-                            >
-                                <div slot="opposite" v-if="!$vuetify.breakpoint.smAndDown">
-                                    <h1 class="opposite_tl">{{feature.title}}</h1>
-                                </div>
-                                <v-card class="elevation-2">
-                                    <v-img :src="imgC(feature.img)" height="200px"></v-img>
-                                    <v-card-title class="headline">{{feature.subTitle}}</v-card-title>
-                                    <v-card-text>
-                                        {{feature.subSubTitle}}
-                                    </v-card-text>
-                                </v-card>
-                            </v-timeline-item>
+                            <template v-for="(feature, k) in service.features">
+                                <custom-timeline-piece :data="feature" :index="k"></custom-timeline-piece>
+                            <!--<v-timeline-item-->
+                                    <!--dark-->
+                                    <!--v-scroll="scrollTimelineItem"-->
+                                    <!--:key="k"-->
+                                    <!--:id="k + '-timeline-feature'"-->
+                                    <!--color="blue lighten-2"-->
+                                    <!--large-->
+                                    <!--:icon="feature.icon"-->
+                            <!--&gt;-->
+                                <!--<div slot="opposite" v-if="!$vuetify.breakpoint.smAndDown">-->
+                                    <!--<h1 class="opposite_tl">{{feature.title}}</h1>-->
+                                <!--</div>-->
+                                <!--<v-card class="elevation-2">-->
+                                    <!--&lt;!&ndash;<c-img :src="feature.img" height="300px"></c-img>&ndash;&gt;-->
+                                    <!--<v-img :src="imgC(feature.img)" :lazy-src="imgC(feature.img, false, false, true)" height="40%" :ref="'tl-img-' + k">-->
+                                        <!--<v-icon size="150px" color="#5a5a5a" class="ma-4">{{feature.icon}}</v-icon>-->
+                                    <!--</v-img>-->
+                                    <!--<div>-->
+                                        <!--<v-card-title class="headline px-5 pt-5">{{feature.subTitle}}</v-card-title>-->
+                                        <!--<v-card-text class="px-5 pb-5">-->
+                                            <!--{{feature.subSubTitle}}-->
+                                        <!--</v-card-text>-->
+                                    <!--</div>-->
+                                <!--</v-card>-->
+                            <!--</v-timeline-item>-->
+                            </template>
                         </v-timeline>
-                        <custom-timeline-progress :items="service.features"></custom-timeline-progress>
                     </v-layout>
                 </v-container>
             </div>
@@ -252,9 +259,10 @@
     // import content from '../lang/en/Views/Websites'
     import TimelineProgress from '../components/custom/TimelineProgress'
     import Questions from '../components/custom/Questions'
+    import CImg from '../components/custom/CImg'
 
     export default {
-        components: {Questions, TimelineProgress},
+        components: {Questions, TimelineProgress, CImg},
         data() {
             return {
                 loadingQuestions: false,
@@ -269,16 +277,25 @@
             }
         },
         methods: {
-            showQuestionFrame () {
+            showQuestionFrame() {
                 this.loadingQuestions = true
 
-                setTimeout(()=>{
+                setTimeout(() => {
                     this.showQuestions = true
-                    this.loadingQuestions=false
-                },1111)
+                    this.loadingQuestions = false
+                }, 1111)
             },
             scrollTimelineItem() {
-
+                let $e = this.$el
+                let pos = $e.getBoundingClientRect().y
+                if(pos < window.innerHeight / 2.5 && !$e.scrollAnimated) {
+                    $e.scrollAnimated = true
+                    TweenMax.fromTo($e, 0.3, {autoAlpha: 0, y: 50}, {autoAlpha: 1, y: 0})
+                }
+                else if ($e.scrollAnimated && pos > window.innerHeight - 100 ) {
+                    $e.scrollAnimated = false
+                    TweenMax.set($e, {autoAlpha: 0})
+                }
             },
             loadLimit(i) {
                 return this.loadTickerCount <= i
@@ -330,8 +347,8 @@
     .v-timeline
         /*padding-top 150px*/
         padding-bottom 150px
-        &:before
-            border: 1px dashed #9a9a9a
+        //&:before
+            /*border: 1px dashed #9a9a9a*/
 
     .timeline-wrap
         padding-top 0

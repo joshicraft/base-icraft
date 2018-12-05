@@ -1,5 +1,11 @@
 <template>
     <v-content>
+        <div class="jumbo-bot-arrow top">
+            <svg viewBox="0,0,500,100" preserveAspectRatio="none">
+                <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
+                <!--<polygon fill="#fafafa" points="0,0 0,100 250,50 500,100 500,0 250,50"></polygon>-->
+            </svg>
+        </div>
         <router-view :loadTickerCount="loadTickerCount"/>
     </v-content>
 </template>

@@ -1,10 +1,10 @@
 <template>
     <div class="relative">
-        <div class="jumbo-bot-arrow">
-            <svg viewBox="0,0,500,100" preserveAspectRatio="none">
-                <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
-            </svg>
-        </div>
+        <!--<div class="jumbo-bot-arrow">-->
+            <!--<svg viewBox="0,0,500,100" preserveAspectRatio="none">-->
+                <!--<polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>-->
+            <!--</svg>-->
+        <!--</div>-->
         <custom-video-background
                 id="jumbotron"
                 class="vh"
@@ -12,7 +12,6 @@
                 :img="imgC('v-bga', false, false, false, 'video/')"
                 alt="Background video image"
         >
-
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
             <div class="contact-ico bot-p left-p">
                 <v-btn
@@ -26,19 +25,16 @@
                         color="primary"
                         :class="$vuetify.breakpoint.smAndDown ? 'bot' : ''"
                         class="darken-3"
-
                 >
                     <v-icon
                             large
                             :medium="$vuetify.breakpoint.mdAndDown"
                             dark
-                    >mdi-phone
+                    >
+                        mdi-phone
                     </v-icon>
                 </v-btn>
             </div>
-            <!--<custom-background-vector></custom-background-vector>-->
-
-
             <my-transition mode="out-in">
                 <v-container
                         fill-height
@@ -53,15 +49,14 @@
                                     align-center
                                     text-xs-center
                                     :key="$route.path"
-                                    class="title"
+                                    class="title c-title"
                             >
-                                <h1 class="display-3">{{title}}</h1>
-                                <h2 class="display-1">{{subTitle}}</h2>
+                                <h1 class="mb-3">{{title}}</h1>
+                                <h4>{{subTitle}}</h4>
                             </v-layout>
                     </v-layout>
                 </v-container>
             </my-transition>
-            <!--</v-img>-->
             <div
                     @click="goTo('#view')"
                     class="scroll-wheel-wrap scrollwheel"
@@ -163,13 +158,13 @@
         color: #fafafa
         /*color: #438ccb*/
         h1
-            font-size: 3em
+            /*font-size: 3em*/
             margin-left: 3px;
-            font-weight 500
+            ///*font-weight 500*/
             transform scaleY(0.9)
-        h2
-            font-size: 1em;
-            font-weight: 300
+        h4, h3
+            /*font-size: 1em;*/
+            font-weight: 100
             transform scaleY(0.95)
 
     .contact-ico
@@ -307,6 +302,6 @@
     @media (max-width: 470px), (max-width: 740px) and (orientation: landscape)
         .title
 
-            font-size: 1em !important
+            font-size: 0.8em !important
 
 </style>

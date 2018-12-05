@@ -24,6 +24,7 @@
 
         data() {
             return {
+                video: null,
                 videoRatio: null
             }
         },
@@ -31,12 +32,13 @@
             $route(to, from) {
                 if (from !== null) {
                     this.play()
-                    this.$refs.video.currentTime = 5.65
+                    this.video.currentTime = 5.65
                 }
             }
         },
 
         mounted() {
+            this.video = this.$el.querySelector('video')
             this.setImageUrl()
             this.setContainerHeight()
             window.addEventListener('resize', this.resize)
@@ -47,7 +49,8 @@
             // TweenMax.delayedCall(0.5, this.play, [], this)
             // TweenMax.delayedCall(1, this.play, [], this)
             // TweenMax.delayedCall(2, this.play, [], this)
-            this.$refs.video.onloadeddata = this.play
+
+            this.video.onloadeddata = this.play
             this.checkPausedTicker = setInterval(this.tickCheck, (1000/24))
 
         },
@@ -62,19 +65,19 @@
                 this.tickCheck()
             },
             tickCheck () {
-                if(this.$refs.video.paused) {
+                if(this.video && this.video.paused) {
                     // clearInterval(this.checkPausedTicker)
-                    this.$refs.video.play()
+                    this.video.play()
                 }
             },
             playVideo() {
                 this.setContainerHeight()
                 if (this.videoCanPlay()) {
-                    this.$refs.video.oncanplay = () => {
-                        if (!this.$refs.video) return
-                        this.videoRatio = this.$refs.video.videoWidth / this.$refs.video.videoHeight
+                    this.video.oncanplay = () => {
+                        if (!this.video) return
+                        this.videoRatio = this.video.videoWidth / this.video.videoHeight
                         this.setVideoSize()
-                        this.$refs.video.style.visibility = 'visible'
+                        this.video.style.visibility = 'visible'
                     }
                 }
             },
@@ -87,7 +90,7 @@
             },
 
             videoCanPlay() {
-                return this.$refs.video
+                return this.video
             },
 
             setImageUrl() {
@@ -111,8 +114,8 @@
                     height = this.$el.offsetHeight
                 }
 
-                this.$refs.video.style.width = width ? `${width}px` : 'auto'
-                this.$refs.video.style.height = height ? `${height}px` : 'auto'
+                this.video.style.width = width ? `${width}px` : 'auto'
+                this.video.style.height = height ? `${height}px` : 'auto'
             },
 
             getMediaType(src) {

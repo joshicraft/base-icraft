@@ -74,6 +74,7 @@
                  $right,
                  $iris,
                  $title,
+                 distance,
                  $irisRings
                 let pos = $e.getBoundingClientRect().y
                 if (pos < window.innerHeight / 2.5 && !$e.scrollAnimated) {
@@ -83,10 +84,11 @@
                     $title =$e.querySelector('.title-a')
                     $irisRings = [$iris.querySelector('.iris-1'), $iris.querySelector('.iris-2'), $iris.querySelector('.iris-3'), $iris.querySelector('.iris-4')]
                     $e.scrollAnimated = true
+                    distance = this.$vuetify.breakpoint.smAndDown ? '80%' : '40%'
                     new TimelineMax()
                         .fromTo($iris, 0.5, {scale: 0.2}, {scale: 1, ease: Back.easeOut})
 
-                        .to($left ? $left : $right, 1.59, {x: $left ? '-40%' : '40%', ease: Back.easeOut}, '-=0.25')
+                        .to($left ? $left : $right, 1.59, {x: $left ? '-' + distance : distance, ease: Back.easeOut}, '-=0.25')
                         .to($iris.querySelector('.iris-1'), 0.36, {rotation: 100, transformOrigin: '50% 50%', autoAlpha: 0.3}, '-=' + 1.475)
                         .to($iris.querySelector('.iris-2'), 0.36, {rotation: 180, transformOrigin: '50% 50%', autoAlpha: 0.3}, '-=' + 1.25)
                         .to($iris.querySelector('.iris-3'), 0.36, {rotation: -180, transformOrigin: '50% 50%', autoAlpha: 0.3}, '-=' + 1.25)

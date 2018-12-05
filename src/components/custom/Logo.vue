@@ -9,21 +9,11 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 578 578.5">
 
                 <g>
-                    <linearGradient class="SVGID_3_" gradientUnits="userSpaceOnUse" x1="134.2097" y1="361.1454"
-                                    x2="452.7844" y2="361.1454">
-                        <stop offset="0" style="stop-color:#005B8A"/>
-                        <stop offset="1" style="stop-color:#0071E0"/>
-                    </linearGradient>
                     <polygon class="st2"
                              points="145.1,433.1 145.2,289.2 289,289.2 289,145.3 145.2,145.3 1.4,289.1 1.4,577 433,577 577,433    "/>
                 </g>
 
                 <g>
-                    <linearGradient class="SVGID_4_" gradientUnits="userSpaceOnUse" x1="147.9021" y1="217.2672"
-                                    x2="581.8736" y2="217.2672">
-                        <stop offset="0" style="stop-color:#0088E9"/>
-                        <stop offset="1" style="stop-color:#0071E0"/>
-                    </linearGradient>
                     <polygon class="st3"
                              points="145.1,1.4 145.2,145.3 289,145.3 289,289.2 145.2,289.2 145.1,433.1 576.8,433.1 576.8,289.2      432.9,289.2 432.9,145.3 576.8,145.3 576.8,1.4    "/>
                 </g>
@@ -48,27 +38,10 @@
         width: 100%
         height: 100%
 
-    //.st3{fill:#243883;}
-    //.st4{fill:#438CCB;}
-    //.st5{fill:#23608D;}
+    .st3{fill:#243883;}
+    .st4{fill:#438CCB;}
+    .st5{fill:#23608D;}
 
-    .st0 {
-        display: none;
-        fill: url(#SVGID_1_);
-    }
-
-    .st1 {
-        display: none;
-        fill: url(#SVGID_2_);
-    }
-
-    .st2 {
-        fill: url(#SVGID_3_);
-    }
-
-    .st3 {
-        fill: url(#SVGID_4_);
-    }
 
     .st4 {
         display: none;

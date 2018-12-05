@@ -1,24 +1,26 @@
 <template>
-  <v-app>
+    <v-app>
 
-    <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 1)"/>
+        <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 1)"/>
 
-    <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
+        <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
+        <!--<core-side-drawer></core-side-drawer>-->
+        <core-jumbotron app/>
 
-    <core-jumbotron/>
+        <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"
+                   v-if="getLoadCount(2)"/>
 
-    <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"  v-if="getLoadCount(2)"/>
+        <core-footer v-if="getLoadCount(2)"/>
 
-    <core-footer v-if="getLoadCount(2)"/>
-
-  </v-app>
+    </v-app>
 </template>
 <script>
     /* eslint-disable no-undef,spaced-comment */
 
-    import { mapMutations, mapGetters } from 'vuex'
+    import {mapMutations, mapGetters} from 'vuex'
+
     export default {
-        data () {
+        data() {
             return {
                 componentsLoaded: null,
                 loadTickerCount: 0,
@@ -27,7 +29,7 @@
                 lazyTriggered: null
             }
         },
-        mounted () {
+        mounted() {
             let $this = this
             let timeLoad = new Date().getTime() - window.startLoadTime
             document.body.addEventListener('click', () => {
@@ -45,8 +47,8 @@
             setTimeout(this.mountFBChat, 4000)
         },
         watch: {
-            $route (frm, to) {
-                if(to.name) {
+            $route(frm, to) {
+                if (to.name) {
                     document.getElementById('home-loader').classList.add('hide-')
                     clearTimeout(this.delayAnimated)
                 }
@@ -54,10 +56,10 @@
             }
         },
         computed: {
-            lazyLoaded () {
+            lazyLoaded() {
                 return this.getLazy()
             },
-            loaded () {
+            loaded() {
                 return this.getLoader()
             }
         },
@@ -66,27 +68,28 @@
             ...mapMutations('app', ['setLoader']),
             ...mapGetters('app', ['getLazy']),
             ...mapGetters('app', ['getLoader']),
-            mountFBChat () {
-                (function(d, s, id) {
+            mountFBChat() {
+                (function (d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0];
                     if (d.getElementById(id)) return;
-                    js = d.createElement(s); js.id = id;
+                    js = d.createElement(s);
+                    js.id = id;
                     js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'))
             },
-            getLoadCount (i) {
+            getLoadCount(i) {
                 return i < this.loadCount
             },
-            increment () {
+            increment() {
                 this.loadCount += 1
-                if(this.loadCount > 5){
+                if (this.loadCount > 5) {
                     clearInterval(this.loadComponentsTicker)
                 }
             },
             loadTick() {
                 this.loadTickerCount++
-                if(this.loadTickerCount > this.tickerLimit){
+                if (this.loadTickerCount > this.tickerLimit) {
                     clearInterval(this.loadTicker)
                 }
             },
@@ -101,10 +104,10 @@
                 this.clearLoadTicker()
                 this.loadTicker = setInterval(this.loadTick, tickInterval * 1000)
             },
-            animateLoaded () {
+            animateLoaded() {
                 this.loadComponentsTicker = setInterval(this.increment, 1000)
             },
-            onScroll (e) {
+            onScroll(e) {
                 if (this.lazyTriggered && !this.getLazy()) {
                     this.setLazyLoaded(true)
                     this.setLoader(true)
@@ -132,192 +135,209 @@
 
 
 <style lang="stylus">
-  html
-    overflow scroll
-    overflow-x hidden
+    html
+        overflow scroll
+        overflow-x hidden
 
-  ::-webkit-scrollbar
-    cursor pointer
-    width: 8px  /* remove scrollbar space */
-    background: transparent  /* optional: just make scrollbar invisible */
+    ::-webkit-scrollbar
+        cursor pointer
+        width: 8px /* remove scrollbar space */
+        background: transparent
 
-  /* optional: show position indicator in red */
-  ::-webkit-scrollbar-thumb
-    background #b0b0b0
-    cursor pointer
-    border-radius 5px
+    /* optional: just make scrollbar invisible */
 
-  ::-webkit-scrollbar-thumb:hover
-    background #4a4a4a
+    /* optional: show position indicator in red */
+    ::-webkit-scrollbar-thumb
+        background #b0b0b0
+        cursor pointer
+        border-radius 5px
 
-  ::-webkit-scrollbar-thumb:active
-    background #1a1a1a
+    ::-webkit-scrollbar-thumb:hover
+        background #4a4a4a
 
-  .v-content
-    padding-top: 0 !important
+    ::-webkit-scrollbar-thumb:active
+        background #1a1a1a
 
-  .c-title
-    max-width 999px
-    margin-left auto
-    margin-right auto
-    h1
-      font-size: 2.75em
-    h2
-      font-size 2.45em
-      font-weight 100
-    h3
-      font-size 2.15em
-      font-weight 100
-    h4
-      font-size 1.76em
-    p
-      font-size 1.23em
+    .v-content
+        padding-top: 0 !important
 
-  .-full-viewport-arrow
-    min-height calc(100vh -300px)
+    .c-title
+        max-width 999px
+        margin-left auto
+        margin-right auto
+        h1
+            font-size: 2.75em
+        h2
+            font-size 2.45em
+            font-weight 100
+        h3
+            font-size 2.15em
+            font-weight 100
+        h4
+            font-size 1.76em
+        p
+            font-size 1.23em
 
-  .jumbo-bot-arrow
-    width 100%
-    height: 300px;
-    pointer-events none
-    position absolute
-    margin-top -150px
-    z-index 3
+    .-full-viewport-arrow
+        min-height calc(100vh -300px)
 
-    svg
-      filter drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.25))
-      position absolute
-      height 100%
-      display: block
-      width: 100%;
-    polygon
-      fill #5a5a5a
+    .-full-vp
+        position relative
+        width 100vw
+        min-height 100vh
+        justify-content center
+        align-items center
+        display flex
 
-    &.static
-      margin-top 0
-      position static
-      svg
-       position static
+    .jumbo-bot-arrow
+        width 100%
+        height: 300px;
+        pointer-events none
+        position absolute
+        margin-top -150px
+        z-index 3
 
-  .-arrow-buffer-top
-    padding-top 150px
-  .-arrow-buffer-bot
-    padding-bottom 200px
+        svg
+            filter drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.25))
+            position absolute
+            height 100%
+            display: block
+            width: 100%;
+        polygon
+            fill #5a5a5a
 
-  #webchat
-    z-index: 20;
-    position fixed
-    bottom: 0
-    right: 0
-    width: 300px
-    max-height: 400px
-    ul
-      overflow hidden
-      overflow-y scroll
+        &.static
+            margin-top 0
+            position static
+            svg
+                position static
 
+    .-arrow-buffer-top
+        padding-top 150px
 
-  .pointer
-    cursor pointer
+    .-arrow-buffer-bot
+        padding-bottom 200px
 
-  .invisible
-    opacity 0
-    visibility hidden
+    #webchat
+        z-index: 20;
+        position fixed
+        bottom: 0
+        right: 0
+        width: 300px
+        max-height: 400px
+        ul
+            overflow hidden
+            overflow-y scroll
 
-  .hide-
-    top -100%
-    img
-      animation: d
+    .pointer
+        cursor pointer
 
-  .slide-out-l
-    animation slide-out-left 1.4s ease-in forwards
+    .invisible
+        opacity 0
+        visibility hidden
 
-  .slide-out-r
-    animation slide-out-right 1.4s ease-in forwards
+    .hide-
+        top -100%
+        img
+            animation: d
 
+    .slide-out-l
+        animation slide-out-left 1.4s ease-in forwards
 
-  .j-bg-svg
-    position absolute
-    top 0
-    left 0
-    width 100%
-    height 100%
-    svg
-      display block
-      width 100%
-      height 100%
+    .slide-out-r
+        animation slide-out-right 1.4s ease-in forwards
 
-  .--rotate-in-center
-    animation rotate-in-center 1.8s infinite both linear
+    .j-bg-svg
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+        svg
+            display block
+            width 100%
+            height 100%
 
-  @keyframes rotate-in-center {
-    0% {
-      transform: rotate(0deg);
-      //opacity 0
+    .--rotate-in-center
+        animation rotate-in-center 1.8s infinite both linear
+
+    @keyframes rotate-in-center {
+        0% {
+            transform: rotate(0deg);
+            //opacity 0
+        }
+        100% {
+            transform rotate(360deg)
+            // opacity 0
+        }
     }
-    100% {
-      transform rotate(360deg)
-     // opacity 0
+
+    @keyframes jello-diagonal-2 {
+        10% {
+            transform: skew(0deg 0deg);
+        }
+        30% {
+            transform: skew(-25deg -25deg);
+        }
+        40% {
+            transform: skew(15deg, 15deg);
+        }
+        50% {
+            transform: skew(-15deg, -15deg);
+        }
+        65% {
+            transform: skew(5deg, 5deg);
+        }
+        75% {
+            transform: skew(-5deg, -5deg);
+        }
+        100% {
+            transform: skew(0deg 0deg);
+        }
     }
-  }
-  @keyframes jello-diagonal-2 {
-    10% {
-    transform: skew(0deg 0deg);
-    }
-    30% {
-    transform: skew(-25deg -25deg);
-    }
-    40% {
-    transform: skew(15deg, 15deg);
-    }
-    50% {
-    transform: skew(-15deg, -15deg);
-    }
-    65% {
-    transform: skew(5deg, 5deg);
-    }
-    75% {
-    transform: skew(-5deg, -5deg);
-    }
-    100% {
-    transform: skew(0deg 0deg);
-    }
-  }
 
-  .my-transition
-      &-leave-active
-          position: absolute
+    .my-transition
+        &-leave-active
+            position: absolute
 
-      &-enter-active, &-leave, &-leave-to
-          transition: opacity 0.6s
-          .title
-            transition: transform 0.6s
+        &-enter-active, &-leave, &-leave-to
+            transition: opacity 0.6s
+            .title
+                transition: transform 0.6s
 
-      &-enter, &-leave-to
-          opacity: 0
-          .title
-            transform: scale(0.75)
+        &-enter, &-leave-to
+            opacity: 0
+            .title
+                transform: scale(0.75)
 
+    .v-content
+        padding-top: 0px !important
+        padding-bottom: 64px !important
+        z-index 3
 
-  .v-content
-    padding-top: 0px !important
-    padding-bottom: 64px !important
-    z-index 1
+    .no-pad
+        padding-bottom: 0 !important
+        padding-top: 0 !important
 
-  .no-pad
-    padding-bottom: 0 !important
-    padding-top: 0 !important
+    .container
+        max-width: 1280px
 
-  .container
-    max-width: 1280px
+    .relative
+        position: relative
 
-  .relative
-    position: relative
+    .theme--light.v-stepper--vertical .v-stepper__content:not(:last-child)
+        border-left: 0px solid rgba(0, 0, 0, 0.12);
 
-  .theme--light.v-stepper--vertical .v-stepper__content:not(:last-child)
-    border-left: 0px solid rgba(0,0,0,0.12);
+    .row-reverse
+        flex-direction row-reverse
+
+    @media screen and (max-width: 700px)
+        .jumbo-bot-arrow
+            margin-top -(137/2)px
+            height 137px
+        .c-title
+            h3
+                line-height 1.1
 
 
-
-  .row-reverse
-    flex-direction row-reverse
 </style>

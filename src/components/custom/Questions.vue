@@ -12,13 +12,13 @@
                     {{data.questions[n-1].name}}
                 </v-stepper-step>
                 <v-stepper-step
-                    class="pa-3"
-                    complete-icon="mdi-check"
-                    :complete="resultsGenerated"
-                    color="success"
-                    :rules="[() => resultsGenerated]"
-                    v-if="n >= steps"
-                    :step="steps + 1"
+                        class="pa-3"
+                        complete-icon="mdi-check"
+                        :complete="resultsGenerated"
+                        color="success"
+                        :rules="[() => resultsGenerated]"
+                        v-if="n >= steps"
+                        :step="steps + 1"
                 >
                     Results
                 </v-stepper-step>
@@ -35,6 +35,7 @@
                     v-for="n in steps"
                     :key="`${n}-content`"
                     :step="n"
+                    class="pa-0"
             >
                 <v-card
                         class="mb-3 elevation-0 grey lighten-3"
@@ -44,7 +45,7 @@
                         {{data.questions[n-1].title}}
                     </h3>
                     <v-list
-                            class="grey lighten-4"
+                            class="grey lighten-4 q-overflow"
                             subheader
                             two-line
                     >
@@ -56,8 +57,8 @@
                             <v-hover>
                                 <v-checkbox
                                         slot-scope="{ hover }"
-                                        :class="{'scale-anim': hover}"
-                                        class="pa-0 ma-4 no-message"
+                                        :class="{'scale-anim': hover, 'ma-4': $vuetify.breakpoint.smAndUp}"
+                                        class="pa-0 ma-2 no-message"
                                         v-model="option.checked"
                                         :label="option.title"
                                 ></v-checkbox>
@@ -65,8 +66,8 @@
                             <!--</v-list-tile-action>-->
 
                             <!--<v-list-tile-content>-->
-                                <!--<v-list-tile-title>{{option.title}}</v-list-tile-title>-->
-                                <!--&lt;!&ndash;<v-list-tile-sub-title>Subtite</v-list-tile-sub-title>&ndash;&gt;-->
+                            <!--<v-list-tile-title>{{option.title}}</v-list-tile-title>-->
+                            <!--&lt;!&ndash;<v-list-tile-sub-title>Subtite</v-list-tile-sub-title>&ndash;&gt;-->
                             <!--</v-list-tile-content>-->
                         </v-list-tile>
                     </v-list>
@@ -104,7 +105,7 @@
                 <p class="ml-0 text--lighten-1 grey--text">{{'Step ' + n + '/' + steps}}</p>
             </v-stepper-content>
             <v-stepper-content
-                    class="over"
+                    class="over pa-0"
                     :class="{'fade-anim' : resultsGenerated}"
                     :step="steps + 1"
             >
@@ -114,7 +115,10 @@
 
                 >
                     <v-layout column justify-center align-center v-if="resultsGenerating">
-                        <h3 class="pa-5">{{resultsLoading[resultsLoadingIndex]}}</h3>
+                        <h3
+                                class="pa-2"
+                                :class="{'pa-5': $vuetify.breakpoint.smAndUp}">{{resultsLoading[resultsLoadingIndex]}}
+                        </h3>
                         <v-progress-circular
                                 :size="100"
                                 color="primary"
@@ -122,7 +126,11 @@
                                 class="mb-5"
                         ></v-progress-circular>
                     </v-layout>
-                    <v-flex v-else-if="resultsGenerated" class="c-title no-max pa-5">
+                    <v-flex
+                            v-else-if="resultsGenerated"
+                            class="c-title no-max pa-2"
+                            :class="{'pa-5': $vuetify.breakpoint.smAndUp}"
+                    >
                         <h1 class="mt-2 mb-4 lg-6 text-lg-center">{{resultsTitle()}}</h1>
                         <v-hover>
                             <v-card
@@ -130,7 +138,7 @@
                                     :class="`elevation-${hover ? 12 : 2}` + (hover ? ' rise-anim': '')"
                                     column
                                     wrap
-                                  class="pa-4 ma-3 lighten-1"
+                                    class="pa-4 ma-3 lighten-1"
                             >
                                 <v-icon class="mb-2 lg-6" size="100" color="primary">{{resultsIcon()}}</v-icon>
 
@@ -140,7 +148,7 @@
                                 <p class="mt-4 text--grey">
                                     This solution closely matches our package: {{resultsSolutionMatch().name}}
                                     <v-icon
-                                        :color="resultsSolutionMatch().iconColor"
+                                            :color="resultsSolutionMatch().iconColor"
                                     >
                                         {{resultsSolutionMatch().icon}}
                                     </v-icon>
@@ -154,34 +162,41 @@
                                 </v-btn>
                             </v-card>
                         </v-hover>
-                        <h1  class="mt-5 mb-3 text-lg-center">You may also be interested in.</h1>
+                        <h1 class="mt-5 mb-3 text-lg-center">You may also be interested in.</h1>
                         <div v-if="featureResultInformation" class="c-title no-max">
 
-                            <v-layout>
+                                <v-flex  md12
+                                         lg6
+                                         v-for="(f, i) in data.results.features"
+                                         v-if="f.checked"
+                                >
                                 <v-hover
-                                        v-for="(f, i) in data.results.features"
-                                       v-if="f.checked"
-                                >
-                                <v-card
-                                    lg6
-                                    slot-scope="{ hover }"
-                                    :class="`elevation-${hover ? 6 : 2}`"
-                                    class="pa-4 ma-3 lighten-2"
-                                >
-                                    <v-layout justify-center align-center row wrap>
-                                        <h3 class="mb-4">{{f.title}}</h3>
 
-                                        <v-icon class="mb-4 ml-4" color="primary" x-large>{{f.icon}}</v-icon>
-                                    </v-layout>
-                                    <p>{{f.subTitle}}</p>
+                                >
 
-                                </v-card>
+                                    <v-card
+
+                                            slot-scope="{ hover }"
+                                            :class="{'elevation-2': !hover, 'pa-4': $vuetify.breakpoint.smAndUp}"
+                                            class="pa-2 ma-3 lighten-2 elevation-2 md12 lg6"
+                                    >
+                                        <v-layout justify-center align-center row wrap>
+                                            <h3 class="mb-4">{{f.title}}</h3>
+
+                                            <v-icon class="mb-4 ml-4" color="primary" x-large>{{f.icon}}</v-icon>
+                                        </v-layout>
+                                        <p>{{f.subTitle}}</p>
+
+                                    </v-card>
+
                                 </v-hover>
-
-                            </v-layout>
-                            </div>
-                        <v-card class="pa-5 ma-3">
-                            <p class="text--white">If you'd like a more comprehensive breakdown, enter in your email below and well send you a PDF via email. </p>
+                                </v-flex>
+                        </div>
+                        <v-card class="pa-3 ma-3"
+                                :class="{'pa-4': $vuetify.breakpoint.smAndUp}"
+                        >
+                            <p class="text--white">If you'd like a more comprehensive breakdown, enter in your email
+                                below and well send you a PDF via email. </p>
                             <v-form
                                     class="text-lg-left"
                                     v-model="valid">
@@ -198,7 +213,9 @@
                                 >
                                     submit
                                 </v-btn>
-                                <v-checkbox label="Sign up to be informed about new services and sweet sales from ICRAFT." v-model="emailChecked"></v-checkbox>
+                                <v-checkbox
+                                        label="Sign up to be informed about new services and sweet sales from ICRAFT."
+                                        v-model="emailChecked"></v-checkbox>
                             </v-form>
                         </v-card>
                     </v-flex>
@@ -210,7 +227,8 @@
                 max-width="320"
         >
             <v-card>
-                <v-card-title class="headline">You must answer some questions before getting some results.</v-card-title>
+                <v-card-title class="headline">You must answer some questions before getting some results.
+                </v-card-title>
 
 
                 <v-card-actions>
@@ -271,29 +289,29 @@
                 return this.el
             }
         },
-        mounted () {
-          this.showQuestions = true
+        mounted() {
+            this.showQuestions = true
         },
         methods: {
-            resultsSolutionMatch () {
+            resultsSolutionMatch() {
                 return this.$parent.items[0].items.find(item => item.rank === this.resultsMatch)
             },
-            resultsSubSubTitle () {
+            resultsSubSubTitle() {
                 return this.data.results[this.resultsMatch].subTitle
             },
-            resultsSubTitle () {
+            resultsSubTitle() {
                 return this.data.results[this.resultsMatch].title
             },
-            resultsIcon () {
+            resultsIcon() {
                 return this.data.results[this.resultsMatch].icon
             },
-            resultsTitle () {
-              return this.data.results.title + this.data.results[this.resultsMatch].name + this.data.results.endTitle
+            resultsTitle() {
+                return this.data.results.title + this.data.results[this.resultsMatch].name + this.data.results.endTitle
             },
-            closeDialog () {
+            closeDialog() {
                 this.dialog = false
             },
-            submitEmail () {
+            submitEmail() {
 
             },
             nextStep(n) {
@@ -302,7 +320,7 @@
                 } else {
                     this.e1 = n + 1
                 }
-                if(n === 0) {
+                if (n === 0) {
                     this.el = 1
                     this.clearQuestions()
                 }
@@ -319,7 +337,7 @@
                 })
                 this.resetData()
             },
-            resetData () {
+            resetData() {
                 this.data.results.features.forEach(feature => {
                     feature.checked = false
                 })
@@ -354,7 +372,7 @@
                         });
                     })
                 })
-                if(Object.keys(results).length === 0 && results.constructor === Object){
+                if (Object.keys(results).length === 0 && results.constructor === Object) {
                     return false
                 }
                 let max = Object.keys(results).reduce((a, b) => results[a] > results[b] ? a : b)
@@ -380,7 +398,7 @@
             resultsGeneratingTick() {
                 console.log(this.resultsLoadingIndex)
                 this.resultsLoadingIndex++
-                if (this.resultsLoading.length < this.resultsLoadingIndex+1) {
+                if (this.resultsLoading.length < this.resultsLoadingIndex + 1) {
                     clearInterval(this.resultsGeneratingInterval)
                     this.resultsGenerated = true
                     this.resultsLoadingIndex = 0
@@ -394,7 +412,7 @@
                 this.resultsGenerated = false
                 this.resultsMatch = false
                 this.resetData()
-                if(!this.processQuestions()){
+                if (!this.processQuestions()) {
                     this.dialog = true
                     this.resultsGenerating = false
                     this.resultsLoadingIndex = 0
@@ -411,9 +429,11 @@
         label.v-label
             /*font-weight bold*/
             color black
+
     .no-message
         .v-messages
             display none
+
     .scale-anim
         .v-input--selection-controls__input
             animation scale-up 0.29s ease-out forwards
@@ -443,15 +463,16 @@
         max-width 100%
 
 
+    .q-overflow
+        height: 247px
+        overflow-y scroll
     /*.v-input--is-label-active*/
-        /*label*/
-            /*font-weight bold*/
-            /*color black*/
+    /*label*/
+    /*font-weight bold*/
+    /*color black*/
 
     .rise-anim
         animation rise-up 0.6s ease-out forwards
-
-
 
     @keyframes rise-up {
         0% {
@@ -461,7 +482,6 @@
             transform: translateY(-5px)
         }
     }
-
 
     @keyframes fade-in-out {
         0% {

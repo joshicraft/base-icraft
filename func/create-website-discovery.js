@@ -30,6 +30,7 @@ const dbExecute = (db, fn) => {
 
 exports.handler = function (event, content, cb) {
     const data = JSON.parse(event.body);
+
     const newDocument = new WebsiteDiscoveryQuestionsModel({
         createdOn: Date.now(),
         results: data.results,

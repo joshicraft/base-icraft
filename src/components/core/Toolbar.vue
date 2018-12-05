@@ -1,6 +1,7 @@
 <template>
     <v-toolbar
             app
+            clipped
             dark
             :flat="!isScrolling"
             :dense="isScrolling"
