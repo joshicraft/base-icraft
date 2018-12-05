@@ -335,6 +335,8 @@
         .jumbo-bot-arrow
             margin-top -(137/2)px
             height 137px
+        .-arrow-buffer-top
+            padding-top 75px
         .c-title
             h3
                 line-height 1.1

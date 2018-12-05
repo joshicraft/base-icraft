@@ -46,7 +46,7 @@
                     tL = new TimelineMax()
                         .set($e, {autoAlpha: 1})
                         .fromTo($e.querySelector('.v-timeline-item__dot'), 0.54, {scale: 0.15, autoAlpha:0}, {scale:1, autoAlpha:1})
-                        .fromTo($e.querySelector('.--anim-1'), 0.4, {y: 50, autoAlpha:0}, {y:0, autoAlpha:1}, '-=0.2')
+                        .fromTo($e.querySelector('.--anim-3'), 0.4, {y: 50, autoAlpha:0}, {y:0, autoAlpha:1}, '-=0.2')
                         .fromTo($e.querySelector('.--anim-2'), 0.4, {y: 50, autoAlpha:0}, {y:0, autoAlpha:1}, '-=0.3')
                     // TweenMax.staggerFromTo($e.children, 1.3, {y: 120, autoAlpha: 0}, {y: 0, autoAlpha: 1, ease: Quart.easeOut}, 0.3)
                 }
@@ -54,7 +54,7 @@
                     $e.scrollAnimated = false
                     tL = new TimelineMax()
                         .set($e.querySelector('.v-timeline-item__dot'), {scale: 0.5, autoAlpha:0})
-                        .set($e.querySelector('.--anim-1'), {y: 50, autoAlpha:0})
+                        .set($e.querySelector('.--anim-3'), {y: 50, autoAlpha:0})
                         .set($e.querySelector('.--anim-2'), {y: 50, autoAlpha:0})
                 }
             }

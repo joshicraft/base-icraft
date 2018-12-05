@@ -161,11 +161,11 @@
             /*font-size: 3em*/
             margin-left: 3px;
             ///*font-weight 500*/
-            transform scaleY(0.9)
+
         h4, h3
             /*font-size: 1em;*/
             font-weight: 100
-            transform scaleY(0.95)
+
 
     .contact-ico
         right 15px
@@ -302,6 +302,6 @@
     @media (max-width: 470px), (max-width: 740px) and (orientation: landscape)
         .title
 
-            font-size: 0.8em !important
+            font-size: 1.15em !important
 
 </style>
