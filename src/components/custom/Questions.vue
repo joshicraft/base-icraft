@@ -163,11 +163,19 @@
                             </v-card>
                         </v-hover>
                         <h1 class="mt-5 mb-3 text-lg-center">You may also be interested in.</h1>
-                        <div v-if="featureResultInformation" class="c-title no-max">
+                        <v-container
+                                class="pa-0"
+                             fluid
+                             grid-list-md
+                        >
+                        <v-layout v-if="featureResultInformation" class="no-max"  row wrap>
 
-                                <v-flex  md12
-                                         lg6
-                                         v-for="(f, i) in data.results.features"
+                                <v-flex
+                                        lg6
+                                        md12
+                                        d-flex
+
+                                        v-for="(f, i) in data.results.features"
                                          v-if="f.checked"
                                 >
                                 <v-hover
@@ -191,7 +199,8 @@
 
                                 </v-hover>
                                 </v-flex>
-                        </div>
+                        </v-layout>
+                        </v-container>
                         <v-card class="pa-3 ma-3"
                                 :class="{'pa-4': $vuetify.breakpoint.smAndUp}"
                         >

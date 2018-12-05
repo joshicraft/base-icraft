@@ -6,6 +6,7 @@
             :id="index + '-timeline-feature'"
             color="blue lighten-2"
             large
+            class="invisible"
             :icon="data.icon"
     >
 
@@ -43,6 +44,7 @@
                     this.data.visible = true
                     $e.scrollAnimated = true
                     tL = new TimelineMax()
+                        .set($e, {autoAlpha: 1})
                         .fromTo($e.querySelector('.v-timeline-item__dot'), 0.54, {scale: 0.15, autoAlpha:0}, {scale:1, autoAlpha:1})
                         .fromTo($e.querySelector('.--anim-1'), 0.4, {y: 50, autoAlpha:0}, {y:0, autoAlpha:1}, '-=0.2')
                         .fromTo($e.querySelector('.--anim-2'), 0.4, {y: 50, autoAlpha:0}, {y:0, autoAlpha:1}, '-=0.3')
