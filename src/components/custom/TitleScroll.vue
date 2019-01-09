@@ -18,7 +18,7 @@
         methods: {
             scrollS () {
                 let $e = this.$el
-                let pos = $e.getBoundingClientRect().y
+                let pos = $e.getBoundingClientRect().top
                 if (pos < window.innerHeight / 2.5 && !$e.scrollAnimated) {
                     TweenMax.fromTo($e, 1.2, {y: 60, autoAlpha: 0}, {y: 0, autoAlpha: 1})
                     $e.scrollAnimated = true
@@ -27,6 +27,7 @@
         }
     }
 </script>
+
 
 <style scoped lang="stylus">
     .scroll-title

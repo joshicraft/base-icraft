@@ -16,6 +16,7 @@ import Meta from 'vue-meta'
 import paths from './paths'
 
 function route(path, name, children) {
+    // eslint-disable-next-line
     if (children) {
         children = children.forEach((c) => {
             console.log(c)
@@ -24,6 +25,7 @@ function route(path, name, children) {
                 ).then(resovle)
         })
     }
+    // eslint-disable-next-line
     return {
         name,
         path,

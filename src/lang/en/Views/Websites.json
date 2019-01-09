@@ -110,6 +110,9 @@
             "points": {
               "e-commerce": -1
             }
+          },
+          {
+            "title": "I'm not sure."
           }
         ]
       },
@@ -216,21 +219,21 @@
             }
           },
           {
-            "title": "Something the beats all your competition.",
+            "title": "Something that beats all your competition.",
             "points": {
               "high": 4,
               "form": 1
             }
           },
           {
-            "title": "Something the unique and personalized to your business.",
+            "title": "Something unique and personalized to your business.",
             "points": {
               "high": 3,
               "medium": 2
             }
           },
           {
-            "title": "None of the above."
+            "title": "I'm not sure."
           }
         ]
       },
@@ -262,7 +265,7 @@
             }
           },
           {
-            "title": "None of the above."
+            "title": "I don't know."
           }
         ]
       },
@@ -308,7 +311,7 @@
             }
           },
           {
-            "title": "None of the above."
+            "title": "I'm not sure."
           }
         ]
       }
@@ -356,7 +359,7 @@
       ],
       "title": "Take a look at our packages",
       "subTitle": "Built with the latest technology and current design trends, our packages suite a variety of needs.",
-      "disclaimer": "These packages give you an outline of what we can do, each package will be customized to your individual needs. The price's are mere indicators to help you find the best deal.",
+      "disclaimer": "These packages give you an outline of what we can do, each package will be customized to your individual needs. The price's are mere indicators to help meet your requirements.",
       "image": "static/web-1.jpg",
       "items": [
         {
@@ -365,7 +368,7 @@
           "title": "For those who want something simple with basic features.",
           "subTitle": "For the most basic of needs",
           "price": "$599 +",
-          "icon": "mdi-medal",
+          "icon": "mdi-star-outline",
           "iconColor": "amber",
           "items": [
             {
@@ -404,8 +407,8 @@
           "title": "For those who want something with a few pages and some cool features.",
           "subTitle": "For the most basic of needs",
           "price": "$1,199 +",
-          "icon": "mdi-trophy",
-          "iconColor": "silver",
+          "icon": "mdi-trophy-outline",
+          "iconColor": "#d6d6d6",
           "items": [
             {
               "icon": "mdi-web",
@@ -448,7 +451,7 @@
         {
           "rank": "high",
           "name": "DIAMOND",
-          "title": "For those who want and or need something that stands out above the rest.",
+          "title": "For those who want something that stands out above the rest.",
           "subTitle": "For the most basic of needs",
           "price": "$3,999 +",
           "icon": "mdi-diamond",
@@ -510,7 +513,7 @@
           "title": "Using Shoppify to provide a complete online store experience.",
           "subTitle": "For those who have a range of products they wish to sell online",
           "price": "$1,999 +",
-          "icon": "mdi-cart",
+          "icon": "mdi-cart-outline",
           "iconColor": "green",
           "items": [
             {
