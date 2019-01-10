@@ -6,7 +6,18 @@
                 <!--<polygon fill="#fafafa" points="0,0 0,100 250,50 500,100 500,0 250,50"></polygon>-->
             </svg>
         </div>
-        <router-view :loadTickerCount="loadTickerCount"/>
+        <v-layout
+                v-if="namespace()"
+                column
+                wrap
+                class="c-title mt-5 -arrow-buffer-top  -arrow-buffer-bot"
+        >
+            <v-icon size="150" class="mx-0 --rotate-in-center">mdi-settings</v-icon>
+            <h1 class="mt-5 mb-3 text-lg-center --rotate-in-center">OOPS, LOOKS LIKE WE'RE IN DEVELOPMENT</h1>
+            <h3 class="mb-4 text-lg-center">Come back in a week or two and this should all be up and running.</h3>
+            <p class="text-lg-center">In the mean time checkout our website pages or get in touch with us via the contact page. :)</p>
+        </v-layout>
+        <router-view v-else :loadTickerCount="loadTickerCount"/>
     </v-content>
 </template>
 
@@ -21,6 +32,12 @@
             loadTickerCount: {
                 default: 0,
                 type: Number
+            }
+        },
+        methods: {
+            namespace () {
+                console.log('ssssss')
+                return this.$t('Views.' + (this.$route.name || 'Home') + '.developing')
             }
         }
     }
