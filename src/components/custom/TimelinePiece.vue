@@ -38,7 +38,7 @@
         methods: {
             scrollTops() {
                 let $e = this.$el
-                let pos = $e.getBoundingClientRect().y
+                let pos = $e.getBoundingClientRect().top
                 let tL
                 if (pos < window.innerHeight / 1.5 && !$e.scrollAnimated) {
                     this.data.visible = true

@@ -218,6 +218,16 @@
     .-arrow-buffer-bot
         padding-bottom 200px
 
+    .-view-height
+        min-height 100vh
+        display flex
+        align-items center
+        justify-items center
+        flex-direction row
+        justify-content center
+        //padding-top: 10vh;
+        //padding-bottom 10vh
+
     #webchat
         z-index: 20;
         position fixed

@@ -5,7 +5,7 @@ function init() {
 
 function scroll () {
     events.forEach(event => {
-        let pos = event.el.getBoundingClientRect().y
+        let pos = event.el.getBoundingClientRect().top
         if (pos < event.triggerPoint && !event.triggered){
             event.triggered = true
             event.timeline = event.animationIn

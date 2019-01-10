@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 import theme from './theme'
-import {Scroll, Resize} from 'vuetify/lib/directives'
+import {Resize} from 'vuetify/lib/directives'
+import Scroll from './scroll'
 import 'vuetify/src/stylus/app.styl'
 import '@mdi/font/css/materialdesignicons.css'
 
