@@ -15,9 +15,9 @@
                     <v-img
                             v-if="$vuetify.breakpoint.smAndUp"
                             lg6
-                            :lazy-src="imgC('web-1', false, false, true)"
                             :alt="'web-1'"
-                            :src="imgC('web-1')"
+                            lazy-src="/static/web-1a.jpg"
+                            src="/static/web-1a.jpg"
                             height="100vh"
                     >
                     </v-img>
