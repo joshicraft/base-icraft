@@ -6,6 +6,28 @@
                 <!--<polygon fill="#fafafa" points="0,0 0,100 250,50 500,100 500,0 250,50"></polygon>-->
             </svg>
         </div>
+        <div class="contact-ico bot-p left-p">
+            <v-btn
+                    aria-label="go-to-contact"
+                    v-if="$route.name !== 'Contact'"
+                    @click="gotToContact"
+                    fab
+                    dark
+                    medium
+                    :small="$vuetify.breakpoint.smAndDown"
+                    color="primary"
+                    :class="$vuetify.breakpoint.smAndDown ? 'bot' : ''"
+                    class="darken-3"
+            >
+                <v-icon
+                        large
+                        :medium="$vuetify.breakpoint.mdAndDown"
+                        dark
+                >
+                    mdi-phone
+                </v-icon>
+            </v-btn>
+        </div>
         <router-view :loadTickerCount="loadTickerCount"/>
     </v-content>
 </template>
@@ -22,11 +44,35 @@
                 default: 0,
                 type: Number
             }
+        },
+        methods: {
+            gotToContact () {
+                this.$router.push({name:'Contact'})
+                setTimeout(() => {
+                    this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
+                }, 2000)
+
+            },
         }
     }
 </script>
 <style lang="stylus" scoped>
+    .contact-ico
+        right 15px
+        top 0
+        bottom 0
+        margin auto
+        position: fixed
+        z-index: 50
+        &.bot-p
+            top initial
+            bottom: 15px
+        &.left-p
+            right initial
+            left 10px
+
     .v-content
+        min-height 100vh
         opacity 0
         transition opacity 0.25s ease-in
         opacity 1

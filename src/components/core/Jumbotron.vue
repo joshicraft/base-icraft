@@ -13,28 +13,7 @@
                 alt="Background video image"
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
-            <div class="contact-ico bot-p left-p">
-                <v-btn
-                        aria-label="go-to-contact"
-                        v-if="$route.name !== 'Contact'"
-                        @click="gotToContact"
-                        fab
-                        dark
-                        medium
-                        :small="$vuetify.breakpoint.smAndDown"
-                        color="primary"
-                        :class="$vuetify.breakpoint.smAndDown ? 'bot' : ''"
-                        class="darken-3"
-                >
-                    <v-icon
-                            large
-                            :medium="$vuetify.breakpoint.mdAndDown"
-                            dark
-                    >
-                        mdi-phone
-                    </v-icon>
-                </v-btn>
-            </div>
+
             <my-transition mode="out-in">
                 <v-container
                         fill-height
@@ -85,13 +64,7 @@
             isBooted: false,
         }),
         methods: {
-            gotToContact () {
-                this.$router.push('Contact')
-                setTimeout(() => {
-                    this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
-                }, 2000)
 
-            },
             goTo () {
                 this.scrolling = true
                 this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
@@ -165,25 +138,6 @@
         h4, h3
             /*font-size: 1em;*/
             font-weight: 100
-
-
-    .contact-ico
-        right 15px
-        top 0
-        bottom 0
-        margin auto
-        position: fixed
-        z-index: 50
-        &.bot-p
-            top initial
-            bottom: 15px
-        &.left-p
-            right initial
-            left 10px
-
-
-
-
 
     .st10{fill:none;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}
 

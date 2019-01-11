@@ -5,6 +5,7 @@
                 <div class="boxes" >
                     <div class="box" @click="cube.click(i)" v-for="(item, i ) in items">
                         <v-img
+
                                 :src="item.img"
                         >
                         <!--<h1>{{item.title}}</h1>-->
@@ -23,7 +24,10 @@
                 </v-icon>
             </div>
             <div class="thumbs">
-                <div class="thumb" @click="cube.click(i)" v-for="(item, i) in items">
+                <div class="thumb"
+                     @click="cube.click(i)"
+                     v-for="(item, i) in items"
+                >
                     <v-img
                     :src="item.img"
                     >
@@ -91,6 +95,11 @@
     .boxes
         width 100%
         hight auto
+
+    .arrow:hover
+        i
+            color #00abff !important
+
     .box
         left: 50%
         top: 30%
@@ -111,12 +120,14 @@
         zIndex: 100
         margin: 0 auto
         height: 60px
+        margin-bottom 2em
 
 
     .thumbs
         width 100%
         display: flex
         flex-direction row
+
     .thumb
         opacity 0.7
         margin 3px
@@ -125,15 +136,17 @@
         flex-grow: 1
         flex-basis: 0
         cursor pointer
+        transition opacity 0.3s ease-in
         &:hover
-         background aliceblue
+         opacity 1
 
     #cube
         /*margin-top: 300px;*/
+        padding-top 100px
         min-height 100vh
-        width: '100%'
-        backgroundColor: 'black'
-        overflow: 'hidden'
+        width: 100%
+        backgroundColor: black
+        overflow: hidden
 
     .null-object
         position: 'absolute'

@@ -24,10 +24,15 @@ export default {
         console.log(i)
         clickThumb(i)
     },
+    getCurrentIndex () {
+        console.log('CT: '+ currentIndex)
+      return currentIndex
+    },
     init(target, content) {
 
         //reference to the stage
         faceArray = [];
+        thumbsArray = [];
         body = document.querySelector(target);
         nullObject = body.querySelector('.null-object');
         container = body.querySelector('.boxes');
@@ -161,6 +166,7 @@ function onCubeDrag(isSlider) {
     //     myCubeDraggable[0].disable();
     // }
     destX = nullObject._gsTransform.x % fullRotation;
+    console.log(destX)
     tempIndex = (Math.ceil(Math.abs(destX)) / 300 * 10) / 2;
     ceilIndex = Math.ceil(tempIndex);
     ceilIndex = ceilIndex <= faceArray.length - 1 ? ceilIndex : 0;
@@ -206,7 +212,6 @@ function onCubeDrag(isSlider) {
 
 
         TweenMax.set(faceArray[i], {
-
             rotationY: faceArray[i].initRotationY + destX,
             ease: Power1.easeOut,
             zIndex: destZIndex,

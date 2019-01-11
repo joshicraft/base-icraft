@@ -60,24 +60,15 @@
                                 v-for="(option, c) in data.questions[n-1].options"
                                 :key="c"
                         >
-                            <!--<v-list-tile-action>-->
                                 <v-checkbox
                                         :class="{'ma-4': $vuetify.breakpoint.smAndUp}"
                                         class="pa-0 ma-2 no-message"
                                         v-model="option.checked"
                                         :label="option.title"
                                 ></v-checkbox>
-                            <!--</v-list-tile-action>-->
-
-                            <!--<v-list-tile-content>-->
-                            <!--<v-list-tile-title>{{option.title}}</v-list-tile-title>-->
-                            <!--&lt;!&ndash;<v-list-tile-sub-title>Subtite</v-list-tile-sub-title>&ndash;&gt;-->
-                            <!--</v-list-tile-content>-->
                         </v-list-tile>
                     </v-list>
-
                 </v-card>
-
                 <v-btn
                         v-if="n < steps"
                         color="primary"
@@ -114,8 +105,8 @@
                     :step="steps + 1"
             >
                 <v-card
-                        class="mb-5 elevation-0 grey darken-1 d-flex justify-center align-center"
-                        light
+                        class="mb-5 elevation-0 d-flex justify-center align-center"
+
 
                 >
                     <v-layout column justify-center align-center v-if="resultsGenerating">
@@ -137,11 +128,10 @@
                     >
 
                             <v-card
-                                    :class="$vuetify.breakpoint.smAndUp ? ' pa-4' : ' pa-2'"
+                                    :class="$vuetify.breakpoint.smAndUp ? 'mw-1 my-3 pa-4' : 'my-0 pa-2'"
                                     column
                                     wrap
-                                    light
-                                    class="ma-3 lighten-1 elevation-0"
+                                    class="lighten-1 elevation-0"
                             >
                                 <v-flex class="d-flex">
 
@@ -159,7 +149,7 @@
                                                         class="ml-3"
                                                         size="50"
                                                         :color="resultsSolutionMatch().iconColor"
-                                                        @click="$vuetify.goTo('#packages')"
+                                                        @click="$vuetify.goTo('#packages', {offset: -48})"
                                                 >
                                                     {{resultsSolutionMatch().icon}}
                                                 </v-icon>
@@ -169,14 +159,14 @@
                                         <v-btn
                                                 class="text-lg-left ml-0 mt-5"
                                                 color="primary"
-                                                @click="$vuetify.goTo('#packages')"
+                                                @click="$vuetify.goTo('#packages', {offset: -48})"
                                         >
                                             Check {{resultsSolutionMatch().name}} out
                                         </v-btn>
                                     </div>
                                     <v-icon
                                             :class="{'display-none': $vuetify.breakpoint.mdAndDown}"
-                                            class="mb-2 ml-5 mr-5 lg-6 results-anim"
+                                            class="mb-2 ml-5 mr-0 lg-6 results-anim"
                                             size="300"
                                             @click="$vuetify.goTo('#packages')"
                                             :color="resultsSolutionMatch().iconColor"
@@ -186,65 +176,68 @@
                                     </v-icon>
                                 </v-flex>
                             </v-card>
-                        <h1 class="mt-5 mb-4 ml-4 white--text font-weight-thin">You may also be interested in...</h1>
-                        <v-container
+                        <div
+                                :class="$vuetify.breakpoint.smAndUp ? 'mw-1' : ''"
+                        >
+                            <h1
+                                    :class="$vuetify.breakpoint.smAndUp ? 'ml-4' : 'ml-2'"
+                                    class="mt-5 mb-4 white--text font-weight-thin"
+                            >
+                                You may also be interested in...
+                            </h1>
+                        </div>
+                            <v-container
                                 class="pa-0"
-                                fluid
+                                :class="$vuetify.breakpoint.smAndUp ? 'mw-1' : ''"
                                 grid-list-md
                         >
                             <v-layout v-if="featureResultInformation" class="no-max" row wrap>
-
                                 <v-flex
                                         lg6
                                         md12
                                         d-flex
-
                                         v-for="(f, i) in data.results.features"
                                         v-if="f.checked"
                                 >
                                         <v-card
-
-                                                :class="{'pa-4': $vuetify.breakpoint.smAndUp}"
-                                                class="pa-2 ma-3 lighten-2 elevation-0 md12 lg6"
+                                                :class="{'pl-4 pt-4 pr-4 pb-4': $vuetify.breakpoint.smAndUp, 'pl-0': i === 0, 'pr-0': i === data.results.features.length-1}"
+                                                class="pt-2 pr-2 pb-2 pl-2 ma-3 ml-0 lighten-2 elevation-0 md12 lg6"
                                         >
                                             <v-layout justify-center align-center row wrap>
                                                 <h3 class="mb-4">{{f.title}}</h3>
-
                                                 <v-icon class="mb-4 ml-4" color="primary" x-large>{{f.icon}}</v-icon>
                                             </v-layout>
                                             <p>{{f.subTitle}}</p>
-
                                         </v-card>
-
                                 </v-flex>
                             </v-layout>
                         </v-container>
-                        <v-card class="ma-3 elevation-0"
-                                :class="$vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-3'"
-                        >
-                            <p class="text--white">If you'd like a more comprehensive breakdown, enter in your email
-                                below and well send you a PDF via email. </p>
-                            <v-form
-                                    class="text-lg-left"
-                                    v-model="valid">
-                                <v-text-field
-                                        v-model="email"
-                                        :rules="emailRules"
-                                        label="E-mail"
-                                        required
-                                ></v-text-field>
-                                <v-btn
-                                        class="ml-0"
-                                        :disabled="!valid"
-                                        @click="submitEmail"
-                                >
-                                    submit
-                                </v-btn>
-                                <v-checkbox
-                                        label="Sign up to be informed about new services and sweet sales from ICRAFT."
-                                        v-model="emailChecked"></v-checkbox>
-                            </v-form>
-                        </v-card>
+                        <!--<v-card class="my-3 elevation-0 mw-1"-->
+                                <!--:class="$vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-3'"-->
+                        <!--&gt;-->
+                            <!--<p class="text&#45;&#45;white">If you'd like a more comprehensive breakdown, enter in your email-->
+                                <!--below and well send you a PDF via email. </p>-->
+                            <!--<v-form-->
+                                    <!--class="text-lg-left"-->
+                                    <!--v-model="valid">-->
+                                <!--<v-text-field-->
+                                        <!--v-model="email"-->
+                                        <!--:rules="emailRules"-->
+                                        <!--label="E-mail"-->
+                                        <!--required-->
+                                <!--&gt;</v-text-field>-->
+                                <!--<v-btn-->
+                                        <!--class="ml-0"-->
+                                        <!--:disabled="!valid"-->
+                                        <!--@click="submitEmail"-->
+                                <!--&gt;-->
+                                    <!--submit-->
+                                <!--</v-btn>-->
+                                <!--<v-checkbox-->
+                                        <!--label="Sign up to be informed about new services and sweet sales from ICRAFT."-->
+                                        <!--v-model="emailChecked"></v-checkbox>-->
+                            <!--</v-form>-->
+                        <!--</v-card>-->
                     </v-flex>
                 </v-card>
             </v-stepper-content>
@@ -321,7 +314,10 @@
         },
         methods: {
             resultsSolutionMatch() {
-                return this.$parent.items[0].items.find(item => item.rank === this.resultsMatch)
+                let result = this.$parent.items[0].items.find(item => item.rank === this.resultsMatch)
+                this.$parent.resultName = result.name.toLowerCase()
+                this.$parent.resultsGenerated = true
+                return result
             },
             resultsSubSubTitle() {
                 return this.data.results[this.resultsMatch].subTitle
@@ -374,6 +370,7 @@
                 let selections = [];
                 let features = {};
                 let data = this.data;
+                this.$parent.resultsGenerated = false
                 data.questions.forEach(val => {
                     val.options.forEach(option => {
                         if (!option.points || !option.checked) {
@@ -405,8 +402,8 @@
                 let max = Object.keys(results).reduce((a, b) => results[a] > results[b] ? a : b);
                 this.resultsMatch = max;
                 this.featureResultInformation = Object.keys(features).length !== 0 && !Object.keys(features).some(v => v < 1) ? features : false;
-                console.log(this.resultsMatch);
-                console.log(this.featureResultInformation);
+                console.log(max);
+
                 this.submitQuestions({
                     endResult: max,
                     selections: selections,
@@ -452,6 +449,12 @@
     }
 </script>
 <style lang="stylus">
+    .mw-1
+        max-width 1280px
+        width 80%
+        margin-left auto
+        margin-right auto
+
     .v-input--is-label-active
         label.v-label
             font-weight bold
@@ -500,7 +503,8 @@
 
 
     .q-overflow
-        height: 247px
+        min-height: 247px
+        height: 40vh
         overflow-y scroll
 
     /*.v-input--is-label-active*/

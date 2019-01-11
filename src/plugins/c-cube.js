@@ -20,7 +20,7 @@ export default {
     init(target, content) {
 
         //reference to the stage
-        faceArray = []
+        faceArray, thumbsArray = []
         body = document.querySelector(target);
         nullObject = document.createElement('div');
         nullObject.className = 'null-object';
