@@ -45,6 +45,19 @@
                 type: Number
             }
         },
+        mounted () {
+          //   let $this = this
+          // document.addEventListener('keydown', (e)=>{
+          //     console.log(e)
+          //     if(e.keyCode === 78) {
+          //         $this.$vuetify.goTo(window.scrollY + window.innerHeight)
+          //         // TweenMax.to(window, {scrollTo: {y: window.scrollY + window.innerHeight}})
+          //     }else {
+          //         $this.$vuetify.goTo(0)
+          //     }
+          //     return false
+          // }, false)
+        },
         methods: {
             gotToContact () {
                 this.$router.push({name:'Contact'})

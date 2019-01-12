@@ -20,7 +20,11 @@
                             src="/static/web-1a.jpg"
                             height="100vh"
                     >
+                        <!--<div class="video-wrapper">-->
+                            <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
+                        <!--</div>-->
                     </v-img>
+
                     <v-flex
                             lg6
                             :class="'pa-' + $vuetify.breakpoint.mdAndUp ? '5' : '2'"
@@ -152,10 +156,10 @@
                     <v-flex v-else column wrap lg6 class="c-title d-flex text-lg-right text-sm-center">
                         <div>
                         <h1 class="mt-0 mb-3">
-                            CAN'T DECIDE?
+                            CAN'T FIND THE RIGHT FIT?
                         </h1>
                         <h3 class="mb-4">
-                            We've come up with {{content.discover.questions.length}}
+                            We've come up with {{content.discover.questions.length}} easy
                             questions that can help you choose.
                         </h3>
                         <p>
@@ -182,7 +186,7 @@
                     <v-container>
                         <v-layout column wrap class="c-title">
                             <h1 class="mt-0 mb-3 text-lg-center">
-                                PACKAGES
+                                BASELINE PACKAGES
                             </h1>
                             <h3 class="mb-4 text-lg-center">
                                 {{ service.subTitle }}
@@ -454,6 +458,14 @@
 <style lang="stylus" scoped>
     /*.max-view-width*/
     /*width 100% !important*/
+    .web-video
+        position: absolute;
+        height: 46.7%;
+        top: 15.6%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        transform translateX(-23px)
 
     .st0 {
         stroke: #000000;
@@ -467,7 +479,7 @@
     .c-title > div
         width 80%
         margin 0 auto
-        max-width: 500px;
+        max-width: 537px;
         padding 5vh 0
 
     .v-timeline
