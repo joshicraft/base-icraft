@@ -6,22 +6,29 @@
                 :key="i"
                 v-if="loadPoint(1)"
         >
-            <div class="relative -view-height _bg-color-b">
+            <div
+
+                    class="relative -view-height _bg-color-b"
+            >
                 <v-layout
                         lg12
                         wrap
                         align-center
                 >
                     <v-img
-                            v-if="$vuetify.breakpoint.smAndUp"
+                            :class="{'-_arrow-pt': $vuetify.breakpoint.smAndDown}"
                             lg6
                             :alt="'web-1'"
-                            lazy-src="/static/web-1a.jpg"
-                            src="/static/web-1a.jpg"
-                            height="100vh"
+                            class="vid-bg -_grid-img"
+                            lazy-src="/static/web-why-1.jpg"
+                            src="/static/web-why-1.jpg"
+                            :height="$vuetify.breakpoint.smAndDown ? '50vh' : '100vh'"
                     >
                         <!--<div class="video-wrapper">-->
-                            <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
+                        <!--<video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>-->
+                            <video class="phone-web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/phone-web-2.webm"></video>
+                            <img class="thumb-overlay" src="/static/web-why--thumb.png"/>
+
                         <!--</div>-->
                     </v-img>
 
@@ -47,7 +54,7 @@
                                         class="primary ml-0 mr-0"
                                         @click="$vuetify.goTo('#finding', {offset: -48})"
                                 >
-                                    Let's Get Started
+                                    FIND A WEBSITE
                                 </v-btn>
                             </div>
                         </div>
@@ -109,8 +116,8 @@
                     <v-img
                             v-if="$vuetify.breakpoint.smAndUp"
                             lg6
-                            lazy-src="/static/websites-1b.jpg"
-                            src="/static/websites-1b.jpg"
+                            lazy-src="/static/web-img-4.jpg"
+                            src="/static/web-img-4.jpg"
                             height="100vh"
                     >
                     </v-img>
@@ -129,9 +136,8 @@
                     <v-img
                             v-if="$vuetify.breakpoint.smAndUp"
                             lg6
-                            :lazy-src="imgC('web-1', false, false, true)"
                             :alt="'web-1'"
-                            :src="imgC('web-1')"
+                            src="/static/websites-1b.jpg"
                             height="100vh"
                     >
                     </v-img>
@@ -164,8 +170,8 @@
                         </h3>
                         <p>
                             To get stuck in, click GET STARTED then follow the questions and
-                            select the tick boxes for the answers that
-                            relate to you. Otherwise get in touch to find out more.
+                            select the boxes for the answers that
+                            relate to you. Otherwise, feel free to get in touch to find out more.
                         </p>
                         <div class="mx-auto">
                             <v-btn
@@ -464,19 +470,46 @@
     }
 </style>
 <style lang="stylus">
-
+    .vid-bg .v-image__image
+        z-index 0
 </style>
 <style lang="stylus" scoped>
     /*.max-view-width*/
     /*width 100% !important*/
     .web-video
         position: absolute;
-        height: 46.7%;
+        height: 51.7%;
+        top: 9.9%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        -webkit-transform: translateX(206px) translateY(58px) skew(-11deg, 13deg);
+        transform: rotateY(9deg) rotate(2deg) translateX(106px) translateY(-2px) skew(-4deg, 6.5deg) scaleX(0.9);
+        transform-origin: 50% 0%;
+
+
+
+    .phone-web-video
+        z-index 1
+        position: absolute;
+        height: 43.1%;
         top: 15.6%;
         margin: auto;
         left: 0;
         right: 0;
-        transform translateX(-23px)
+        transform: translateX(96%) translateY(15%) skew(-11deg, 13deg);
+
+    .thumb-overlay
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(190%) translateY(77%);
+        z-index: 4;
+        margin: auto;
+        right: 0;
+        bottom: 0;
+        height: 18%;
 
     .st0 {
         stroke: #000000;
@@ -614,6 +647,12 @@
 
     ._bg-color-b
         background-color: #e2e2e2
+
+    .-_arrow-pt
+        padding-top: 80px
+
+    .-_grid-img
+        height: 50vh
 
     ._questions-bg
         background: #303030;
