@@ -10,7 +10,7 @@
             <v-btn
                     aria-label="go-to-contact"
                     v-if="$route.name !== 'Contact'"
-                    @click="gotToContact"
+                    @click="goToContact"
                     fab
                     dark
                     medium
@@ -59,7 +59,7 @@
           // }, false)
         },
         methods: {
-            gotToContact () {
+            goToContact () {
                 this.$router.push({name:'Contact'})
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })

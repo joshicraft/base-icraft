@@ -93,6 +93,13 @@
                     clearInterval(this.loadTicker)
                 }
             },
+            goToContact () {
+                this.$router.push({name:'Contact'})
+                setTimeout(() => {
+                    this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
+                }, 2000)
+
+            },
             clearLoadTicker() {
                 this.loadTickerCount = 0
                 clearInterval(this.loadTicker)
@@ -102,10 +109,10 @@
                 tickInterval = tickInterval || 1
                 this.tickerLimit = limit
                 this.clearLoadTicker()
-                this.loadTicker = setInterval(this.loadTick, tickInterval * 1000)
+                this.loadTicker = setInterval(this.loadTick, tickInterval * 500)
             },
             animateLoaded() {
-                this.loadComponentsTicker = setInterval(this.increment, 1000)
+                this.loadComponentsTicker = setInterval(this.increment, 300)
             },
             onScroll(e) {
                 if (this.lazyTriggered && !this.getLazy()) {

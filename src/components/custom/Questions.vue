@@ -154,14 +154,23 @@
                                                     {{resultsSolutionMatch().icon}}
                                                 </v-icon>
                                             </h4>
+                                            <p class="mt-5">
+                                                To learn more about {{ resultsSolutionMatch().name}} check out our packages or get in touch with us directly.
+                                            </p>
                                         </v-layout>
-
                                         <v-btn
                                                 class="text-lg-left ml-0 mt-5"
                                                 color="primary"
                                                 @click="$vuetify.goTo('#packages', {offset: -48})"
                                         >
                                             Check {{resultsSolutionMatch().name}} out
+                                        </v-btn>
+                                        <v-btn
+                                                class="text-lg-left ml-0 mt-5"
+                                                color="primary"
+                                                @click="goToContact"
+                                        >
+                                            GET IN TOUCH <v-icon right>mdi-phone</v-icon>
                                         </v-btn>
                                     </div>
                                     <v-icon
@@ -335,6 +344,13 @@
                 this.dialog = false
             },
             submitEmail() {
+
+            },
+            goToContact () {
+                this.$router.push({name:'Contact'})
+                setTimeout(() => {
+                    this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
+                }, 2000)
 
             },
             nextStep(n) {

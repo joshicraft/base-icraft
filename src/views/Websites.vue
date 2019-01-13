@@ -37,10 +37,10 @@
                                 WHY ICRAFT WEBSITES?
                             </h1>
                             <h3 class="mb-4 ">
-                                Fast, secure, customizable and comes with some of the cheapest hosting rates out there!
+                                Fast, secure, responsive, customizable and comes with some of the cheapest hosting rates out there!
                             </h3>
                             <p class="">
-                                You know those nasty hosting rates that come out of your pocket every month? They generally cost anywhere between $30-$100 a month! Well... we've figured out how to get them down to as little as $10 a month and pass those savings directly onto you.
+                                You know those nasty hosting rates that come out of your pocket every month? They generally cost anywhere between $30-$70 a month! Well... we've figured out how to get them down to as little as $10 a month.
                             </p>
                             <div class="mt-5">
                                 <v-btn
@@ -165,7 +165,7 @@
                         <p>
                             To get stuck in, click GET STARTED then follow the questions and
                             select the tick boxes for the answers that
-                            relate to you.
+                            relate to you. Otherwise get in touch to find out more.
                         </p>
                         <div class="mx-auto">
                             <v-btn
@@ -175,6 +175,13 @@
                                     v-if="!showQuestions"
                             >
                                 Get Started
+                            </v-btn>
+                            <v-btn
+                                    @click="goToContact"
+                                    class="primary ml-0"
+                                    v-if="!showQuestions"
+                            >
+                                Get in touch <v-icon right>mdi-phone</v-icon>
                             </v-btn>
                         </div>
                         </div>
@@ -397,8 +404,12 @@
             loadPoint(i) {
                 return this.loadTickerCount >= i
             },
-            shakeAnim(i) {
-                TweenMax.to(this.$el, 0.3, {})
+            goToContact () {
+                this.$router.push({name:'Contact'})
+                setTimeout(() => {
+                    this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
+                }, 2000)
+
             },
             topScroll() {
                 // let $e = this.$el
