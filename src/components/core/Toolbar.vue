@@ -25,7 +25,7 @@
                         :to="{name: item.name}"
                         :aria-label="item.path + '-toolbar'"
                         :class="getCurrentRouteClass(item)"
-                        class="mr-1 mt-1"
+                        class="ml-1 mt-0"
                 >
                     {{item.text}}
                 </v-btn>
@@ -129,8 +129,18 @@
         transition opacity 0.5s ease-in
         opacity 1
 
+    .v-btn.v-btn--router
+        border-radius 0
+
+    .v-toolbar__content
+        padding-right 0
+
+
     .v-toolbar__items
         pointer-events all
+        background #5a5a5a
+        padding 4px 4px 4px 0
+        height: 100%;
 
     .toolbar-svg-wrapper
         height: 100%

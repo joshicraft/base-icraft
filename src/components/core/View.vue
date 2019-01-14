@@ -33,6 +33,7 @@
 </template>
 
 <script>
+    import animationLibrary from '../../plugins/gsap-animation-library'
     export default {
         metaInfo() {
             return {
@@ -46,6 +47,8 @@
             }
         },
         mounted () {
+            let p = 's'
+            animationLibrary.wobble(document.querySelector('.contact-ico'))
           //   let $this = this
           // document.addEventListener('keydown', (e)=>{
           //     console.log(e)
