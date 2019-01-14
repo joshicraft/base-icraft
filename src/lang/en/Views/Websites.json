@@ -274,7 +274,7 @@
         "title": "What industry best matches your business?",
         "options": [
           {
-            "title": "Professional e.g. Layer or Accountant",
+            "title": "Professional e.g. Lawyer or Accountant",
             "points": {
               "medium": 2,
               "low": 1

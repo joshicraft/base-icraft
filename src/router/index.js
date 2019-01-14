@@ -16,22 +16,25 @@ import Meta from 'vue-meta'
 import paths from './paths'
 
 function route(path, name, children) {
+    let componentPath
     // eslint-disable-next-line
-    if (children) {
-        children = children.forEach((c) => {
-            console.log(c)
+    if (path.children) {
+        path.children.forEach((c) => {
             c.component = (resovle) => import(/** webpackPrefetch: false */
-                `@/views/${c.view}.vue`
+                `@/views/${path.name + '/' + c.name}.vue`
                 ).then(resovle)
+            return c
         })
     }
+    componentPath = path.nested ? path.nested + '/' + path.name : path.name
+    console.log(componentPath)
     // eslint-disable-next-line
     return {
-        name,
-        path,
-        children,
+        name: path.name,
+        path: path.path,
+        children: path.children,
         component: (resovle) => import(/** webpackPrefetch: false */
-            `@/views/${name}.vue`
+            `@/views/${componentPath}.vue`
             ).then(resovle)
     }
 }
@@ -41,8 +44,10 @@ Vue.use(Router)
 // Create a new router
 const router = new Router({
     mode: 'history',
-    routes: paths.map(path => route(path.path, path.view, path.children)).concat([
-        {path: '*', redirect: '/'}
+    routes: paths.map((path)=>{
+        return route(path)
+    }).concat([
+        {path: '*', redirect: '/', children: []}
     ]),
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
@@ -55,6 +60,7 @@ const router = new Router({
     }
 })
 
+console.log(router)
 router.beforeEach((to, from, next) => {
     if (from.name === null) {
         next()
@@ -73,6 +79,7 @@ router.beforeEach((to, from, next) => {
         let duration = 0.6
         let scrollPos = window.pageYOffset ||
             document.documentElement.scrollTop
+        TweenMax.killAll()
         let tL = new TimelineMax()
         tL
         // .to(window, scrollPos === 0 ? 0 : 0.35, {scrollTo: {y: 0}}, 'a')
@@ -83,6 +90,7 @@ router.beforeEach((to, from, next) => {
             .call(next)
             .to(gradient, duration, {autoAlpha: 0.82})
             .to(gradient, duration, {autoAlpha: 1})
+            // .to(window, 0.4, {scrollTo: {y: window.innerHeight - 60}}, '+=4')
 
 
     }, 1)

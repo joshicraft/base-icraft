@@ -1,5 +1,6 @@
 <template>
     <div class="relative">
+
         <v-flex
                 v-scroll="topScroll"
                 v-for="(service, i) in content.items"
@@ -17,22 +18,22 @@
                 >
                     <v-img
 
-                            lazy-src="/static/web-why-1.jpg"
-                            src="/static/web-why-1.jpg"
+                            lazy-src="/static/web-bg-1.jpg"
+                            src="/static/web-bg-1.jpg"
                             :class="{'-_arrow-pt': $vuetify.breakpoint.smAndDown}"
                             lg6
                             :alt="'web-1'"
                             class="vid-bg -_grid-img"
                             :height="$vuetify.breakpoint.smAndDown ? '50vh' : '100vh'"
                     >
-                        <!--<div class="video-wrapper">-->
+                        <div class="video-wrapper">
                         <!--<video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>-->
 
                             <video class="phone-web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/phone-web-2.webm"></video>
 
                             <img class="thumb-overlay" src="/static/web-why--thumb.png"/>
 
-                        <!--</div>-->
+                        </div>
                     </v-img>
 
                     <v-flex
@@ -123,7 +124,6 @@
                             src="/static/web-img-4.jpg"
                             height="100vh"
                     >
-                        <video class="web-video-1" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
                     </v-img>
                 </v-layout>
 
@@ -485,7 +485,7 @@
 <style lang="stylus" scoped>
     /*.max-view-width*/
     /*width 100% !important*/
-    .web-video-wrapper
+    .video-wrapper
         position: absolute;
         top 0
         left 0
@@ -537,7 +537,7 @@
         margin: auto;
         left: 0;
         right: 0;
-        transform: translateX(95%) translateY(15%) skew(-11deg, 13deg) rotateY(-4deg) rotateX(-2deg) scaleX(0.95) rotate(0deg);
+        transform: translateX(95%) translateY(15%) skew(-11.5deg, 13deg) rotateY(-4deg) rotateX(-2deg) scaleX(0.95) rotate(-0.5deg);
 
     .thumb-overlay
         position: absolute;

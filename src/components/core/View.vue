@@ -71,18 +71,21 @@
 </script>
 <style lang="stylus" scoped>
     .contact-ico
-        right 15px
+        right 0
         top 0
         bottom 0
         margin auto
         position: fixed
         z-index: 50
+        .v-btn
+            border-radius 0
+            margin 0
         &.bot-p
             top initial
-            bottom: 15px
+            bottom: 0px
         &.left-p
             right initial
-            left 10px
+            left 0px
 
     .v-content
         min-height 100vh

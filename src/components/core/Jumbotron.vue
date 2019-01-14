@@ -67,7 +67,8 @@
 
             goTo () {
                 this.scrolling = true
-                this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
+                this.toolBarHeight = document.querySelector('.v-toolbar').getBoundingClientRect().height
+                this.$vuetify.goTo(window.innerHeight, { offset: 0})
             }
         },
 

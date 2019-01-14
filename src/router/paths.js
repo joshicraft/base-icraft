@@ -1,38 +1,55 @@
-export default [
+/*
+    children for nested router links inside views example...
+
+    children: [
+            {
+                path: 'find-the-right-website',
+                name: 'InfoQuestionnaire',
+                text: "Finding a website"
+            }
+        ]
+
+ */
+
+let paths = [
     {
         path: '',
-        view: 'Home'
-    },
-    {
-        path: '/contact-icraft',
-        view: 'Contact'
-    },
-    {
-        path: '/icrafts-portfolio',
-        view: 'Portfolio'
-    },
-    {
-        path: '/all-about-icraft',
-        view: 'About'
-    },
-    {
-        path: '/digitally-market-your-business',
-        view: 'DigitalMarketing'
+        name: 'Home',
+        text: "Home"
     },
     {
         path: '/get-a-website',
-        view: 'Websites',
-        children: [{
-            path: 'find-the-right-website',
-            view: 'WebsiteQuestions'
-        }]
+        name: 'Websites',
+        text: "Websites",
+    },
+    {
+        path: 'discovering-your-business',
+        name: 'InfoQuestionnaire',
+        text: "ABOUT YOU",
+        nested: 'Websites',
+        noToolbar: true
     },
     {
         path: '/brand-your-business',
-        view: 'Branding'
+        name: 'Branding',
+        text: "Branding"
     },
     {
         path: '/get-IT-training',
-        view: 'ItSolutions'
+        name: 'ItSolutions',
+        text: "IT Solutions"
+    },
+    {
+        path: '/icrafts-portfolio',
+        name: 'Portfolio',
+        text: "Portfolio"
+    },
+    {
+        path: '/contact-icraft',
+        name: 'Contact',
+        text: "Contact"
     }
 ]
+
+
+export default paths

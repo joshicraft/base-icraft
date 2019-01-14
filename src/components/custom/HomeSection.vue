@@ -2,12 +2,30 @@
     <v-layout
             align-center lg12
             class="relative overflow-hidden"
-            :class="{'row-reverse': i%2===0, 'c-1' : i%2===0, 'c-2': i%2!==0}"
+            :class="{'row-reverse c-1': i%2===0, 'c-2': i%2!==0}"
             v-scroll="scrollH"
     >
             <slide-bg :left="i%2!==0"></slide-bg>
-
+            <div class="section-arrow prev-arrow" @click="navArrowScroll('up')">
+                <svg viewBox="0 0 100 50">
+                    <polygon points="0,50 50,0 100,50 0,50" />
+                    <!--<line x1="50" y1="40" x2="50" y2="0" stroke="white"></line>-->
+                    <!--<line x1="50" y1="40" x2="25" y2="25" stroke="white"></line>-->
+                    <!--<line x1="50" y1="40" x2="75" y2="25" stroke="white"></line>-->
+                </svg>
+                <v-icon class="arrow" x-large>mdi-arrow-down</v-icon>
+            </div>
+            <div class="section-arrow next-arrow" @click="navArrowScroll('down')">
+                <svg viewBox="0 0 100 50">
+                    <polygon points="0,0 100,0 50,50 0,0" />
+                    <!--<line x1="50" y1="10" x2="50" y2="50" stroke="white"></line>-->
+                    <!--<line x1="50" y1="10" x2="25" y2="25" stroke="white"></line>-->
+                    <!--<line x1="50" y1="10" x2="75" y2="25" stroke="white"></line>-->
+                </svg>
+                <v-icon class="arrow" x-large>mdi-arrow-up</v-icon>
+            </div>
             <v-img
+                    class="section-img"
                     lg6
                     :lazy-src="imgC(item.img, false, false, true)"
                     :alt="item.img"
@@ -16,20 +34,20 @@
             >
             </v-img>
 
-            <v-flex lg6 pa-5 class="d-flex" justify-center>
+            <v-flex lg6 pa-5 class="d-flex section-title" justify-center>
                 <div class="title-a" :class="{'align-left': i%2===0}">
                     <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
                     <h3 class="mb-4">{{item.text}}</h3>
                     <v-btn @click="linkTo(item.to)"class="ml-0">{{item.button}}</v-btn>
                 </div>
             </v-flex>
-        <div class="directions" :class="{'arrow-bottom' : $vuetify.breakpoint.mdAndDown}">
-            <div class="directions-down">
-                <v-btn small slot="activator" fab alt="down arrow" @click="goToNext()">
-                    <v-icon >mdi-arrow-down</v-icon>
-                </v-btn>
-            </div>
-        </div>
+        <!--<div class="directions" :class="{'arrow-bottom' : $vuetify.breakpoint.mdAndDown}">-->
+            <!--<div class="directions-down">-->
+                <!--<v-btn small slot="activator" fab alt="down arrow" @click="goToNext()">-->
+                    <!--<v-icon >mdi-arrow-down</v-icon>-->
+                <!--</v-btn>-->
+            <!--</div>-->
+        <!--</div>-->
 
     </v-layout>
 </template>
@@ -64,6 +82,9 @@
                   }
               }
               return pos
+            },
+            navArrowScroll (dir) {
+                this.$vuetify.goTo(window.scrollY + (dir === 'up' ? window.innerHeight : -window.innerHeight))
             },
             scrollH(e){
                 let $e = this.$el,
@@ -110,6 +131,8 @@
 </script>
 
 <style scoped lang="stylus">
+
+
     .directions
         bottom 80px
         position: absolute
@@ -141,10 +164,59 @@
     .align-left
         text-align left
 
+    $color-1 = #e8e8e8
+    $color-2 = #dcdcdc
+
     .c-1
-        background #e8e8e8
+        background $color-1
     .c-2
-        background #dcdcdc
+        background $color-2
+
+    .section-arrow
+        position: absolute
+        left 0
+        right 0
+        margin auto
+        width 8em
+        height 4em
+        background transparent
+        z-index 2
+        cursor pointer
+        .arrow, svg
+            position: absolute;
+            top 0
+            left 0
+            width: 100%;
+            height: 100%
+
+        line
+            stroke #5a5a5a
+            stroke-width 5px
+
+
+
+    .next-arrow
+        top 0
+        polygon
+            fill $color-2
+        &:hover
+            .v-icon
+                color $color-1
+            polygon
+                fill lightness($color-2, 50%)
+
+    .prev-arrow
+        bottom 0
+        polygon
+            fill $color-1
+        &:hover
+            .v-icon
+                color $color-2
+            polygon
+                fill lightness($color-1, 50%)
+
+
+
 
     @media (max-height: 500px) and (orientation:landscape) and (max-width: 800px)
         .title-a

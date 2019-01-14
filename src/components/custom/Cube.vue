@@ -94,7 +94,7 @@
 
     .boxes
         width 100%
-        hight auto
+        height auto
 
     .arrow:hover
         i
@@ -107,17 +107,19 @@
         yPercent: -0
         position: absolute
         overflow: hidden
-        backgroundSize: cover
-        backgroundPosition: center
+        background-size: cover
+        background-position: center
         background: rgba(244 244 244 0.9)
         z: -0
+        &.--active
+            overflow-y scroll
     
     .thumbs-wrapper
         position: relative
         left: 0
         width: 90%
         max-width: 600px
-        zIndex: 100
+        z-index: 100
         margin: 0 auto
         height: 60px
         margin-bottom 2em
@@ -127,6 +129,7 @@
         width 100%
         display: flex
         flex-direction row
+        flex: 0 1 auto
 
     .thumb
         opacity 0.7
@@ -137,6 +140,7 @@
         flex-basis: 0
         cursor pointer
         transition opacity 0.3s ease-in
+        overflow hidden
         &:hover
          opacity 1
 
@@ -145,11 +149,22 @@
         padding-top 100px
         min-height 100vh
         width: 100%
-        backgroundColor: black
+        background-color: black
         overflow: hidden
 
     .null-object
-        position: 'absolute'
+        position: absolute
         x: 0
+
+    @media screen and (orientation: portrait) and (max-width 400px)
+        .thumbs
+            width 100%
+
+        .thumb
+            flex-basis 33%
+
+    @media screen and (orientation: landscape) and (max-height 400px)
+        #cube
+            padding-top 20px
 
 </style>

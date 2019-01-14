@@ -10,12 +10,21 @@ var body, stageWidth, stageHeight, isDevice, interactionUp, interactionDown, int
 var numFaces, faceWidth, faceHeight, faceArray = [], thumbsArray = [], currentIndex, paginationIndex, pressedElement,
     currentFace, initialFace, myCubeDraggable;
 
+const aspectWidth = 1920, aspectHeight = 1080
+
 export default {
-    updateDimensions() {
+    updateDimensions(init) {
         if (stageWidth > window.innerWidth) {
             stageWidth = window.innerWidth / 1.25;
-            stageHeight = window.innerHeight / 1.3
+            stageHeight = (aspectHeight / aspectWidth) * stageWidth
         }
+        rotationStep = fullRotation / numFaces;
+        faceWidth = stageWidth;
+        faceHeight = stageHeight / 1.1;
+        if(init){
+            createFaces()
+        }
+        // onCubeDrag()
     },
     click(i) {
 
@@ -60,19 +69,18 @@ export default {
             interactionMove = 'mousemove';
 
         }
-        this.updateDimensions();
 
         numFaces = content ? content.length : 6;
         initialFace = 0;
         fullRotation = 360;
-        rotationStep = fullRotation / numFaces;
-        faceWidth = stageWidth;
-        faceHeight = stageHeight / 1.1;
+
         dialWidth = 300;
         dialHeight = 300;
+        this.updateDimensions(true);
+
         faceZOrigin = getZOrigin();
         dynamicPerspective = getPerspective();
-        createFaces(content);
+        createFaces(true);
         setCubeDraggable(initialFace);
         onCubeDrag()
     }
@@ -81,7 +89,7 @@ export default {
 
 //
 
-function createFaces() {
+function createFaces(build) {
 
     var face, faceText;
 
@@ -104,8 +112,10 @@ function createFaces() {
 
         face.initRotationX = 0;
         face.initRotationY = i * rotationStep;
-        faceArray.push(face);
-        thumbsArray.push(body.querySelector('.thumbs').childNodes[i])
+        if(build) {
+            faceArray.push(face);
+            thumbsArray.push(body.querySelector('.thumbs').childNodes[i])
+        }
     }
 
 }

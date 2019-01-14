@@ -48,6 +48,7 @@
         },
         watch: {
             $route(frm, to) {
+                console.log(to)
                 if (to.name) {
                     document.getElementById('home-loader').classList.add('hide-')
                     clearTimeout(this.delayAnimated)
