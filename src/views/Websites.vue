@@ -16,17 +16,20 @@
                         align-center
                 >
                     <v-img
+
+                            lazy-src="/static/web-why-1.jpg"
+                            src="/static/web-why-1.jpg"
                             :class="{'-_arrow-pt': $vuetify.breakpoint.smAndDown}"
                             lg6
                             :alt="'web-1'"
                             class="vid-bg -_grid-img"
-                            lazy-src="/static/web-why-1.jpg"
-                            src="/static/web-why-1.jpg"
                             :height="$vuetify.breakpoint.smAndDown ? '50vh' : '100vh'"
                     >
                         <!--<div class="video-wrapper">-->
                         <!--<video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>-->
+
                             <video class="phone-web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/phone-web-2.webm"></video>
+
                             <img class="thumb-overlay" src="/static/web-why--thumb.png"/>
 
                         <!--</div>-->
@@ -120,6 +123,7 @@
                             src="/static/web-img-4.jpg"
                             height="100vh"
                     >
+                        <video class="web-video-1" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
                     </v-img>
                 </v-layout>
 
@@ -140,6 +144,11 @@
                             src="/static/websites-1b.jpg"
                             height="100vh"
                     >
+                            <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
+                        <!--<img class="screen-panel-anim" src="/static/screen-panel-shadow.png"/>-->
+                        <!--<img class="screen-panel-anim" src="/static/screen-panel-shadow.png"/>-->
+                        <!--<img class="screen-panel-anim" src="/static/screen-panel-shadow.png"/>-->
+
                     </v-img>
                     <v-flex
                             v-if="showQuestions"
@@ -476,19 +485,49 @@
 <style lang="stylus" scoped>
     /*.max-view-width*/
     /*width 100% !important*/
-    .web-video
+    .web-video-wrapper
         position: absolute;
-        height: 51.7%;
-        top: 9.9%;
+        top 0
+        left 0
+        width 100%
+        height 100%
+        perspective 617px
+
+    .web-video
+        z-index: 1;
+        position: absolute;
+        height: 42%;
+        top: 37%;
         margin: auto;
         left: 0;
         right: 0;
-        z-index: -1;
-        -webkit-transform: translateX(206px) translateY(58px) skew(-11deg, 13deg);
-        transform: rotateY(9deg) rotate(2deg) translateX(106px) translateY(-2px) skew(-4deg, 6.5deg) scaleX(0.9);
-        transform-origin: 50% 0%;
+        transform: translateX(43.5%) translateY(-115%) rotate(-15.5deg) skew(2deg, -5deg) scaleX(0.63) scaleY(0.99) rotateY(8deg) rotateX(-5deg);
+
+    .web-video-1
+        z-index: 1;
+        position: absolute;
+        height: 42%;
+        top: 92%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        transform: translateX(-35.15%) translateY(-90.2%) rotate(-15.5deg) skew(5deg, -5deg) scaleX(0.47) scaleY(0.83) rotateY(8deg) rotateX(66.5deg);
+
+    .screen-panel-anim
+        position: absolute;
+        height: 44.4%;
+        top: 58%;
+        left: 37%;
+        transform scaleX(0.95)
 
 
+    .phone-video-wrapper
+        position: absolute;
+        top 0
+        left 0
+        width 100%
+        height 100%
+        perspective 617px
 
     .phone-web-video
         z-index 1
@@ -498,7 +537,7 @@
         margin: auto;
         left: 0;
         right: 0;
-        transform: translateX(96%) translateY(15%) skew(-11deg, 13deg);
+        transform: translateX(95%) translateY(15%) skew(-11deg, 13deg) rotateY(-4deg) rotateX(-2deg) scaleX(0.95) rotate(0deg);
 
     .thumb-overlay
         position: absolute;

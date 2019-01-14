@@ -14,6 +14,7 @@
 
         </svg>
         <svg version="1.1" class="iris" :style="{left: left ? '50%' : '-50%'}"
+             :class="{'small-ico': $vuetify.breakpoint.smAndDown}"
              viewBox="0 0 500 500">
             <g class="iris-1">
                 <path class="st0" d="M35.3,137.7C73.7,61.5,147.3,14.7,226.5,7l0.3,20.2C154.9,34.7,88.3,77.5,53.3,146.8
@@ -415,6 +416,10 @@
         right 0
         bottom 0
         margin auto
+
+    .small-ico
+        width 100px
+        height 100px
 
     .wipe
         position: absolute;

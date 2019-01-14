@@ -25,12 +25,9 @@
             </v-flex>
         <div class="directions" :class="{'arrow-bottom' : $vuetify.breakpoint.mdAndDown}">
             <div class="directions-down">
-                <v-tooltip bottom>
-                    <v-btn slot="activator" fab alt="down arrow" @click="goToNext()">
-                        <v-icon large>mdi-arrow-down</v-icon>
-                    </v-btn>
-                    <span>Next</span>
-                </v-tooltip>
+                <v-btn small slot="activator" fab alt="down arrow" @click="goToNext()">
+                    <v-icon >mdi-arrow-down</v-icon>
+                </v-btn>
             </div>
         </div>
 

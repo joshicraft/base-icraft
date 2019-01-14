@@ -19,7 +19,7 @@
                    :ref="'tl-img-' + index"
             >
                 <v-icon
-                        size="150px"
+                        :size="$vuetify.breakpoint.smAndUp ? '150px' : '75px'"
                         color="primary"
                         class="ma-4"
                 >
@@ -69,19 +69,19 @@
                 if (pos < window.innerHeight / 1.5 && !$e.scrollAnimated) {
                     this.data.visible = true
                     $e.scrollAnimated = true
-                    tL = new TimelineMax()
+                    this.tL = new TimelineMax()
                         .set($e, {autoAlpha: 1})
                         .fromTo($e.querySelector('.v-timeline-item__dot'), 0.54, {scale: 0.15, autoAlpha:0}, {scale:1, autoAlpha:1})
-                        .fromTo($e.querySelector('.--anim-3'), 0.4, {y: 50, autoAlpha:0}, {y:0, autoAlpha:1}, '-=0.2')
-                        .fromTo($e.querySelector('.--anim-2'), 0.4, {y: 50, autoAlpha:0}, {y:0, autoAlpha:1}, '-=0.3')
+                        // .to($e.querySelector('.--anim-3'), 0.4, {y:0, opacity:1}, '-=0.2')
+                        .to($e.querySelector('.--anim-2'), 0.4, {y:0, opacity:1}, '-=0.2')
                     // TweenMax.staggerFromTo($e.children, 1.3, {y: 120, autoAlpha: 0}, {y: 0, autoAlpha: 1, ease: Quart.easeOut}, 0.3)
                 }
                 else if ($e.scrollAnimated && pos > window.innerHeight - 100) {
                     $e.scrollAnimated = false
                     tL = new TimelineMax()
                         .set($e.querySelector('.v-timeline-item__dot'), {scale: 0.5, autoAlpha:0})
-                        .set($e.querySelector('.--anim-3'), {y: 50, autoAlpha:0})
-                        .set($e.querySelector('.--anim-2'), {y: 50, autoAlpha:0})
+                        // .set($e.querySelector('.--anim-3'), {y: 50, opacity:0})
+                        .set($e.querySelector('.--anim-2'), {y: 50, opacity:0})
                 }
             }
         }
@@ -92,6 +92,8 @@
     .v-timeline--dense .v-timeline-item__body {
         max-width: calc(100% - 44px);
     }
+    .v-timeline-item .--anim-2
+        opacity 0
 </style>
 <style scoped lang="stylus">
     /*.v-card*/
