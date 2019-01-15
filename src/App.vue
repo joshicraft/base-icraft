@@ -388,6 +388,14 @@
     .row-reverse
         flex-direction row-reverse
 
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+        select,
+        textarea,
+        input
+            font-size: 16px !important
+
+
+
     @media screen and (max-width: 700px)
 
         .jumbo-bot-arrow

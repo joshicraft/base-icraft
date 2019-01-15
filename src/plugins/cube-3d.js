@@ -10,32 +10,24 @@ var body, stageWidth, stageHeight, isDevice, interactionUp, interactionDown, int
 var numFaces, faceWidth, faceHeight, faceArray = [], thumbsArray = [], currentIndex, paginationIndex, pressedElement,
     currentFace, initialFace, myCubeDraggable;
 
-const aspectWidth = 1920, aspectHeight = 1080
+const ASPECT_WIDTH = 1280, ASPECT_HEIGHT = 768;
 
 export default {
-    updateDimensions(init) {
-        if (stageWidth > window.innerWidth) {
-            stageWidth = window.innerWidth / 1.25;
-            stageHeight = (aspectHeight / aspectWidth) * stageWidth
-        }
-        rotationStep = fullRotation / numFaces;
-        faceWidth = stageWidth;
-        faceHeight = stageHeight / 1.1;
-        if(init){
-            createFaces()
-        }
-        // onCubeDrag()
+    resizeDelay(){
+      updateDimensions()
+    },
+    resize() {
+        if (this.resizeDelay) clearTimeout(this.resizeDelay);
+        this.resizeDelay = setTimeout(updateDimensions, 200)
     },
     click(i) {
-
-        if(i === 'next') i = currentIndex === faceArray.length -1 ? 0 : currentIndex + 1
-        if(i === 'prev') i = currentIndex === 0 ? faceArray.length -1 : currentIndex - 1
-        console.log(i)
+        if (i === 'next') i = currentIndex === faceArray.length - 1 ? 0 : currentIndex + 1;
+        if (i === 'prev') i = currentIndex === 0 ? faceArray.length - 1 : currentIndex - 1;
         clickThumb(i)
     },
-    getCurrentIndex () {
-        console.log('CT: '+ currentIndex)
-      return currentIndex
+    getCurrentIndex() {
+        console.log('CT: ' + currentIndex);
+        return currentIndex
     },
     init(target, content) {
 
@@ -46,8 +38,8 @@ export default {
         nullObject = body.querySelector('.null-object');
         container = body.querySelector('.boxes');
 
-        stageWidth = 1024;
-        stageHeight = 768;
+        setStageWidth();
+        // stageHeight = 700;
 
         isDevice = (/android|webos|iphone|ipad|ipod|blackberry/i.test(navigator.userAgent.toLowerCase()));
         isAndroid = (/android/i.test(navigator.userAgent.toLowerCase()));
@@ -76,28 +68,29 @@ export default {
 
         dialWidth = 300;
         dialHeight = 300;
-        this.updateDimensions(true);
-
+        updateDimensions();
         faceZOrigin = getZOrigin();
         dynamicPerspective = getPerspective();
-        createFaces(true);
+        createFaces();
         setCubeDraggable(initialFace);
         onCubeDrag()
     }
 }
 
-
-//
-
-function createFaces(build) {
-
-    var face, faceText;
-
+function createFaces() {
+    let face;
     for (var i = 0; i < numFaces; i++) {
-
         face = container.childNodes[i];
-        // faceText = face.createElement('h1');
-        // face.className = 'face';
+        face.initRotationX = 0;
+        face.initRotationY = i * rotationStep;
+        faceArray.push(face);
+        thumbsArray.push(body.querySelector('.thumbs').childNodes[i])
+    }
+    updateFaces()
+}
+
+function updateFaces(){
+    faceArray.forEach((face, i)=>{
         TweenMax.set(face, {
             width: faceWidth,
             height: faceHeight,
@@ -109,17 +102,27 @@ function createFaces(build) {
             rotationY: i * rotationStep,
             z: -0
         });
+    })
+}
+function updateDimensions() {
 
-        face.initRotationX = 0;
-        face.initRotationY = i * rotationStep;
-        if(build) {
-            faceArray.push(face);
-            thumbsArray.push(body.querySelector('.thumbs').childNodes[i])
-        }
+    if (stageWidth > window.innerWidth) {
+        stageWidth = window.innerWidth / 1.25;
     }
 
+    updateAspectRation();
+    rotationStep = fullRotation / numFaces;
+    faceWidth = stageWidth;
+    faceHeight = stageHeight / 1.1;
 }
 
+function setStageWidth(){
+    stageWidth = window.innerWidth < 1440 ? window.innerWidth * 0.8 : 1280;
+}
+
+function updateAspectRation() {
+    stageHeight = (ASPECT_HEIGHT / ASPECT_WIDTH) * stageWidth
+}
 
 function setCubeDraggable(id) {
 
@@ -136,7 +139,7 @@ function setCubeDraggable(id) {
         onDrag: onCubeDrag,
         onPress: setPressed,
         zIndexBoost: false,
-        onDragEnd: function(){
+        onDragEnd: function () {
             myCubeDraggable[0].enable();
         },
         //onDragEnd:onCubeDragEnd,
@@ -158,25 +161,16 @@ function setPressed() {
     pressedElement = this.target;
 }
 
-function onSliderDrag() {
-
-    onCubeDrag(true)
-}
-
-function onCubeDrag(isSlider) {
-
+function onCubeDrag() {
 
     var i = -1, destX, pagePos, destAlpha, destZIndex;
 
     let maxPercent = 300;
     let tempIndex = 0;
     let ceilIndex;
-    // let direction = this.getDirection() || -1
-    // if(direction === "up" || direction === "down"){
-    //     myCubeDraggable[0].disable();
-    // }
+
     destX = nullObject._gsTransform.x % fullRotation;
-    console.log(destX)
+    console.log(destX);
     tempIndex = (Math.ceil(Math.abs(destX)) / 300 * 10) / 2;
     ceilIndex = Math.ceil(tempIndex);
     ceilIndex = ceilIndex <= faceArray.length - 1 ? ceilIndex : 0;
@@ -220,7 +214,6 @@ function onCubeDrag(isSlider) {
 
         destZIndex = Math.round(destAlpha * fullRotation);
 
-
         TweenMax.set(faceArray[i], {
             rotationY: faceArray[i].initRotationY + destX,
             ease: Power1.easeOut,
@@ -229,8 +222,6 @@ function onCubeDrag(isSlider) {
             force3D: true,
         })
     }
-
-
 }
 
 
@@ -239,7 +230,7 @@ function clickThumb(index) {
     console.log(index + ' thumb clicked, ' + dragPercent + ': distance');
     TweenMax.to(nullObject, (getClickDuration(index) || index) * 0.4, {
         x: dragPercent,
-        onUpdate: onSliderDrag
+        onUpdate: onCubeDrag
     });
     paginationIndex = index
 }

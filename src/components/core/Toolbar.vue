@@ -86,7 +86,7 @@
         methods: {
             ...mapMutations('app', ['toggleDrawer']),
             getCurrentRouteClass (item) {
-                return this.$route.path === item.to ? 'primary--text' : ''
+                return this.$route.name === item.name ? 'primary' : ''
             },
             onScroll() {
                 this.scrolled = true

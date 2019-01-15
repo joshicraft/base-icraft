@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper -arrow-buffer-top" id="cube">
+    <div class="wrapper -arrow-buffer-top" id="cube" v-resize="resize">
         <div class="cube">
             <div class="wrapper">
                 <div class="boxes" >
@@ -84,6 +84,10 @@
                 ]
             }
         },
+        methods: {
+        resize(){
+            cubeObject.resize()
+        }},
         mounted() {
             cubeObject.init('#cube', this.items)
         }

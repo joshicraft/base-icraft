@@ -6,8 +6,6 @@
 
 <script>
     // import content from '../lang/en/Views/Portfolio'
-
-
     export default {
         props: {
             loadTickerCount: {
@@ -23,12 +21,7 @@
                 return this.$t('Views.Portfolio.projects')
             }
         },
-        mounted() {
-
-
-        },
         methods: {
-
             loadLimit(i) {
                 return this.loadTickerCount <= i
             },
