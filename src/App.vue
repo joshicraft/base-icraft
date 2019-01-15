@@ -439,9 +439,9 @@
         z-index: 2147483646;
         background: #005da0;
         border-radius: 0;
-    svg
-        height: 40px !important
-        width: 40px !important
+        svg
+            height: 40px !important
+            width: 40px !important
 
 
 </style>
