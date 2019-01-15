@@ -428,20 +428,21 @@
 
 
     #fb-root
-        bottom: 0;
-        display: inline;
-        height: 40px;
-        padding: 0;
-        position: fixed;
-        right: 0;
-        top: auto;
-        width: 40px;
-        z-index: 2147483646;
-        background: #005da0;
-        border-radius: 0;
-        svg
-            height: 40px !important
-            width: 40px !important
+        .fb_dialog
+            bottom: 0;
+            display: inline;
+            height: 40px;
+            padding: 0;
+            position: fixed;
+            right: 0;
+            top: auto;
+            width: 40px;
+            z-index: 2147483646;
+            background: #005da0;
+            border-radius: 0;
+            svg
+                height: 40px !important
+                width: 40px !important
 
 
 </style>
