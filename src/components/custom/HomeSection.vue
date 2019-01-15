@@ -129,6 +129,9 @@
 </script>
 
 <style scoped lang="stylus">
+    $color-1 = #e8e8e8
+    $color-2 = #dcdcdc
+
     .directions
         bottom 80px
         position: absolute
@@ -163,8 +166,6 @@
     .align-left
         text-align left
 
-    $color-1 = #e8e8e8
-    $color-2 = #dcdcdc
 
     .c-1
         background $color-1

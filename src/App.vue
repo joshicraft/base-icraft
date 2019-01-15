@@ -368,7 +368,7 @@
                 transform: scale(0.75)
 
     .v-content
-        padding-top: 0px !important
+        padding-top: 0 !important
         padding-bottom: 64px !important
         z-index 3
 
@@ -383,7 +383,7 @@
         position: relative
 
     .theme--light.v-stepper--vertical .v-stepper__content:not(:last-child)
-        border-left: 0px solid rgba(0, 0, 0, 0.12);
+        border-left: 0 solid rgba(0, 0, 0, 0.12);
 
     .row-reverse
         flex-direction row-reverse
