@@ -93,12 +93,12 @@
             ...mapGetters('app', ['getLoader']),
             mountFBChat() {
                 (function (d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-                    fjs.parentNode.insertBefore(js, fjs);
+                    var js, fjs = d.getElementsByTagName(s)[0]  !important
+                    if (d.getElementById(id)) return  !important
+                    js = d.createElement(s)  !important
+                    js.id = id  !important
+                    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js'  !important
+                    fjs.parentNode.insertBefore(js, fjs)  !important
                 }(document, 'script', 'facebook-jssdk'))
             },
             goToContact () {
@@ -238,7 +238,7 @@
 
     .jumbo-bot-arrow
         width 100%
-        height: 300px;
+        height: 300px  !important
         pointer-events none
         position absolute
         margin-top -150px
@@ -249,7 +249,7 @@
             position absolute
             height 100%
             display: block
-            width: 100%;
+            width: 100%  !important
         polygon
             fill #5a5a5a
 
@@ -272,11 +272,11 @@
         justify-items center
         flex-direction row
         justify-content center
-        //padding-top: 10vh;
+        //padding-top: 10vh  !important
         //padding-bottom 10vh
 
     #webchat
-        z-index: 20;
+        z-index: 20  !important
         position fixed
         bottom: 0
         right: 0
@@ -320,7 +320,7 @@
 
     @keyframes rotate-in-center {
         0% {
-            transform: rotate(0deg);
+            transform: rotate(0deg)  !important
             //opacity 0
         }
         100% {
@@ -331,25 +331,25 @@
 
     @keyframes jello-diagonal-2 {
         10% {
-            transform: skew(0deg 0deg);
+            transform: skew(0deg 0deg)  !important
         }
         30% {
-            transform: skew(-25deg -25deg);
+            transform: skew(-25deg -25deg)  !important
         }
         40% {
-            transform: skew(15deg, 15deg);
+            transform: skew(15deg, 15deg)  !important
         }
         50% {
-            transform: skew(-15deg, -15deg);
+            transform: skew(-15deg, -15deg)  !important
         }
         65% {
-            transform: skew(5deg, 5deg);
+            transform: skew(5deg, 5deg)  !important
         }
         75% {
-            transform: skew(-5deg, -5deg);
+            transform: skew(-5deg, -5deg)  !important
         }
         100% {
-            transform: skew(0deg 0deg);
+            transform: skew(0deg 0deg)  !important
         }
     }
 
@@ -383,7 +383,7 @@
         position: relative
 
     .theme--light.v-stepper--vertical .v-stepper__content:not(:last-child)
-        border-left: 0 solid rgba(0, 0, 0, 0.12);
+        border-left: 0 solid rgba(0, 0, 0, 0.12)  !important
 
     .row-reverse
         flex-direction row-reverse
@@ -429,17 +429,17 @@
 
     #fb-root
         .fb_dialog
-            bottom: 0;
-            display: inline;
-            height: 40px;
-            padding: 0;
-            position: fixed;
-            right: 0;
-            top: auto;
-            width: 40px;
-            z-index: 2147483646;
-            background: #005da0;
-            border-radius: 0;
+            bottom: 0  !important
+            display: inline  !important
+            height: 40px  !important
+            padding: 0  !important
+            position: fixed  !important
+            right: 0  !important
+            top: auto  !important
+            width: 40px  !important
+            z-index: 2147483646  !important
+            background: #005da0  !important
+            border-radius: 0  !important
             svg
                 height: 40px !important
                 width: 40px !important
