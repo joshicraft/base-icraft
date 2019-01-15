@@ -41,7 +41,7 @@
                     <v-flex
                             lg6
                             :class="'pa-' + $vuetify.breakpoint.mdAndUp ? '5' : '2'"
-                            class="c-title d-flex text-lg-right text-sm-center"
+                            class="title-a d-flex text-lg-right text-sm-center"
                             justify-center
                             column
                     >
@@ -81,7 +81,7 @@
                     <v-flex
                             lg6
                             :class="'pa-' + $vuetify.breakpoint.mdAndUp ? '5' : '2'"
-                            class="c-title d-flex text-lg-left text-sm-center"
+                            class="title-a d-flex text-lg-left text-sm-center"
                             justify-center
                             column
                     >
@@ -175,7 +175,7 @@
                             </v-flex>
                         <!--</v-card>-->
                     </v-flex>
-                    <v-flex v-else column wrap lg6 class="c-title d-flex text-lg-right text-sm-center">
+                    <v-flex v-else column wrap lg6 class="title-a d-flex text-lg-right text-sm-center">
                         <div>
                         <h1 class="mt-0 mb-3">
                             CAN'T FIND THE RIGHT FIT?
@@ -215,7 +215,7 @@
                 <ui-section-nav-arrow :index="3" direction="next"></ui-section-nav-arrow>
                 <div>
                     <v-container>
-                        <v-layout column wrap class="c-title">
+                        <v-layout column wrap class="title-a">
                             <h1 class="mt-0 mb-3 text-lg-center">
                                 BASELINE PACKAGES
                             </h1>
@@ -339,7 +339,7 @@
             </div>
             <div class="timeline-wrap _bg-color-b" id="process">
                 <v-container>
-                    <v-layout column wrap class="c-title">
+                    <v-layout column wrap class="title-a">
                         <h1 class="mt-5 mb-3 text-lg-center">
                             OUR PROCESS
                         </h1>
@@ -568,7 +568,7 @@
         fill: #FFFFFF;
     }
 
-    .c-title > div
+    .title-a > div
         width 80%
         margin 0 auto
         max-width: 537px;

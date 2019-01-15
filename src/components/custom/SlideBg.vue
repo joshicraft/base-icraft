@@ -418,6 +418,7 @@
         margin auto
 
     .small-ico
+        display none
         width 100px
         height 100px
 

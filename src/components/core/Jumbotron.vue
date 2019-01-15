@@ -28,7 +28,7 @@
                                     align-center
                                     text-xs-center
                                     :key="$route.path"
-                                    class="title c-title"
+                                    class="title title-a"
                             >
                                 <h1 class="mb-3">{{title}}</h1>
                                 <h4>{{subTitle}}</h4>

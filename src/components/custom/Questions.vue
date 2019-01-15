@@ -123,7 +123,7 @@
                     </v-layout>
                     <v-flex
                             v-else-if="resultsGenerated"
-                            class="c-title no-max"
+                            class="title-a no-max"
                             :class="$vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-2'"
                     >
 

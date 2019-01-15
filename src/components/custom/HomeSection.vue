@@ -9,6 +9,7 @@
         <ui-section-nav-arrow :index="i" direction="prev"></ui-section-nav-arrow>
         <ui-section-nav-arrow :index="i" direction="next"></ui-section-nav-arrow>
         <v-img
+
                 class="section-img"
                 lg6
                 :lazy-src="imgC(item.img, false, false, true)"
@@ -170,20 +171,6 @@
     .c-2
         background $color-2
 
-    @media (max-height: 500px) and (orientation: landscape) and (max-width: 800px)
-        .title-a
-            max-width 80%
 
-        .directions
-            display: none
-
-    @media (max-width: 500px)
-        .title-a
-            max-width 100%
-            h1
-                font-size 2.2em
-
-            h3
-                font-size 1.5em
 
 </style>

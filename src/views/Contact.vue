@@ -4,7 +4,7 @@
             <!--<v-flex md1 class="img-wrap">-->
             <!--<img src="/static/device-iphone-contact.png"/>-->
             <!--</v-flex>-->
-            <div class="c-title text-lg-center mb-5">
+            <div class="title-a text-lg-center mb-5">
                 <h1 class="mt-5 mb-3">WE'D LIKE TO HEAR FROM YOU</h1>
                 <h3 class="mb-4">Use one of the methods below to get in touch.</h3>
                 <p>To find out the best solution for you its best to get in touch with us so we can find out exactly what you're after.</p>

@@ -208,7 +208,7 @@
         &.left-p
             right initial
             left 0px
-    .c-title
+    .title-a
         max-width 999px
         margin-left auto
         margin-right auto
@@ -394,7 +394,12 @@
         input
             font-size: 16px !important
 
+    @media (max-height: 500px) and (orientation: landscape) and (max-width: 800px)
+        .title-a
+            max-width 80% !important
 
+        .directions
+            display: none
 
     @media screen and (max-width: 700px)
 
@@ -408,9 +413,16 @@
         .section-arrow.first-arrow
             top: 31px
 
-        .c-title
+        .title-a
             h3
-                line-height 1.1
+                line-height 1.1 !important
 
+    @media (max-width: 500px)
+        .title-a, .title-c
+            max-width 100% !important
+            h1
+                font-size 2.2em !important
 
+            h3
+                font-size 1.5em !important
 </style>
