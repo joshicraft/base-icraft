@@ -429,17 +429,17 @@
 
     #fb-root
         .fb_dialog
-            bottom: 0  !important
-            display: inline  !important
-            height: 40px  !important
-            padding: 0  !important
-            position: fixed  !important
-            right: 0  !important
-            top: auto  !important
-            width: 40px  !important
-            z-index: 2147483646  !important
-            background: #005da0  !important
-            border-radius: 0  !important
+            bottom: 0 !important
+            display: inline !important
+            height: 40px !important
+            padding: 0 !important
+            position: fixed !important
+            right: 0 !important
+            top: auto !important
+            width: 40px !important
+            z-index: 2147483646 !important
+            background: #005da0 !important
+            border-radius: 0 !important
             svg
                 height: 40px !important
                 width: 40px !important
