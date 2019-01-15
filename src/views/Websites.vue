@@ -11,6 +11,8 @@
 
                     class="relative -view-height _bg-color-b"
             >
+                <ui-section-nav-arrow :index="0" direction="prev"></ui-section-nav-arrow>
+                <ui-section-nav-arrow :index="0" direction="next"></ui-section-nav-arrow>
                 <v-layout
                         lg12
                         wrap
@@ -69,6 +71,8 @@
                     id="finding"
                     class="relative -view-height _bg-color-a"
             >
+                <ui-section-nav-arrow :index="1" direction="prev"></ui-section-nav-arrow>
+                <ui-section-nav-arrow :index="1" direction="next"></ui-section-nav-arrow>
                 <v-layout
                         lg12
                         wrap
@@ -132,6 +136,9 @@
                     id="discovery"
                     class="relative -view-height _bg-color-b"
             >
+
+                <ui-section-nav-arrow :index="2" direction="prev"></ui-section-nav-arrow>
+                <ui-section-nav-arrow :index="2" direction="next"></ui-section-nav-arrow>
                 <v-layout
                         lg12
                         wrap
@@ -204,6 +211,8 @@
                 </v-layout>
             </div>
             <div id="packages" class="-view-height _bg-color-a">
+                <ui-section-nav-arrow :index="3" direction="prev"></ui-section-nav-arrow>
+                <ui-section-nav-arrow :index="3" direction="next"></ui-section-nav-arrow>
                 <div>
                     <v-container>
                         <v-layout column wrap class="c-title">

@@ -6,7 +6,28 @@
         <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
         <!--<core-side-drawer></core-side-drawer>-->
         <core-jumbotron app/>
-
+        <div class="contact-ico bot-p left-p">
+            <v-btn
+                    aria-label="go-to-contact"
+                    v-if="$route.name !== 'Contact'"
+                    @click="goToContact"
+                    fab
+                    dark
+                    medium
+                    :small="$vuetify.breakpoint.smAndDown"
+                    color="primary"
+                    :class="$vuetify.breakpoint.smAndDown ? 'bot' : ''"
+                    class="darken-3"
+            >
+                <v-icon
+                        large
+                        :medium="$vuetify.breakpoint.mdAndDown"
+                        dark
+                >
+                    mdi-phone
+                </v-icon>
+            </v-btn>
+        </div>
         <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"
                    v-if="getLoadCount(2)"/>
 
@@ -16,9 +37,8 @@
 </template>
 <script>
     /* eslint-disable no-undef,spaced-comment */
-
     import {mapMutations, mapGetters} from 'vuex'
-
+    import animationLibrary from './plugins/gsap-animation-library'
     export default {
         data() {
             return {
@@ -44,7 +64,8 @@
                 $this.setLazyLoaded(true)
                 $this.setLoader(true)
             }, timeLoad < 1000 ? 1000 : timeLoad)
-            setTimeout(this.mountFBChat, 4000)
+            // setTimeout(this.mountFBChat, 4000)
+
         },
         watch: {
             $route(frm, to) {
@@ -54,6 +75,7 @@
                     clearTimeout(this.delayAnimated)
                 }
                 this.startLoadTicker(false)
+                animationLibrary.wobble(document.querySelector('.contact-ico'))
             }
         },
         computed: {
@@ -79,12 +101,20 @@
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'))
             },
+            goToContact () {
+                this.$router.push({name:'Contact'})
+                setTimeout(() => {
+                    this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
+                }, 2000)
+
+            },
             getLoadCount(i) {
                 return i < this.loadCount
             },
             increment() {
                 this.loadCount += 1
                 if (this.loadCount > 5) {
+
                     clearInterval(this.loadComponentsTicker)
                 }
             },
@@ -93,13 +123,6 @@
                 if (this.loadTickerCount > this.tickerLimit) {
                     clearInterval(this.loadTicker)
                 }
-            },
-            goToContact () {
-                this.$router.push({name:'Contact'})
-                setTimeout(() => {
-                    this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
-                }, 2000)
-
             },
             clearLoadTicker() {
                 this.loadTickerCount = 0
@@ -169,6 +192,22 @@
     .v-content
         padding-top: 0 !important
 
+    .contact-ico
+        right 0
+        top 0
+        bottom 0
+        margin auto
+        position: fixed
+        z-index: 50
+        .v-btn
+            border-radius 0
+            margin 0
+        &.bot-p
+            top initial
+            bottom: 0px
+        &.left-p
+            right initial
+            left 0px
     .c-title
         max-width 999px
         margin-left auto
@@ -350,11 +389,17 @@
         flex-direction row-reverse
 
     @media screen and (max-width: 700px)
+
         .jumbo-bot-arrow
-            margin-top -(137/2)px
-            height 137px
+            margin-top -(94/2)px
+            height: 94px
+
         .-arrow-buffer-top
-            padding-top 75px
+            padding-top: 60px
+
+        .section-arrow.first-arrow
+            top: 31px
+
         .c-title
             h3
                 line-height 1.1

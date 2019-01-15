@@ -141,7 +141,8 @@
         background #5a5a5a
         padding 4px 4px 4px 0
         height: 100%;
-
+    .v-btn
+        pointer-events all
     .toolbar-svg-wrapper
         height: 100%
         position: relative

@@ -12,6 +12,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
 
+
+
 // Routes
 import paths from './paths'
 
@@ -81,17 +83,12 @@ router.beforeEach((to, from, next) => {
             document.documentElement.scrollTop
         TweenMax.killAll()
         let tL = new TimelineMax()
+        console.log(to)
         tL
-        // .to(window, scrollPos === 0 ? 0 : 0.35, {scrollTo: {y: 0}}, 'a')
-        // .to(gradient, duration, {autoAlpha: 0.8})
-        // .call(next, [], this, '-=' + duration)
-        // .to(gradient, duration, {autoAlpha: 1}, '+=' + duration)
             .to(window, scrollPos === 0 ? 0 : 0.35, {scrollTo: {y: 0}}, 'a')
             .call(next)
             .to(gradient, duration, {autoAlpha: 0.82})
             .to(gradient, duration, {autoAlpha: 1})
-            // .to(window, 0.4, {scrollTo: {y: window.innerHeight - 60}}, '+=4')
-
 
     }, 1)
 })

@@ -1,27 +1,15 @@
 "use strict";
 var animations = {
-    draw_SVG: function(elm, settings) {
+    draw_SVG: function (elm, settings) {
         settings = settings || {};
-        return new TimelineMax(settings.controls || {}).set(elm.querySelectorAll('path, circle, rect, line'), {
+        return new TimelineMax(settings.controls || {})
+            .set(elm.querySelectorAll('path, circle, rect, line'), {
             drawSVG: '0%',
             className: '+=stroke-' + (settings.stroke || 3)
-        }).set(elm, {autoAlpha: 1})[settings.to || 'staggerTo'](elm.querySelectorAll('path, circle, rect, line'), settings.stagger_dur || 0.5, {drawSVG: '100%'}, settings.stagger || 0.1).set(elm.querySelectorAll('path, circle, rect, line'), {className: '-=stroke-' + (settings.stroke || 3)});
+        })
+            .set(elm, {autoAlpha: 1})[settings.to || 'staggerTo'](elm.querySelectorAll('path, circle, rect, line'), settings.stagger_dur || 0.5, {drawSVG: '100%'}, settings.stagger || 0.1).set(elm.querySelectorAll('path, circle, rect, line'), {className: '-=stroke-' + (settings.stroke || 3)});
     },
-    preview_product: function(elm, settings) {
-        return new TimelineMax().call(media.sound.play, ['insider_product_preview-1', undefined, function(settings) {
-            return;
-            settings.id != current_scroll_trigger.in.id || (current_scroll_trigger.click_index != -1 && current_scroll_trigger.click_index != settings.index);
-        }, settings], this, '+=0').set(elm.querySelectorAll('path, circle'), {
-            drawSVG: '0%',
-            className: '+=stroke-' + (settings.stroke || 3)
-        }).set(elm, {autoAlpha: 1}).to(elm.querySelectorAll('path, circle'), 0.65, {drawSVG: '100%'}).set(elm.querySelectorAll('path, circle'), {className: '-=stroke-' + (settings.stroke || 3)}).call(media.play_video, [settings.trigger_elm.querySelectorAll('video')]).set(settings.trigger_elm, {className: '+=is-loaded'}, '-=0.375').to(settings.trigger_elm.querySelectorAll('hr'), 0.4, {
-            scaleX: 1,
-            transformOrigin: 'top right'
-        }).call(media.sound.play, ['insider_product_preview', undefined, function(settings) {
-            return settings.id != current_scroll_trigger.in.id;
-        }, settings], this, '-=0.45');
-    },
-    wobble: function(elm, settings) {
+    wobble: function (elm, settings) {
         settings = settings || {};
         var defaults = {
                 delay: 0,
@@ -66,15 +54,13 @@ var animations = {
         }
         return tL;
     },
-    shake: function(elm, duration, position) {},
-    rise_fade: function(elm, duration, position) {},
-    show_hide: function(elm) {
+    show_hide: function (elm) {
         TweenMax.to(elm, 0.3, {
             className: (elm.hasClass('show') ? '-' : '+') + '=show',
             y: elm.hasClass('show') ? 0 : -elm.height()
         });
     },
-    magnet: function($elm, settings, e) {
+    magnet: function ($elm, settings, e) {
         var $magent_space = $elm.querySelectorAll('.magnet_space:first'),
             space_cords = get_offset($magent_space),
             magnet_cords = get_offset($elm),
@@ -104,16 +90,16 @@ var animations = {
         }
         t_l.staggerTo($elm.querySelectorAll(s.target).children(), dur, vars, s.stagger);
     },
-    magnet_build: function($elm) {
+    magnet_build: function ($elm) {
         var $space = $('<div class="magnet_space">');
         $elm.addClass('magnet').append($space);
     },
-    flip: function(elm, settings, out) {
+    flip: function (elm, settings, out) {
         var dur = 1,
             tL = new TimelineMax().staggerTo(elm.querySelectorAll('path circle'), dur, {rotationY: out ? 0 : 180}, 'a').to(elm, dur / 2, {z: 50}, 'a').to(elm, dur / 2, {z: 0});
         return tL;
     },
-    stagger_spin: function(elm, settings, out, data) {
+    stagger_spin: function (elm, settings, out, data) {
         var $__2 = this;
         var dur = 1,
             $path_circle = elm.querySelectorAll('path, circle'),
@@ -124,8 +110,8 @@ var animations = {
             stroke: '#fff',
             fill: 'transparent'
         }).staggerFromTo($path_circle, dur, {skewY: out ? 360 : 0}, {
-            onStart: function(data) {
-                media.sound.play('insider_swish-3', undefined, function(data) {
+            onStart: function (data) {
+                media.sound.play('insider_swish-3', undefined, function (data) {
                     return data.timeline.reversed() || data.id != current_scroll_trigger.id;
                 }, {
                     timeline: this,
@@ -135,8 +121,8 @@ var animations = {
             onStartParams: [data],
             skewY: out ? 0 : 360,
             transformOrigin: "50% 50%"
-        }, dur / 6, 'a').call(function() {
-            media.sound.play('insider_title_2', undefined, function(timeline) {
+        }, dur / 6, 'a').call(function () {
+            media.sound.play('insider_title_2', undefined, function (timeline) {
                 return timeline.transition.reversed();
             }, $__2);
         }).to(elm.querySelectorAll('#outer-circle'), dur / 3, {
@@ -158,7 +144,7 @@ var animations = {
         }, 'b');
         return tL;
     },
-    bounce: function(elm, settings) {
+    bounce: function (elm, settings) {
         var defaults = {
                 delay: 0,
                 repeat: -1,
@@ -199,7 +185,7 @@ var animations = {
         }
         return tL;
     },
-    particle: function($elm, settings) {
+    particle: function ($elm, settings) {
         var tL = new TimelineMax(),
             wrapper = '.particles-wrapper',
             size = {
@@ -241,18 +227,18 @@ var animations = {
                 y: d.y_end,
                 ease: s.gravity ? Quint.easeInOut : Quint.easeOut,
                 autoAlpha: 0,
-                onComplete: function(e) {
+                onComplete: function (e) {
                     $(this.target).remove();
                 }
             }), label);
         }
         return tL;
     },
-    particle_build: function($elm) {
+    particle_build: function ($elm) {
         var $space = $('<div class="particles-wrapper">');
         $elm.append($space);
     },
-    break_icon: function($elm, settings) {
+    break_icon: function ($elm, settings) {
         var $pieces_wrapper = $elm.querySelectorAll('.icon-pieces'),
             $pieces = $pieces_wrapper.querySelectorAll('.broken-icon-piece'),
             length = $pieces.length,
@@ -303,21 +289,21 @@ var animations = {
                 ease: Quint.easeOut,
                 display: 'none',
                 onCompleteParams: ['{self}'],
-                onComplete: function(i) {
+                onComplete: function (i) {
                     TweenMax.set(this.target, {display: 'none'});
                 }
             }), 'a');
         }
     },
     util: {
-        random: function(min, max) {
+        random: function (min, max) {
             return Math.random() * (max - min) + min;
         },
-        random_color: function() {
+        random_color: function () {
             return "#" + ((1 << 24) * Math.random() | 0).toString(16);
         }
     },
-    get: function(anim, elm, settings) {
+    get: function (anim, elm, settings) {
         return this[anim](elm, settings);
     }
 };
