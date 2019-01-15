@@ -47,8 +47,8 @@
 
 <style scoped lang="stylus">
 
-    $color-1 = #e8e8e8
-    $color-2 = #dcdcdc
+    $color-1 = #2a2a2a
+    $color-2 = #fafafa
 
 
     .section-arrow
@@ -74,33 +74,32 @@
             stroke-width 5px
 
 
-    .c-1.section-arrow
-        polygon
-            fill $color-1
 
-    .c-2.section-arrow
-        polygon
-            fill $color-2
 
     .next-arrow
         bottom 0
-
+        polygon
+            fill $color-1
+        .v-icon
+            color $color-2
         &:hover
             .v-icon
                 color $color-1
-
             polygon
-                fill lightness($color-2, 50%)
+                fill $color-2
 
     .prev-arrow
         top 0
-
+        polygon
+            fill $color-2
+        .v-icon
+            color $color-1
         &:hover
             .v-icon
                 color $color-2
 
             polygon
-                fill lightness($color-1, 50%)
+                fill $color-1
 
 
     .first-arrow

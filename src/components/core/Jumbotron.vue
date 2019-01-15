@@ -53,7 +53,7 @@
     export default {
         metaInfo ()  {
             return {
-                title: this.$t('Views.' + (this.$route.name || 'Home') + '.headTitle'),
+                title: this.$t('Views.' + this.getNameSpace() + '.headTitle'),
                 meta: [
                     {name: 'description', content: this.$t('Views.' + (this.$route.name || 'Home') + '.headDescription')}
                 ]
@@ -64,7 +64,11 @@
             isBooted: false,
         }),
         methods: {
-
+            getNameSpace(){
+                let nested = this.$route.params.nestedPath ? this.$route.params.nestedPath + '.' + this.$route.name : this.$route.name
+                console.log(nested)
+                return this.$route.name ? nested : 'Home'
+            },
             goTo () {
                 this.scrolling = true
                 this.toolBarHeight = document.querySelector('.v-toolbar').getBoundingClientRect().height
@@ -77,7 +81,7 @@
                 return this.$route.path === '/'
             },
             namespace() {
-                return this.$route.name || 'Home'
+               return this.getNameSpace()
             },
             title() {
                 return this.$t('Views.' + this.namespace + '.jumbotronTitle')

@@ -17,28 +17,39 @@ import Meta from 'vue-meta'
 // Routes
 import paths from './paths'
 
-function route(path, name, children) {
-    let componentPath
-    // eslint-disable-next-line
-    if (path.children) {
-        path.children.forEach((c) => {
-            c.component = (resovle) => import(/** webpackPrefetch: false */
-                `@/views/${path.name + '/' + c.name}.vue`
-                ).then(resovle)
-            return c
-        })
-    }
-    componentPath = path.nested ? path.nested + '/' + path.name : path.name
-    console.log(componentPath)
-    // eslint-disable-next-line
+let routes = makeRoutes()
+
+
+function route(path, parentPath) {
+    console.log(parentPath ? parentPath.name + '/' + path.name : path.name)
     return {
+        path: parentPath ? parentPath.path + '/' + path.path : path.path,
         name: path.name,
-        path: path.path,
-        children: path.children,
+        nested: path.nested,
         component: (resovle) => import(/** webpackPrefetch: false */
-            `@/views/${componentPath}.vue`
+            `@/views/${parentPath ? parentPath.name + '/' + path.name : path.name}.vue`
             ).then(resovle)
+
     }
+}
+
+function makeRoutes(){
+    let routes = paths.map((path)=>{
+        return route(path)
+    })
+    let nestedRoutes = []
+    routes.forEach((path)=>{
+        if(path.nested){
+            path.nested.forEach((nestedPath)=>{
+                console.log(nestedPath)
+                nestedRoutes.unshift(route(nestedPath, path))
+            })
+        }
+    })
+    routes = [...routes, ...nestedRoutes].concat([
+        {path: '*', redirect: '/'}
+    ])
+    return routes
 }
 
 Vue.use(Router)
@@ -46,11 +57,7 @@ Vue.use(Router)
 // Create a new router
 const router = new Router({
     mode: 'history',
-    routes: paths.map((path)=>{
-        return route(path)
-    }).concat([
-        {path: '*', redirect: '/', children: []}
-    ]),
+    routes: routes,
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition
@@ -62,7 +69,6 @@ const router = new Router({
     }
 })
 
-console.log(router)
 router.beforeEach((to, from, next) => {
     if (from.name === null) {
         next()

@@ -21,23 +21,8 @@ for (const file of requireLang.keys()) {
     o[s] = i + 1 === path.length
       ? requireLang(file)
       : {}
-
     return o[s]
   }, messages)
 }
 export default messages
 
-// var glob = require('glob-fs')({ gitignore: true });
-// var files = glob.readdirSync('**/*.json');
-//
-// // options is optional
-// // let content = glob("/**/*.json", null, function (er, files) {
-// //   console.log(files)
-// //   return files
-// //     // files is an array of filenames.
-// //     // If the `nonull` option is set, and nothing
-// //     // was found, then files is ["**/*.js"]
-// //     // er is an error object or null.
-// // })
-//
-// export default files

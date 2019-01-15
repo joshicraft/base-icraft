@@ -21,13 +21,14 @@ let paths = [
         path: '/get-a-website',
         name: 'Websites',
         text: "Websites",
-    },
-    {
-        path: 'discovering-your-business',
-        name: 'InfoQuestionnaire',
-        text: "ABOUT YOU",
-        nested: 'Websites',
-        noToolbar: true
+        nested: [
+            {
+                path: 'business-website-process',
+                name: 'Process',
+                text: "Website Process",
+                nestedPath: 'Websites'
+            }
+        ]
     },
     {
         path: '/brand-your-business',

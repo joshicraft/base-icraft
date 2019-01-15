@@ -1,0 +1,66 @@
+{
+  "headTitle": "Quality, Secure and Fast Website Building, Development and Customization",
+  "headDescription": "Looking to get a website up and running for your business? Check out what ICRAFT can build for you.",
+  "jumbotronTitle": "HAND CRAFTED WEB PRESENCE",
+  "jumbotronSubTitle": "WITH OUR FAST, SECURE AND CUSTOMIZED WEBSITES",
+  "heading1": "",
+  "contents": [
+    {
+      "title": "Index",
+      "name": "index",
+      "icon": "mdi-menu-swap-outline"
+    },
+    {
+      "title": "Discovery",
+      "name": "discovery",
+      "icon": "mdi-file-question"
+    },
+    {
+      "title": "Packages",
+      "name": "packages",
+      "icon": "mdi-package-variant"
+    },
+    {
+      "title": "Process",
+      "name": "process",
+      "icon": "mdi-animation-outline"
+    }
+  ],
+  "items": [
+    {
+      "title": "RESEARCH",
+      "subTitle": "We do our research before digging in.",
+      "subSubTitle": "To get a good insight into your industry and customers, we spend some time looking gathering up all the good stuff. Some of the things we check out are, your competitors, demographics, industry standards and compliance. We also tend to pick your brains for all the juicy bits of information so we can get the website communicating smoothly.",
+      "img": "research",
+      "icon": "mdi-book-open-page-variant"
+    },
+    {
+      "title": "DESIGN",
+      "subTitle": "The Latest Design Trends.",
+      "subSubTitle": "Helping visitors stay engaged and informed when using your super sweet website, Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
+      "img": "design",
+      "icon": "mdi-brush"
+    },
+    {
+      "title": "DEVELOPMENT",
+      "subTitle": "Fast, Secure and Powerful Tech.",
+      "subSubTitle": "The World Wide Web has come a long way since its inception by Sir Tim Berners-Lee in 1989. The web moves fast and if you don't adapt, you die. That is why we use the latest tech such as Vue.js, Node.js, Lambda Functions, Optimized Media and variety of other cool Tech. It's in here we develop for mobile and integrate features like Google Maps, Form's, Quiz's and much much more.",
+      "img": "development",
+      "icon": "mdi-code-braces"
+    },
+    {
+      "title": "FEEDBACK",
+      "subTitle": "Checking in with you to make sure your vision is on track.",
+      "subSubTitle": "At certain points of the development we'll provide you with links to review the current state of development. Here your feedback is vital as it could change certain features, layouts or design to make sure the site is humming.",
+      "img": "feedback",
+      "icon": "mdi-account-multiple-check"
+    },
+    {
+      "title": "SEO",
+      "subTitle": "Getting Your Site Noticed.",
+      "subSubTitle": "By populating your site with specific words and information we can make it easier for search engines to find you. This is only one step in getting your site noticed as its just small branch of Digital Marketing. If you're after some of that too, click the button to find out more.",
+      "img": "search",
+      "icon": "mdi-search-web"
+    }
+  ]
+}

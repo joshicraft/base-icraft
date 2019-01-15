@@ -30,30 +30,13 @@
                     {{item.text}}
                 </v-btn>
 
-                <v-list v-if="item.children">
-                    <v-list-tile
-                            v-for="(path, index) in item.children"
-                            :key="index"
-                            v-if="!path.noToolbar"
-
-                            :to="{name: path.name}"
-                    >
-                        <v-list-tile-title>{{ path.text }}</v-list-tile-title>
-                    </v-list-tile>
+                <v-list v-if="item.nested">
+                        <v-btn dense
+                               v-for="(path, index) in item.nested"
+                               :key="index"
+                               :to="{name: path.name, params: {nestedPath: path.nestedPath}}">{{ path.text }}</v-btn>
                 </v-list>
-
             </v-menu>
-            <!--<v-btn-->
-                    <!--:aria-label="item.to + '-toolbar'"-->
-                    <!--v-for="(item, i) in items"-->
-                    <!--:class="getCurrentRouteClass(item)"-->
-                    <!--:key="i"-->
-                    <!--:to="item.to"-->
-                    <!--flat-->
-            <!--&gt;-->
-                <!--<span v-text="item.text"/>-->
-            <!--</v-btn>-->
-
         </v-toolbar-items>
         <v-btn aria-label="show-hide-menu" v-else icon @click="toggleDrawer">
             <v-icon>mdi-menu</v-icon>
@@ -138,7 +121,7 @@
 
     .v-toolbar__items
         pointer-events all
-        background #5a5a5a
+        /*background #5a5a5a*/
         padding 4px 4px 4px 0
         height: 100%;
     .v-btn

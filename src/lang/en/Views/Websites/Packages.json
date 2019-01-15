@@ -1,0 +1,231 @@
+{
+  "headTitle": "Quality, Secure and Fast Website Building, Development and Customization",
+  "headDescription": "Looking to get a website up and running for your business? Check out what ICRAFT can build for you.",
+  "jumbotronTitle": "WHAT WE HAVE TO OFFER",
+  "jumbotronSubTitle": "SO YOU GET A GOOD IDEA OF WHAT WE CAN DO",
+  "heading1": "",
+  "contents": [
+    {
+      "title": "Index",
+      "name": "index",
+      "icon": "mdi-menu-swap-outline"
+    },
+    {
+      "title": "Discovery",
+      "name": "discovery",
+      "icon": "mdi-file-question"
+    },
+    {
+      "title": "Packages",
+      "name": "packages",
+      "icon": "mdi-package-variant"
+    },
+    {
+      "title": "Process",
+      "name": "process",
+      "icon": "mdi-animation-outline"
+    }
+  ],
+  "title": "Take a look at our packages",
+  "subTitle": "Built with the latest technology and current design trends, our packages suite a variety of needs.",
+  "disclaimer": "These packages give you an outline of what we can do, each package will be customized to your individual needs. The price's are mere indicators to help meet your requirements.",
+  "image": "static/web-1.jpg",
+  "items": [
+    {
+      "rank": "low",
+      "name": "GOLD",
+      "title": "For those who want something simple with basic features.",
+      "subTitle": "For the most basic of needs",
+      "price": "$599 +",
+      "icon": "mdi-star-outline",
+      "iconColor": "amber",
+      "items": [
+        {
+          "icon": "mdi-web",
+          "text": "Browser Coverage"
+        },
+        {
+          "icon": "mdi-cellphone-link",
+          "text": "Device Coverage"
+        },
+        {
+          "icon": "mdi-file-document-outline",
+          "text": "Web Page - up to 3"
+        },
+        {
+          "icon": "mdi-domain",
+          "text": "Domain"
+        },
+        {
+          "icon": "mdi-email",
+          "text": "Email"
+        },
+        {
+          "icon": "mdi-search-web",
+          "text": "SEO"
+        },
+        {
+          "icon": "mdi-account-multiple",
+          "text": "Revisions - up to 2"
+        }
+      ]
+    },
+    {
+      "rank": "medium",
+      "name": "PLATINUM",
+      "title": "For those who want something with a few pages and some cool features.",
+      "subTitle": "For the most basic of needs",
+      "price": "$1,199 +",
+      "icon": "mdi-trophy-outline",
+      "iconColor": "#d6d6d6",
+      "items": [
+        {
+          "icon": "mdi-web",
+          "text": "Browser Coverage"
+        },
+        {
+          "icon": "mdi-cellphone-link",
+          "text": "Device Coverage"
+        },
+        {
+          "icon": "mdi-file-document-outline",
+          "text": "Web Page - up to 8"
+        },
+        {
+          "icon": "mdi-domain",
+          "text": "Domain"
+        },
+        {
+          "icon": "mdi-email",
+          "text": "Email"
+        },
+        {
+          "icon": "mdi-search-web",
+          "text": "SEO"
+        },
+        {
+          "icon": "mdi-map",
+          "text": "Google Maps"
+        },
+        {
+          "icon": "mdi-message-text",
+          "text": "Contact Forms"
+        },
+        {
+          "icon": "mdi-account-multiple",
+          "text": "Revisions - up to 3"
+        }
+      ]
+    },
+    {
+      "rank": "high",
+      "name": "DIAMOND",
+      "title": "For those who want something that stands out above the rest.",
+      "subTitle": "For the most basic of needs",
+      "price": "$3,999 +",
+      "icon": "mdi-diamond",
+      "iconColor": "blue",
+      "items": [
+        {
+          "icon": "mdi-web",
+          "text": "Browser Coverage"
+        },
+        {
+          "icon": "mdi-cellphone-link",
+          "text": "Device Coverage"
+        },
+        {
+          "icon": "mdi-file-document-outline",
+          "text": "Web Pages - up to 15"
+        },
+        {
+          "icon": "mdi-domain",
+          "text": "Domain"
+        },
+        {
+          "icon": "mdi-email",
+          "text": "Email"
+        },
+        {
+          "icon": "mdi-search-web",
+          "text": "SEO"
+        },
+        {
+          "icon": "mdi-map",
+          "text": "Google Maps"
+        },
+        {
+          "icon": "mdi-message-text",
+          "text": "Forms"
+        },
+        {
+          "icon": "mdi-monitor-dashboard",
+          "text": "Custom Template"
+        },
+        {
+          "icon": "mdi-blogger",
+          "text": "Blog"
+        },
+        {
+          "icon": "mdi-account-multiple",
+          "text": "Revisions - up to 5"
+        },
+        {
+          "icon": "mdi-comment-account",
+          "text": "Chat Bot"
+        }
+      ]
+    },
+    {
+      "rank": "e-commerce",
+      "name": "E-COMMERCE",
+      "title": "Using Shoppify to provide a complete online store experience.",
+      "subTitle": "For those who have a range of products they wish to sell online",
+      "price": "$1,999 +",
+      "icon": "mdi-cart-outline",
+      "iconColor": "green",
+      "items": [
+        {
+          "icon": "mdi-web",
+          "text": "Browser Coverage"
+        },
+        {
+          "icon": "mdi-cellphone-link",
+          "text": "Device Coverage"
+        },
+        {
+          "icon": "mdi-file-document-outline",
+          "text": "Web Page - up to 15"
+        },
+        {
+          "icon": "mdi-domain",
+          "text": "Domain"
+        },
+        {
+          "icon": "mdi-email",
+          "text": "Email"
+        },
+        {
+          "icon": "mdi-search-web",
+          "text": "SEO"
+        },
+        {
+          "icon": "mdi-map",
+          "text": "Google Maps"
+        },
+        {
+          "icon": "mdi-message-text",
+          "text": "Forms"
+        },
+        {
+          "icon": "mdi-cart",
+          "text": "Store"
+        },
+        {
+          "icon": "mdi-account-multiple",
+          "text": "Revisions - up to 3"
+        }
+      ]
+    }
+  ]
+}
