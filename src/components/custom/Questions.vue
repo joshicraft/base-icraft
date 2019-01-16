@@ -84,7 +84,7 @@
                         class="ml-0"
                         color="primary"
                         @click="loadResults"
-                        :loading="resultsGenerating"
+                        :loading="results.generating"
                 >
                     {{resultsLoading[0]}}
                     <v-icon class="ml-2">mdi-play</v-icon>
@@ -101,7 +101,7 @@
             </v-stepper-content>
             <v-stepper-content
                     class="over pa-0"
-                    :class="{'fade-anim' : resultsGenerated}"
+                    :class="{'fade-anim' : results.generated}"
                     :step="steps + 1"
             >
                 <v-card
@@ -109,7 +109,7 @@
 
 
                 >
-                    <v-layout column justify-center align-center v-if="resultsGenerating">
+                    <v-layout column justify-center align-center v-if="results.generating">
                         <h3
                                 :class="$vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-2'">
                             {{resultsLoading[resultsLoadingIndex]}}
@@ -122,7 +122,7 @@
                         ></v-progress-circular>
                     </v-layout>
                     <v-flex
-                            v-else-if="resultsGenerated"
+                            v-else-if="results.generated"
                             class="title-a no-max"
                             :class="$vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-2'"
                     >
@@ -310,7 +310,7 @@
                 resultsGenerating: false,
                 resultsLoading: ['Get Results', 'Fetching Entries', 'Indexing Entries', 'Applying Filters', 'Measuring Results', 'Sending Results'],
                 resultsLoadingIndex: 0,
-                results: null
+                results: {}
             }
         },
         watch: {
@@ -329,11 +329,11 @@
             let questionsResult = this.getQuestionsResult();
             this.showQuestions = true;
             if(questionsResult){
-                this.resultsGenerating = false
-                this.resultsGenerated = true;
+                this.results = questionsResult
+                this.results.generating = false
+                this.results.generated = true;
                 this.resultsLoadingIndex = 0;
 
-                this.results = questionsResult
             }
         },
         methods: {
@@ -341,6 +341,7 @@
             ...mapGetters('app', ['getQuestionsResult']),
             resultsSolutionMatch(max, featureResultInformation) {
                 let result = this.matches.find(item => item.rank === max);
+                result.generating = true
                 result.resultsMatch = max;
                 result.featureResultInformation = featureResultInformation;
                 this.setQuestionsResult(result);
@@ -457,9 +458,9 @@
                 this.resultsLoadingIndex++;
                 if (this.resultsLoading.length < this.resultsLoadingIndex + 1) {
                     clearInterval(this.resultsGeneratingInterval);
-                    this.resultsGenerated = true;
+                    this.results.generated = true;
                     this.resultsLoadingIndex = 0;
-                    this.resultsGenerating = false
+                    this.results.generating = false
                 }
             },
             loadResults() {

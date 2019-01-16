@@ -64,7 +64,7 @@
                                 </v-btn>
                                 <v-btn
                                         class="primary ml-0 mr-0"
-                                        @click="goToAndScroll('WhyUs')"
+                                        @click="goToAndScroll('WhyUsWebsites')"
                                 >
                                     WHY US
                                 </v-btn>

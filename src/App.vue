@@ -50,18 +50,18 @@
             }
         },
         mounted() {
-            let $this = this
-            let timeLoad = new Date().getTime() - window.startLoadTime
+            let $this = this;
+            let timeLoad = new Date().getTime() - window.startLoadTime;
             document.body.addEventListener('click', () => {
-                $this.setLazyLoaded(true)
+                $this.setLazyLoaded(true);
                 $this.setLoader(true)
-            })
-            $this.animateLoaded()
-            clearTimeout(this.delayAnimated)
-            console.log('Time to Load: ' + timeLoad)
+            });
+            $this.animateLoaded();
+            clearTimeout(this.delayAnimated);
+            console.log('Time to Load: ' + timeLoad);
             this.delayAnimated = setTimeout(() => {
-                document.getElementById('home-loader').classList.add('hide-')
-                $this.setLazyLoaded(true)
+                document.getElementById('home-loader').classList.add('hide-');
+                $this.setLazyLoaded(true);
                 $this.setLoader(true)
             }, timeLoad < 1000 ? 1000 : timeLoad)
             // setTimeout(this.mountFBChat, 4000)
@@ -69,12 +69,12 @@
         },
         watch: {
             $route(frm, to) {
-                console.log(to)
+                console.log(to);
                 if (to.name) {
-                    document.getElementById('home-loader').classList.add('hide-')
+                    document.getElementById('home-loader').classList.add('hide-');
                     clearTimeout(this.delayAnimated)
                 }
-                this.startLoadTicker(false)
+                this.startLoadTicker(false);
                 animationLibrary.wobble(document.querySelector('.contact-ico'), {transformOrigin: '0% 100%'})
             }
         },
@@ -102,7 +102,7 @@
                 }(document, 'script', 'facebook-jssdk'))
             },
             goToContact () {
-                this.$router.push({name:'Contact'})
+                this.$router.push({name:'Contact'});
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
                 }, 2000)
@@ -112,27 +112,26 @@
                 return i < this.loadCount
             },
             increment() {
-                this.loadCount += 1
+                this.loadCount += 1;
                 if (this.loadCount > 5) {
-
                     clearInterval(this.loadComponentsTicker)
                 }
             },
             loadTick() {
-                this.loadTickerCount++
+                this.loadTickerCount++;
                 if (this.loadTickerCount > this.tickerLimit) {
                     clearInterval(this.loadTicker)
                 }
             },
             clearLoadTicker() {
-                this.loadTickerCount = 0
+                this.loadTickerCount = 0;
                 clearInterval(this.loadTicker)
             },
             startLoadTicker(tickInterval, limit) {
-                limit = limit || 15
-                tickInterval = tickInterval || 1
-                this.tickerLimit = limit
-                this.clearLoadTicker()
+                limit = limit || 15;
+                tickInterval = tickInterval || 1;
+                this.tickerLimit = limit;
+                this.clearLoadTicker();
                 this.loadTicker = setInterval(this.loadTick, tickInterval * 500)
             },
             animateLoaded() {
@@ -140,12 +139,12 @@
             },
             onScroll(e) {
                 if (this.lazyTriggered && !this.getLazy()) {
-                    this.setLazyLoaded(true)
+                    this.setLazyLoaded(true);
                     this.setLoader(true)
                 }
                 this.lazyTriggered = (window.pageYOffset ||
                     document.documentElement.scrollTop || 0) >
-                    (50)
+                    (50);
                 if (!this.scrolled) {
                     if (!e) {
                         e = window.event
@@ -155,7 +154,7 @@
                         e.preventDefault()
                     }
                     /* Chrome, Safari, Firefox */
-                    e.returnValue = false
+                    e.returnValue = false;
                     /* IE7, IE8 */
                     this.scroll(e)
                 }
@@ -376,7 +375,8 @@
 
     .v-content
         padding-top: 0 !important
-        padding-bottom: 64px !important
+        /*padding-bottom: 64px !important*/
+        padding-bottom: 0px !important
         z-index 3
 
     .fixed-content-bg

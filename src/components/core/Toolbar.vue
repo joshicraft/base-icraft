@@ -39,6 +39,7 @@
                                 dense
                                v-for="(path, index) in item.nestedPaths"
                                :key="index"
+                                :class="getCurrentRouteClass(path)"
                                :to="{name: path.name, params: {nestedPath: item.name}}">
                             {{ path.text }}
                         </v-btn>
@@ -65,9 +66,6 @@
             isScrolling: false
         }),
         computed: {
-
-
-
             items() {
                 let pts = paths
                 let filtered = pts.filter(path => !path.noToolbar)
@@ -90,7 +88,7 @@
         methods: {
             ...mapMutations('app', ['toggleDrawer']),
             getCurrentRouteClass (item) {
-                return this.$route.name === item.name ? '' : ''
+                return this.$route.name === item.name ? 'primary' : ''
             },
             onScroll() {
                 this.scrolled = true
