@@ -21,6 +21,7 @@
                     :key="i"
             >
                 <v-btn
+                        v-if="!item.nestedPath"
                         slot="activator"
                         :to="{name: item.name}"
                         :aria-label="item.path + '-toolbar'"
@@ -30,11 +31,17 @@
                     {{item.text}}
                 </v-btn>
 
-                <v-list v-if="item.nested">
-                        <v-btn dense
-                               v-for="(path, index) in item.nested"
+                <v-list
+                        dark
+                        v-if="item.nestedPaths"
+                >
+                        <v-btn
+                                dense
+                               v-for="(path, index) in item.nestedPaths"
                                :key="index"
-                               :to="{name: path.name, params: {nestedPath: path.nestedPath}}">{{ path.text }}</v-btn>
+                               :to="{name: path.name, params: {nestedPath: item.name}}">
+                            {{ path.text }}
+                        </v-btn>
                 </v-list>
             </v-menu>
         </v-toolbar-items>
@@ -59,8 +66,22 @@
         }),
         computed: {
 
+
+
             items() {
-                return paths.filter(path => !path.noToolbar)
+                let pts = paths
+                let filtered = pts.filter(path => !path.noToolbar)
+                for(var i = 0; i < filtered.length; i++){
+                    let path = filtered[i]
+                    if(path.nestedPath){
+                        let parentPath = pts.find(p => p.name === path.nestedPath)
+                        if(!parentPath.nestedPaths){
+                            parentPath.nestedPaths = []
+                        }
+                        parentPath.nestedPaths.unshift(path)
+                    }
+                }
+                return filtered
                 // return this.$t('Layout.View.items')
                 // return content.items
             }
@@ -69,7 +90,7 @@
         methods: {
             ...mapMutations('app', ['toggleDrawer']),
             getCurrentRouteClass (item) {
-                return this.$route.name === item.name ? 'primary' : ''
+                return this.$route.name === item.name ? '' : ''
             },
             onScroll() {
                 this.scrolled = true
@@ -136,7 +157,20 @@
 
     ._visible
         opacity: 1
-    /*.logo-text-1, .logo-text-2*/
+
+    .v-list
+        display: flex
+        flex-direction: column
+
+    .v-menu__content
+        box-shadow none
+        .v-btn
+            margin 0
+        .v-list
+            background transparent
+            padding 0
+
+            /*.logo-text-1, .logo-text-2*/
         /*opacity 0*/
 
     @media only screen and (max-width: 959px)

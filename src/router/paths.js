@@ -20,15 +20,38 @@ let paths = [
     {
         path: '/get-a-website',
         name: 'Websites',
-        text: "Websites",
-        nested: [
-            {
-                path: 'business-website-process',
-                name: 'Process',
-                text: "Website Process",
-                nestedPath: 'Websites'
-            }
-        ]
+        text: "Websites"
+    },
+    {
+        path: 'business-website-process',
+        name: 'Process',
+        text: "Process",
+        nestedPath: 'Websites',
+    },
+    {
+        path: 'business-website-questions',
+        name: 'InfoQuestionnaire',
+        text: "Questionnaire",
+        nestedPath: 'Websites',
+        noToolbar: true
+    },
+    {
+        path: 'discover-the-website-for-you',
+        name: 'Discovery',
+        text: "Discovery",
+        nestedPath: 'Websites',
+    },
+    {
+        path: 'why-choose-icraft-websites',
+        name: 'WhyUsWebsites',
+        text: "WHY US",
+        nestedPath: 'Websites',
+    },
+    {
+        path: 'our-website-packages',
+        name: 'Packages',
+        text: "Packages",
+        nestedPath: 'Websites',
     },
     {
         path: '/brand-your-business',

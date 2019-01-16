@@ -12,7 +12,6 @@
 </template>
 
 <script>
-
     export default {
         metaInfo() {
             return {

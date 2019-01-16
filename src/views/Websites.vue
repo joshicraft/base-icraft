@@ -57,10 +57,16 @@
                             </p>
                             <div class="mt-5">
                                 <v-btn
-                                        class="primary ml-0 mr-0"
-                                        @click="$vuetify.goTo('#finding', {offset: -48})"
+                                        class="primary ml-0 mr-3"
+                                        @click="$vuetify.goTo('#finding')"
                                 >
                                     FIND A WEBSITE
+                                </v-btn>
+                                <v-btn
+                                        class="primary ml-0 mr-0"
+                                        @click="goToAndScroll('WhyUs')"
+                                >
+                                    WHY US
                                 </v-btn>
                             </div>
                         </div>
@@ -102,21 +108,15 @@
                         <div class="mt-5">
                             <v-btn
                                     class="primary ml-0 mr-3"
-                                    @click="$vuetify.goTo('#discovery', {offset: -48})"
+                                    @click="$vuetify.goTo('#discovery')"
                             >
                                 HELP ME CHOOSE
                             </v-btn>
                             <v-btn
                                     class="primary ml-0 mr-3"
-                                    @click="$vuetify.goTo('#packages', {offset: -48})"
+                                    @click="$vuetify.goTo('#packages')"
                             >
                                 find a package
-                            </v-btn>
-                            <v-btn
-                                    class="primary ml-0 mr-3"
-                                    @click="$vuetify.goTo('#process', {offset: -48})"
-                            >
-                                The process
                             </v-btn>
                         </div>
                         </div>
@@ -151,55 +151,36 @@
                             src="/static/websites-1b.jpg"
                             height="100vh"
                     >
+
                             <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
-                        <!--<img class="screen-panel-anim" src="/static/screen-panel-shadow.png"/>-->
-                        <!--<img class="screen-panel-anim" src="/static/screen-panel-shadow.png"/>-->
-                        <!--<img class="screen-panel-anim" src="/static/screen-panel-shadow.png"/>-->
+
 
                     </v-img>
-                    <v-flex
-                            v-if="showQuestions"
-                            lg12
-                            pa-2
-                            class="fill-height scroll-y d-flex theme--dark questions-wrapper"
-                            :class="{'--questions-wrapper-full' : !resultsGenerated, 'pa-5' : $vuetify.breakpoint.mdAndUp}"
-                    >
-                        <!--<v-card dark height="100vh" class="elevation-0">-->
-                            <v-flex
-                                    align-center
-                                    justify-center
-                                    class="d-flex fill-height _questions-bg"
-                                    height="100vh"
-                            >
-                                <questions :data="content.discover"></questions>
-                            </v-flex>
-                        <!--</v-card>-->
-                    </v-flex>
-                    <v-flex v-else column wrap lg6 class="title-a d-flex text-lg-right text-sm-center">
+
+                    <v-flex column wrap lg6 class="title-a d-flex text-lg-right text-sm-center">
                         <div>
                         <h1 class="mt-0 mb-3">
                             CAN'T FIND THE RIGHT FIT?
                         </h1>
                         <h3 class="mb-4">
-                            We've come up with {{content.discover.questions.length}} easy
+                            We've come up with a few easy
                             questions that can help you choose.
                         </h3>
                         <p>
-                            To get stuck in, click GET STARTED then follow the questions and
-                            select the boxes for the answers that
-                            relate to you. Otherwise, feel free to get in touch to find out more.
+                            To get stuck in, click SHOW QUESTIONS. This will take you the the questions page where you can answer the questions that best fit your requiremnts.
+                            Otherwise, feel free to get in touch to find out more.
                         </p>
                         <div class="mx-auto">
                             <v-btn
-                                    @click="showQuestionFrame"
+                                    @click="goToAndScroll('Discovery')"
                                     class="primary ml-0"
                                     :loading="loadingQuestions"
                                     v-if="!showQuestions"
                             >
-                                Get Started
+                                SHOW QUESTIONS
                             </v-btn>
                             <v-btn
-                                    @click="goToContact"
+                                    @click="goToAndScroll('Contact')"
                                     class="primary ml-0"
                                     v-if="!showQuestions"
                             >
@@ -210,132 +191,113 @@
                     </v-flex>
                 </v-layout>
             </div>
-            <div id="packages" class="-view-height _bg-color-a">
-                <ui-section-nav-arrow :index="3" direction="prev"></ui-section-nav-arrow>
-                <ui-section-nav-arrow :index="3" direction="next"></ui-section-nav-arrow>
-                <div>
-                    <v-container>
-                        <v-layout column wrap class="title-a">
-                            <h1 class="mt-0 mb-3 text-lg-center">
-                                BASELINE PACKAGES
-                            </h1>
-                            <h3 class="mb-4 text-lg-center">
-                                {{ service.subTitle }}
-                            </h3>
-                            <p class="text-lg-center">
-                                {{ service.disclaimer }}
-                            </p>
-                        </v-layout>
-                        <v-layout
-                                class="relative"
-                                row
-                                wrap
-                                justify-center
-                                align-start
-                        >
-                            <v-flex
-                                    mb-3
-                                    :class="[$vuetify.breakpoint.smAndDown ? 'pa-2' : '']"
-                                    v-if="loadPoint(2)"
-                                    justify-space-between
-                                    align-content-space-between
-                                    d-flex>
-                                <v-flex
-                                        light
-                                        class="pa-3"
-                                >
-                                    <v-container
-                                            grid-list-lg
-                                            pa-0
-                                            pb-4
-                                            d-flex
-                                            justify-center
-                                            align-center
-                                            class="max-view-width"
-                                    >
-                                        <v-layout
-                                                row
-                                                wrap
-                                                mt-4
-                                        >
-                                            <v-flex
-                                                    v-if="loadPoint(3)"
-                                                    lg3
-                                                    md3
-                                                    sm6
-                                                    xs12
-                                                    v-for="(packageItem, p) in service.items"
-                                                    :key="p"
-                                            >
-                                                <v-card
-                                                        md6
-                                                        dark
-                                                        @mouseover="hoverPackage"
-                                                        class="elevation-6 column shake-vertical"
-                                                >
-                                                    <div class="top-content pt-4 pl-4 pr-4 pb-1">
+            <div id="packages" class="relative -view-height _bg-color-a">
+                <ui-section-nav-arrow :index="2" direction="prev"></ui-section-nav-arrow>
+                <ui-section-nav-arrow :index="2" direction="next"></ui-section-nav-arrow>
+                <v-layout
+                        lg12
+                        wrap
+                        align-center
+                >
 
-                                                        <v-flex
-                                                                row
-                                                        >
-                                                            <h1
-                                                                    :class="packageItem.iconColor + '--text'"
-                                                            >
-                                                                {{packageItem.name }}
-                                                            </h1>
-                                                            <v-icon
-                                                                    mt-2 size="150px"
-                                                                    class="anim-icon"
-                                                                    :class="{'animate': resultName === packageItem.name.toLowerCase()}"
-                                                                    :color="packageItem.iconColor"
-                                                            >
-                                                                {{packageItem.icon}}
-                                                            </v-icon>
-                                                        </v-flex>
-                                                        <h3 class="mt-4">
-                                                            {{ packageItem.price }}
-                                                        </h3>
-                                                        <p class="mt-4">
-                                                            {{ packageItem.title }}
-                                                        </p>
-                                                    </div>
-                                                    <v-list two-line class="list">
-                                                        <v-list-group
-                                                                append-icon="mdi-arrow-down"
-                                                                v-model="packageItem.active"
-                                                                expand
-                                                        >
-                                                            <v-list-tile :ripple="true" slot="activator">
-                                                                <v-list-tile-content>
-                                                                    <h4>
-                                                                        {{!packageItem.active ? "SHOW PACKAGE" : "CLOSE"}}
-                                                                    </h4>
-                                                                </v-list-tile-content>
-                                                            </v-list-tile>
-                                                            <v-list-tile
-                                                                    v-if="loadPoint(4)"
-                                                                    v-for="subItem in packageItem.items"
-                                                                    :key="subItem.text"
-                                                            >
-                                                                <v-list-tile-action>
-                                                                    <v-icon>{{ subItem.icon }}</v-icon>
-                                                                </v-list-tile-action>
-                                                                <v-list-tile-content>
-                                                                    <v-list-tile-title>{{ subItem.text }}
-                                                                    </v-list-tile-title>
-                                                                </v-list-tile-content>
-                                                            </v-list-tile>
-                                                        </v-list-group>
-                                                    </v-list>
-                                                </v-card>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-container>
-                                </v-flex>
-                            </v-flex>
-                        </v-layout>
-                    </v-container>
-                </div>
+
+                    <v-flex column wrap lg6 class="title-a d-flex text-lg-left text-sm-center">
+                        <div>
+                            <h1 class="mt-0 mb-3">
+                                SOME BASELINE PACKAGES
+                            </h1>
+                            <h3 class="mb-4">
+                                We've come up with some baseline packages to help get you started.
+                            </h3>
+                            <p>
+                                These sweet packages will give you an idea of how to match your requirements with a number of features you will need. If you'd like to know more about them, get in touch.
+                            </p>
+                            <div class="mx-auto">
+                                <v-btn
+                                        @click="goToAndScroll('Packages')"
+                                        class="primary ml-0"
+                                        :loading="loadingQuestions"
+                                        v-if="!showQuestions"
+                                >
+                                    Show Packages
+                                </v-btn>
+                                <v-btn
+                                        @click="goToAndScroll('Contact')"
+                                        class="primary ml-0"
+                                        v-if="!showQuestions"
+                                >
+                                    Get in touch <v-icon right>mdi-phone</v-icon>
+                                </v-btn>
+                            </div>
+                        </div>
+                    </v-flex>
+                    <v-img
+                            v-if="$vuetify.breakpoint.smAndUp"
+                            lg6
+                            :alt="'web-1'"
+                            src="/static/websites-1b.jpg"
+                            height="100vh"
+                    >
+
+                        <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
+
+
+                    </v-img>
+                </v-layout>
+            </div>
+            <div id="process" class="relative -view-height _bg-color-a">
+                <ui-section-nav-arrow :index="2" direction="prev"></ui-section-nav-arrow>
+                <ui-section-nav-arrow :index="2" direction="next"></ui-section-nav-arrow>
+                <v-layout
+                        lg12
+                        wrap
+                        align-center
+                >
+
+
+                    <v-flex column wrap lg6 class="title-a d-flex text-lg-left text-sm-center">
+                        <div>
+                            <h1 class="mt-0 mb-3">
+                                WANT TO KNOW ABOUT OUR PROCESS?
+                            </h1>
+                            <h3 class="mb-4">
+                                We go through a number of steps so that we can deliver a website to you on-time.
+                            </h3>
+                            <p>
+                                From Research to to Deployment, our process allows for a number of revision's and feedback from you so we can get closer to your vision.
+                            </p>
+                            <div class="mx-auto">
+                                <v-btn
+                                        @click="goToAndScroll('Process')"
+                                        class="primary ml-0"
+                                        :loading="loadingQuestions"
+                                        v-if="!showQuestions"
+                                >
+                                    Show Process
+                                </v-btn>
+                                <v-btn
+                                        @click="goToAndScroll('Contact')"
+                                        class="primary ml-0"
+                                        v-if="!showQuestions"
+                                >
+                                    Get in touch <v-icon right>mdi-phone</v-icon>
+                                </v-btn>
+                            </div>
+                        </div>
+                    </v-flex>
+                    <v-img
+                            v-if="$vuetify.breakpoint.smAndUp"
+                            lg6
+                            :alt="'web-1'"
+                            src="/static/websites-1b.jpg"
+                            height="100vh"
+                    >
+
+                        <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
+
+
+                    </v-img>
+                </v-layout>
             </div>
 
 
@@ -385,9 +347,7 @@
                     this.loadingQuestions = false
                 }, 1111)
             },
-            hoverPackage () {
-              this.resultName = ''
-            },
+
             scrollTimelineItem() {
                 let $e = this.$el
                 let pos = $e.getBoundingClientRect().top
@@ -551,9 +511,7 @@
         max-width: 537px;
         padding 5vh 0
 
-    .v-timeline
-        /*padding-top 150px*/
-        padding-bottom 150px
+
 
     //&:before
     /*border: 1px dashed #9a9a9a*/
@@ -563,10 +521,7 @@
         margin-left auto
         margin-right auto
 
-    .timeline-wrap
-        padding-top 0
-        padding-bottom 0
-        margin-top -10px
+
 
     /*.start-bg-arrow*/
     /*polygon*/
@@ -684,12 +639,7 @@
         min-height: 100vh;
 
 
-    .shake-vertical:hover
-        .anim-icon
-            animation: shake-vertical 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both
 
-    .shake-vertical .animate
-        animation: shake-vertical 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both
 
 
 </style>

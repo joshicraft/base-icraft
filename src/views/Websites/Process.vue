@@ -1,5 +1,6 @@
 <template>
-    <div class="timeline-wrap _bg-color-b" id="process">
+    <div class="timeline-wrap _bg-color-b -arrow-buffer-top" id="process">
+
         <v-container>
             <v-layout column wrap class="title-a">
                 <h1 class="mt-5 mb-3 text-lg-center">
@@ -35,6 +36,13 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+    .v-timeline
+        /*padding-top 150px*/
+        padding-bottom 150px
 
+    .timeline-wrap
+        /*padding-top 0*/
+        padding-bottom 0
+        margin-top -10px
 </style>

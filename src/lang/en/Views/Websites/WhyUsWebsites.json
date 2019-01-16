@@ -1,0 +1,32 @@
+{
+  "headTitle": "Why get ICRAFT to build your website?",
+  "headDescription": "Our business websites are build secure, fast and with minimal on-going costs for any industry from Agriculture, Construction, Trades, Professionals to Health Services and much much more.",
+  "jumbotronTitle": "SO YOU MAY BE WONDERING...",
+  "jumbotronSubTitle": "Why choose ICRAFT to build your website?",
+  "heading1": "",
+  "contents": [
+    {
+      "title": "Index",
+      "name": "index",
+      "icon": "mdi-menu-swap-outline"
+    },
+    {
+      "title": "Discovery",
+      "name": "discovery",
+      "icon": "mdi-file-question"
+    },
+    {
+      "title": "Packages",
+      "name": "packages",
+      "icon": "mdi-package-variant"
+    },
+    {
+      "title": "Process",
+      "name": "process",
+      "icon": "mdi-animation-outline"
+    }
+  ],
+  "title": "Follow the questions below to get your results.",
+  "subTitle": "This shouldn't take more than a couple minutes :)",
+  "subSubTitle": "Each question needs only once answer and once you've answered the last question - click GET RESULTS to find out what your results are."
+}

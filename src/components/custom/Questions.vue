@@ -284,6 +284,10 @@
             data: {
                 default: {},
                 type: Object
+            },
+            results: {
+                default: [],
+                type: Array
             }
         },
         data() {
@@ -323,7 +327,7 @@
         },
         methods: {
             resultsSolutionMatch() {
-                let result = this.$parent.items[0].items.find(item => item.rank === this.resultsMatch)
+                let result = this.results.find(item => item.rank === this.resultsMatch)
                 this.$parent.resultName = result.name.toLowerCase()
                 this.$parent.resultsGenerated = true
                 return result
@@ -466,8 +470,8 @@
 </script>
 <style lang="stylus">
     .mw-1
-        max-width 1280px
-        width 80%
+        max-width 1440px
+        width 100%
         margin-left auto
         margin-right auto
 

@@ -75,7 +75,7 @@
                     clearTimeout(this.delayAnimated)
                 }
                 this.startLoadTicker(false)
-                animationLibrary.wobble(document.querySelector('.contact-ico'))
+                animationLibrary.wobble(document.querySelector('.contact-ico'), {transformOrigin: '0% 100%'})
             }
         },
         computed: {
@@ -104,7 +104,7 @@
             goToContact () {
                 this.$router.push({name:'Contact'})
                 setTimeout(() => {
-                    this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
+                    this.$vuetify.goTo(window.innerHeight, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
                 }, 2000)
 
             },
@@ -315,6 +315,13 @@
             width 100%
             height 100%
 
+    .shake-vertical:hover
+        .anim-icon
+            animation: shake-vertical 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both
+
+    .shake-vertical .animate
+        animation: shake-vertical 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both
+
     .--rotate-in-center
         animation rotate-in-center 1.8s infinite both linear
 
@@ -371,6 +378,14 @@
         padding-top: 0 !important
         padding-bottom: 64px !important
         z-index 3
+
+    .fixed-content-bg
+        position: absolute;
+        z-index: -1;
+        width: 100vw;
+        height: 200vh;
+        top: 0;
+        left: 0;
 
     .no-pad
         padding-bottom: 0 !important

@@ -21,13 +21,17 @@ let routes = makeRoutes()
 
 
 function route(path, parentPath) {
-    console.log(parentPath ? parentPath.name + '/' + path.name : path.name)
+    let pts = paths
+    let filePath = path.nestedPath ? pts.find(p => p.name === path.nestedPath).name + '/' + path.name : path.name
+    let urlPath = path.nestedPath ? pts.find(p => p.name === path.nestedPath).path + '/' + path.path : path.path
+    console.log(path.name)
     return {
-        path: parentPath ? parentPath.path + '/' + path.path : path.path,
+        path: urlPath,
         name: path.name,
         nested: path.nested,
+        props: path.nestedPath ? {nestedPath: filePath} : {},
         component: (resovle) => import(/** webpackPrefetch: false */
-            `@/views/${parentPath ? parentPath.name + '/' + path.name : path.name}.vue`
+            `@/views/${filePath}.vue`
             ).then(resovle)
 
     }
@@ -38,14 +42,14 @@ function makeRoutes(){
         return route(path)
     })
     let nestedRoutes = []
-    routes.forEach((path)=>{
-        if(path.nested){
-            path.nested.forEach((nestedPath)=>{
-                console.log(nestedPath)
-                nestedRoutes.unshift(route(nestedPath, path))
-            })
-        }
-    })
+    // routes.forEach((path)=>{
+    //     if(path.nested){
+    //         path.nested.forEach((nestedPath)=>{
+    //             console.log(nestedPath)
+    //             nestedRoutes.unshift(route(nestedPath, path))
+    //         })
+    //     }
+    // })
     routes = [...routes, ...nestedRoutes].concat([
         {path: '*', redirect: '/'}
     ])

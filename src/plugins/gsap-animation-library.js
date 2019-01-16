@@ -20,6 +20,7 @@ var animations = {
                 dur: 0.07,
                 startScale: 1,
                 rotation: 0,
+                transformOrigin: 'center center',
                 properties: ['scale', 'ease']
             },
             tL,
@@ -41,12 +42,12 @@ var animations = {
             tL.add(TweenMax.to(elm, dur, {
                 scale: s.startScale - (s.xOffset * (s.count - i - 1)),
                 ease: Back.easeOut,
-                transformOrigin: 'center center'
+                transformOrigin: s.transformOrigin
             }));
             tL.add(TweenMax.to(elm, dur, {
                 scale: s.startScale + (s.xOffset * (s.count - i - 1)),
                 ease: Back.easeOut,
-                transformOrigin: 'center center'
+                transformOrigin: s.transformOrigin
             }));
         }
         if (s.rotation) {

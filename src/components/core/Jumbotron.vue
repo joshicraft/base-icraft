@@ -64,11 +64,7 @@
             isBooted: false,
         }),
         methods: {
-            getNameSpace(){
-                let nested = this.$route.params.nestedPath ? this.$route.params.nestedPath + '.' + this.$route.name : this.$route.name
-                console.log(nested)
-                return this.$route.name ? nested : 'Home'
-            },
+
             goTo () {
                 this.scrolling = true
                 this.toolBarHeight = document.querySelector('.v-toolbar').getBoundingClientRect().height

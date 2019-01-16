@@ -85,7 +85,14 @@ Vue.mixin({
 
                 return path + size + '-' + name + (this.ext(ext || 'jpg'))
             },
-            mainBGColor: '#fafafa',
+            firstBGColor: '#fafafa',
+            currentBGColor: '#fafafa',
+            secondBGColor: '#303030',
+            getNameSpace(){
+                let nested = this.$route.matched[0] ? this.$route.matched[0].props.default.nestedPath : false
+                let nestedPath = nested ? nested.replace('/', '.') : this.$route.name
+                return this.$route.name ? nestedPath : 'Home'
+            },
             fullSizeBracket() {
                 let size = ''
                 if (window.innerWidth > 1600) {
@@ -104,6 +111,12 @@ Vue.mixin({
             playSound() {
                 this.audio = this.audio || new Audio('/static/sound/click.mp3')
                 this.audio.play()
+            },
+            goToAndScroll(to){
+                this.$router.push({name:to || ''})
+                setTimeout(() => {
+                    this.$vuetify.goTo(window.innerHeight)
+                }, 2000)
             },
             scroll() {
                 let current = window.pageYOffset
