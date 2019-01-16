@@ -184,6 +184,7 @@
 
   .v-footer
     position: relative;
+    z-index: 28
 
   .p-format
       margin-bottom: 0

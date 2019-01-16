@@ -57,7 +57,6 @@
                                         class="elevation-6 column shake-vertical"
                                 >
                                     <div class="text-lg-center top-content pt-4 pl-4 pr-4 pb-1">
-
                                         <v-flex
                                                 row
                                         >
@@ -125,6 +124,10 @@
             return {
                 resultName: ''
             }
+        },
+        mounted () {
+          let s = 0
+          console.log(s)
         },
         computed: {
             data() {

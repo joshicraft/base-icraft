@@ -168,7 +168,7 @@
                                         <v-btn
                                                 class="text-lg-left ml-0 mt-5"
                                                 color="primary"
-                                                @click="goToAndScroll('Contact')"
+                                                @click="goToAndScroll('Contact', undefined, {result: results.resultsMatch})"
                                         >
                                             GET IN TOUCH <v-icon right>mdi-phone</v-icon>
                                         </v-btn>
