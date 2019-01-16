@@ -112,11 +112,11 @@ Vue.mixin({
                 this.audio = this.audio || new Audio('/static/sound/click.mp3')
                 this.audio.play()
             },
-            goToAndScroll(to){
-                this.$router.push({name:to || ''})
+            goToAndScroll(to, delay, params){
+                this.$router.push({name:to || '', params: params || {}})
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight)
-                }, 2000)
+                }, delay || 4000)
             },
             scroll() {
                 let current = window.pageYOffset

@@ -160,6 +160,7 @@
 
     .v-list
         display: flex
+        margin-top: 5px;
         flex-direction: column
 
     .v-menu__content
@@ -169,9 +170,6 @@
         .v-list
             background transparent
             padding 0
-
-            /*.logo-text-1, .logo-text-2*/
-        /*opacity 0*/
 
     @media only screen and (max-width: 959px)
         .toolbar-svg-wrapper

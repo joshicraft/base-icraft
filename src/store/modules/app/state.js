@@ -2,5 +2,6 @@ export default {
   drawer: null,
   loader: null,
   lazyLoaded: null,
-  bgColor: '#fafafa'
+  bgColor: '#fafafa',
+  questionsResult: null
 }

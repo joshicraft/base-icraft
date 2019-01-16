@@ -23,7 +23,7 @@
             <div class="title-a" :class="{'align-left': i%2===0}">
                 <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
                 <h3 class="mb-4">{{item.text}}</h3>
-                <v-btn @click="linkTo(item.to)" class="ml-0">{{item.button}}</v-btn>
+                <v-btn @click="goToAndScroll(item.to)" class="ml-0 primary">{{item.button}}</v-btn>
             </div>
         </v-flex>
     </v-layout>

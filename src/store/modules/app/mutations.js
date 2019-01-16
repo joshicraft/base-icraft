@@ -5,5 +5,6 @@ export default {
   setLoader: set('loader'),
   setLazyLoaded: set('lazyLoaded'),
   setBGColor: set('lazyLoaded'),
+  setQuestionsResult: set('questionsResult'),
   toggleDrawer: toggle('drawer')
 }

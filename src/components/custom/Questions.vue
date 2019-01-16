@@ -144,31 +144,31 @@
                                                 This solution closely matches our package...
                                             </p>
                                             <h4 class="mt-2">
-                                                {{resultsSolutionMatch().name}}
+                                                {{results.name}}
                                                 <v-icon
                                                         class="ml-3"
                                                         size="50"
-                                                        :color="resultsSolutionMatch().iconColor"
-                                                        @click="$vuetify.goTo('#packages', {offset: -48})"
+                                                        :color="results.iconColor"
+                                                        @click="goToAndScroll('Packages')"
                                                 >
-                                                    {{resultsSolutionMatch().icon}}
+                                                    {{results.icon}}
                                                 </v-icon>
                                             </h4>
                                             <p class="mt-5">
-                                                To learn more about {{ resultsSolutionMatch().name}} check out our packages or get in touch with us directly.
+                                                To learn more about {{ results.name}} check out our packages or get in touch with us directly.
                                             </p>
                                         </v-layout>
                                         <v-btn
                                                 class="text-lg-left ml-0 mt-5"
                                                 color="primary"
-                                                @click="$vuetify.goTo('#packages', {offset: -48})"
+                                                @click="goToAndScroll('Packages')"
                                         >
-                                            Check {{resultsSolutionMatch().name}} out
+                                            Check {{results.name}} out
                                         </v-btn>
                                         <v-btn
                                                 class="text-lg-left ml-0 mt-5"
                                                 color="primary"
-                                                @click="goToContact"
+                                                @click="goToAndScroll('Contact')"
                                         >
                                             GET IN TOUCH <v-icon right>mdi-phone</v-icon>
                                         </v-btn>
@@ -178,10 +178,10 @@
                                             class="mb-2 ml-5 mr-0 lg-6 results-anim"
                                             size="300"
                                             @click="$vuetify.goTo('#packages')"
-                                            :color="resultsSolutionMatch().iconColor"
+                                            :color="results.iconColor"
                                     >
                                         <!--{{resultsIcon()}}-->
-                                        {{resultsSolutionMatch().icon}}
+                                        {{results.icon}}
                                     </v-icon>
                                 </v-flex>
                             </v-card>
@@ -189,6 +189,7 @@
                                 :class="$vuetify.breakpoint.smAndUp ? 'mw-1' : ''"
                         >
                             <h1
+                                    v-if="results.featureResultInformation"
                                     :class="$vuetify.breakpoint.smAndUp ? 'ml-4' : 'ml-2'"
                                     class="mt-5 mb-4 white--text font-weight-thin"
                             >
@@ -200,16 +201,16 @@
                                 :class="$vuetify.breakpoint.smAndUp ? 'mw-1' : ''"
                                 grid-list-md
                         >
-                            <v-layout v-if="featureResultInformation" class="no-max" row wrap>
+                            <v-layout v-if="results.featureResultInformation" class="no-max" row wrap>
                                 <v-flex
                                         lg6
                                         md12
                                         d-flex
-                                        v-for="(f, i) in data.results.features"
+                                        v-for="(f, i) in results.features"
                                         v-if="f.checked"
                                 >
                                         <v-card
-                                                :class="{'pl-4 pt-4 pr-4 pb-4': $vuetify.breakpoint.smAndUp, 'pl-0': i === 0, 'pr-0': i === data.results.features.length-1}"
+                                                :class="{'pl-4 pt-4 pr-4 pb-4': $vuetify.breakpoint.smAndUp, 'pl-0': i === 0, 'pr-0': i === results.features.length-1}"
                                                 class="pt-2 pr-2 pb-2 pl-2 ma-3 ml-0 lighten-2 elevation-0 md12 lg6"
                                         >
                                             <v-layout justify-center align-center row wrap>
@@ -279,13 +280,14 @@
 </template>
 
 <script>
+    import {mapMutations, mapGetters} from 'vuex'
     export default {
         props: {
             data: {
                 default: {},
                 type: Object
             },
-            results: {
+            matches: {
                 default: [],
                 type: Array
             }
@@ -307,7 +309,8 @@
                 resultsMatch: '',
                 resultsGenerating: false,
                 resultsLoading: ['Get Results', 'Fetching Entries', 'Indexing Entries', 'Applying Filters', 'Measuring Results', 'Sending Results'],
-                resultsLoadingIndex: 0
+                resultsLoadingIndex: 0,
+                results: null
             }
         },
         watch: {
@@ -323,26 +326,38 @@
             }
         },
         mounted() {
-            this.showQuestions = true
+            let questionsResult = this.getQuestionsResult();
+            this.showQuestions = true;
+            if(questionsResult){
+                this.resultsGenerating = false
+                this.resultsGenerated = true;
+                this.resultsLoadingIndex = 0;
+
+                this.results = questionsResult
+            }
         },
         methods: {
-            resultsSolutionMatch() {
-                let result = this.results.find(item => item.rank === this.resultsMatch)
-                this.$parent.resultName = result.name.toLowerCase()
-                this.$parent.resultsGenerated = true
-                return result
+            ...mapMutations('app', ['setQuestionsResult']),
+            ...mapGetters('app', ['getQuestionsResult']),
+            resultsSolutionMatch(max, featureResultInformation) {
+                let result = this.matches.find(item => item.rank === max);
+                result.resultsMatch = max;
+                result.featureResultInformation = featureResultInformation;
+                this.setQuestionsResult(result);
+                this.results = result
+                // return result
             },
             resultsSubSubTitle() {
-                return this.data.results[this.resultsMatch].subTitle
+                return this.data.results[this.results.resultsMatch].subTitle
             },
             resultsSubTitle() {
-                return this.data.results[this.resultsMatch].title
+                return this.data.results[this.results.resultsMatch].title
             },
             resultsIcon() {
-                return this.data.results[this.resultsMatch].icon
+                return this.data.results[this.results.resultsMatch].icon
             },
             resultsTitle() {
-                return this.data.results.title + this.data.results[this.resultsMatch].name + this.data.results.endTitle
+                return this.data.results.title + this.data.results[this.results.resultsMatch].name + this.data.results.endTitle
             },
             closeDialog() {
                 this.dialog = false
@@ -351,7 +366,7 @@
 
             },
             goToContact () {
-                this.$router.push({name:'Contact'})
+                this.$router.push({name:'Contact'});
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight + 15, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
                 }, 2000)
@@ -390,7 +405,6 @@
                 let selections = [];
                 let features = {};
                 let data = this.data;
-                this.$parent.resultsGenerated = false
                 data.questions.forEach(val => {
                     val.options.forEach(option => {
                         if (!option.points || !option.checked) {
@@ -420,10 +434,10 @@
                     return false
                 }
                 let max = Object.keys(results).reduce((a, b) => results[a] > results[b] ? a : b);
-                this.resultsMatch = max;
-                this.featureResultInformation = Object.keys(features).length !== 0 && !Object.keys(features).some(v => v < 1) ? features : false;
-                console.log(max);
-
+                let featureResultInformation = Object.keys(features).length !== 0 && !Object.keys(features).some(v => v < 1) ? features : false;
+                this.resultsSolutionMatch(max, featureResultInformation);
+                // this.resultsMatch = max;
+                // this.featureResultInformation =
                 this.submitQuestions({
                     endResult: max,
                     selections: selections,
@@ -440,7 +454,6 @@
                 })
             },
             resultsGeneratingTick() {
-                console.log(this.resultsLoadingIndex);
                 this.resultsLoadingIndex++;
                 if (this.resultsLoading.length < this.resultsLoadingIndex + 1) {
                     clearInterval(this.resultsGeneratingInterval);

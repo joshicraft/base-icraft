@@ -30,7 +30,7 @@
                         class="d-flex fill-height _questions-bg"
                         height="100vh"
                 >
-                    <custom-questions :data="data.data" :results="results"></custom-questions>
+                    <custom-questions :data="data.data" :matches="packages"></custom-questions>
                 </v-flex>
                 <!--</v-card>-->
             </v-flex>
@@ -46,10 +46,8 @@
             data() {
                 return this.$t('Views.' + this.getNameSpace())
             },
-            results() {
-                let packages = this.$t('Views.Websites.Packages.items')
-                // let ranks = packages.map(pack => pack.rank)
-                return packages
+            packages() {
+                return this.$t('Views.Websites.Packages.items')
             }
         }
     }

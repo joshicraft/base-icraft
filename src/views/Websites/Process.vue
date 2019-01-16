@@ -4,12 +4,15 @@
         <v-container>
             <v-layout column wrap class="title-a">
                 <h1 class="mt-5 mb-3 text-lg-center">
-                    OUR PROCESS
+
+                    {{data.title}}
                 </h1>
                 <h3 class="mb-4 text-lg-center">
-                    6 Steps for Success.
+
+                    {{data.subTitle}}
                 </h3>
                 <p class="text-lg-center">
+                    {{data.subSubTitle}}
                     We follow these steps so our end product meets your requirements.
                 </p>
             </v-layout>
@@ -17,7 +20,7 @@
         <v-container>
             <v-layout>
                 <v-timeline :dense="$vuetify.breakpoint.smAndDown">
-                    <template v-for="(feature, k) in items">
+                    <template v-for="(feature, k) in data.items">
                         <custom-timeline-piece :data="feature" :index="k"></custom-timeline-piece>
                     </template>
                 </v-timeline>
@@ -30,7 +33,7 @@
     export default {
        data() {
            return {
-               items: this.$t('Views.Websites.Process.items')
+               data: this.$t('Views.Websites.Process')
            }
        }
     }
