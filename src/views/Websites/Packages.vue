@@ -1,7 +1,7 @@
 <template>
     <v-container class="-arrow-buffer-top">
         <v-layout column wrap class="title-a">
-            <h1 class="mt-5 mb-3 text-lg-center">
+            <h1 class="mt-5 mb-3 text-lg-center" id="packages">
                 BASELINE PACKAGES
             </h1>
             <h3 class="mb-4 text-lg-center">
@@ -12,6 +12,7 @@
             </p>
         </v-layout>
         <v-layout
+
                 class="relative"
                 row
                 wrap
@@ -36,11 +37,13 @@
                             justify-center
                             align-center
                             class="max-view-width"
+                            id="packages-scroll-point"
                     >
                         <v-layout
                                 row
                                 wrap
                                 mt-4
+
                         >
                             <v-flex
                                     lg3
@@ -87,7 +90,7 @@
                                                 v-model="packageItem.active"
                                                 expand
                                         >
-                                            <v-list-tile :ripple="true" slot="activator">
+                                            <v-list-tile :ripple="true" slot="activator" @click="$vuetify.goTo(!packageItem.active ? '#packages-scroll-point' : '#packages')">
                                                 <v-list-tile-content>
                                                     <h4>
                                                         {{!packageItem.active ? "SHOW PACKAGE" : "CLOSE"}}

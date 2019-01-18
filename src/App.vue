@@ -32,12 +32,13 @@
                    v-if="getLoadCount(2)"/>
 
         <core-footer v-if="getLoadCount(2)"/>
-
+        <cookie-law theme="dark-lime"></cookie-law>
     </v-app>
 </template>
 <script>
     /* eslint-disable no-undef,spaced-comment */
     import {mapMutations, mapGetters} from 'vuex'
+    import CookieLaw from 'vue-cookie-law'
     import animationLibrary from './plugins/gsap-animation-library'
     export default {
         data() {
@@ -49,6 +50,7 @@
                 lazyTriggered: null
             }
         },
+        components: { CookieLaw },
         mounted() {
             let $this = this;
             let timeLoad = new Date().getTime() - window.startLoadTime;
@@ -190,6 +192,12 @@
 
     .v-content
         padding-top: 0 !important
+
+    ._bg-color-a
+        background-color: #eaeaea
+
+    ._bg-color-b
+        background-color: #e2e2e2
 
     .contact-ico
         right 0

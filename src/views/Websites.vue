@@ -235,11 +235,9 @@
                             v-if="$vuetify.breakpoint.smAndUp"
                             lg6
                             :alt="'web-1'"
-                            src="/static/websites-1b.jpg"
+                            src="/static/web-packages.jpg"
                             height="100vh"
                     >
-
-                        <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
 
 
                     </v-img>
@@ -293,7 +291,7 @@
                             height="100vh"
                     >
 
-                        <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/web-vid-3.webm"></video>
+                        <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/packages-sr.webm"></video>
 
 
                     </v-img>
@@ -301,14 +299,6 @@
             </div>
 
 
-
-            <div class="progress">
-                <div v-for="(item, l) in service.features" :key="l">
-                    <div class="progress-item" :style="{background: item.visible ? '#ba0022a' : ''}">
-
-                    </div>
-                </div>
-            </div>
 
         </v-flex>
 
@@ -439,6 +429,8 @@
         height 100%
         perspective 617px
 
+
+
     .web-video
         z-index: 1;
         position: absolute;
@@ -448,6 +440,14 @@
         left: 0;
         right: 0;
         transform: translateX(43.5%) translateY(-115%) rotate(-15.5deg) skew(2deg, -5deg) scaleX(0.63) scaleY(0.99) rotateY(8deg) rotateX(-5deg);
+
+    .web-packages-video
+        transform-origin: 50% 0% 0px;
+        top 10%
+        height 48%
+        transform: translateX(-26%) matrix3d(0.9,-0.02,0.00,0.0002,0.02,0.98,0.17,0,0,-0.17,0.98,0,10,0,00,1);
+        transform: perspective(2800px) translateZ(0) rotateX(-4deg) rotateY(51deg) scaleX(1) translateX(-52%) translateY(22%) rotate(-8deg);
+        height: 36%;
 
     .web-video-1
         z-index: 1;
@@ -622,11 +622,7 @@
         background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(100, 100, 100, 0.7) 100%);
 
 
-    ._bg-color-a
-        background-color: #eaeaea
 
-    ._bg-color-b
-        background-color: #e2e2e2
 
     .-_arrow-pt
         padding-top: 80px

@@ -28,5 +28,68 @@
   ],
   "title": "Follow the questions below to get your results.",
   "subTitle": "This shouldn't take more than a couple minutes :)",
-  "subSubTitle": "Each question needs only once answer and once you've answered the last question - click GET RESULTS to find out what your results are."
+  "subSubTitle": "Each question needs only once answer and once you've answered the last question - click GET RESULTS to find out what your results are.",
+  "technology": {
+    "hosting": {
+    }
+  },
+  "items": [
+    {
+      "title": "Design",
+      "items": [
+        {
+          "title": "Material Design",
+          "content": "<p> Tech Giant - Amazons, AWS Lambda is a solution reduces this wastage of resources. You are billed only for the amount of resources your program consumes, and for the time for which it runs. </p> <p> Needless to say, this is a really price-effective way of designing applications and as an added bonus you shouldn't have to think about scaling the infrastructure either. AWS manages all of that for you. </p> <p> AWS Lambda states a 99.95% up time for under their AWS Lambda Service Level Agreement </p>"
+        },
+        {
+          "title": "Componenets",
+          "content": "<p>Vue.JS to make modular and easily deployable websites that allow me to make quick updates and copy and paste features (or code) between different projects. It also has some impressive performance abilities making it faster to load than most wordpress, react and other popular web site tools. </p> <p> The support and community behind Vue.js is very active giving it a good road map and future. Recently it has become the <a href=\"https://hasvuepassedreactyet.surge.sh/\">most popular</a> web application tool on github by receiving the most stars. This was previously held by React.js. </p>"
+        },
+        {
+          "title": "UI/UX",
+          "content": "<p>Using CDN technology has a wide range of benefits. </p> <p> <ul> <li> It improves the speed websites load which is vital for customer retention and reducing bounce rate. </li> <li> Offers extra security through DDoS prevention. </li> <li> Automatically scales for traffic spikes and stops servers shutting down. </li> <li> SEO improvement through improved speed and google preference for CDN tech. </li> </ul> </p>"
+        }
+      ]
+    },
+    {
+      "title": "Technologies",
+      "items": [
+        {
+          "title": "AWS LAMBDA",
+          "content": "<p> Tech Giant - Amazons, AWS Lambda is a solution reduces this wastage of resources. You are billed only for the amount of resources your program consumes, and for the time for which it runs. </p> <p> Needless to say, this is a really price-effective way of designing applications and as an added bonus you shouldn't have to think about scaling the infrastructure either. AWS manages all of that for you. </p> <p> AWS Lambda states a 99.95% up time for under their AWS Lambda Service Level Agreement </p>"
+        },
+        {
+          "title": "VUE.JS",
+          "content": "<p>Vue.JS to make modular and easily deployable websites that allow me to make quick updates and copy and paste features (or code) between different projects. It also has some impressive performance abilities making it faster to load than most wordpress, react and other popular web site tools. </p> <p> The support and community behind Vue.js is very active giving it a good road map and future. Recently it has become the <a href=\"https://hasvuepassedreactyet.surge.sh/\">most popular</a> web application tool on github by receiving the most stars. This was previously held by React.js. </p>"
+        },
+        {
+          "title": "CDN",
+          "content": "<p>Using CDN technology has a wide range of benefits. </p> <p> <ul> <li> It improves the speed websites load which is vital for customer retention and reducing bounce rate. </li> <li> Offers extra security through DDoS prevention. </li> <li> Automatically scales for traffic spikes and stops servers shutting down. </li> <li> SEO improvement through improved speed and google preference for CDN tech. </li> </ul> </p>"
+        }
+      ]
+    },
+    {
+      "title": "Marketing",
+      "items": [
+        {
+          "title": "SEO",
+          "content": "<p> Tech Giant - Amazons, AWS Lambda is a solution reduces this wastage of resources. You are billed only for the amount of resources your program consumes, and for the time for which it runs. </p> <p> Needless to say, this is a really price-effective way of designing applications and as an added bonus you shouldn't have to think about scaling the infrastructure either. AWS manages all of that for you. </p> <p> AWS Lambda states a 99.95% up time for under their AWS Lambda Service Level Agreement </p>"
+        },
+        {
+          "title": "SOCIAL MEDIA",
+          "content": "<p>Vue.JS to make modular and easily deployable websites that allow me to make quick updates and copy and paste features (or code) between different projects. It also has some impressive performance abilities making it faster to load than most wordpress, react and other popular web site tools. </p> <p> The support and community behind Vue.js is very active giving it a good road map and future. Recently it has become the <a href=\"https://hasvuepassedreactyet.surge.sh/\">most popular</a> web application tool on github by receiving the most stars. This was previously held by React.js. </p>"
+        },
+        {
+          "title": "EMAIL TEMPLATES",
+          "content": "<p>Using CDN technology has a wide range of benefits. </p> <p> <ul> <li> It improves the speed websites load which is vital for customer retention and reducing bounce rate. </li> <li> Offers extra security through DDoS prevention. </li> <li> Automatically scales for traffic spikes and stops servers shutting down. </li> <li> SEO improvement through improved speed and google preference for CDN tech. </li> </ul> </p>"
+        }
+      ]
+    }
+  ],
+  "owner": {
+  },
+  "process": {
+  },
+  "support": {
+  }
 }
