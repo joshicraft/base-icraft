@@ -199,6 +199,12 @@
     ._bg-color-b
         background-color: #e2e2e2
 
+    ._bg-color-c
+        background-color: #5a5a5a
+
+    .-transparent-bg
+        background transparent !important
+
     .contact-ico
         right 0
         top 0

@@ -33,9 +33,13 @@
     "hosting": {
     }
   },
+  "selected": {
+
+  },
   "items": [
     {
       "title": "Design",
+      "selected": "Material Design",
       "items": [
         {
           "title": "Material Design",
@@ -53,6 +57,7 @@
     },
     {
       "title": "Technologies",
+      "selected": "AWS LAMBDA",
       "items": [
         {
           "title": "AWS LAMBDA",
@@ -70,6 +75,7 @@
     },
     {
       "title": "Marketing",
+      "selected": "SEO",
       "items": [
         {
           "title": "SEO",

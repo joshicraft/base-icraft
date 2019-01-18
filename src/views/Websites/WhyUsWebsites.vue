@@ -1,5 +1,6 @@
 <template>
     <div>
+        <error-in-development></error-in-development>
         <div class="relative -view-height -arrow-buffer-top _bg-color-a">
             <ui-section-nav-arrow :index="0" direction="prev"></ui-section-nav-arrow>
             <ui-section-nav-arrow :index="0" direction="next"></ui-section-nav-arrow>
@@ -27,45 +28,59 @@
         </div>
         <div
                 class="relative -view-height _bg-color-b"
-                v-for="(item, i) in data.items"
+
         >
             <ui-section-nav-arrow :index="1" direction="prev"></ui-section-nav-arrow>
             <ui-section-nav-arrow :index="1" direction="next"></ui-section-nav-arrow>
             <v-container>
-                <h1 class="text-lg-center">{{item.title}}</h1>
+
                 <v-layout>
-                    <v-flex lg6>
-                        <v-list v-model="selected">
-                            <v-list-tile
-                                    v-for="(title, j) in item.items"
+                    <v-flex lg4 v-for="(tab, o) in data.items">
+                        <h1 @click="modData(o)" class="text-lg-center c-tab" :class="{'-active' : tab.title === selected.title}">{{tab.title}}</h1>
+                    </v-flex>
+                </v-layout>
+                <v-layout class="_bg-color-c c-menu">
+                    <v-flex
+                            justift-center
+                            align-center
+                            lg6
+                            class="mr-2 fill-height"
+
+                    >
+                        <v-card
+                                class="-transparent-bg elevation-0"
+                                v-if="selected"
+                                v-for="(title, j) in selected.items"
+                                v-model="title.selected"
+                                :class="{'--active': title.title === secondSelected.title}"
+                        >
+                            <v-btn
+
+
+                                    @click="modData(undefined, j)"
                             >
-                                <v-btn
-                                        :class="{'primary': title.title === item.selected}"
-                                        @click="item.selected = title.title"
-                                >
-                                    {{title.title}}
-                                </v-btn>
-                            </v-list-tile>
-                        </v-list>
+                                {{title.title}}
+                            </v-btn>
+                        </v-card>
                     </v-flex>
 
-                    <v-flex lg6>
+                    <v-flex lg6 class="ml-2">
                         <v-layout
                                 lg6
                                 justify-center
                                 align-center
-                                v-model="selected"
+                                v-if="secondSelected"
                         >
                             <v-flex
-                                    class="title-a pa-5"
-                                    v-for="(category, k) in item.items"
-                                    v-if="item.selected === category.title"
+                                    class="title-a"
                             >
-                                <v-card>
+                                <v-card
+                                        class="pa-5 ma-5 c-pane elevation-0"
+                                >
                                     <h1 class="mb-3">
-                                        {{category.title}}
+                                        {{secondSelected.title}}
                                     </h1>
-                                    <div v-html="category.content"></div>
+                                    <div v-html="secondSelected.content"></div>
                                 </v-card>
                             </v-flex>
 
@@ -80,21 +95,86 @@
 
 <script>
     import data from "../../lang/en/Views/Websites/WhyUsWebsites"
+
     export default {
-        computed: {
-            data(){
-              return data
+        data() {
+            return {
+                data: this.modData,
+                selected: false,
+                secondSelected: false,
             }
         },
+        mounted() {
+            this.data = this.modData(0)
+        },
+        // computed: {
+        //     data(){
+        //       return data
+        //     }
+        // },
         methods: {
-            isSelected(item){
+            modData(index, secondIndex) {
+
+                if(secondIndex === undefined) {
+                    this.selected = data.items[index]
+
+                }
+                this.secondSelected = this.selected.items[secondIndex || 0]
+
+                return data
+            },
+            isSelected(item) {
                 console.log(item)
-                return item.items.find(i=>i.selected)
+                return item.items.find(i => i.selected)
             }
         }
     }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+    .c-menu
+        height 50vh
+        min-height 400px
+        transition opacity 0.3s
+
+    .c-pane
+        height 40vh
+        padding-top 5vh
+        padding-bottom: 5vh
+        max-height 40vh
+        overflow-y scroll
+
+
+    .--fade-in
+        opacity 1
+
+
+    .--fade--out
+        opacity 0
+
+
+    $c-color-1=#5a5a5a
+    $c-color-2=#303030
+
+    .--active
+        .v-btn
+            background: $c-color-2 !important
+            color: #f0f0f0
+
+    .c-tab
+        border-top-left-radius 5px
+        border-top-right-radius 5px
+        border-bottom: lighten($c-color-1, 10%) 1px solid
+        border-right: lighten($c-color-1, 10%) 1px solid
+        border-bottom: lighten($c-color-1, 10%) 1px solid
+        cursor: pointer;
+        background: $c-color-2
+        color white
+        &.-active
+            border-bottom: $c-color-1 1px solid
+            background: $c-color-1
+        &:hover:not(.-active)
+            background lighten($c-color-2, 10%)
+
 
 </style>
