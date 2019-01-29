@@ -21,7 +21,7 @@
                     :key="i"
             >
                 <v-btn
-                        v-if="!item.nestedPath"
+                        v-if="!item.nestedPath && inDevelopment(item.development)"
                         slot="activator"
                         :to="{name: item.name}"
                         :aria-label="item.path + '-toolbar'"

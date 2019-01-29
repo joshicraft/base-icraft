@@ -93,8 +93,8 @@ Vue.mixin({
                 let nestedPath = nested ? nested.replace('/', '.') : this.$route.name
                 return this.$route.name ? nestedPath : 'Home'
             },
-            inDevelopment(){
-                return process.env.NODE_ENV === 'development'
+            inDevelopment(dev){
+                return dev ? dev : process.env.NODE_ENV === 'development'
             },
             fullSizeBracket() {
                 let size = ''

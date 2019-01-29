@@ -66,7 +66,8 @@ let paths = [
     {
         path: '/icrafts-portfolio',
         name: 'Portfolio',
-        text: "Portfolio"
+        text: "Portfolio",
+        development: true
     },
     {
         path: '/contact-icraft',
