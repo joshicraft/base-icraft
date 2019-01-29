@@ -43,11 +43,11 @@
       "items": [
         {
           "title": "Material Design",
-          "content": "<p> Tech Giant - Amazons, AWS Lambda is a solution reduces this wastage of resources. You are billed only for the amount of resources your program consumes, and for the time for which it runs. </p> <p> Needless to say, this is a really price-effective way of designing applications and as an added bonus you shouldn't have to think about scaling the infrastructure either. AWS manages all of that for you. </p> <p> AWS Lambda states a 99.95% up time for under their AWS Lambda Service Level Agreement </p>"
+          "content": "<p> Conceptually, Material Design is based on world materials. Using shadows and lighting to create depth and edges, elements respond in a similar way to how we would expect them to in real life. Google said that Material Design is based on paper and ink and print-based design, leveraging a specific set of color schemes. </p> <p> According to Google, there are three core principles at work: </p> <ul> <li>Material is the metaphor</li><li>Bold, graphic, intentional</li><li>Motion provides meaning</li>"
         },
         {
-          "title": "Componenets",
-          "content": "<p>Vue.JS to make modular and easily deployable websites that allow me to make quick updates and copy and paste features (or code) between different projects. It also has some impressive performance abilities making it faster to load than most wordpress, react and other popular web site tools. </p> <p> The support and community behind Vue.js is very active giving it a good road map and future. Recently it has become the <a href=\"https://hasvuepassedreactyet.surge.sh/\">most popular</a> web application tool on github by receiving the most stars. This was previously held by React.js. </p>"
+          "title": "Animations & Effects",
+          "content": "<p> Using the right animation or effect at the right time can really make your brand or important message stand out..</p>"
         },
         {
           "title": "UI/UX",

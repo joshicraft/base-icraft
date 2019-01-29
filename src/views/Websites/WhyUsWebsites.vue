@@ -27,7 +27,8 @@
             </v-layout>
         </div>
         <div
-                class="relative -view-height _bg-color-b"
+                class="relative -view-height"
+                :class="i%2===0 ? '_bg-color-b' : '_bg-color-a'"
                 v-for="(item, i) in data.items"
         >
             <ui-section-nav-arrow :index="1" direction="prev"></ui-section-nav-arrow>
@@ -164,7 +165,8 @@
     .--fade--out
         opacity 0
 
-
+    $color-1 = #e8e8e8
+    $color-2 = #dcdcdc
     $c-color-1=#5a5a5a
     $c-color-2=#303030
 

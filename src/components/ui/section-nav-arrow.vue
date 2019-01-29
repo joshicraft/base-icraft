@@ -61,13 +61,27 @@
         background transparent
         z-index 2
         cursor pointer
-
+        &::before
+            border-radius: inherit;
+            color: inherit;
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            opacity: 0.12;
+            -webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+            transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+            width: 100%;
         .arrow, svg
             position: absolute;
             top 0
             left 0
             width: 100%;
             height: 100%
+
+        svg
+            filter: drop-shadow( 0px 3px 6px rgba(0, 0, 0, .21));
 
         line
             stroke #5a5a5a
