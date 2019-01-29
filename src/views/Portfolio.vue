@@ -1,6 +1,9 @@
 <template>
-    <div id="cube-wrapper">
+    <div v-if="inDevelopment" id="cube-wrapper">
         <custom-cube></custom-cube>
+    </div>
+    <div v-else>
+        <error-in-development></error-in-development>
     </div>
 </template>
 

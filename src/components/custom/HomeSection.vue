@@ -77,49 +77,49 @@
                 if (pos < window.innerHeight / 2.5 && !$e.scrollAnimated) {
                     $left = $e.querySelector('.wipe-left')
                     $right = $e.querySelector('.wipe-right')
-                    $iris = $e.querySelector('.iris')
+                    // $iris = $e.querySelector('.iris')
                     $title = $e.querySelector('.title-a')
-                    $irisRings = [$iris.querySelector('.iris-1'), $iris.querySelector('.iris-2'), $iris.querySelector('.iris-3'), $iris.querySelector('.iris-4')]
+                    // $irisRings = [$iris.querySelector('.iris-1'), $iris.querySelector('.iris-2'), $iris.querySelector('.iris-3'), $iris.querySelector('.iris-4')]
                     $e.scrollAnimated = true
                     distance = this.$vuetify.breakpoint.smAndDown ? '80%' : '40%'
                     new TimelineMax()
-                        .fromTo($iris, 0.5, {scale: 0.2}, {scale: 1, ease: Back.easeOut})
+                        // .fromTo($iris, 0.5, {scale: 0.2}, {scale: 1, ease: Back.easeOut})
                         .to($left ? $left : $right, 1.59, {
                             x: $left ? '-' + distance : distance,
                             ease: Back.easeOut
-                        }, '-=0.25')
-                        .to($iris.querySelector('.iris-1'), 0.36, {
-                            rotation: 100,
-                            transformOrigin: '50% 50%',
-                            autoAlpha: 0.3
-                        }, '-=' + 1.475)
-                        .to($iris.querySelector('.iris-2'), 0.36, {
-                            rotation: 180,
-                            transformOrigin: '50% 50%',
-                            autoAlpha: 0.3
-                        }, '-=' + 1.25)
-                        .to($iris.querySelector('.iris-3'), 0.36, {
-                            rotation: -180,
-                            transformOrigin: '50% 50%',
-                            autoAlpha: 0.3
-                        }, '-=' + 1.25)
-                        .to($iris.querySelector('.iris-4'), 0.36, {
-                            rotation: 75,
-                            transformOrigin: '50% 50%',
-                            autoAlpha: 0.3
-                        }, '-=' + 1.25)
-                        .to($iris, 0.37, {scale: 0, ease: Bounce.easeOut}, '-=1.05')
+                        }, '-=0')
+                        // .to($iris.querySelector('.iris-1'), 0.36, {
+                        //     rotation: 100,
+                        //     transformOrigin: '50% 50%',
+                        //     autoAlpha: 0.3
+                        // }, '-=' + 1.475)
+                        // .to($iris.querySelector('.iris-2'), 0.36, {
+                        //     rotation: 180,
+                        //     transformOrigin: '50% 50%',
+                        //     autoAlpha: 0.3
+                        // }, '-=' + 1.25)
+                        // .to($iris.querySelector('.iris-3'), 0.36, {
+                        //     rotation: -180,
+                        //     transformOrigin: '50% 50%',
+                        //     autoAlpha: 0.3
+                        // }, '-=' + 1.25)
+                        // .to($iris.querySelector('.iris-4'), 0.36, {
+                        //     rotation: 75,
+                        //     transformOrigin: '50% 50%',
+                        //     autoAlpha: 0.3
+                        // }, '-=' + 1.25)
+                        // .to($iris, 0.37, {scale: 0, ease: Bounce.easeOut}, '-=1.05')
                         .fromTo($title, 1.2, {y: 60, autoAlpha: 0}, {y: 0, autoAlpha: 1}, '-=.85')
                 } else if ($e.scrollAnimated && pos > window.innerHeight - 2) {
                     $e.scrollAnimated = false
                     $left = $e.querySelector('.wipe-left')
                     $right = $e.querySelector('.wipe-right')
-                    $iris = $e.querySelector('.iris')
+                    // $iris = $e.querySelector('.iris')
                     $title = $e.querySelector('.title-a')
-                    $irisRings = [$iris.querySelector('.iris-1'), $iris.querySelector('.iris-2'), $iris.querySelector('.iris-3'), $iris.querySelector('.iris-4')]
+                    // $irisRings = [$iris.querySelector('.iris-1'), $iris.querySelector('.iris-2'), $iris.querySelector('.iris-3'), $iris.querySelector('.iris-4')]
                     new TimelineMax()
-                        .set($iris, {scale: 1})
-                        .set($irisRings, {rotation: 0, autoAlpha: 1})
+                        // .set($iris, {scale: 1})
+                        // .set($irisRings, {rotation: 0, autoAlpha: 1})
                         .set($left ? $left : $right, {x: '0%'})
                         .set($e.querySelector('.title-a'), {y: 60, autoAlpha: 0})
                 }
