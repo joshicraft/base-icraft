@@ -1,6 +1,6 @@
 <template>
     <div>
-        <error-in-development></error-in-development>
+        <!--<error-in-development></error-in-development>-->
         <div class="relative -view-height -arrow-buffer-top _bg-color-a">
             <ui-section-nav-arrow :index="0" direction="prev"></ui-section-nav-arrow>
             <ui-section-nav-arrow :index="0" direction="next"></ui-section-nav-arrow>
@@ -10,7 +10,7 @@
                         ABOUT ICRAFT
                     </h1>
                     <p>
-                        ICRAFT was started in 2018 by Joshua Scorrar.
+                        ICRAFT was started in 2019 by Joshua Scorrar.
                     </p>
                     <p>
                         Josh has over 5 Years as a Front-End developer for an start-up company, the roles included
@@ -28,60 +28,52 @@
         </div>
         <div
                 class="relative -view-height _bg-color-b"
-
+                v-for="(item, i) in data.items"
         >
             <ui-section-nav-arrow :index="1" direction="prev"></ui-section-nav-arrow>
             <ui-section-nav-arrow :index="1" direction="next"></ui-section-nav-arrow>
             <v-container>
-
+                <div class="title-a">
+                <h1 class="text-lg-center text-uppercase">{{item.title}}</h1>
+                </div>
                 <v-layout>
-                    <v-flex lg4 v-for="(tab, o) in data.items">
-                        <h1 @click="modData(o)" class="text-lg-center c-tab" :class="{'-active' : tab.title === selected.title}">{{tab.title}}</h1>
-                    </v-flex>
-                </v-layout>
-                <v-layout class="_bg-color-c c-menu">
-                    <v-flex
-                            justift-center
-                            align-center
-                            lg6
-                            class="mr-2 fill-height"
-
-                    >
-                        <v-card
-                                class="-transparent-bg elevation-0"
-                                v-if="selected"
-                                v-for="(title, j) in selected.items"
-                                v-model="title.selected"
-                                :class="{'--active': title.title === secondSelected.title}"
-                        >
-                            <v-btn
-
-
-                                    @click="modData(undefined, j)"
-                            >
-                                {{title.title}}
-                            </v-btn>
-                        </v-card>
+                    <v-flex lg6 class="__c-height" d-flex column>
+                        <!--<v-list>-->
+                            <!--<v-list-tile-->
+                                    <!--v-for="(title, j) in item.items"-->
+                            <!--&gt;-->
+                        <div class="__btn-wrapper">
+                                <v-btn
+                                        v-for="(title, j) in item.items"
+                                        :class="{'primary': title.title === item.selected.title}"
+                                        @click="item.selected = title"
+                                >
+                                    {{title.title}}
+                                </v-btn>
+                        </div>
+                            <!--</v-list-tile>-->
+                        <!--</v-list>-->
                     </v-flex>
 
-                    <v-flex lg6 class="ml-2">
+                    <v-flex lg6>
                         <v-layout
+                                class="__c-height"
                                 lg6
                                 justify-center
                                 align-center
-                                v-if="secondSelected"
                         >
                             <v-flex
-                                    class="title-a"
+                                    class="title-a pa-5"
+
                             >
-                                <v-card
-                                        class="pa-5 ma-5 c-pane elevation-0"
+                                <div
+                                        v-if="item.selected"
                                 >
-                                    <h1 class="mb-3">
-                                        {{secondSelected.title}}
-                                    </h1>
-                                    <div v-html="secondSelected.content"></div>
-                                </v-card>
+                                    <h2 class="mb-3">
+                                        {{item.selected.title}}
+                                    </h2>
+                                    <div v-html="item.selected.content"></div>
+                                </div>
                             </v-flex>
 
                         </v-layout>
@@ -99,20 +91,30 @@
     export default {
         data() {
             return {
-                data: this.modData,
+                data: data,
                 selected: false,
                 secondSelected: false,
             }
         },
         mounted() {
-            this.data = this.modData(0)
+            // this.data = this.modData(0)
+            this.data.items.forEach(item => item.selected = item.items[0])
         },
         // computed: {
         //     data(){
         //       return data
         //     }
         // },
+        computed: {
+            getData(){
+              return data
+            }
+        },
         methods: {
+            getSelected (items) {
+                let selected = items.find(item => item.selected)
+                return selected || items[0]
+            },
             modData(index, secondIndex) {
 
                 if(secondIndex === undefined) {
@@ -132,6 +134,13 @@
 </script>
 
 <style scoped lang="stylus">
+
+    .__btn-wrapper
+        display flex
+        flex-direction row
+        justify-content center
+        align-items center
+
     .c-menu
         height 50vh
         min-height 400px
@@ -143,6 +152,9 @@
         padding-bottom: 5vh
         max-height 40vh
         overflow-y scroll
+
+    .__c-height
+        height 60vh
 
 
     .--fade-in

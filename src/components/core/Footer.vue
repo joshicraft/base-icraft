@@ -5,7 +5,7 @@
     :categories="categories"
   >
     <span>
-      &copy; 2018
+      &copy; 2019
       {{ content.company }}
       &mdash;
       {{ content.rights }}

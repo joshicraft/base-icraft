@@ -246,12 +246,22 @@
             <div id="process" class="relative -view-height _bg-color-a">
                 <ui-section-nav-arrow :index="2" direction="prev"></ui-section-nav-arrow>
                 <ui-section-nav-arrow :index="2" direction="next"></ui-section-nav-arrow>
+
                 <v-layout
                         lg12
                         wrap
                         align-center
                 >
+                    <v-img
+                            v-if="$vuetify.breakpoint.smAndUp"
+                            lg6
+                            :alt="'web-1'"
+                            :src="imgC('research')"
+                            :lazy-src="imgC('research', false, false, true)"
+                            height="100vh"
+                    >
 
+                    </v-img>
 
                     <v-flex column wrap lg6 class="title-a d-flex text-lg-left text-sm-center">
                         <div>
@@ -283,18 +293,7 @@
                             </div>
                         </div>
                     </v-flex>
-                    <v-img
-                            v-if="$vuetify.breakpoint.smAndUp"
-                            lg6
-                            :alt="'web-1'"
-                            src="/static/websites-1b.jpg"
-                            height="100vh"
-                    >
 
-                        <video class="web-video" playsinline="" autoplay="autoplay" loop="loop"  src="/static/video/packages-sr.webm"></video>
-
-
-                    </v-img>
                 </v-layout>
             </div>
 

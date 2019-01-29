@@ -59,7 +59,7 @@
                                         @mouseover="hoverPackage"
                                         class="elevation-6 column shake-vertical"
                                 >
-                                    <div class="text-lg-center top-content pt-4 pl-4 pr-4 pb-1">
+                                    <div class="text-xs-center top-content pt-4 pl-4 pr-4 pb-1">
                                         <v-flex
                                                 row
                                         >
@@ -69,7 +69,8 @@
                                                 {{packageItem.name }}
                                             </h1>
                                             <v-icon
-                                                    mt-2 size="150px"
+                                                    mt-2
+                                                    :size="$vuetify.breakpoint.smAndDown ? '100px' : '150px'"
                                                     class="anim-icon"
                                                     :class="{'animate': resultName === packageItem.name.toLowerCase()}"
                                                     :color="packageItem.iconColor"
@@ -77,10 +78,14 @@
                                                 {{packageItem.icon}}
                                             </v-icon>
                                         </v-flex>
-                                        <h3 class="mt-4">
+                                        <h3
+                                                :class="$vuetify.breakpoint.smAndDown ? 'mt-2' : 'mt-4'"
+                                        >
                                             {{ packageItem.price }}
                                         </h3>
-                                        <p class="mt-4">
+                                        <p
+                                                :class="$vuetify.breakpoint.smAndDown ? 'mt-2' : 'mt-4'"
+                                        >
                                             {{ packageItem.title }}
                                         </p>
                                     </div>

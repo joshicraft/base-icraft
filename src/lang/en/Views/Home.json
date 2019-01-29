@@ -15,7 +15,7 @@
     {
       "name": "websites",
       "title": "STUNNING, FAST AND SECURE WEBSITES",
-      "text": "ICRAFTS Top Quality websties are hand crafted to support your brand. They use the latest tech and design trends to keep your visitors engaged.",
+      "text": "ICRAFTS Top Quality websites are hand crafted to support your brand. They use the latest tech and design trends to keep your visitors engaged.",
       "img": "web-1",
       "button": "MORE HERE",
       "to": "Websites"
@@ -42,18 +42,8 @@
   "testimonials": [
     {
       "author": "John Marshall",
-      "title": "President, Springfield Country Club",
-      "quote": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment."
-    },
-    {
-      "author": "Jason Schraiber",
-      "title": "Mayor, Boca Raton",
-      "quote": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment."
-    },
-    {
-      "author": "Joe Malonagi",
-      "title": "General Manager, Springfield Tower",
-      "quote": "The complexities and challenges AlphaConstruction successfully overcame on our behalf includes substantial permit obstacles, coordination and selection support of all design and finish materials, and the diffculty of integrating existing and new structures."
+      "title": "Previous Owner, Nectar Beverages",
+      "quote": "Holy c#@p Josh that is insane! Completely exceeded my expectations, you are modern day Picasso!!"
     }
   ]
 }

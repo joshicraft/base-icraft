@@ -163,7 +163,7 @@
         left: 0
         right: 0
         margin: auto
-        width: 30px
+        width: 38px
         z-index 4
         background transparent
         box-shadow: 0px 2px 1px -1px rgba(0,0,0,0), 0px 1px 1px 0px rgba(0,0,0,0), 0px 1px 3px 0px rgba(0,0,0,0);
