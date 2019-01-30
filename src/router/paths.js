@@ -44,7 +44,7 @@ let paths = [
     {
         path: 'why-choose-icraft-websites',
         name: 'WhyUsWebsites',
-        text: "WHY US",
+        text: "Why ICRAFT",
         nestedPath: 'Websites',
     },
     {

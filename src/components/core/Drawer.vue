@@ -32,6 +32,7 @@
                     <v-list-tile
                             v-if="item.nestedPaths && !item.nestedPath"
                             :to="{name: item.name}"
+                            exact
                     >
                         <v-list-tile-title v-text="item.text"/>
                         <v-icon @click="nested=item.nestedPaths">mdi-arrow-right</v-icon>
@@ -39,6 +40,7 @@
                     <v-list-tile
                             v-else-if="!item.nestedPath"
                             :to="{name: item.name}"
+                            exact
                     >
                         <v-list-tile-title v-text="item.text"/>
 
@@ -105,6 +107,8 @@
                         }
                     }
                 )
+                console.log(paths)
+                console.log(filtered)
                 return filtered.filter(path => !path.nestedPath)
 
             }
