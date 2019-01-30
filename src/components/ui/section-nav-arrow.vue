@@ -5,7 +5,8 @@
                     'c-1' : index%2===0,
                     'c-2' : index%2!==0,
                     'prev-arrow': direction === 'prev',
-                    'next-arrow': direction === 'next'
+                    'next-arrow': direction === 'next',
+                    'section-arrow-small': $vuetify.breakpoint.smAndDown
                     }"
             class="section-arrow"
             @click="navArrowScroll(direction)"
@@ -118,6 +119,15 @@
 
     .first-arrow
         top 140px;
+
+
+    .section-arrow-small {
+        width: 6em;
+        height: 3em;
+        i {
+            font-size: 30px !important;
+        }
+    }
 
 
 

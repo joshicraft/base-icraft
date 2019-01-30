@@ -54,6 +54,12 @@ let paths = [
         nestedPath: 'Websites',
     },
     {
+        path: 'icrafts-website-terms',
+        name: 'WebsiteTerms',
+        text: "Terms",
+        nestedPath: 'Websites',
+    },
+    {
         path: '/brand-your-business',
         name: 'Branding',
         text: "Branding"
