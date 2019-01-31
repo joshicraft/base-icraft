@@ -21,7 +21,7 @@
                     :key="i"
             >
                 <v-btn
-                        v-if="!item.nestedPath"
+
                         slot="activator"
                         :to="{name: item.name}"
                         exact
@@ -34,11 +34,11 @@
 
                 <v-list
                         dark
-                        v-if="item.nestedPaths"
+                        v-if="item.nestedItems"
                 >
                     <v-btn
                             dense
-                            v-for="(path, index) in item.nestedPaths"
+                            v-for="(path, index) in item.nestedItems"
                             :key="index"
                             :class="getCurrentRouteClass(path)"
                             :to="{name: path.name, params: {nestedPath: item.name}}">
@@ -77,6 +77,7 @@
             isScrolling: false
         }),
         mounted () {
+            console.log(paths)
           this.items = this.getItems()
         },
         methods: {
@@ -85,23 +86,24 @@
                 return this.$route.name === item.name ? 'primary' : ''
             },
             getItems() {
+                console.log(paths)
                 let pts = paths
 
-                let filtered = pts.filter(path => !path.noToolbar)
-                filtered.forEach((path) => {
-                    path.nestedPaths = null
-                })
-                for (var i = 0; i < filtered.length; i++) {
-                    let path = filtered[i]
-                    if (path.nestedPath) {
-                        let parentPath = pts.find(p => p.name === path.nestedPath)
-                        if (!parentPath.nestedPaths) {
-                            parentPath.nestedPaths = []
-                        }
-                        parentPath.nestedPaths.unshift(path)
-                    }
-                }
-                return filtered
+                // let filtered = pts.filter(path => !path.noToolbar)
+                // filtered.forEach((path) => {
+                //     path.nestedPaths = null
+                // })
+                // for (var i = 0; i < filtered.length; i++) {
+                //     let path = filtered[i]
+                //     if (path.nestedPath) {
+                //         let parentPath = pts.find(p => p.name === path.nestedPath)
+                //         if (!parentPath.nestedPaths) {
+                //             parentPath.nestedPaths = []
+                //         }
+                //         parentPath.nestedPaths.unshift(path)
+                //     }
+                // }
+                return paths
                 // return this.$t('Layout.View.items')
                 // return content.items
             },

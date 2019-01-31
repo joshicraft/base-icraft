@@ -7,11 +7,11 @@
             <li>
                 <router-link :to="{name: item.name}">{{item.text}}</router-link>
                 <ul
-                    v-if="item.nestedPaths"
+                    v-if="item.nestedItems"
                 >
 
                     <li
-                        v-for="(nested, n) in item.nestedPaths"
+                        v-for="(nested, n) in item.nestedItems"
                     >
                         <router-link :to="{name: nested.name}">{{nested.text}}</router-link>
                     </li>
@@ -27,6 +27,7 @@
     export default {
         computed: {
             items(){
+                return paths
                 let filtered = paths
                 filtered.forEach((path) => {
                     path.nestedPaths = null

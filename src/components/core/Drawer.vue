@@ -22,7 +22,7 @@
         <!--</v-list>-->
         <div
                 class="drawer-wrapper"
-                :class="{'-show-right': nested.length > 0}"
+                :class="{'-show-right': selected.length > 0}"
         >
             <div class="__drawer-left">
                 <v-list
@@ -30,15 +30,15 @@
                         v-for="(item, i) in items"
                 >
                     <v-list-tile
-                            v-if="item.nestedPaths && !item.nestedPath"
+                            v-if="item.nestedItems"
                             :to="{name: item.name}"
                             exact
                     >
                         <v-list-tile-title v-text="item.text"/>
-                        <v-icon @click="nested=item.nestedPaths">mdi-arrow-right</v-icon>
+                        <v-icon @click="selected=item.nestedItems">mdi-arrow-right</v-icon>
                     </v-list-tile>
                     <v-list-tile
-                            v-else-if="!item.nestedPath"
+                            v-else-if="!item.nestedItems"
                             :to="{name: item.name}"
                             exact
                     >
@@ -50,13 +50,13 @@
             <div class="__drawer-right"
 
             >
-                <v-icon large @click="nested = []">mdi-arrow-left</v-icon>
-                <h1 class="ml-4 mt-4" v-if="nested.length > 0">{{nested[0].nestedPath}}</h1>
+                <v-icon large @click="selected = []">mdi-arrow-left</v-icon>
+                <h1 class="ml-4 mt-4" v-if="selected.length > 0">{{selected[0].nestedPath}}</h1>
                 <v-list
 
-                        v-if="nested.length > 0"
-                        v-model="nested"
-                        v-for="(item, i) in nested"
+                        v-if="selected.length > 0"
+                        v-model="selected"
+                        v-for="(item, i) in selected"
                 >
                     <v-list-tile
                             class="ml-5"
@@ -79,7 +79,7 @@
     export default {
         data() {
             return {
-                nested: [],
+                selected: [],
                 items: []
             }
         },
@@ -104,7 +104,7 @@
             ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
 
             getItems() {
-                // return paths
+                return paths
                 let filtered = paths.filter(path => !path.noToolbar)
                 filtered.forEach((path) => {
                   path.nestedPaths = null

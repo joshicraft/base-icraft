@@ -21,17 +21,16 @@ let routes = makeRoutes()
 
 
 function route(path, parentPath) {
-    let pts = paths
-    let filePath = path.nestedPath ? pts.find(p => p.name === path.nestedPath).name + '/' + path.name : path.name
-    let urlPath = path.nestedPath ? pts.find(p => p.name === path.nestedPath).path + '/' + path.path : path.path
-    console.log(path.name)
+    let newPath = parentPath ? parentPath.path + '/' + path.path : path.path
+    let dirPath = parentPath ? parentPath.name + '/' + path.name : path.name
+    // console.log(newPath)
     return {
-        path: urlPath,
+        path: newPath,
         name: path.name,
-        nested: path.nested,
-        props: path.nestedPath ? {nestedPath: filePath} : {},
+        nested: path.nestedItems,
+        props: parentPath ? {nestedPath: dirPath} : {},
         component: (resovle) => import(/** webpackPrefetch: false */
-            `@/views/${filePath}.vue`
+            `@/views/${dirPath}.vue`
             ).then(resovle)
 
     }
@@ -42,17 +41,18 @@ function makeRoutes(){
         return route(path)
     })
     let nestedRoutes = []
-    // routes.forEach((path)=>{
-    //     if(path.nested){
-    //         path.nested.forEach((nestedPath)=>{
-    //             console.log(nestedPath)
-    //             nestedRoutes.unshift(route(nestedPath, path))
-    //         })
-    //     }
-    // })
+    paths.forEach((path)=>{
+        if(path.nestedItems){
+            path.nestedItems.forEach((nestedPath)=>{
+                nestedRoutes.unshift(route(nestedPath, path))
+            })
+        }
+    })
     routes = [...routes, ...nestedRoutes].concat([
         {path: '*', redirect: '/'}
     ])
+    console.log('Routes:')
+    console.log(routes)
     return routes
 }
 
@@ -103,7 +103,7 @@ router.beforeEach((to, from, next) => {
     }, 1)
 })
 
-
+console.log(router)
 Vue.use(Meta)
 
 export default router

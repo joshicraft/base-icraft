@@ -90,6 +90,7 @@ Vue.mixin({
             secondBGColor: '#303030',
             getNameSpace(){
                 let nested = this.$route.matched[0] ? this.$route.matched[0].props.default.nestedPath : false
+                console.log(nested)
                 let nestedPath = nested ? nested.replace('/', '.') : this.$route.name
                 return this.$route.name ? nestedPath : 'Home'
             },
