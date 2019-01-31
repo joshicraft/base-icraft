@@ -86,7 +86,11 @@
             },
             getItems() {
                 let pts = paths
+
                 let filtered = pts.filter(path => !path.noToolbar)
+                filtered.forEach((path) => {
+                    path.nestedPaths = null
+                })
                 for (var i = 0; i < filtered.length; i++) {
                     let path = filtered[i]
                     if (path.nestedPath) {
