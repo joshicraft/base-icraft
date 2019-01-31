@@ -8,19 +8,23 @@
   "social": [
     {
       "text": "Websites",
-      "to": "Websites"
+      "name": "Websites"
     },
     {
       "text": "Branding",
-      "to": "Branding"
+      "name": "Branding"
     },
     {
       "text": "IT Solutions",
-      "to": "IT Solutions"
+      "name": "ITSolutions"
     },
     {
       "text": "Contact",
-      "to": "Contact"
+      "name": "Contact"
+    },
+    {
+      "text": "Site Map",
+      "name": "SiteMap"
     }
 
   ],

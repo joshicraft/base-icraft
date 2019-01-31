@@ -79,8 +79,12 @@
     export default {
         data() {
             return {
-                nested: []
+                nested: [],
+                items: []
             }
+        },
+        mounted () {
+          this.items = this.getItems()
         },
         computed: {
             visible() {
@@ -93,9 +97,18 @@
                 set(val) {
                     this.setDrawer(val)
                 }
-            },
-            items() {
+            }
+        },
+
+        methods: {
+            ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
+
+            getItems() {
+                // return paths
                 let filtered = paths.filter(path => !path.noToolbar)
+                filtered.forEach((path) => {
+                  path.nestedPaths = null
+                })
                 filtered.forEach((path) => {
                         if (path.nestedPath) {
                             let parentPath = paths.find(p => p.name === path.nestedPath)
@@ -107,15 +120,9 @@
                         }
                     }
                 )
-                console.log(paths)
-                console.log(filtered)
                 return filtered.filter(path => !path.nestedPath)
 
             }
-        },
-
-        methods: {
-            ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
         }
     }
 </script>

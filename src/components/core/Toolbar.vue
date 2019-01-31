@@ -73,11 +73,18 @@
 
     export default {
         data: () => ({
-
+            items: [],
             isScrolling: false
         }),
-        computed: {
-            items() {
+        mounted () {
+          this.items = this.getItems()
+        },
+        methods: {
+            ...mapMutations('app', ['toggleDrawer']),
+            getCurrentRouteClass(item) {
+                return this.$route.name === item.name ? 'primary' : ''
+            },
+            getItems() {
                 let pts = paths
                 let filtered = pts.filter(path => !path.noToolbar)
                 for (var i = 0; i < filtered.length; i++) {
@@ -93,13 +100,6 @@
                 return filtered
                 // return this.$t('Layout.View.items')
                 // return content.items
-            }
-        },
-
-        methods: {
-            ...mapMutations('app', ['toggleDrawer']),
-            getCurrentRouteClass(item) {
-                return this.$route.name === item.name ? 'primary' : ''
             },
             onScroll() {
                 this.scrolled = true

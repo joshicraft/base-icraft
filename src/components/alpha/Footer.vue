@@ -16,14 +16,14 @@
           <h5 class="title pb-3" v-text="company" />
           <ul>
             <li v-for="(item, i) in computedSocial" :key="i">
-              <a :to="item.to" class="layout align-center">
+              <router-link :to="{name: item.name}" class="layout align-center">
                 <v-icon
                   dark
                   class="mr-3"
                   v-text="item.icon"
                 />
                 <span class="subheading" v-text="item.text" />
-              </a>
+              </router-link>
             </li>
           </ul>
         </v-flex>

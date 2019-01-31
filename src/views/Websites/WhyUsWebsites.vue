@@ -27,7 +27,7 @@
             </v-layout>
         </div>
         <div
-                class="relative -view-height"
+                class="relative -view-height py-5"
                 :class="i%2===0 ? '_bg-color-b' : '_bg-color-a'"
                 v-for="(item, i) in data.items"
         >
@@ -35,15 +35,28 @@
             <ui-section-nav-arrow :index="1" direction="next"></ui-section-nav-arrow>
             <v-container>
                 <div class="title-a">
-                <h1 class="text-lg-center text-uppercase">{{item.title}}</h1>
+                <h1 class="text-lg-center text-uppercase mb-5">{{item.title}}</h1>
                 </div>
-                <v-layout>
-                    <v-flex lg6 class="__c-height" d-flex column>
+                <v-layout
+                        lg6
+                        sm12
+                        :class="$vuetify.breakpoint.smAndDown ? 'column' : 'row'"
+                        d-flex
+                >
+                    <v-flex
+                            lg6
+                            sm12
+                            :class="$vuetify.breakpoint.smAndDown ? '__auto-height' : '__c-height'"
+
+
+                    >
                         <!--<v-list>-->
                             <!--<v-list-tile-->
                                     <!--v-for="(title, j) in item.items"-->
                             <!--&gt;-->
-                        <div class="__btn-wrapper">
+                        <div class="__btn-wrapper"
+                             :class="$vuetify.breakpoint.smAndDown ? '' : ''"
+                        >
                                 <v-btn
                                         v-for="(title, j) in item.items"
                                         :class="{'primary': title.title === item.selected.title}"
@@ -56,15 +69,15 @@
                         <!--</v-list>-->
                     </v-flex>
 
-                    <v-flex lg6>
+                    <v-flex lg6 sm12>
                         <v-layout
-                                class="__c-height"
-                                lg6
+                                :class="$vuetify.breakpoint.smAndDown ? '__auto-height' : '__c-height'"
                                 justify-center
                                 align-center
                         >
                             <v-flex
-                                    class="title-a pa-5"
+                                    class="title-a"
+                                    :class="$vuetify.breakpoint.smAndDown ? 'py-4' : 'pa-5'"
 
                             >
                                 <div
@@ -133,7 +146,10 @@
         }
     }
 </script>
-
+<style module lang="stylus">
+    li
+        font-size 17px
+</style>
 <style scoped lang="stylus">
 
     .__btn-wrapper
@@ -141,6 +157,18 @@
         flex-direction row
         justify-content center
         align-items center
+        /*max-width 95%*/
+        flex-wrap wrap
+
+    .__auto-height
+        height auto
+
+    .-view-height
+        max-height 700px
+
+
+    .column
+        flex-direction column
 
     .c-menu
         height 50vh
@@ -155,7 +183,14 @@
         overflow-y scroll
 
     .__c-height
-        height 60vh
+        /*height 60vh*/
+        max-height 700px
+        height: 500px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+
+
 
 
     .--fade-in

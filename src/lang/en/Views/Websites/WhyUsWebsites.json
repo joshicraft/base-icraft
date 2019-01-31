@@ -34,7 +34,6 @@
     }
   },
   "selected": {
-
   },
   "items": [
     {
@@ -43,15 +42,15 @@
       "items": [
         {
           "title": "Material Design",
-          "content": "<p> Conceptually, Material Design is based on world materials. Using shadows and lighting to create depth and edges, elements respond in a similar way to how we would expect them to in real life. Google said that Material Design is based on paper and ink and print-based design, leveraging a specific set of color schemes. </p> <p> According to Google, there are three core principles at work: </p> <ul> <li>Material is the metaphor</li><li>Bold, graphic, intentional</li><li>Motion provides meaning</li>"
+          "content": "<p>Conceptually, Material Design is based on world materials. Using shadows and lighting to create depth and edges, elements respond in a similar way to how we would expect them to in real life. Google said that Material Design is based on paper and ink and print-based design, leveraging a specific set of color schemes. </p> <p> According to Google, there are three core principles at work: </p> <ul> <li>Material is the metaphor</li><li>Bold, graphic, intentional</li><li>Motion provides meaning</li>"
         },
         {
-          "title": "Animations & Effects",
-          "content": "<p> Using the right animation or effect at the right time can really make your brand or important message stand out..</p>"
+          "title": "Animations, Sounds & Effects",
+          "content": "<p>Using the right animation or effect at the right time can really make your brand or important message stand out. This gives you an edge over competing websites as the right effect can really stick in someones mind.</p>"
         },
         {
           "title": "UI/UX",
-          "content": "<p>Using CDN technology has a wide range of benefits. </p> <p> <ul> <li> It improves the speed websites load which is vital for customer retention and reducing bounce rate. </li> <li> Offers extra security through DDoS prevention. </li> <li> Automatically scales for traffic spikes and stops servers shutting down. </li> <li> SEO improvement through improved speed and google preference for CDN tech. </li> </ul> </p>"
+          "content": "<p>With the technological advancement in the 21st-century, everybody wants to experience the best technology without spending too much of their time and exhausting their busy brains. The same goes for surfing the web. In short, it is about the consumers nowadays! And, when it comes to website user satisfaction, most technology firms turn towards the applications’ User Interface (UI) and User Experience Design (UX).</p>"
         }
       ]
     },
@@ -61,11 +60,11 @@
       "items": [
         {
           "title": "AWS LAMBDA",
-          "content": "<p> Tech Giant - Amazons, AWS Lambda is a solution reduces this wastage of resources. You are billed only for the amount of resources your program consumes, and for the time for which it runs. </p> <p> Needless to say, this is a really price-effective way of designing applications and as an added bonus you shouldn't have to think about scaling the infrastructure either. AWS manages all of that for you. </p> <p> AWS Lambda states a 99.95% up time for under their AWS Lambda Service Level Agreement </p>"
+          "content": "<p>Tech Giant - Amazons, AWS Lambda is a solution reduces this wastage of resources. You are billed only for the amount of resources your program consumes, and for the time for which it runs. </p> <p> Needless to say, this is a really price-effective way of designing applications and as an added bonus you shouldn't have to think about scaling the infrastructure either. AWS manages all of that for you. </p> <p> AWS Lambda states a 99.95% up time for under their AWS Lambda Service Level Agreement </p>"
         },
         {
           "title": "VUE.JS",
-          "content": "<p>Vue.JS to make modular and easily deployable websites that allow me to make quick updates and copy and paste features (or code) between different projects. It also has some impressive performance abilities making it faster to load than most wordpress, react and other popular web site tools. </p> <p> The support and community behind Vue.js is very active giving it a good road map and future. Recently it has become the <a href=\"https://hasvuepassedreactyet.surge.sh/\">most popular</a> web application tool on github by receiving the most stars. This was previously held by React.js. </p>"
+          "content": "<p>We use Vue.JS to make modular and easily deployable websites that allow me to make quick updates and copy and paste features (or code) between different projects. It also has some impressive performance abilities making it faster to load than most wordpress, react and other popular web site tools. </p> <p> The support and community behind Vue.js is increasingly active giving it a good road map and future. Recently it has become the <a href=\"https://hasvuepassedreactyet.surge.sh/\">most popular</a> web application tool on github by receiving the most stars. This was previously held by React.js. </p>"
         },
         {
           "title": "CDN",
@@ -79,15 +78,15 @@
       "items": [
         {
           "title": "SEO",
-          "content": "<p> Tech Giant - Amazons, AWS Lambda is a solution reduces this wastage of resources. You are billed only for the amount of resources your program consumes, and for the time for which it runs. </p> <p> Needless to say, this is a really price-effective way of designing applications and as an added bonus you shouldn't have to think about scaling the infrastructure either. AWS manages all of that for you. </p> <p> AWS Lambda states a 99.95% up time for under their AWS Lambda Service Level Agreement </p>"
+          "content": "<p>Search engine optimization or SEO in short, is a set of rules that can be followed by website (or blog) owners to optimize their websites for search engines and thus improve their search engine rankings.</p><p>In today’s competitive market, SEO marketing is more important than ever.</p><p>Search engines serve millions of users per day looking for answers to their questions or for solutions to their problems.</p><p>If you have a web site, blog or online store, SEO can help your business grow and meet the business objectives.</p>"
         },
         {
           "title": "SOCIAL MEDIA",
-          "content": "<p>Vue.JS to make modular and easily deployable websites that allow me to make quick updates and copy and paste features (or code) between different projects. It also has some impressive performance abilities making it faster to load than most wordpress, react and other popular web site tools. </p> <p> The support and community behind Vue.js is very active giving it a good road map and future. Recently it has become the <a href=\"https://hasvuepassedreactyet.surge.sh/\">most popular</a> web application tool on github by receiving the most stars. This was previously held by React.js. </p>"
+          "content": "<p>Social media marketing is a powerful way for businesses of all sizes to reach prospects and customers. Your customers are already interacting with brands through social media, and if you're not speaking directly to your audience through social platforms like Facebook, Twitter, Instagram, and Pinterest, you're missing out! Great marketing on social media can bring remarkable success to your business, creating devoted brand advocates and even driving leads and sales.</p>"
         },
         {
           "title": "EMAIL TEMPLATES",
-          "content": "<p>Using CDN technology has a wide range of benefits. </p> <p> <ul> <li> It improves the speed websites load which is vital for customer retention and reducing bounce rate. </li> <li> Offers extra security through DDoS prevention. </li> <li> Automatically scales for traffic spikes and stops servers shutting down. </li> <li> SEO improvement through improved speed and google preference for CDN tech. </li> </ul> </p>"
+          "content": "<p>Most marketers are laser focused on driving conversions. Regardless of whether this is in the form of leads, sales, memberships, or a metric unique to your business strategy, the ultimate goal for marketers is to turn potential customers into paying customers.</p>\n<p>And when it comes to conversions, there isn’t a more powerful channel than email.</p>\n<p>In fact, the average click-through rate of an email campaign <a title=\"\" href=\"https://www.campaignmonitor.com/resources/guides/email-marketing-trends/\" target=\"_blank\" rel=\"noopener noreferrer\">is around 3%</a> (of total recipients), whereas the average click-through rate from a tweet <a title=\"\" href=\"https://www.quora.com/Whats-the-average-click-through-rate-of-a-link-shared-on-twitter-by-an-user-with-a-million-followers\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">is around 0.5%</a>.</p>"
         }
       ]
     }

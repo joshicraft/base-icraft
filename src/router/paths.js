@@ -79,6 +79,12 @@ let paths = [
         path: '/contact-icraft',
         name: 'Contact',
         text: "Contact"
+    },
+    {
+        path: '/sitemap',
+        name: 'SiteMap',
+        text: "Site Map",
+        noToolbar: true
     }
 ]
 
