@@ -104,24 +104,23 @@
             ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
 
             getItems() {
-                return paths
-                let filtered = paths.filter(path => !path.noToolbar)
-                filtered.forEach((path) => {
-                  path.nestedPaths = null
-                })
-                filtered.forEach((path) => {
-                        if (path.nestedPath) {
-                            let parentPath = paths.find(p => p.name === path.nestedPath)
-                            if (!parentPath.nestedPaths) {
-                                parentPath.nestedPaths = []
-                            }
-                            parentPath.nestedPaths.unshift(path)
-                            parentPath.nestedPaths.reverse()
+                let newPaths = []
+                paths.forEach((path)=>{
+                    if(!path.noToolbar){
+                        let newP = path
+                        if(path.nestedItems){
+                            let newNested = []
+                            newP.nestedItems.forEach((nestedPath)=>{
+                                if(!nestedPath.noToolbar){
+                                    newNested.push(nestedPath)
+                                }
+                            })
+                            newP.nestedItems = newNested
                         }
+                        newPaths.push(newP)
                     }
-                )
-                return filtered.filter(path => !path.nestedPath)
-
+                })
+                return newPaths
             }
         }
     }

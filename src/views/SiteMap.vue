@@ -28,22 +28,7 @@
         computed: {
             items(){
                 return paths
-                let filtered = paths
-                filtered.forEach((path) => {
-                    path.nestedPaths = null
-                })
-                filtered.forEach((path) => {
-                        if (path.nestedPath) {
-                            let parentPath = paths.find(p => p.name === path.nestedPath)
-                            if (!parentPath.nestedPaths) {
-                                parentPath.nestedPaths = []
-                            }
-                            parentPath.nestedPaths.unshift(path)
-                            parentPath.nestedPaths.reverse()
-                        }
-                    }
-                )
-                return filtered.filter(path => !path.nestedPath)
+
             }
         }
     }

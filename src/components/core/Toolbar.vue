@@ -86,8 +86,6 @@
                 return this.$route.name === item.name ? 'primary' : ''
             },
             getItems() {
-                console.log(paths)
-                let pts = paths
 
                 // let filtered = pts.filter(path => !path.noToolbar)
                 // filtered.forEach((path) => {
@@ -103,7 +101,23 @@
                 //         parentPath.nestedPaths.unshift(path)
                 //     }
                 // }
-                return paths
+                let newPaths = []
+                paths.forEach((path)=>{
+                    if(!path.noToolbar){
+                        let newP = path
+                        if(path.nestedItems){
+                            let newNested = []
+                            newP.nestedItems.forEach((nestedPath)=>{
+                                if(!nestedPath.noToolbar){
+                                    newNested.push(nestedPath)
+                                }
+                            })
+                            newP.nestedItems = newNested
+                        }
+                        newPaths.push(newP)
+                    }
+                })
+                return newPaths
                 // return this.$t('Layout.View.items')
                 // return content.items
             },
