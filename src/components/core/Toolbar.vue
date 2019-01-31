@@ -18,6 +18,7 @@
                     open-on-hover
                     offset-y
                     v-for="(item, i) in items"
+                    v-if="!item.noToolbar"
                     :key="i"
             >
                 <v-btn
@@ -39,6 +40,7 @@
                     <v-btn
                             dense
                             v-for="(path, index) in item.nestedItems"
+                            v-if="!path.noToolbar"
                             :key="index"
                             :class="getCurrentRouteClass(path)"
                             :to="{name: path.name, params: {nestedPath: item.name}}">
@@ -86,38 +88,7 @@
                 return this.$route.name === item.name ? 'primary' : ''
             },
             getItems() {
-
-                // let filtered = pts.filter(path => !path.noToolbar)
-                // filtered.forEach((path) => {
-                //     path.nestedPaths = null
-                // })
-                // for (var i = 0; i < filtered.length; i++) {
-                //     let path = filtered[i]
-                //     if (path.nestedPath) {
-                //         let parentPath = pts.find(p => p.name === path.nestedPath)
-                //         if (!parentPath.nestedPaths) {
-                //             parentPath.nestedPaths = []
-                //         }
-                //         parentPath.nestedPaths.unshift(path)
-                //     }
-                // }
-                let newPaths = []
-                paths.forEach((path)=>{
-                    if(!path.noToolbar){
-                        let newP = path
-                        if(path.nestedItems){
-                            let newNested = []
-                            newP.nestedItems.forEach((nestedPath)=>{
-                                if(!nestedPath.noToolbar){
-                                    newNested.push(nestedPath)
-                                }
-                            })
-                            newP.nestedItems = newNested
-                        }
-                        newPaths.push(newP)
-                    }
-                })
-                return newPaths
+                return paths
                 // return this.$t('Layout.View.items')
                 // return content.items
             },

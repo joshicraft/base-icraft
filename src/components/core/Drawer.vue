@@ -28,6 +28,7 @@
                 <v-list
 
                         v-for="(item, i) in items"
+                        v-if="!item.noToolbar"
                 >
                     <v-list-tile
                             v-if="item.nestedItems"
@@ -54,7 +55,7 @@
                 <h1 class="ml-4 mt-4" v-if="selected.length > 0">{{selected[0].nestedPath}}</h1>
                 <v-list
 
-                        v-if="selected.length > 0"
+                        v-if="selected.length > 0 && !item.noToolbar"
                         v-model="selected"
                         v-for="(item, i) in selected"
                 >
@@ -104,23 +105,7 @@
             ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
 
             getItems() {
-                let newPaths = []
-                paths.forEach((path)=>{
-                    if(!path.noToolbar){
-                        let newP = path
-                        if(path.nestedItems){
-                            let newNested = []
-                            newP.nestedItems.forEach((nestedPath)=>{
-                                if(!nestedPath.noToolbar){
-                                    newNested.push(nestedPath)
-                                }
-                            })
-                            newP.nestedItems = newNested
-                        }
-                        newPaths.push(newP)
-                    }
-                })
-                return newPaths
+                return paths
             }
         }
     }
