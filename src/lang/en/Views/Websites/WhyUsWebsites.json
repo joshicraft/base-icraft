@@ -60,7 +60,7 @@
       "items": [
         {
           "title": "AWS LAMBDA",
-          "content": "<p>Tech Giant - Amazons, AWS Lambda is a solution reduces this wastage of resources. You are billed only for the amount of resources your program consumes, and for the time for which it runs. </p> <p> Needless to say, this is a really price-effective way of designing applications and as an added bonus you shouldn't have to think about scaling the infrastructure either. AWS manages all of that for you. </p> <p> AWS Lambda states a 99.95% up time for under their AWS Lambda Service Level Agreement </p>"
+          "content": "<p>Tech Giant Amazon has a feature called AWS Lambda. It's a solution to reduce the wastage of resources. You are billed only for the amount of resources your program consumes, and for the time for which it runs. </p> <p> Needless to say, this is a really price-effective way of designing applications and as an added bonus you shouldn't have to think about scaling the infrastructure either. AWS manages all of that for you. </p> <p> AWS Lambda states a 99.95% up time for under their AWS Lambda Service Level Agreement </p>"
         },
         {
           "title": "VUE.JS",

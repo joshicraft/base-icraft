@@ -30,7 +30,7 @@
 
         <v-flex
                 xs12
-                sm2
+                sm3
                 class="pa-5 grey darken-4"
         >
           <h5 class="title pb-3">
