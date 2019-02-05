@@ -10,7 +10,7 @@
                         ABOUT ICRAFT
                     </h1>
                     <p>
-                        ICRAFT was started in 2019 by Joshua Scorrar.
+                        ICRAFT was started in 2018 by Joshua Scorrar.
                     </p>
                     <p>
                         Josh has over 5 Years as a Front-End developer for an start-up company, the roles included

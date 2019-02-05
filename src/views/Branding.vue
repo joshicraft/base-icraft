@@ -1,134 +1,160 @@
 <template>
-    <error-in-development></error-in-development>
-    <!--<v-container-->
-            <!--grid-list-lg-->
-            <!--pa-0-->
-            <!--pb-4-->
-            <!--d-flex-->
-            <!--justify-center-->
-            <!--align-center-->
-            <!--class="max-view-width"-->
-            <!--v-if="loadPoint(1)"-->
-    <!--&gt;-->
-        <!--<v-layout-->
-                <!--row-->
-                <!--wrap-->
-                <!--justify-center-->
-                <!--align-start-->
-                <!--:class="[{'offset-4-grid': $vuetify.breakpoint.lgAndUp}, $vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-1']"-->
-        <!--&gt;-->
-            <!--<v-flex-->
-                    <!--mb-3-->
-                    <!--v-for="(service, i) in items"-->
-                    <!--:class="[$vuetify.breakpoint.smAndDown ? 'pa-2' : '']"-->
-                    <!--:key="i"-->
-                    <!--v-if="loadPoint(2)"-->
-                    <!--justify-space-between-->
-                    <!--align-content-space-between-->
-                    <!--d-flex>-->
-                <!--<v-flex light class="pa-3">-->
-                    <!--<v-img-->
-                            <!--:alt="service.image"-->
-                            <!--class="relative pack-img"-->
-                            <!--:src="service.image"-->
+    <!--<error-in-development></error-in-development>-->
+    <div class="relative">
 
-                    <!--&gt;-->
+        <v-flex
+        >
+            <div id="intro" class="relative -view-height _bg-color-a">
+                <ui-section-nav-arrow :index="2" direction="prev"></ui-section-nav-arrow>
+                <ui-section-nav-arrow :index="2" direction="next"></ui-section-nav-arrow>
 
-                        <!--<v-layout-->
-                                <!--class="z1 pa-5 title-1 d-flex"-->
-                                <!--column-->
-                                <!--fill-height-->
+                <v-layout
+                        lg12
+                        wrap
+                        align-center
+                >
+                    <v-img
+                            v-if="$vuetify.breakpoint.smAndUp"
+                            lg6
+                            :alt="'web-1'"
+                            :src="imgC('b-card')"
+                            :lazy-src="imgC('b-card', false, false, true)"
+                            height="100vh"
+                    >
 
-                                <!--wrap-->
-                        <!--&gt;-->
-                            <!--<v-flex lg6 sm12  fill-height>-->
-                                <!--<v-layout column justify-center fill-height>-->
-                            <!--<v-card-title class="white&#45;&#45;text">-->
-                                <!--<h1>{{ service.name }}</h1>-->
-                            <!--</v-card-title>-->
-                            <!--<v-card-title class="white&#45;&#45;text">-->
-                                <!--<h3 class="">{{ service.subTitle }}</h3>-->
-                            <!--</v-card-title>-->
-                            <!--<v-card-title class="white&#45;&#45;text">-->
-                                <!--<p class="">{{ service.disclaimer }}</p>-->
-                            <!--</v-card-title>-->
-                                <!--</v-layout>-->
-                            <!--</v-flex>-->
-                        <!--</v-layout>-->
-                        <!--<div class="bg-gradient"></div>-->
-                        <!--<custom-background-vector>-->
-                        <!--</custom-background-vector>-->
-                        <!--<custom-background-vector position="top" flip="flip-x">-->
-                        <!--</custom-background-vector>-->
-                    <!--</v-img>-->
-                    <!--<h1 class="my-5">PACKAGES</h1>-->
-                    <!--<v-layout row wrap mt-4>-->
+                    </v-img>
 
-                        <!--<v-flex-->
-                                <!--lg3-->
-                                <!--md3-->
-                                <!--sm12-->
-                                <!--v-for="(packageItem, p) in service.items"-->
-                                <!--:key="p"-->
-                                <!--v-if="loadPoint(3)"-->
-                        <!--&gt;-->
+                    <v-flex column wrap lg6 class="title-a d-flex text-lg-left text-sm-center">
+                        <div>
+                            <h1 class="mt-0 mb-3">
+                                IN NEED OF SOME BRANDED ITEMS?
+                            </h1>
+                            <h3 class="mb-4">
+                                We can provide a wide range of branded content creation or advertisement material.
+                            </h3>
+                            <p>
+                                These include things like Logos, Flyer's, Menus, Business Cards, Banners and much much
+                                more. For a list of the services available click SERVICES, otherwise get in touch to
+                                find out more.
+                            </p>
+                            <div class="mx-auto">
+                                <v-btn
+                                        @click="$vuetify.goTo('#services')"
+                                        class="primary ml-0"
+                                >
+                                    Services
+                                </v-btn>
+                                <v-btn
+                                        @click="goToAndScroll('Contact')"
+                                        class="primary ml-0"
+                                >
+                                    Get in touch
+                                    <v-icon right>mdi-phone</v-icon>
+                                </v-btn>
+                            </div>
+                        </div>
+                    </v-flex>
 
-                            <!--<v-card-->
-                                    <!--md6-->
-                                    <!--dark-->
-                                    <!--class="elevation-6 column"-->
-                            <!--&gt;-->
-                                <!--<custom-bg-vector-corner :fill="firstBGColor" width="100px" height="92px"></custom-bg-vector-corner>-->
-                                <!--<div class="top-content pt-4 pl-4 pr-4 pb-1">-->
-                                    <!--<v-flex row >-->
-                                        <!--<h1 :class="packageItem.iconColor + '&#45;&#45;text'">{{ packageItem.name }}</h1>-->
-                                        <!--<v-icon mt-2 large :color="packageItem.iconColor">{{ packageItem.icon }}</v-icon>-->
-                                    <!--</v-flex>-->
-                                        <!--<h3 class="mt-4">{{ packageItem.price }}</h3>-->
-                                        <!--<p class="mt-4">{{ packageItem.title }}</p>-->
+                </v-layout>
+            </div>
 
-                                <!--</div>-->
-                                <!--<v-list two-line class="list">-->
-                                    <!--<v-list-group-->
-                                            <!--append-icon="mdi-arrow-down"-->
-                                            <!--v-model="packageItem.active"-->
-                                            <!--expand-->
+            <div id="services" class="relative -view-height _bg-color-a">
+                <ui-section-nav-arrow :index="2" direction="prev"></ui-section-nav-arrow>
+                <ui-section-nav-arrow :index="2" direction="next"></ui-section-nav-arrow>
 
-                                    <!--&gt;-->
+                <v-layout
+                        lg12
+                        wrap
+                        align-center
+                >
 
-                                        <!--<v-list-tile :ripple="true" slot="activator">-->
 
-                                            <!--<v-list-tile-content>-->
+                    <v-flex column wrap lg6 class="title-a d-flex text-lg-left text-sm-center">
+                        <div>
+                            <h1 class="mt-0 mb-3">
+                                OUR BRANDING SERVICES
+                            </h1>
+                            <h3 class="mb-4">Giving you an idea of the content we can create for you.</h3>
+                            <v-flex class="d-flex" row wrap>
+                                <ul>
+                                    <li>
+                                        Logo's & business branding
+                                    </li>
+                                    <li>
+                                        Business card's, Letterheads
+                                    </li>
+                                    <li>
 
-                                                <!--&lt;!&ndash;<h1 ></h1>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;<h2>{{ i.title }}</h2>&ndash;&gt;-->
-                                                <!--<h4>{{!packageItem.active ? "SHOW PACKAGE" : "CLOSE"}}</h4>-->
-                                            <!--</v-list-tile-content>-->
-                                        <!--</v-list-tile>-->
+                                        Flyer's, Brochure's Tri-fold's
+                                    </li>
+                                    <li>
 
-                                        <!--<v-list-tile-->
-                                                <!--v-if="loadPoint(4)"-->
-                                                <!--v-for="subItem in packageItem.items"-->
-                                                <!--:key="subItem.text"-->
-                                        <!--&gt;-->
+                                        Magazine & Newspaper Adverts
+                                    </li>
+                                    <li>
 
-                                            <!--<v-list-tile-action>-->
-                                                <!--<v-icon>{{ subItem.icon }}</v-icon>-->
-                                            <!--</v-list-tile-action>-->
-                                            <!--<v-list-tile-content>-->
-                                                <!--<v-list-tile-title>{{ subItem.text }}</v-list-tile-title>-->
-                                            <!--</v-list-tile-content>-->
+                                        Invitations
+                                    </li>
 
-                                        <!--</v-list-tile>-->
-                                    <!--</v-list-group>-->
-                                <!--</v-list>-->
-                            <!--</v-card>-->
-                        <!--</v-flex>-->
-                    <!--</v-layout>-->
-                <!--</v-flex>-->
-            <!--</v-flex>-->
-        <!--</v-layout>-->
-    <!--</v-container>-->
+                                </ul>
+                                <ul>
+                                    <li>
+                                        Product packaging
+                                    </li>
+                                    <li>
+
+                                        Infographic's
+                                    </li>
+                                    <li>
+
+                                        Facebook banners
+                                    </li>
+                                    <li>
+
+                                        Photo touch-ups
+                                    </li>
+                                    <li>
+
+                                        Posters & signage
+                                    </li>
+                                    <li>
+
+                                        Marketing Collateral
+                                    </li>
+                                </ul>
+                            </v-flex>
+                            <p class="mt-5">
+                                To find out more about these services, get in touch with us today so we can find the
+                                right solution for you.
+                            </p>
+                            <div class="mx-auto">
+                                <v-btn
+                                        @click="goToAndScroll('Contact')"
+                                        class="primary ml-0"
+                                >
+                                    Get in touch
+                                    <v-icon right>mdi-phone</v-icon>
+                                </v-btn>
+                            </div>
+                        </div>
+                    </v-flex>
+                    <v-img
+                            v-if="$vuetify.breakpoint.smAndUp"
+                            lg6
+                            :alt="'branding image'"
+                            :src="imgC('branding')"
+                            :lazy-src="imgC('branding', false, false, true)"
+                            height="100vh"
+                    >
+
+                    </v-img>
+                </v-layout>
+            </div>
+
+
+        </v-flex>
+    </div>
+
 </template>
 
 <script>
@@ -164,7 +190,18 @@
 </style>
 <style lang="stylus" scoped>
     /*.max-view-width*/
-        /*width 100% !important*/
+    /*width 100% !important*/
+    .title-a > div
+        width 80%
+        margin 0 auto
+        max-width: 537px;
+        padding 5vh 0
+
+    .title-a > div
+        width 80%
+        margin 0 auto
+        max-width: 537px;
+        padding 5vh 0
 
     .pack-img
         max-height: 450px
@@ -173,9 +210,11 @@
         /*min-height 300px*/
         flex-direction column
         position: relative;
+
         .top-content
             text-align center
             min-height: 300px
+
     .relative
         position: relative;
 
@@ -189,12 +228,16 @@
 
     .title-1
         max-width 62%
+
         h1
             font-size: 2.5em
+
         h2
             font-size: 2em
+
         h3
             font-size: 1.5em
+
         p
             font-size: 1em
 
