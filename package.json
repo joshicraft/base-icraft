@@ -81,6 +81,7 @@
     "npm": ">= 3.0.0"
   },
   "dependencies": {
+    "gsap": "^2.0.2",
     "vue-cookie-law": "^1.8.0",
     "vue-scroll": "^2.1.9"
   }

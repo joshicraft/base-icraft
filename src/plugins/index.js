@@ -1,3 +1,8 @@
+import {TweenMax, TimelineMax, Draggable, ScrollToPlugin} from 'gsap'
+// import './TweenMax.min'
+// import './TimelineMax.min'
+// import './ScrollToPlugin.min'
+// import './Draggable.min'
 import './vuetify'
 import './request-animation-frame'
 import  {addScrollEvent} from './custom-scroll'
