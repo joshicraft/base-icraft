@@ -1,4 +1,5 @@
-import {TweenMax, TimelineMax, Draggable, ScrollToPlugin} from 'gsap'
+import {TweenMax, TimelineMax} from 'gsap'
+// import {Draggable, ScrollToPlugin} from 'gsap/src/uncompressed/plugins'
 // import './TweenMax.min'
 // import './TimelineMax.min'
 // import './ScrollToPlugin.min'
