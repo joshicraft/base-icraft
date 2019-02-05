@@ -200,7 +200,6 @@
     .title-a > div
         padding 10vh 0
 
-
     ul
         width 50%
 
