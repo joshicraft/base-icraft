@@ -34,6 +34,7 @@ module.exports = {
     chainWebpack:  config => {
         // config.resolve.alias
         //     .set('vuetify/lib', 'vuetify/es5/components');
+        config.module.rules.delete('eslint')
         config.plugin('vuetify-loader')
             .use(VuetifyLoaderPlugin);
         // config.plugin('workbox')
