@@ -76,7 +76,7 @@
                             </h1>
                             <h3 class="mb-4">Giving you an idea of the content we can create for you.</h3>
                             <v-flex class="d-flex" row wrap>
-                                <ul>
+                                <ul class="lg6">
                                     <li>
                                         Logo's & business branding
                                     </li>
@@ -97,7 +97,7 @@
                                     </li>
 
                                 </ul>
-                                <ul>
+                                <ul class="lg6">
                                     <li>
                                         Product packaging
                                     </li>
@@ -123,7 +123,7 @@
                                     </li>
                                 </ul>
                             </v-flex>
-                            <p class="mt-5">
+                            <p class="mt-3">
                                 To find out more about these services, get in touch with us today so we can find the
                                 right solution for you.
                             </p>
@@ -198,10 +198,11 @@
         padding 5vh 0
 
     .title-a > div
-        width 80%
-        margin 0 auto
-        max-width: 537px;
-        padding 5vh 0
+        padding 10vh 0
+
+
+    ul
+        width 50%
 
     .pack-img
         max-height: 450px
