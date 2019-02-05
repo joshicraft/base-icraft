@@ -3,7 +3,7 @@ const WebsiteDiscoveryQuestionsModel = require('../model/WebsiteDiscoveryQuestio
 
 const mongoString = "mongodb+srv://josh-icraft:" + process.env.MONGO_DB_ATLAS_PW + "@cluster0-vqqfc.mongodb.net/test?retryWrites=true"
 
-let database
+let database;
 
 function dbConnectAndExecute(dbUrl, fn) {
     database = mongoose.connect(dbUrl, { useNewUrlParser: true })
