@@ -6,6 +6,7 @@
 // import './Draggable.min'
 import './vuetify'
 import './request-animation-frame'
+import {sound} from './sound'
 import  {addScrollEvent} from './custom-scroll'
 // import './vue-scroll'
 // import './fb-customer-chat'

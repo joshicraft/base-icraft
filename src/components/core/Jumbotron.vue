@@ -66,6 +66,7 @@
         methods: {
 
             goTo () {
+                this.playSound('click', 0.3)
                 this.scrolling = true
                 this.toolBarHeight = document.querySelector('.v-toolbar').getBoundingClientRect().height
                 this.$vuetify.goTo(window.innerHeight, { offset: 0})
@@ -189,7 +190,7 @@
         pointer-events none
 
     .bg-gradient
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.995) 0%, rgba(35, 30, 40, 0.859) 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.995) 0%, rgba(35, 30, 40, 0.809) 100%);
         //background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(28, 35, 43, 0.9) 100%);
 
     .bg-img

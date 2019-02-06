@@ -20,6 +20,7 @@
 </template>
 
 <script>
+    import Sound from '../../plugins/sound'
     export default {
         props: {
             index: {
@@ -33,8 +34,9 @@
         },
         methods: {
             navArrowScroll(dir) {
-                let dimensions = this.$el.getBoundingClientRect()
-                let next = dir === 'next'
+                this.playSound('click', 0.3);
+                let dimensions = this.$el.getBoundingClientRect();
+                let next = dir === 'next';
                 this.$vuetify.goTo(
                     window.pageYOffset +
                     ((next ? 0 : -window.innerHeight) +

@@ -9,8 +9,10 @@
             v-scroll="onScroll"
             class="_visible elevation-0"
     >
-        <div class="toolbar-svg-wrapper">
+        <div class="toolbar-svg-wrapper" @click="playSound('click', 0.3)">
+            <router-link :to="{name: 'Home'}" >
             <custom-logo-side :hide-text="true"></custom-logo-side>
+            </router-link>
         </div>
         <v-spacer/>
         <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
@@ -25,9 +27,10 @@
 
                         slot="activator"
                         :to="{name: item.name}"
+                        @click="playSound('click', 0.3)"
                         exact
                         :aria-label="item.path + '-toolbar'"
-                        :class="getCurrentRouteClass(item)"
+                        :class="getCurrentRouteClass(item, item.nestedItems)"
                         class="ml-1 mt-0"
                 >
                     {{item.text}}
@@ -43,6 +46,7 @@
                             v-if="!path.noToolbar"
                             :key="index"
                             :class="getCurrentRouteClass(path)"
+                            @click="playSound('click', 0.3)"
                             :to="{name: path.name, params: {nestedPath: item.name}}">
                         {{ path.text }}
                     </v-btn>
@@ -84,8 +88,12 @@
         },
         methods: {
             ...mapMutations('app', ['toggleDrawer']),
-            getCurrentRouteClass(item) {
-                return this.$route.name === item.name ? 'primary' : ''
+            clickRoute(route){
+                this.playSound('click', 0.3);
+              this.$router.push(route)
+            },
+            getCurrentRouteClass(item, nested) {
+                return (this.$route.name === item.name ? 'primary' : '') + (nested ? ' nested-menu' : '')
             },
             getItems() {
                 return paths
@@ -101,7 +109,6 @@
                     let $svg = this.$el.querySelector('svg')
                     let $text = $svg.querySelector(".logo-text")
                     let $logoIcon = $svg.querySelector(".logo-icon")
-                    console.log('s')
                     this.timelineAnimation = new TimelineMax()
                     // .to([$text], 0.6, {x: 0, autoAlpha:0}, 'a')
                         .staggerTo($svg.querySelectorAll('polygon'), 0.4, {
@@ -137,6 +144,7 @@
         opacity 1
 
 
+
     .--icon-dark
         .v-icon
             color: black !important
@@ -165,7 +173,7 @@
         height: 100%
         position: relative
         left -24px
-
+        pointer-events all
         svg
             width: auto
             height: 100%

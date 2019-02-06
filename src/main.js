@@ -57,7 +57,7 @@ Vue.mixin({
             },
             imgC(name, img, ext, thumb, addPath) {
                 console.log(name)
-                let path =  '/static/' + (addPath || '')
+                let path = '/static/' + (addPath || '')
                 let size = ''
                 let bp = this.$vuetify.breakpoint
                 let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
@@ -88,13 +88,13 @@ Vue.mixin({
             firstBGColor: '#fafafa',
             currentBGColor: '#fafafa',
             secondBGColor: '#303030',
-            getNameSpace(){
+            getNameSpace() {
                 let nested = this.$route.matched[0] ? this.$route.matched[0].props.default.nestedPath : false
                 console.log(nested)
                 let nestedPath = nested ? nested.replace('/', '.') : this.$route.name
                 return this.$route.name ? nestedPath : 'Home'
             },
-            inDevelopment(dev){
+            inDevelopment(dev) {
                 return dev ? dev : process.env.NODE_ENV === 'development'
             },
             fullSizeBracket() {
@@ -112,12 +112,46 @@ Vue.mixin({
                 }
                 return size + '/'
             },
-            playSound() {
-                this.audio = this.audio || new Audio('/static/sound/click.mp3')
-                this.audio.play()
+            sounds: [],
+            playSound(file, volume) {
+                let newSound
+                let found = this.sounds.find(sound => sound.id === file)
+                if (!found) {
+                    newSound = {
+                        id: file,
+                        data: new Audio('/static/sound/' + file + '.mp3')
+                    }
+                    newSound.data.volume = volume || 1
+                    this.sounds.unshift(newSound)
+                } else {
+                    newSound = found
+                }
+
+                newSound.data.play()
             },
-            goToAndScroll(to, delay, params){
-                this.$router.push({name:to || '', params: params || {}})
+            makeSound(sound) {
+                let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                let source = audioContext.createBufferSource();
+                let request = new XMLHttpRequest();
+
+                request.open('GET', '/static/sound/' + sound + '.mp3', true);
+                request.responseType = 'arraybuffer';
+                request.onload = function () {
+                    audioContext.decodeAudioData(request.response, function (buffer) {
+                        source.buffer = buffer;
+                        source.connect(audioContext.destination);
+                        source.loop = true;
+                        // Play the sound!
+                        source.start(0);
+                    }, function (e) {
+                        console.log('Audio error! ', e);
+                    });
+                }
+                request.send();
+            },
+            goToAndScroll(to, delay, params) {
+                this.playSound('click')
+                this.$router.push({name: to || '', params: params || {}})
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight)
                 }, delay || 4000)

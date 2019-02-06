@@ -31,7 +31,7 @@
 
 <script>
     import SlideBg from './SlideBg'
-
+    import Sound from '../../plugins/sound'
     export default {
         components: {SlideBg},
         props: {
@@ -83,11 +83,13 @@
                     $e.scrollAnimated = true
                     distance = this.$vuetify.breakpoint.smAndDown ? '80%' : '40%'
                     new TimelineMax()
+                        .call(Sound.playSound, ['slide', 0.22], Sound)
                         // .fromTo($iris, 0.5, {scale: 0.2}, {scale: 1, ease: Back.easeOut})
                         .to($left ? $left : $right, 1.59, {
                             x: $left ? '-' + distance : distance,
                             ease: Back.easeOut
                         }, '-=0')
+
                         // .to($iris.querySelector('.iris-1'), 0.36, {
                         //     rotation: 100,
                         //     transformOrigin: '50% 50%',

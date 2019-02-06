@@ -249,6 +249,17 @@
         align-items center
         display flex
 
+    .nested-menu::after
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-top: 6px solid #56a3ff;
+
     .jumbo-bot-arrow
         width 100%
         height: 300px;
