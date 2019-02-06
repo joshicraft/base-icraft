@@ -30,7 +30,7 @@
                                 IN NEED OF SOME BRANDED ITEMS?
                             </h1>
                             <h3 class="mb-4">
-                                We can provide a wide range of branded content creation or advertisement material.
+                                We can provide a wide range of branded content or advertisement material.
                             </h3>
                             <p>
                                 These include things like Logos, Flyer's, Menus, Business Cards, Banners and much much

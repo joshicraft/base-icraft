@@ -72,13 +72,14 @@ let paths = [
     {
         path: '/get-IT-training',
         name: 'ItSolutions',
-        text: "IT Solutions"
+        text: "IT Solutions",
+        noToolbar: true
     },
     {
         path: '/icrafts-portfolio',
         name: 'Portfolio',
         text: "Portfolio",
-        development: true
+        noToolbar: true
     },
     {
         path: '/contact-icraft',
