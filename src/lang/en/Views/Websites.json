@@ -65,7 +65,7 @@
         "icon": "mdi-cart",
         "name": "E-Commerce",
         "title": "It's all about selling product's online.",
-        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and other features."
+        "subTitle": "E-Commerce sites require something a bit more complicated than a standard business site. This is because it has to handle security features, integrated databases, invoicing and handling multiple products."
       },
       "high": {
         "icon": "mdi-gauge-full",

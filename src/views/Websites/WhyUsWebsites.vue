@@ -60,7 +60,7 @@
                                 <v-btn
                                         v-for="(title, j) in item.items"
                                         :class="{'primary': title.title === item.selected.title}"
-                                        @click="item.selected = title"
+                                        @click="selectItem(item, title)"
                                 >
                                     {{title.title}}
                                 </v-btn>
@@ -125,6 +125,10 @@
             }
         },
         methods: {
+            selectItem(item, title){
+                this.playSound('click', 0.3)
+                item.selected = title
+            },
             getSelected (items) {
                 let selected = items.find(item => item.selected)
                 return selected || items[0]
