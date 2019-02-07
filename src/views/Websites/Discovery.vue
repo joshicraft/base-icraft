@@ -33,7 +33,7 @@
                         class="d-flex fill-height _questions-bg"
                         height="100vh"
                 >
-                    <custom-questions :data="data.data" :matches="packages"></custom-questions>
+                    <custom-questions v-if=loaded :data="data.data" :matches="packages"></custom-questions>
                 </v-flex>
                 <!--</v-card>-->
             </v-flex>
@@ -45,6 +45,17 @@
 <script>
 
     export default {
+        data () {
+            return {
+                loaded: null
+            }
+        },
+        mounted(){
+            let $this = this
+            setTimeout(()=>{
+              $this.loaded = true
+          }, 1234)
+        },
         computed: {
 
             data() {
