@@ -50,8 +50,8 @@
 
 <style scoped lang="stylus">
 
-    $color-1 = #2a2a2a
-    $color-2 = #fafafa
+    $color-1 = rgb(232, 232, 232);
+    $color-2 = rgb(232, 232, 232)
 
 
     .section-arrow
@@ -84,7 +84,7 @@
             height: 100%
 
         svg
-            filter: drop-shadow( 0px 3px 6px rgba(0, 0, 0, .21));
+            //filter: drop-shadow( 0px 3px 6px rgba(0, 0, 0, .11));
 
         line
             stroke #5a5a5a
@@ -98,7 +98,7 @@
         polygon
             fill $color-1
         .v-icon
-            color $color-2
+            color black
         &:hover
             .v-icon
                 color $color-1
@@ -110,7 +110,7 @@
         polygon
             fill $color-2
         .v-icon
-            color $color-1
+            color black
         &:hover
             .v-icon
                 color $color-2
