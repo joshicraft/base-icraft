@@ -38,7 +38,7 @@
 <script>
     /* eslint-disable no-undef,spaced-comment */
     import {mapMutations, mapGetters} from 'vuex'
-    import CookieLaw from 'vue-cookie-law'
+    // import CookieLaw from 'vue-cookie-law'
     import animationLibrary from './plugins/gsap-animation-library'
     export default {
         data() {
@@ -50,7 +50,7 @@
                 lazyTriggered: null
             }
         },
-        components: { CookieLaw },
+        // components: { CookieLaw },
         mounted() {
             let $this = this;
             let timeLoad = new Date().getTime() - window.startLoadTime;
