@@ -221,7 +221,12 @@
             bottom: 0px
         &.left-p
             right initial
-            left 0px
+            left 0
+
+    .-border-btn
+        background transparent !important
+        border 2px solid white
+        color white !important
     .title-a
         max-width 999px
         margin-left auto
