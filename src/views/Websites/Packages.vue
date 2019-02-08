@@ -79,6 +79,7 @@
                                             </v-icon>
                                         </v-flex>
                                         <h3
+                                                class="font-weight-thin"
                                                 :class="$vuetify.breakpoint.smAndDown ? 'mt-2' : 'mt-4'"
                                         >
                                             {{ packageItem.price }}
@@ -93,9 +94,10 @@
                                         <v-list-group
                                                 append-icon="mdi-arrow-down"
                                                 v-model="packageItem.active"
+
                                                 expand
                                         >
-                                            <v-list-tile :ripple="true" slot="activator" @click="$vuetify.goTo(!packageItem.active ? '#packages-scroll-point' : '#packages')">
+                                            <v-list-tile :ripple="true" slot="activator" @click="goToID(!packageItem.active ? '#packages-scroll-point' : '#packages')">
                                                 <v-list-tile-content>
                                                     <h4>
                                                         {{!packageItem.active ? "SHOW PACKAGE" : "CLOSE"}}
@@ -134,7 +136,7 @@
             }
         },
         mounted () {
-          let s = 0
+          let s = 0;
           console.log(s)
         },
         computed: {

@@ -24,27 +24,27 @@ import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 // Sync store with router
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
-const myTransition = createSimpleTransition('my-transition')
+const myTransition = createSimpleTransition('my-transition');
 
-Vue.component('my-transition', myTransition)
+Vue.component('my-transition', myTransition);
 
-sync(store, router)
+sync(store, router);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 /* eslint-disable no-undef,spaced-comment */
 Vue.mixin({
     data() {
         return {
             webp: document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0,
             ext(type, thumb) {
-                type = type || 'jpg'
+                type = type || 'jpg';
                 return (thumb ? 'thumb/' : '') + (this.webp ? '.webp' : '.' + type)
             },
 
             submitToServer(data, method, path) {
-                data = JSON.stringify(data)
+                data = JSON.stringify(data);
                 return new Promise((resolve, reject) => {
-                    let api = process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : '/.netlify/functions'
+                    let api = process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : '/.netlify/functions';
                     fetch(api + path, {
                         method: method,
                         body: data
@@ -56,13 +56,13 @@ Vue.mixin({
                 })
             },
             imgC(name, img, ext, thumb, addPath) {
-                console.log(name)
-                let path = '/static/' + (addPath || '')
-                let size = ''
-                let bp = this.$vuetify.breakpoint
-                let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
+                console.log(name);
+                let path = '/static/' + (addPath || '');
+                let size = '';
+                let bp = this.$vuetify.breakpoint;
+                let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568];
                 if (img) {
-                    let width = img.getBoundingClientRect().width
+                    let width = img.getBoundingClientRect().width;
                     for (let i = 0; i < sizes.length; i++) {
                         if (sizes[i] < width) {
                             size = sizes[i]
@@ -89,16 +89,16 @@ Vue.mixin({
             currentBGColor: '#fafafa',
             secondBGColor: '#303030',
             getNameSpace() {
-                let nested = this.$route.matched[0] ? this.$route.matched[0].props.default.nestedPath : false
-                console.log(nested)
-                let nestedPath = nested ? nested.replace('/', '.') : this.$route.name
+                let nested = this.$route.matched[0] ? this.$route.matched[0].props.default.nestedPath : false;
+                console.log(nested);
+                let nestedPath = nested ? nested.replace('/', '.') : this.$route.name;
                 return this.$route.name ? nestedPath : 'Home'
             },
             inDevelopment(dev) {
                 return dev ? dev : process.env.NODE_ENV === 'development'
             },
             fullSizeBracket() {
-                let size = ''
+                let size = '';
                 if (window.innerWidth > 1600) {
                     size = 2000
                 } else if (window.innerWidth > 1200) {
@@ -114,14 +114,14 @@ Vue.mixin({
             },
             sounds: [],
             playSound(file, volume) {
-                let newSound
-                let found = this.sounds.find(sound => sound.id === file)
+                let newSound;
+                let found = this.sounds.find(sound => sound.id === file);
                 if (!found) {
                     newSound = {
                         id: file,
                         data: new Audio('/static/sound/' + file + '.mp3')
-                    }
-                    newSound.data.volume = volume || 1
+                    };
+                    newSound.data.volume = volume || 1;
                     this.sounds.unshift(newSound)
                 } else {
                     newSound = found
@@ -146,28 +146,28 @@ Vue.mixin({
                     }, function (e) {
                         console.log('Audio error! ', e);
                     });
-                }
+                };
                 request.send();
             },
             goToID(id) {
-                this.playSound('click', 0.3)
+                this.playSound('click', 0.3);
                 this.$vuetify.goTo(id)
             },
             goToAndScroll(to, delay, params) {
-                this.playSound('click', 0.3)
-                this.$router.push({name: to || '', params: params || {}})
+                this.playSound('click', 0.3);
+                this.$router.push({name: to || '', params: params || {}});
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight)
                 }, delay || 4000)
             },
             scroll() {
-                let current = window.pageYOffset
-                let pos = window.innerHeight
-                let tBHeight = document.querySelector('.v-toolbar')
-                tBHeight = tBHeight.getBoundingClientRect().height
-                pos = pos - tBHeight - current
-                this.scrolled = true
-                pos = pos + current
+                let current = window.pageYOffset;
+                let pos = window.innerHeight;
+                let tBHeight = document.querySelector('.v-toolbar');
+                tBHeight = tBHeight.getBoundingClientRect().height;
+                pos = pos - tBHeight - current;
+                this.scrolled = true;
+                pos = pos + current;
                 TweenMax.to(window, 0.7, {
                     onStart: ($this) => {
                         $this.scrolling = true
@@ -191,7 +191,7 @@ Vue.mixin({
             scrolled: false
         }
     }
-})
+});
 
 /* eslint-disable no-new */
 let main = new Vue({
@@ -199,6 +199,6 @@ let main = new Vue({
     router,
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
 
 
