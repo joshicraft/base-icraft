@@ -103,7 +103,7 @@
             .v-icon
                 color $color-1
             polygon
-                fill $color-2
+                fill black
 
     .prev-arrow
         top 0
@@ -116,7 +116,7 @@
                 color $color-2
 
             polygon
-                fill $color-1
+                fill black
 
 
     .first-arrow
