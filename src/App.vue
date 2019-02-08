@@ -104,6 +104,7 @@
                 }(document, 'script', 'facebook-jssdk'))
             },
             goToContact () {
+                this.playSound('click', 0.3)
                 this.$router.push({name:'Contact'});
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })

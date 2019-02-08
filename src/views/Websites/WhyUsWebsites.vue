@@ -13,15 +13,34 @@
                         ICRAFT was started in 2018 by Joshua Scorrar.
                     </p>
                     <p>
-                        Josh has over 5 Years as a Front-End developer for an start-up company, the roles included
+                        Josh has over 5 Years as a Front-End developer for an start-up, the roles included
                         building a start-of-the-art user interface using cutting edge Design and UX techniques.
                         It was here he discovered how to blend a range of software tools to reduce hosting costs, adopt
                         the latest front-end frameworks and get insights on other disciplinary skills including
                         Business, Marketing and Design.
                     </p>
+                    <h1 class="my-4">
+                        VALUES
+                    </h1>
+                    <h3>
+                        Truth.
+                    </h3>
                     <p>
-                        He also has a diploma in Visual Arts from M.I.T and Degree in Creative Technologies from A.U.T.
-                        It was here he learnt about a variety of creative techniques in the design and software fields.
+                    </p>
+                    <h3>
+                        Trust.
+                    </h3>
+                    <p>
+                    </p>
+                    <h3>
+                        Responsibility.
+                    </h3>
+                    <p>
+                    </p>
+                    <h3>
+                        Compassion.
+                    </h3>
+                    <p>
                     </p>
                 </v-flex>
             </v-layout>

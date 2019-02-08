@@ -149,8 +149,12 @@ Vue.mixin({
                 }
                 request.send();
             },
+            goToID(id) {
+                this.playSound('click', 0.3)
+                this.$vuetify.goTo(id)
+            },
             goToAndScroll(to, delay, params) {
-                this.playSound('click')
+                this.playSound('click', 0.3)
                 this.$router.push({name: to || '', params: params || {}})
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight)

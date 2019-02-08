@@ -58,7 +58,7 @@
                             <div class="mt-5">
                                 <v-btn
                                         class="primary ml-0 mr-3"
-                                        @click="$vuetify.goTo('#finding')"
+                                        @click="goToID('#finding')"
                                 >
                                     FIND A WEBSITE
                                 </v-btn>
@@ -108,13 +108,13 @@
                         <div class="mt-5">
                             <v-btn
                                     class="primary ml-0 mr-3"
-                                    @click="$vuetify.goTo('#discovery')"
+                                    @click="goToID('#discovery')"
                             >
                                 HELP ME CHOOSE
                             </v-btn>
                             <v-btn
                                     class="primary ml-0 mr-3"
-                                    @click="$vuetify.goTo('#packages')"
+                                    @click="goToID('#packages')"
                             >
                                 find a package
                             </v-btn>
