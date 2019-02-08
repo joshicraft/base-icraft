@@ -224,9 +224,9 @@
             left 0
 
     .-border-btn
-        background transparent !important
-        border 2px solid white
-        color white !important
+        background: #ffffff1c !important;
+        border: 1px solid #ffffff14;
+        color: #fff !important;
     .title-a
         max-width 999px
         margin-left auto
@@ -264,7 +264,7 @@
         height: 2px;
         border-left: 50px solid transparent;
         border-right: 50px solid transparent;
-        border-top: 6px solid #56a3ff;
+        border-top: 6px solid #03a9f4;
 
     .jumbo-bot-arrow
         width 100%

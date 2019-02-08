@@ -33,10 +33,10 @@
                                 <h1 class="mb-3">{{title}}</h1>
                                 <h4>{{subTitle}}</h4>
                                 <v-btn
-
-                                       class="mt-5 -border-btn"
+                                        large
+                                        class="font-weight-bold mt-5 -border-btn"
                                         @click="goToID('#view')"
-                                >MORE HERE</v-btn>
+                                >START</v-btn>
                             </v-layout>
                     </v-layout>
                 </v-container>
