@@ -10,7 +10,35 @@
         ]
 
  */
+/*
+   {
+        path: '/get-IT-training',
+        name: 'ItSolutions',
+        text: "IT Solutions",
+        noToolbar: true
+    },
 
+    ,
+    {
+      "name": "it solutions",
+      "title": "IMPROVE YOUR WORKFLOW TOOLS",
+      "text": "This modern age is full of helpful tools to help you focus on what you do best. ICRAFT can help find the right tools for you.",
+      "img": "it-training",
+      "button": "MORE HERE",
+      "to": "ItSolutions"
+    }
+
+                {
+                path: 'business-website-questions',
+                name: 'InfoQuestionnaire',
+                text: "Questionnaire",
+                nestedPath: 'Websites',
+                noToolbar: true
+            },
+
+
+
+ */
 let paths = [
     {
         path: '',
@@ -22,13 +50,7 @@ let paths = [
         name: 'Websites',
         text: "Websites",
         nestedItems: [
-            {
-                path: 'business-website-questions',
-                name: 'InfoQuestionnaire',
-                text: "Questionnaire",
-                nestedPath: 'Websites',
-                noToolbar: true
-            },
+
             {
                 path: 'discover-the-website-for-you',
                 name: 'Discovery',
@@ -69,12 +91,7 @@ let paths = [
         name: 'Branding',
         text: "Branding"
     },
-    {
-        path: '/get-IT-training',
-        name: 'ItSolutions',
-        text: "IT Solutions",
-        noToolbar: true
-    },
+
     {
         path: '/icrafts-portfolio',
         name: 'Portfolio',
