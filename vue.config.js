@@ -38,7 +38,7 @@ module.exports = {
         config.plugin('vuetify-loader')
             .use(VuetifyLoaderPlugin);
         // config.plugin('workbox')
-        config.plugins.delete('prefetch')
+        // config.plugins.delete('prefetch')
         if (process.env.npm_config_argv.indexOf('--report') != -1) {
             config.plugin('webpack-bundle-analyzer')
                 .use(BundleAnalyzerPlugin);
