@@ -65,7 +65,7 @@
                 document.getElementById('home-loader').classList.add('hide-');
                 $this.setLazyLoaded(true);
                 $this.setLoader(true)
-            }, timeLoad < 1000 ? 1000 : timeLoad)
+            }, timeLoad < 1000 ? 1000 : 1500)
             // setTimeout(this.mountFBChat, 4000)
 
         },
