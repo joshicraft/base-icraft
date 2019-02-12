@@ -32,6 +32,7 @@
                             >
                                 <h1 class="mb-3">{{title}}</h1>
                                 <h4>{{subTitle}}</h4>
+                                <p class="mt-3" v-if="subSubTitle">{{subSubTitle}}</p>
                                 <v-btn
                                         large
                                         class="font-weight-bold mt-5 -border-btn"
@@ -90,6 +91,11 @@
             },
             subTitle() {
                 return this.$t('Views.' + this.namespace + '.jumbotronSubTitle')
+            },
+            subSubTitle() {
+                let str = 'Views.' + this.namespace + '.jumbotronSubSubTitle'
+                let data = this.$t(str);
+                return data !== str ? data : false
             },
             heroVideo() {
                 let path = '/static/video/'

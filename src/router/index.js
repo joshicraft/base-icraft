@@ -12,6 +12,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
 
+//     /** webpackPrefetch: false */
 
 
 // Routes
@@ -29,7 +30,7 @@ function route(path, parentPath) {
         name: path.name,
         nested: path.nestedItems,
         props: parentPath ? {nestedPath: dirPath} : {},
-        component: (resovle) => import(/** webpackPrefetch: false */
+        component: (resovle) => import(
             `@/views/${dirPath}.vue`
             ).then(resovle)
 

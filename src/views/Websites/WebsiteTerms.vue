@@ -15,20 +15,18 @@
             questions you might have.
         </p>
         <p>
-            As an aside well done for reading our terms and conditions, for some the fine print is just a waste of space
+            Well done for reading our terms and conditions, for some the fine print is just a waste of space
             but
             here at ICRAFT we encourage our clients to check their options, shop around, get quotes and educate
             themselves
-            to protect against being swindled – unfortunately there are unsavoury operations out there (stick with the
-            savoury kind). Now that we’ve got you thinking about sausage rolls, read on…
+            to protect against being taken advantage of :(.
         </p>
         <h2 class="mb-2">
             Payment
         </h2>
         <p>
             In most cases, projects are divided into two payments – the initial deposit and the remaining balance due
-            once
-            the project has been completed. In some cases, such as extended projects, we may require progress payments.
+            once the project has been completed. In some cases, such as extended projects, we may require progress payments.
         </p>
         <p>
             Payments can be made by internet banking or online. Click here to pay now.

@@ -35,6 +35,36 @@
   },
   "selected": {
   },
+  "values": [
+    {
+      "title": "Truth",
+      "definition": "The body of real things, events, and facts : ACTUALITY",
+      "definitionLink": "https://www.merriam-webster.com/dictionary/truth",
+      "example": "“Don't bend; don't water it down; don't try to make it logical; don't edit your own soul according to the fashion. Rather, follow your most intense obsessions mercilessly.” ― Franz Kafka",
+      "exampleLink": "https://www.goodreads.com/quotes/tag/truth-telling"
+    },
+    {
+      "title": "Trust",
+      "definition": "Assured reliance on the character, ability, strength, or truth of someone or something",
+      "definitionLink": "https://www.merriam-webster.com/dictionary/trust",
+      "example": "“Put not your trust in money, but put your money in trust.” — Oliver Wendell Holmes, The Autocrat of the Breakfast-Table, 1858",
+      "exampleLink": "https://www.merriam-webster.com/dictionary/trust"
+    },
+    {
+      "title": "Responsibility",
+      "definition": "Something that it is your job or duty to deal with: the state or fact of having a duty to deal with something or of having control over someone.",
+      "definitionLink": "https://dictionary.cambridge.org/dictionary/english/responsibility",
+      "example": "“You cannot escape the responsibility of tomorrow by evading it today.” ― Abraham Lincoln",
+      "exampleLink": "https://www.brainyquote.com/quotes/abraham_lincoln_101733?src=t_responsibility"
+    },
+    {
+      "title": "Compassion",
+      "definition": "Sympathetic consciousness of others' distress together with a desire to alleviate it.",
+      "definitionLink": "https://www.merriam-webster.com/dictionary/compassion",
+      "example": "“Be kind, for everyone you meet is fighting a harder battle.” ― Plato",
+      "exampleLink": "https://www.goodreads.com/quotes/tag/compassion"
+    }
+  ],
   "items": [
     {
       "title": "Design",

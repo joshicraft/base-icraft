@@ -50,8 +50,8 @@
 
 <style scoped lang="stylus">
 
-    $color-1 = rgb(232, 232, 232);
-    $color-2 = rgb(232, 232, 232)
+    $color-1 = rgb(212, 212, 212);
+    $color-2 = rgb(212, 212, 212)
 
 
     .section-arrow
