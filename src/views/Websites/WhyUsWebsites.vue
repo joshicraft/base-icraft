@@ -23,15 +23,15 @@
                 <v-img class="full-height" lg6 src="/static/josh2.jpg"></v-img>
             </v-layout>
         </div>
-        <div class="relative _bg-color-b pb-5 -view-height column" >
+        <div id="values" class="relative _bg-color-b -view-height column" >
             <ui-section-nav-arrow :index="1" direction="prev"></ui-section-nav-arrow>
             <ui-section-nav-arrow :index="1" direction="next"></ui-section-nav-arrow>
-            <v-layout justify-center column class="text-lg-center quad">
+            <v-layout justify-center column class="text-lg-center quad mb-5">
                 <h1 class="my-4">
                     VALUES
                 </h1>
                 <p>
-                    To avoid an showey sell, I'll provide some definitions and examples or quotes of the values
+                    To avoid the showey sell, I'll provide some definitions and examples or quotes of the values
                     that ICRAFT aim's to reflect.
                 </p>
             </v-layout>
@@ -210,6 +210,12 @@
 
 </style>
 <style scoped lang="stylus">
+
+    #values
+        padding-top: 10vh
+        padding-bottom 10vh
+        height auto
+        min-height 100vh
 
     .c-dark
         color: white
