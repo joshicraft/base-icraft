@@ -1,11 +1,11 @@
 <template>
     <div>
         <!--<error-in-development></error-in-development>-->
-        <div class="relative -arrow-buffer-top _bg-color-a pb-5 -view-height overflow-hidden">
+        <div class="relative _bg-color-a -view-height overflow-hidden pb-0">
             <ui-section-nav-arrow :index="0" direction="prev"></ui-section-nav-arrow>
             <ui-section-nav-arrow :index="0" direction="next"></ui-section-nav-arrow>
-            <v-layout row justify-center align-center class="px-4">
-                <v-flex lg6 class="title-a  pa-5">
+            <v-layout row justify-center align-center class="side-by-side">
+                <v-flex lg6 class="_floating-blerb title-a pa-5">
                     <h1 class="mb-4">
                         ABOUT ICRAFT
                     </h1>
@@ -26,7 +26,7 @@
         <div id="values" class="relative _bg-color-b -view-height column" >
             <ui-section-nav-arrow :index="1" direction="prev"></ui-section-nav-arrow>
             <ui-section-nav-arrow :index="1" direction="next"></ui-section-nav-arrow>
-            <v-layout justify-center column class="text-lg-center quad mb-5">
+            <v-layout justify-center column class="text-lg-center quad mb-5  mx-4">
                 <h1 class="my-4">
                     VALUES
                 </h1>
@@ -43,7 +43,7 @@
                         justify-center
                         v-for="(val, v) in data.values"
                         sm6
-                        class="pa-5"
+                        class="py-5 px-4"
                         :dark="v%2===0"
                         :class="getCBGColor(v)"
                 >
@@ -211,9 +211,15 @@
 </style>
 <style scoped lang="stylus">
 
+    .-view-height
+        min-height 100vh
+    .v-image
+        width 50%
+        height 100vh
+
     #values
         padding-top: 10vh
-        padding-bottom 10vh
+        /*padding-bottom 10vh*/
         height auto
         min-height 100vh
 
@@ -237,8 +243,6 @@
     .__auto-height
         height auto
 
-    .-view-height
-        height 100vh
         /*max-height 700px*/
     .column
         flex-direction column
@@ -299,4 +303,35 @@
             background lighten($c-color-2, 10%)
 
 
+    @media (orientation: portrait)
+        .side-by-side
+            flex-direction column
+
+        .v-image
+            width 100%
+
+        ._floating-blerb
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+            background: #e6e6e6eb;
+            margin: 30px;
+            margin-bottom: 50px;
+            left: 0;
+            right: 0;
+
+    @media (orientation:landscape) and (max-height:450px)
+        ._floating-blerb
+            margin-top 100px
+
+    @media (orientation:portrait) and (max-width:450px), (orientation:landscape) and (max-height:450px)
+        .side-by-side
+
+            /*height 150vh*/
+        ._floating-blerb
+
+            background: #e6e6e6c0;
+            padding: 20px !important;
+            font-size: 12px;
+            margin-bottom:40px;
 </style>
