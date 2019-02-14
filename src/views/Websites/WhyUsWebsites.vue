@@ -68,73 +68,47 @@
 
         </div>
         <div
-                class="relative -view-height py-5"
+                class="relative -view-height py-5 column"
                 :class="i%2===0 ? '_bg-color-b' : '_bg-color-a'"
                 v-for="(item, i) in data.items"
         >
             <ui-section-nav-arrow :index="1" direction="prev"></ui-section-nav-arrow>
             <ui-section-nav-arrow :index="1" direction="next"></ui-section-nav-arrow>
-            <v-container>
-                <div class="title-a">
+
+                <div class="title-a mt-5">
                     <h1 class="text-lg-center text-uppercase mb-5">{{item.title}}</h1>
                 </div>
+
                 <v-layout
-                        lg6
-                        sm12
+                        align-center
+                        class="px-4"
                         :class="$vuetify.breakpoint.smAndDown ? 'column' : 'row'"
-                        d-flex
                 >
+
                     <v-flex
                             lg6
                             sm12
-                            :class="$vuetify.breakpoint.smAndDown ? '__auto-height' : '__c-height'"
-
-
+                            v-for="(content, j) in item.items"
                     >
-                        <!--<v-list>-->
-                        <!--<v-list-tile-->
-                        <!--v-for="(title, j) in item.items"-->
-                        <!--&gt;-->
-                        <div class="__btn-wrapper"
-                             :class="$vuetify.breakpoint.smAndDown ? '' : ''"
-                        >
-                            <v-btn
-                                    v-for="(title, j) in item.items"
-                                    :class="{'primary': title.title === item.selected.title}"
-                                    @click="selectItem(item, title)"
-                            >
-                                {{title.title}}
-                            </v-btn>
-                        </div>
-                        <!--</v-list-tile>-->
-                        <!--</v-list>-->
-                    </v-flex>
-
-                    <v-flex lg6 sm12>
                         <v-layout
                                 :class="$vuetify.breakpoint.smAndDown ? '__auto-height' : '__c-height'"
-                                justify-center
-                                align-center
                         >
                             <v-flex
                                     class="title-a"
                                     :class="$vuetify.breakpoint.smAndDown ? 'py-4' : 'pa-5'"
-
                             >
                                 <div
                                         v-if="item.selected"
                                 >
                                     <h2 class="mb-3">
-                                        {{item.selected.title}}
+                                        {{content.title}}
                                     </h2>
-                                    <div v-html="item.selected.content"></div>
+                                    <div v-html="content.content"></div>
                                 </div>
                             </v-flex>
-
                         </v-layout>
                     </v-flex>
                 </v-layout>
-            </v-container>
         </div>
     </div>
 
