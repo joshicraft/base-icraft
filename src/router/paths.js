@@ -95,8 +95,7 @@ let paths = [
     {
         path: '/get-IT-training',
         name: 'ItSolutions',
-        text: "IT Solutions",
-        noToolbar: true
+        text: "IT Solutions"
     },
     {
         path: '/icrafts-portfolio',
