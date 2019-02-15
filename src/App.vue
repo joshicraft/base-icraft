@@ -38,7 +38,7 @@
 <script>
     /* eslint-disable no-undef,spaced-comment */
     import {mapMutations, mapGetters} from 'vuex'
-    // import CookieLaw from 'vue-cookie-law'
+    import CookieLaw from 'vue-cookie-law'
     import animationLibrary from './plugins/gsap-animation-library'
     export default {
         data() {
