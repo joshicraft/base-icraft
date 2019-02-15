@@ -1,135 +1,30 @@
 <template>
-    <error-in-development></error-in-development>
-    <!--<v-container-->
-            <!--grid-list-lg-->
-            <!--pa-0-->
-            <!--pb-4-->
-            <!--d-flex-->
-            <!--justify-center-->
-            <!--align-center-->
-            <!--class="max-view-width"-->
-            <!--v-if="loadPoint(1)"-->
-    <!--&gt;-->
-        <!--<v-layout-->
-                <!--row-->
-                <!--wrap-->
-                <!--justify-center-->
-                <!--align-start-->
-                <!--:class="[{'offset-4-grid': $vuetify.breakpoint.lgAndUp}, $vuetify.breakpoint.smAndUp ? 'pa-5' : 'pa-1']"-->
-        <!--&gt;-->
-            <!--<v-flex-->
-                    <!--mb-3-->
-                    <!--v-for="(service, i) in items"-->
-                    <!--:class="[$vuetify.breakpoint.smAndDown ? 'pa-2' : '']"-->
-                    <!--:key="i"-->
-                    <!--justify-space-between-->
-                    <!--align-content-space-between-->
-                    <!--d-flex-->
-                    <!--v-if="loadPoint(2)"-->
-            <!--&gt;-->
-                <!--<v-flex light class="pa-3">-->
-                    <!--<v-img-->
-                            <!--:alt="service.image"-->
-                            <!--class="relative pack-img"-->
-                            <!--:src="service.image"-->
-
-                    <!--&gt;-->
-
-                        <!--<v-layout-->
-                                <!--class="z1 pa-5 title-1 d-flex"-->
-                                <!--column-->
-                                <!--fill-height-->
-
-                                <!--wrap-->
-                        <!--&gt;-->
-                            <!--<v-flex lg6 sm12  fill-height>-->
-                                <!--<v-layout column justify-center fill-height>-->
-                            <!--<v-card-title class="white&#45;&#45;text">-->
-                                <!--<h1>{{ service.name }}</h1>-->
-                            <!--</v-card-title>-->
-                            <!--<v-card-title class="white&#45;&#45;text">-->
-                                <!--<h3 class="">{{ service.subTitle }}</h3>-->
-                            <!--</v-card-title>-->
-                            <!--<v-card-title class="white&#45;&#45;text">-->
-                                <!--<p class="">{{ service.disclaimer }}</p>-->
-                            <!--</v-card-title>-->
-                                <!--</v-layout>-->
-                            <!--</v-flex>-->
-                        <!--</v-layout>-->
-                        <!--<div class="bg-gradient"></div>-->
-                        <!--<custom-background-vector>-->
-                        <!--</custom-background-vector>-->
-                        <!--<custom-background-vector position="top" flip="flip-x">-->
-                        <!--</custom-background-vector>-->
-                    <!--</v-img>-->
-                    <!--<h1 class="my-5">PACKAGES</h1>-->
-                    <!--<v-layout row wrap mt-4>-->
-
-                        <!--<v-flex-->
-                                <!--lg3-->
-                                <!--md3-->
-                                <!--sm12-->
-                                <!--v-for="(packageItem, p) in service.items"-->
-                                <!--:key="p"-->
-                                <!--v-if="loadPoint(3)"-->
-                        <!--&gt;-->
-
-                            <!--<v-card-->
-                                    <!--md6-->
-                                    <!--dark-->
-                                    <!--class="elevation-6 column"-->
-                            <!--&gt;-->
-                                <!--<custom-bg-vector-corner :fill="firstBGColor" width="100px" height="92px"></custom-bg-vector-corner>-->
-                                <!--<div class="top-content pt-4 pl-4 pr-4 pb-1">-->
-                                    <!--<v-flex row >-->
-                                        <!--<h1 :class="packageItem.iconColor + '&#45;&#45;text'">{{ packageItem.name }}</h1>-->
-                                        <!--<v-icon mt-2 large :color="packageItem.iconColor">{{ packageItem.icon }}</v-icon>-->
-                                    <!--</v-flex>-->
-                                        <!--<h3 class="mt-4">{{ packageItem.price }}</h3>-->
-                                        <!--<p class="mt-4">{{ packageItem.title }}</p>-->
-
-                                <!--</div>-->
-                                <!--<v-list two-line class="list">-->
-                                    <!--<v-list-group-->
-                                            <!--append-icon="mdi-arrow-down"-->
-                                            <!--v-model="packageItem.active"-->
-                                            <!--expand-->
-
-                                    <!--&gt;-->
-
-                                        <!--<v-list-tile :ripple="true" slot="activator">-->
-
-                                            <!--<v-list-tile-content>-->
-
-                                                <!--&lt;!&ndash;<h1 ></h1>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;<h2>{{ i.title }}</h2>&ndash;&gt;-->
-                                                <!--<h4>{{!packageItem.active ? "SHOW PACKAGE" : "CLOSE"}}</h4>-->
-                                            <!--</v-list-tile-content>-->
-                                        <!--</v-list-tile>-->
-
-                                        <!--<v-list-tile-->
-                                                <!--v-for="subItem in packageItem.items"-->
-                                                <!--:key="subItem.text"-->
-                                                <!--v-if="loadPoint(4)"-->
-                                        <!--&gt;-->
-
-                                            <!--<v-list-tile-action>-->
-                                                <!--<v-icon>{{ subItem.icon }}</v-icon>-->
-                                            <!--</v-list-tile-action>-->
-                                            <!--<v-list-tile-content>-->
-                                                <!--<v-list-tile-title>{{ subItem.text }}</v-list-tile-title>-->
-                                            <!--</v-list-tile-content>-->
-
-                                        <!--</v-list-tile>-->
-                                    <!--</v-list-group>-->
-                                <!--</v-list>-->
-                            <!--</v-card>-->
-                        <!--</v-flex>-->
-                    <!--</v-layout>-->
-                <!--</v-flex>-->
-            <!--</v-flex>-->
-        <!--</v-layout>-->
-    <!--</v-container>-->
+    <div>
+        <h1>
+            How these useful tools can help with productivity!
+        </h1>
+        <p>
+            One helpful service we can provide for you is in the service of IT Solutions. Now you may be wonder what is that? Well, its a range of software tools that can help you or your team improve productivity, collaboration, and versatility.
+        </p>
+        <p>
+            Personally I’ve been using these tools for more than 10 years now, and they’ve been very helpful in organizing my data, creating quick and easy documents and much much more. By now, you may be wondering what are these tools? Well, they’re made by Google! Yes, that massive multi-billion dollar company that basically own the portal to all the world's information, this means you don’t need to worry about them going out of business any time soon.
+        </p>
+        <p>
+            I can teach you and or your team how to integrate these tools on many devices and set them up in a way that improves the security of all your sensitive information, we don’t want any nasties getting access to that!
+        </p>
+        <p>
+            Some examples of these tools that can be easily shared, stored, accessed, printed, emailed and downloaded are…
+        </p>
+        <ul>
+            <li>Create quick and easy word documents that look good and are super fast to get up and running. </li>
+            <li>Build powerful yet easy to use Spread Sheets that can be used for financial documents, stock lists or anything that involves lots of numbers and data. </li>
+            <li>Store or back-up your files on the cloud so that anyone who you choose can have access to from any location at any time. </li>
+            <li>Create secure group chats or make video calls and easily stay in touch with your team.</li>
+            <li>Organize your team and keep them up-to-date through events, milestones, and reminders so that everyone stays on the same page.</li>
+            <li>Create work-boards to help your team to organize and prioritize your projects in a fun, flexible and rewarding way.</li>
+            <li>Adopt an advanced email system that offers a bunch of cool features to help get you or your team to get through their emails faster with less effort. </li>
+        </ul>
+    </div>
 </template>
 
 <script>

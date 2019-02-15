@@ -93,6 +93,12 @@ let paths = [
     },
 
     {
+        path: '/get-IT-training',
+        name: 'ItSolutions',
+        text: "IT Solutions",
+        noToolbar: true
+    },
+    {
         path: '/icrafts-portfolio',
         name: 'Portfolio',
         text: "Portfolio",
