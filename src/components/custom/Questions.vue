@@ -59,10 +59,10 @@
                         <v-list-tile
                                 v-for="(option, c) in data.questions[n-1].options"
                                 :key="c"
-                                @click="playSound('click', 0.2)"
+
                         >
                             <v-checkbox
-
+                                    @change="playSound('click', 0.2)"
                                     :class="{'ma-4': $vuetify.breakpoint.smAndUp}"
                                     class="pa-0 ma-2 no-message"
                                     v-model="option.checked"

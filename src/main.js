@@ -113,9 +113,10 @@ Vue.mixin({
                 return size + '/'
             },
             sounds: [],
-            playSound(file, volume) {
+            playSound(file, volume, check) {
                 let newSound;
                 let found = this.sounds.find(sound => sound.id === file);
+
                 if (!found) {
                     newSound = {
                         id: file,
