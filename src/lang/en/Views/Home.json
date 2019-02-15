@@ -28,6 +28,14 @@
       "img": "b-card",
       "button": "LEARN MORE",
       "to": "Branding"
+    },
+    {
+      "name": "it solutions",
+      "title": "IMPROVE YOUR WORKFLOW TOOLS",
+      "text": "This modern age is full of helpful tools to help you focus on what you do best. ICRAFT can help find the right tools for you.",
+      "img": "it-training",
+      "button": "MORE HERE",
+      "to": "ItSolutions"
     }
 
   ],
