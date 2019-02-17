@@ -6,21 +6,16 @@
                     How these useful tools can help with productivity!
                 </h1>
                 <p>
-                    One helpful service we can provide for you is IT Solutions. Now you may be wonder what the heck is
-                    that? Well, its a range of software tools that can help you or your team improve productivity,
-                    collaboration, and versatility.
+                    ICRAFT can provide your business with a range of software tools that can help you or your team improve productivity, collaboration, and versatility.
                 </p>
                 <p>
-                    Personally I’ve been using these tools for more than 10 years now, and they’ve been very helpful in
-                    organizing my data, creating quick and easy documents, managing emails effectively and much much more. By now, you may be
-                    wondering what are these tools? Well, they’re made by Google! Yes, that massive multi-billion dollar
-                    company that basically owns the portal to all the world's information. This means you don’t need to
-                    worry about them going out of business any time soon.
+                    I’ve been using these tools for many years for organizing my data, creating quick and easy documents and much much more. These are world renowned Google products, supported by billions of dollars worth of investment.
                 </p>
                 <p>
-                    I can teach you and or your team how to integrate these tools on many devices and set them up in a
-                    way that improves the security of all your sensitive information, we don’t want any nasties getting
-                    access to that!
+                    I can personally coach you and or your team how to integrate these products on multiple devices and set them up in a way that improves the security of all your sensitive information.
+                </p>
+                <p>
+                    ICRAFT is committed to protecting your information.
                 </p>
                 <p>
                     Some examples of these tools that can be easily shared, stored, accessed, printed, emailed and

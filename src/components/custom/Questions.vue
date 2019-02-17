@@ -164,14 +164,14 @@
                                     <v-btn
                                             class="text-lg-left ml-0 mt-5"
                                             color="primary"
-                                            @click="goToAndScroll('Packages')"
+                                            @click="goToAndScroll('Packages', undefined, {result: results.name})"
                                     >
                                         Check {{results.name}} out
                                     </v-btn>
                                     <v-btn
                                             class="text-lg-left ml-0 mt-5"
                                             color="primary"
-                                            @click="goToAndScroll('Contact', undefined, {result: results.resultsMatch})"
+                                            @click="goToAndScroll('Contact', undefined, {result: results.name})"
                                     >
                                         GET IN TOUCH
                                         <v-icon right>mdi-phone</v-icon>
@@ -181,7 +181,7 @@
                                         :class="{'display-none': $vuetify.breakpoint.mdAndDown}"
                                         class="mb-2 ml-5 mr-0 lg-6 results-anim"
                                         size="300"
-                                        @click="$vuetify.goTo('#packages')"
+                                        @click="goToAndScroll('Packages', undefined, {result: results.name})"
                                         :color="results.iconColor"
                                 >
                                     <!--{{resultsIcon()}}-->

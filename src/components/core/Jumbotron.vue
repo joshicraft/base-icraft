@@ -34,10 +34,11 @@
                                 <h4>{{subTitle}}</h4>
                                 <p class="mt-3" v-if="subSubTitle">{{subSubTitle}}</p>
                                 <v-btn
+                                        
                                         large
-                                        class="font-weight-bold mt-5 -border-btn"
+                                        class="font-weight-bold mt-5 -border-btn elevation-19"
                                         @click="goToID('#view')"
-                                >START</v-btn>
+                                >IGNITION</v-btn>
                             </v-layout>
                     </v-layout>
                 </v-container>

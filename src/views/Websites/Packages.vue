@@ -69,10 +69,11 @@
                                                 {{packageItem.name }}
                                             </h1>
                                             <v-icon
+                                                    v-model="resultName"
                                                     mt-2
                                                     :size="$vuetify.breakpoint.smAndDown ? '100px' : '150px'"
                                                     class="anim-icon"
-                                                    :class="{'animate': resultName === packageItem.name.toLowerCase()}"
+                                                    :class="{'animate' : resultName.toLowerCase() === packageItem.name.toLowerCase()}"
                                                     :color="packageItem.iconColor"
                                             >
                                                 {{packageItem.icon}}
@@ -97,7 +98,8 @@
 
                                                 expand
                                         >
-                                            <v-list-tile :ripple="true" slot="activator" @click="goToID(!packageItem.active ? '#packages-scroll-point' : '#packages')">
+                                            <v-list-tile :ripple="true" slot="activator"
+                                                         @click="goToID(!packageItem.active ? '#packages-scroll-point' : '#packages')">
                                                 <v-list-tile-content>
                                                     <h4>
                                                         {{!packageItem.active ? "SHOW PACKAGE" : "CLOSE"}}
@@ -130,22 +132,26 @@
 
 <script>
     export default {
-        data(){
+        data() {
             return {
-                resultName: ''
+                resultName: this.$route.params.result || ''
             }
         },
-        mounted () {
-          let s = 0;
-          console.log(s)
-        },
         computed: {
+            getPackageSelected(name){
+                let result = this.resultName
+                if(!result){
+                    return ''
+                }
+                return  result.toLowerCase() === name.toLowerCase() ? 'animate' : ''
+            },
+
             data() {
                 return this.$t('Views.' + this.getNameSpace())
             }
         },
         methods: {
-            hoverPackage () {
+            hoverPackage() {
                 this.resultName = ''
             }
         }
