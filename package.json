@@ -82,6 +82,7 @@
   },
   "dependencies": {
     "gsap": "^2.0.2",
+    "mongoose": "^5.4.13",
     "vue-cookie-law": "^1.8.0",
     "vue-scroll": "^2.1.9"
   }

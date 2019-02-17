@@ -17175,8 +17175,7 @@ const extractCommand = command => {
     }
 
     Object.keys(LEGACY_FIND_OPTIONS_MAP).forEach(key => {
-      if (typeof command.options[key] !== 'undefined')
-        result[LEGACY_FIND_OPTIONS_MAP[key]] = command.options[key];
+      if (typeof command[key] !== 'undefined') result[LEGACY_FIND_OPTIONS_MAP[key]] = command[key];
     });
 
     OP_QUERY_KEYS.forEach(key => {
@@ -17394,7 +17393,7 @@ var OPTS_EXHAUST = 64;
 var OPTS_PARTIAL = 128;
 
 // Response flags
-var CURSOR_NOT_FOUND = 0;
+var CURSOR_NOT_FOUND = 1;
 var QUERY_FAILURE = 2;
 var SHARD_CONFIG_STALE = 4;
 var AWAIT_CAPABLE = 8;
@@ -17417,9 +17416,6 @@ var Query = function(bson, ns, query, options) {
   this.bson = bson;
   this.ns = ns;
   this.query = query;
-
-  // Ensure empty options
-  this.options = options || {};
 
   // Additional options
   this.numberToSkip = options.numberToSkip || 0;
@@ -20810,8 +20806,8 @@ const mongoErrorContextSymbol = __webpack_require__(/*! ./error */ "../node_modu
 const f = __webpack_require__(/*! util */ "util").format;
 const collationNotSupported = __webpack_require__(/*! ./utils */ "../node_modules/mongodb-core/lib/utils.js").collationNotSupported;
 
-var BSON = retrieveBSON(),
-  Long = BSON.Long;
+const BSON = retrieveBSON();
+const Long = BSON.Long;
 
 /**
  * This is a cursor results callback
@@ -20907,7 +20903,8 @@ var Cursor = function(bson, ns, cmd, options, topology, topologyOptions) {
     batchSize: options.batchSize || cmd.batchSize || 1000,
     currentLimit: 0,
     // Result field name if not a cursor (contains the array of results)
-    transforms: options.transforms
+    transforms: options.transforms,
+    raw: options.raw || (cmd && cmd.raw)
   };
 
   if (typeof options.session === 'object') {
@@ -21011,129 +21008,9 @@ var handleCallback = function(callback, err, result) {
 };
 
 // Internal methods
-Cursor.prototype._find = function(callback) {
-  var self = this;
-
-  if (self.logger.isDebug()) {
-    self.logger.debug(
-      f(
-        'issue initial query [%s] with flags [%s]',
-        JSON.stringify(self.cmd),
-        JSON.stringify(self.query)
-      )
-    );
-  }
-
-  var queryCallback = function(err, r) {
-    if (err) return callback(err);
-
-    // Get the raw message
-    var result = r.message;
-
-    // Query failure bit set
-    if (result.queryFailure) {
-      return callback(new MongoError(result.documents[0]), null);
-    }
-
-    // Check if we have a command cursor
-    if (
-      Array.isArray(result.documents) &&
-      result.documents.length === 1 &&
-      (!self.cmd.find || (self.cmd.find && self.cmd.virtual === false)) &&
-      (typeof result.documents[0].cursor !== 'string' ||
-        result.documents[0]['$err'] ||
-        result.documents[0]['errmsg'] ||
-        Array.isArray(result.documents[0].result))
-    ) {
-      // We have a an error document return the error
-      if (result.documents[0]['$err'] || result.documents[0]['errmsg']) {
-        return callback(new MongoError(result.documents[0]), null);
-      }
-
-      // We have a cursor document
-      if (result.documents[0].cursor != null && typeof result.documents[0].cursor !== 'string') {
-        var id = result.documents[0].cursor.id;
-        // If we have a namespace change set the new namespace for getmores
-        if (result.documents[0].cursor.ns) {
-          self.ns = result.documents[0].cursor.ns;
-        }
-        // Promote id to long if needed
-        self.cursorState.cursorId = typeof id === 'number' ? Long.fromNumber(id) : id;
-        self.cursorState.lastCursorId = self.cursorState.cursorId;
-        self.cursorState.operationTime = result.documents[0].operationTime;
-        // If we have a firstBatch set it
-        if (Array.isArray(result.documents[0].cursor.firstBatch)) {
-          self.cursorState.documents = result.documents[0].cursor.firstBatch; //.reverse();
-        }
-
-        // Return after processing command cursor
-        return callback(null, result);
-      }
-
-      if (Array.isArray(result.documents[0].result)) {
-        self.cursorState.documents = result.documents[0].result;
-        self.cursorState.cursorId = Long.ZERO;
-        return callback(null, result);
-      }
-    }
-
-    // Otherwise fall back to regular find path
-    self.cursorState.cursorId = result.cursorId;
-    self.cursorState.documents = result.documents;
-    self.cursorState.lastCursorId = result.cursorId;
-
-    // Transform the results with passed in transformation method if provided
-    if (self.cursorState.transforms && typeof self.cursorState.transforms.query === 'function') {
-      self.cursorState.documents = self.cursorState.transforms.query(result);
-    }
-
-    // Return callback
-    callback(null, result);
-  };
-
-  // Options passed to the pool
-  var queryOptions = {};
-
-  // If we have a raw query decorate the function
-  if (self.options.raw || self.cmd.raw) {
-    // queryCallback.raw = self.options.raw || self.cmd.raw;
-    queryOptions.raw = self.options.raw || self.cmd.raw;
-  }
-
-  // Do we have documentsReturnedIn set on the query
-  if (typeof self.query.documentsReturnedIn === 'string') {
-    // queryCallback.documentsReturnedIn = self.query.documentsReturnedIn;
-    queryOptions.documentsReturnedIn = self.query.documentsReturnedIn;
-  }
-
-  // Add promote Long value if defined
-  if (typeof self.cursorState.promoteLongs === 'boolean') {
-    queryOptions.promoteLongs = self.cursorState.promoteLongs;
-  }
-
-  // Add promote values if defined
-  if (typeof self.cursorState.promoteValues === 'boolean') {
-    queryOptions.promoteValues = self.cursorState.promoteValues;
-  }
-
-  // Add promote values if defined
-  if (typeof self.cursorState.promoteBuffers === 'boolean') {
-    queryOptions.promoteBuffers = self.cursorState.promoteBuffers;
-  }
-
-  if (typeof self.cursorState.session === 'object') {
-    queryOptions.session = self.cursorState.session;
-  }
-
-  // Write the initial command out
-  self.server.s.pool.write(self.query, queryOptions, queryCallback);
-};
-
 Cursor.prototype._getmore = function(callback) {
   if (this.logger.isDebug())
     this.logger.debug(f('schedule getMore call for query [%s]', JSON.stringify(this.query)));
-  // Determine if it's a raw query
-  var raw = this.options.raw || this.cmd.raw;
 
   // Set the current batchSize
   var batchSize = this.cursorState.batchSize;
@@ -21144,17 +21021,11 @@ Cursor.prototype._getmore = function(callback) {
     batchSize = this.cursorState.limit - this.cursorState.currentLimit;
   }
 
-  // Default pool
-  var pool = this.server.s.pool;
-
-  // We have a wire protocol handler
   this.server.wireProtocolHandler.getMore(
-    this.bson,
+    this.server,
     this.ns,
     this.cursorState,
     batchSize,
-    raw,
-    pool,
     this.options,
     callback
   );
@@ -21266,10 +21137,7 @@ Cursor.prototype.kill = function(callback) {
     return;
   }
 
-  // Default pool
-  var pool = this.server.s.pool;
-  // Execute command
-  this.server.wireProtocolHandler.killCursor(this.bson, this.ns, this.cursorState, pool, callback);
+  this.server.wireProtocolHandler.killCursor(this.server, this.ns, this.cursorState, callback);
 };
 
 /**
@@ -21393,42 +21261,7 @@ var nextFunction = function(self, callback) {
     return initializeCursor(self, callback);
   }
 
-  // If we don't have a cursorId execute the first query
-  if (self.cursorState.cursorId == null) {
-    // Check if pool is dead and return if not possible to
-    // execute the query against the db
-    if (isConnectionDead(self, callback)) return;
-
-    // Check if topology is destroyed
-    if (self.topology.isDestroyed())
-      return callback(
-        new MongoNetworkError('connection destroyed, not possible to instantiate cursor')
-      );
-
-    // query, cmd, options, cursorState, callback
-    self._find(function(err) {
-      if (err) return handleCallback(callback, err, null);
-
-      if (self.cursorState.cursorId && self.cursorState.cursorId.isZero() && self._endSession) {
-        self._endSession();
-      }
-
-      if (
-        self.cursorState.documents.length === 0 &&
-        self.cursorState.cursorId &&
-        self.cursorState.cursorId.isZero() &&
-        !self.cmd.tailable &&
-        !self.cmd.awaitData
-      ) {
-        return setCursorNotified(self, callback);
-      }
-
-      nextFunction(self, callback);
-    });
-  } else if (
-    self.cursorState.limit > 0 &&
-    self.cursorState.currentLimit >= self.cursorState.limit
-  ) {
+  if (self.cursorState.limit > 0 && self.cursorState.currentLimit >= self.cursorState.limit) {
     // Ensure we kill the cursor on the server
     self.kill();
     // Set cursor in dead and notified state
@@ -21580,49 +21413,142 @@ function initializeCursor(cursor, callback) {
 
   return cursor.topology.selectServer(cursor.options, (err, server) => {
     if (err) {
-      // Handle the error and add object to next method call
-      if (cursor.disconnectHandler != null) {
-        return cursor.disconnectHandler.addObjectAndMethod(
-          'cursor',
-          cursor,
-          'next',
-          [callback],
-          callback
-        );
+      const disconnectHandler = cursor.disconnectHandler;
+      if (disconnectHandler != null) {
+        return disconnectHandler.addObjectAndMethod('cursor', cursor, 'next', [callback], callback);
       }
 
       return callback(err);
     }
 
     cursor.server = server;
-
-    // Set as init
     cursor.cursorState.init = true;
-
-    // error if collation not supported
     if (collationNotSupported(cursor.server, cursor.cmd)) {
       return callback(new MongoError(`server ${cursor.server.name} does not support collation`));
     }
 
-    try {
-      cursor.query = cursor.server.wireProtocolHandler.command(
-        cursor.bson,
+    function done() {
+      if (
+        cursor.cursorState.cursorId &&
+        cursor.cursorState.cursorId.isZero() &&
+        cursor._endSession
+      ) {
+        cursor._endSession();
+      }
+
+      if (
+        cursor.cursorState.documents.length === 0 &&
+        cursor.cursorState.cursorId &&
+        cursor.cursorState.cursorId.isZero() &&
+        !cursor.cmd.tailable &&
+        !cursor.cmd.awaitData
+      ) {
+        return setCursorNotified(cursor, callback);
+      }
+
+      nextFunction(cursor, callback);
+    }
+
+    // NOTE: this is a special internal method for cloning a cursor, consider removing
+    if (cursor.cursorState.cursorId != null) {
+      return done();
+    }
+
+    const queryCallback = (err, r) => {
+      if (err) return callback(err);
+
+      const result = r.message;
+      if (result.queryFailure) {
+        return callback(new MongoError(result.documents[0]), null);
+      }
+
+      // Check if we have a command cursor
+      if (
+        Array.isArray(result.documents) &&
+        result.documents.length === 1 &&
+        (!cursor.cmd.find || (cursor.cmd.find && cursor.cmd.virtual === false)) &&
+        (typeof result.documents[0].cursor !== 'string' ||
+          result.documents[0]['$err'] ||
+          result.documents[0]['errmsg'] ||
+          Array.isArray(result.documents[0].result))
+      ) {
+        // We have an error document, return the error
+        if (result.documents[0]['$err'] || result.documents[0]['errmsg']) {
+          return callback(new MongoError(result.documents[0]), null);
+        }
+
+        // We have a cursor document
+        if (result.documents[0].cursor != null && typeof result.documents[0].cursor !== 'string') {
+          var id = result.documents[0].cursor.id;
+          // If we have a namespace change set the new namespace for getmores
+          if (result.documents[0].cursor.ns) {
+            cursor.ns = result.documents[0].cursor.ns;
+          }
+          // Promote id to long if needed
+          cursor.cursorState.cursorId = typeof id === 'number' ? Long.fromNumber(id) : id;
+          cursor.cursorState.lastCursorId = cursor.cursorState.cursorId;
+          cursor.cursorState.operationTime = result.documents[0].operationTime;
+          // If we have a firstBatch set it
+          if (Array.isArray(result.documents[0].cursor.firstBatch)) {
+            cursor.cursorState.documents = result.documents[0].cursor.firstBatch; //.reverse();
+          }
+
+          // Return after processing command cursor
+          return done(result);
+        }
+
+        if (Array.isArray(result.documents[0].result)) {
+          cursor.cursorState.documents = result.documents[0].result;
+          cursor.cursorState.cursorId = Long.ZERO;
+          return done(result);
+        }
+      }
+
+      // Otherwise fall back to regular find path
+      cursor.cursorState.cursorId = result.cursorId;
+      cursor.cursorState.documents = result.documents;
+      cursor.cursorState.lastCursorId = result.cursorId;
+
+      // Transform the results with passed in transformation method if provided
+      if (
+        cursor.cursorState.transforms &&
+        typeof cursor.cursorState.transforms.query === 'function'
+      ) {
+        cursor.cursorState.documents = cursor.cursorState.transforms.query(result);
+      }
+
+      // Return callback
+      done(result);
+    };
+
+    if (cursor.logger.isDebug()) {
+      cursor.logger.debug(
+        `issue initial query [${JSON.stringify(cursor.cmd)}] with flags [${JSON.stringify(
+          cursor.query
+        )}]`
+      );
+    }
+
+    if (cursor.cmd.find != null) {
+      cursor.server.wireProtocolHandler.query(
+        cursor.server,
         cursor.ns,
         cursor.cmd,
         cursor.cursorState,
-        cursor.topology,
-        cursor.options
+        cursor.options,
+        queryCallback
       );
 
-      if (cursor.query instanceof MongoError) {
-        return callback(cursor.query);
-      }
-
-      // call `nextFunction` again now that we are initialized
-      nextFunction(cursor, callback);
-    } catch (err) {
-      return callback(err);
+      return;
     }
+
+    cursor.query = cursor.server.wireProtocolHandler.command(
+      cursor.server,
+      cursor.ns,
+      cursor.cmd,
+      cursor.options,
+      queryCallback
+    );
   });
 }
 
@@ -22565,7 +22491,7 @@ Mongos.prototype.connect = function(options) {
   // Create server instances
   var servers = this.s.seedlist.map(function(x) {
     const server = new Server(
-      Object.assign({}, self.s.options, x, {
+      Object.assign({}, self.s.options, x, options, {
         authProviders: self.authProviders,
         reconnect: false,
         monitoring: false,
@@ -24960,12 +24886,14 @@ ReplSet.prototype.connect = function(options) {
   var self = this;
   // Add any connect level options to the internal state
   this.s.connectOptions = options || {};
+
   // Set connecting state
   stateTransition(this, CONNECTING);
+
   // Create server instances
   var servers = this.s.seedlist.map(function(x) {
     return new Server(
-      Object.assign({}, self.s.options, x, {
+      Object.assign({}, self.s.options, x, options, {
         authProviders: self.authProviders,
         reconnect: false,
         monitoring: false,
@@ -27600,33 +27528,7 @@ Server.prototype.command = function(ns, cmd, options, callback) {
     return callback(new MongoError(`server ${this.name} does not support collation`));
   }
 
-  // Are we executing against a specific topology
-  var topology = options.topology || {};
-  // Create the query object
-  var query = self.wireProtocolHandler.command(self.s.bson, ns, cmd, {}, topology, options);
-  if (query instanceof MongoError) {
-    return callback(query, null);
-  }
-
-  // Set slave OK of the query
-  query.slaveOk = options.readPreference ? options.readPreference.slaveOk() : false;
-
-  // Write options
-  var writeOptions = {
-    raw: typeof options.raw === 'boolean' ? options.raw : false,
-    promoteLongs: typeof options.promoteLongs === 'boolean' ? options.promoteLongs : true,
-    promoteValues: typeof options.promoteValues === 'boolean' ? options.promoteValues : true,
-    promoteBuffers: typeof options.promoteBuffers === 'boolean' ? options.promoteBuffers : false,
-    command: true,
-    monitoring: typeof options.monitoring === 'boolean' ? options.monitoring : false,
-    fullResult: typeof options.fullResult === 'boolean' ? options.fullResult : false,
-    requestId: query.requestId,
-    socketTimeout: typeof options.socketTimeout === 'number' ? options.socketTimeout : null,
-    session: options.session || null
-  };
-
-  // Write the operation to the pool
-  self.s.pool.write(query, writeOptions, callback);
+  self.wireProtocolHandler.command(self, ns, cmd, options, callback);
 };
 
 /**
@@ -27657,7 +27559,7 @@ Server.prototype.insert = function(ns, ops, options, callback) {
   ops = Array.isArray(ops) ? ops : [ops];
 
   // Execute write
-  return self.wireProtocolHandler.insert(self.s.pool, ns, self.s.bson, ops, options, callback);
+  return self.wireProtocolHandler.insert(self, ns, ops, options, callback);
 };
 
 /**
@@ -27692,7 +27594,7 @@ Server.prototype.update = function(ns, ops, options, callback) {
   // Setup the docs as an array
   ops = Array.isArray(ops) ? ops : [ops];
   // Execute write
-  return self.wireProtocolHandler.update(self.s.pool, ns, self.s.bson, ops, options, callback);
+  return self.wireProtocolHandler.update(self, ns, ops, options, callback);
 };
 
 /**
@@ -27727,7 +27629,7 @@ Server.prototype.remove = function(ns, ops, options, callback) {
   // Setup the docs as an array
   ops = Array.isArray(ops) ? ops : [ops];
   // Execute write
-  return self.wireProtocolHandler.remove(self.s.pool, ns, self.s.bson, ops, options, callback);
+  return self.wireProtocolHandler.remove(self, ns, ops, options, callback);
 };
 
 /**
@@ -29249,23 +29151,156 @@ module.exports = {
 "use strict";
 
 
-var copy = __webpack_require__(/*! ../connection/utils */ "../node_modules/mongodb-core/lib/connection/utils.js").copy,
-  retrieveBSON = __webpack_require__(/*! ../connection/utils */ "../node_modules/mongodb-core/lib/connection/utils.js").retrieveBSON,
-  KillCursor = __webpack_require__(/*! ../connection/commands */ "../node_modules/mongodb-core/lib/connection/commands.js").KillCursor,
-  GetMore = __webpack_require__(/*! ../connection/commands */ "../node_modules/mongodb-core/lib/connection/commands.js").GetMore,
-  Query = __webpack_require__(/*! ../connection/commands */ "../node_modules/mongodb-core/lib/connection/commands.js").Query,
-  f = __webpack_require__(/*! util */ "util").format,
-  MongoError = __webpack_require__(/*! ../error */ "../node_modules/mongodb-core/lib/error.js").MongoError,
-  getReadPreference = __webpack_require__(/*! ./shared */ "../node_modules/mongodb-core/lib/wireprotocol/shared.js").getReadPreference;
+const retrieveBSON = __webpack_require__(/*! ../connection/utils */ "../node_modules/mongodb-core/lib/connection/utils.js").retrieveBSON;
+const KillCursor = __webpack_require__(/*! ../connection/commands */ "../node_modules/mongodb-core/lib/connection/commands.js").KillCursor;
+const GetMore = __webpack_require__(/*! ../connection/commands */ "../node_modules/mongodb-core/lib/connection/commands.js").GetMore;
+const Query = __webpack_require__(/*! ../connection/commands */ "../node_modules/mongodb-core/lib/connection/commands.js").Query;
+const MongoError = __webpack_require__(/*! ../error */ "../node_modules/mongodb-core/lib/error.js").MongoError;
+const getReadPreference = __webpack_require__(/*! ./shared */ "../node_modules/mongodb-core/lib/wireprotocol/shared.js").getReadPreference;
+const applyCommonQueryOptions = __webpack_require__(/*! ./shared */ "../node_modules/mongodb-core/lib/wireprotocol/shared.js").applyCommonQueryOptions;
+const isMongos = __webpack_require__(/*! ./shared */ "../node_modules/mongodb-core/lib/wireprotocol/shared.js").isMongos;
+const databaseNamespace = __webpack_require__(/*! ./shared */ "../node_modules/mongodb-core/lib/wireprotocol/shared.js").databaseNamespace;
+const collectionNamespace = __webpack_require__(/*! ./shared */ "../node_modules/mongodb-core/lib/wireprotocol/shared.js").collectionNamespace;
 
-var BSON = retrieveBSON(),
-  Long = BSON.Long;
+const BSON = retrieveBSON();
+const Long = BSON.Long;
 
-var WireProtocol = function() {};
+class WireProtocol {
+  insert(server, ns, ops, options, callback) {
+    executeWrite(this, server, 'insert', 'documents', ns, ops, options, callback);
+  }
 
-//
-// Execute a write operation
-var executeWrite = function(pool, bson, type, opsField, ns, ops, options, callback) {
+  update(server, ns, ops, options, callback) {
+    executeWrite(this, server, 'update', 'updates', ns, ops, options, callback);
+  }
+
+  remove(server, ns, ops, options, callback) {
+    executeWrite(this, server, 'delete', 'deletes', ns, ops, options, callback);
+  }
+
+  killCursor(server, ns, cursorState, callback) {
+    const bson = server.s.bson;
+    const pool = server.s.pool;
+    const cursorId = cursorState.cursorId;
+    const killCursor = new KillCursor(bson, ns, [cursorId]);
+    const options = {
+      immediateRelease: true,
+      noResponse: true
+    };
+
+    if (typeof cursorState.session === 'object') {
+      options.session = cursorState.session;
+    }
+
+    if (pool && pool.isConnected()) {
+      try {
+        pool.write(killCursor, options, callback);
+      } catch (err) {
+        if (typeof callback === 'function') {
+          callback(err, null);
+        } else {
+          console.warn(err);
+        }
+      }
+    }
+  }
+
+  getMore(server, ns, cursorState, batchSize, options, callback) {
+    const bson = server.s.bson;
+    const getMore = new GetMore(bson, ns, cursorState.cursorId, { numberToReturn: batchSize });
+    function queryCallback(err, result) {
+      if (err) return callback(err);
+      const response = result.message;
+
+      // If we have a timed out query or a cursor that was killed
+      if (response.cursorNotFound) {
+        return callback(new MongoError('Cursor does not exist, was killed, or timed out'), null);
+      }
+
+      const cursorId =
+        typeof response.cursorId === 'number'
+          ? Long.fromNumber(response.cursorId)
+          : response.cursorId;
+
+      cursorState.documents = response.documents;
+      cursorState.cursorId = cursorId;
+
+      callback(null, null, response.connection);
+    }
+
+    const queryOptions = applyCommonQueryOptions({}, cursorState);
+    server.s.pool.write(getMore, queryOptions, queryCallback);
+  }
+
+  query(server, ns, cmd, cursorState, options, callback) {
+    if (cursorState.cursorId != null) {
+      return;
+    }
+
+    const query = setupClassicFind(server, ns, cmd, cursorState, options);
+    const queryOptions = applyCommonQueryOptions({}, cursorState);
+    if (typeof query.documentsReturnedIn === 'string') {
+      queryOptions.documentsReturnedIn = query.documentsReturnedIn;
+    }
+
+    server.s.pool.write(query, queryOptions, callback);
+  }
+
+  command(server, ns, cmd, options, callback) {
+    if (cmd == null) {
+      return callback(new MongoError(`command ${JSON.stringify(cmd)} does not return a cursor`));
+    }
+
+    options = options || {};
+    const bson = server.s.bson;
+    const pool = server.s.pool;
+    const readPreference = getReadPreference(cmd, options);
+
+    let finalCmd = Object.assign({}, cmd);
+    if (finalCmd.readConcern) {
+      if (finalCmd.readConcern.level !== 'local') {
+        return callback(
+          new MongoError(
+            `server ${JSON.stringify(finalCmd)} command does not support a readConcern level of ${
+              finalCmd.readConcern.level
+            }`
+          )
+        );
+      }
+
+      delete finalCmd['readConcern'];
+    }
+
+    if (isMongos(server) && readPreference && readPreference.preference !== 'primary') {
+      finalCmd = {
+        $query: finalCmd,
+        $readPreference: readPreference.toJSON()
+      };
+    }
+
+    const commandOptions = Object.assign(
+      {
+        command: true,
+        numberToSkip: 0,
+        numberToReturn: -1,
+        checkKeys: false
+      },
+      options
+    );
+
+    // This value is not overridable
+    commandOptions.slaveOk = readPreference.slaveOk();
+
+    try {
+      const query = new Query(bson, `${databaseNamespace(ns)}.$cmd`, finalCmd, commandOptions);
+      pool.write(query, commandOptions, callback);
+    } catch (err) {
+      callback(err);
+    }
+  }
+}
+
+function executeWrite(handler, server, type, opsField, ns, ops, options, callback) {
   if (ops.length === 0) throw new MongoError('insert must contain at least one document');
   if (typeof options === 'function') {
     callback = options;
@@ -29273,184 +29308,40 @@ var executeWrite = function(pool, bson, type, opsField, ns, ops, options, callba
     options = options || {};
   }
 
-  // Split the ns up to get db and collection
-  var p = ns.split('.');
-  var d = p.shift();
-  // Options
-  var ordered = typeof options.ordered === 'boolean' ? options.ordered : true;
-  var writeConcern = options.writeConcern;
+  const ordered = typeof options.ordered === 'boolean' ? options.ordered : true;
+  const writeConcern = options.writeConcern;
 
-  // return skeleton
-  var writeCommand = {};
-  writeCommand[type] = p.join('.');
+  const writeCommand = {};
+  writeCommand[type] = collectionNamespace(ns);
   writeCommand[opsField] = ops;
   writeCommand.ordered = ordered;
 
-  // Did we specify a write concern
   if (writeConcern && Object.keys(writeConcern).length > 0) {
     writeCommand.writeConcern = writeConcern;
   }
 
-  // Do we have bypassDocumentValidation set, then enable it on the write command
   if (options.bypassDocumentValidation === true) {
     writeCommand.bypassDocumentValidation = options.bypassDocumentValidation;
   }
 
-  // Options object
-  var opts = { command: true };
-  if (typeof options.session !== 'undefined') opts.session = options.session;
-  var queryOptions = { checkKeys: false, numberToSkip: 0, numberToReturn: 1 };
-  if (type === 'insert') queryOptions.checkKeys = true;
-  if (typeof options.checkKeys === 'boolean') queryOptions.checkKeys = options.checkKeys;
-  // Ensure we support serialization of functions
-  if (options.serializeFunctions) queryOptions.serializeFunctions = options.serializeFunctions;
-  // Do not serialize the undefined fields
-  if (options.ignoreUndefined) queryOptions.ignoreUndefined = options.ignoreUndefined;
+  const commandOptions = Object.assign(
+    {
+      checkKeys: type === 'insert',
+      numberToReturn: 1
+    },
+    options
+  );
 
-  try {
-    // Create write command
-    var cmd = new Query(bson, f('%s.$cmd', d), writeCommand, queryOptions);
-    // Execute command
-    pool.write(cmd, opts, callback);
-  } catch (err) {
-    callback(err);
-  }
-};
+  handler.command(server, ns, writeCommand, commandOptions, callback);
+}
 
-//
-// Needs to support legacy mass insert as well as ordered/unordered legacy
-// emulation
-//
-WireProtocol.prototype.insert = function(pool, ns, bson, ops, options, callback) {
-  executeWrite(pool, bson, 'insert', 'documents', ns, ops, options, callback);
-};
-
-WireProtocol.prototype.update = function(pool, ns, bson, ops, options, callback) {
-  executeWrite(pool, bson, 'update', 'updates', ns, ops, options, callback);
-};
-
-WireProtocol.prototype.remove = function(pool, ns, bson, ops, options, callback) {
-  executeWrite(pool, bson, 'delete', 'deletes', ns, ops, options, callback);
-};
-
-WireProtocol.prototype.killCursor = function(bson, ns, cursorState, pool, callback) {
-  var cursorId = cursorState.cursorId;
-  // Create a kill cursor command
-  var killCursor = new KillCursor(bson, ns, [cursorId]);
-
-  // Build killCursor options
-  const options = {
-    immediateRelease: true,
-    noResponse: true
-  };
-
-  if (typeof cursorState.session === 'object') {
-    options.session = cursorState.session;
-  }
-
-  // Execute the kill cursor command
-  if (pool && pool.isConnected()) {
-    try {
-      pool.write(killCursor, options, callback);
-    } catch (err) {
-      if (typeof callback === 'function') {
-        callback(err, null);
-      } else {
-        console.warn(err);
-      }
-    }
-  }
-};
-
-WireProtocol.prototype.getMore = function(
-  bson,
-  ns,
-  cursorState,
-  batchSize,
-  raw,
-  connection,
-  options,
-  callback
-) {
-  // Create getMore command
-  var getMore = new GetMore(bson, ns, cursorState.cursorId, { numberToReturn: batchSize });
-
-  // Query callback
-  var queryCallback = function(err, result) {
-    if (err) return callback(err);
-    // Get the raw message
-    var r = result.message;
-
-    // If we have a timed out query or a cursor that was killed
-    if ((r.responseFlags & (1 << 0)) !== 0) {
-      return callback(new MongoError('cursor does not exist, was killed or timed out'), null);
-    }
-
-    // Ensure we have a Long valie cursor id
-    var cursorId = typeof r.cursorId === 'number' ? Long.fromNumber(r.cursorId) : r.cursorId;
-
-    // Set all the values
-    cursorState.documents = r.documents;
-    cursorState.cursorId = cursorId;
-
-    // Return
-    callback(null, null, r.connection);
-  };
-
-  // Contains any query options
-  var queryOptions = {};
-
-  // If we have a raw query decorate the function
-  if (raw) {
-    queryOptions.raw = raw;
-  }
-
-  // Check if we need to promote longs
-  if (typeof cursorState.promoteLongs === 'boolean') {
-    queryOptions.promoteLongs = cursorState.promoteLongs;
-  }
-
-  if (typeof cursorState.promoteValues === 'boolean') {
-    queryOptions.promoteValues = cursorState.promoteValues;
-  }
-
-  if (typeof cursorState.promoteBuffers === 'boolean') {
-    queryOptions.promoteBuffers = cursorState.promoteBuffers;
-  }
-
-  if (typeof cursorState.session === 'object') {
-    queryOptions.session = cursorState.session;
-  }
-
-  // Write out the getMore command
-  connection.write(getMore, queryOptions, queryCallback);
-};
-
-WireProtocol.prototype.command = function(bson, ns, cmd, cursorState, topology, options) {
-  // Establish type of command
-  if (cmd.find) {
-    return setupClassicFind(bson, ns, cmd, cursorState, topology, options);
-  } else if (cursorState.cursorId != null) {
-    return;
-  } else if (cmd) {
-    return setupCommand(bson, ns, cmd, cursorState, topology, options);
-  } else {
-    throw new MongoError(f('command %s does not return a cursor', JSON.stringify(cmd)));
-  }
-};
-
-//
-// Execute a find command
-var setupClassicFind = function(bson, ns, cmd, cursorState, topology, options) {
-  // Ensure we have at least some options
+function setupClassicFind(server, ns, cmd, cursorState, options) {
   options = options || {};
-  // Get the readPreference
-  var readPreference = getReadPreference(cmd, options);
-  // Set the optional batchSize
+  const bson = server.s.bson;
+  const readPreference = getReadPreference(cmd, options);
   cursorState.batchSize = cmd.batchSize || cursorState.batchSize;
-  var numberToReturn = 0;
 
-  // Unpack the limit and batchSize values
+  let numberToReturn = 0;
   if (cursorState.limit === 0) {
     numberToReturn = cursorState.batchSize;
   } else if (
@@ -29463,16 +29354,13 @@ var setupClassicFind = function(bson, ns, cmd, cursorState, topology, options) {
     numberToReturn = cursorState.batchSize;
   }
 
-  var numberToSkip = cursorState.skip || 0;
-  // Build actual find command
-  var findCmd = {};
+  const numberToSkip = cursorState.skip || 0;
 
-  // We have a Mongos topology, check if we need to add a readPreference
-  if (topology.type === 'mongos' && readPreference) {
+  const findCmd = {};
+  if (isMongos(server) && readPreference) {
     findCmd['$readPreference'] = readPreference.toJSON();
   }
 
-  // Add special modifiers to the query
   if (cmd.sort) findCmd['$orderby'] = cmd.sort;
   if (cmd.hint) findCmd['$hint'] = cmd.hint;
   if (cmd.snapshot) findCmd['$snapshot'] = cmd.snapshot;
@@ -29483,7 +29371,6 @@ var setupClassicFind = function(bson, ns, cmd, cursorState, topology, options) {
   if (typeof cmd.showDiskLoc !== 'undefined') findCmd['$showDiskLoc'] = cmd.showDiskLoc;
   if (cmd.comment) findCmd['$comment'] = cmd.comment;
   if (cmd.maxTimeMS) findCmd['$maxTimeMS'] = cmd.maxTimeMS;
-
   if (cmd.explain) {
     // nToReturn must be 0 (match all) or negative (match N and close cursor)
     // nToReturn > 0 will give explain results equivalent to limit(0)
@@ -29491,30 +29378,24 @@ var setupClassicFind = function(bson, ns, cmd, cursorState, topology, options) {
     findCmd['$explain'] = true;
   }
 
-  // Add the query
   findCmd['$query'] = cmd.query;
-
-  // Throw on majority readConcern passed in
   if (cmd.readConcern && cmd.readConcern.level !== 'local') {
     throw new MongoError(
-      f('server find command does not support a readConcern level of %s', cmd.readConcern.level)
+      `server find command does not support a readConcern level of ${cmd.readConcern.level}`
     );
   }
 
-  // Remove readConcern, ensure no failing commands
   if (cmd.readConcern) {
-    cmd = copy(cmd);
+    cmd = Object.assign({}, cmd);
     delete cmd['readConcern'];
   }
 
-  // Serialize functions
-  var serializeFunctions =
+  const serializeFunctions =
     typeof options.serializeFunctions === 'boolean' ? options.serializeFunctions : false;
-  var ignoreUndefined =
+  const ignoreUndefined =
     typeof options.ignoreUndefined === 'boolean' ? options.ignoreUndefined : false;
 
-  // Build Query object
-  var query = new Query(bson, ns, findCmd, {
+  const query = new Query(bson, ns, findCmd, {
     numberToSkip: numberToSkip,
     numberToReturn: numberToReturn,
     pre32Limit: typeof cmd.limit !== 'undefined' ? cmd.limit : undefined,
@@ -29524,95 +29405,15 @@ var setupClassicFind = function(bson, ns, cmd, cursorState, topology, options) {
     ignoreUndefined: ignoreUndefined
   });
 
-  // Set query flags
+  if (typeof cmd.tailable === 'boolean') query.tailable = cmd.tailable;
+  if (typeof cmd.oplogReplay === 'boolean') query.oplogReplay = cmd.oplogReplay;
+  if (typeof cmd.noCursorTimeout === 'boolean') query.noCursorTimeout = cmd.noCursorTimeout;
+  if (typeof cmd.awaitData === 'boolean') query.awaitData = cmd.awaitData;
+  if (typeof cmd.partial === 'boolean') query.partial = cmd.partial;
+
   query.slaveOk = readPreference.slaveOk();
-
-  // Set up the option bits for wire protocol
-  if (typeof cmd.tailable === 'boolean') {
-    query.tailable = cmd.tailable;
-  }
-
-  if (typeof cmd.oplogReplay === 'boolean') {
-    query.oplogReplay = cmd.oplogReplay;
-  }
-
-  if (typeof cmd.noCursorTimeout === 'boolean') {
-    query.noCursorTimeout = cmd.noCursorTimeout;
-  }
-
-  if (typeof cmd.awaitData === 'boolean') {
-    query.awaitData = cmd.awaitData;
-  }
-
-  if (typeof cmd.partial === 'boolean') {
-    query.partial = cmd.partial;
-  }
-
-  // Return the query
   return query;
-};
-
-//
-// Set up a command cursor
-var setupCommand = function(bson, ns, cmd, cursorState, topology, options) {
-  // Set empty options object
-  options = options || {};
-  // Get the readPreference
-  var readPreference = getReadPreference(cmd, options);
-
-  // Final query
-  var finalCmd = {};
-  for (var name in cmd) {
-    finalCmd[name] = cmd[name];
-  }
-
-  // Build command namespace
-  var parts = ns.split(/\./);
-
-  // Serialize functions
-  var serializeFunctions =
-    typeof options.serializeFunctions === 'boolean' ? options.serializeFunctions : false;
-
-  var ignoreUndefined =
-    typeof options.ignoreUndefined === 'boolean' ? options.ignoreUndefined : false;
-
-  // Throw on majority readConcern passed in
-  if (cmd.readConcern && cmd.readConcern.level !== 'local') {
-    throw new MongoError(
-      f(
-        'server %s command does not support a readConcern level of %s',
-        JSON.stringify(cmd),
-        cmd.readConcern.level
-      )
-    );
-  }
-
-  // Remove readConcern, ensure no failing commands
-  if (cmd.readConcern) delete cmd['readConcern'];
-
-  // We have a Mongos topology, check if we need to add a readPreference
-  if (topology.type === 'mongos' && readPreference && readPreference.preference !== 'primary') {
-    finalCmd = {
-      $query: finalCmd,
-      $readPreference: readPreference.toJSON()
-    };
-  }
-
-  // Build Query object
-  var query = new Query(bson, f('%s.$cmd', parts.shift()), finalCmd, {
-    numberToSkip: 0,
-    numberToReturn: -1,
-    checkKeys: false,
-    serializeFunctions: serializeFunctions,
-    ignoreUndefined: ignoreUndefined
-  });
-
-  // Set query flags
-  query.slaveOk = readPreference.slaveOk();
-
-  // Return the query
-  return query;
-};
+}
 
 module.exports = WireProtocol;
 
@@ -29638,8 +29439,186 @@ const BSON = retrieveBSON();
 const Long = BSON.Long;
 const ReadPreference = __webpack_require__(/*! ../topologies/read_preference */ "../node_modules/mongodb-core/lib/topologies/read_preference.js");
 const TxnState = __webpack_require__(/*! ../transactions */ "../node_modules/mongodb-core/lib/transactions.js").TxnState;
+const isMongos = __webpack_require__(/*! ./shared */ "../node_modules/mongodb-core/lib/wireprotocol/shared.js").isMongos;
+const databaseNamespace = __webpack_require__(/*! ./shared */ "../node_modules/mongodb-core/lib/wireprotocol/shared.js").databaseNamespace;
+const collectionNamespace = __webpack_require__(/*! ./shared */ "../node_modules/mongodb-core/lib/wireprotocol/shared.js").collectionNamespace;
 
-const WireProtocol = function() {};
+class WireProtocol {
+  insert(server, ns, ops, options, callback) {
+    executeWrite(this, server, 'insert', 'documents', ns, ops, options, callback);
+  }
+
+  update(server, ns, ops, options, callback) {
+    executeWrite(this, server, 'update', 'updates', ns, ops, options, callback);
+  }
+
+  remove(server, ns, ops, options, callback) {
+    executeWrite(this, server, 'delete', 'deletes', ns, ops, options, callback);
+  }
+
+  killCursor(server, ns, cursorState, callback) {
+    callback = typeof callback === 'function' ? callback : () => {};
+    const cursorId = cursorState.cursorId;
+    const killCursorCmd = {
+      killCursors: collectionNamespace(ns),
+      cursors: [cursorId]
+    };
+
+    const options = {};
+    if (typeof cursorState.session === 'object') options.session = cursorState.session;
+
+    this.command(server, ns, killCursorCmd, options, (err, result) => {
+      if (err) {
+        return callback(err);
+      }
+
+      const response = result.message;
+      if (response.cursorNotFound) {
+        return callback(new MongoNetworkError('cursor killed or timed out'), null);
+      }
+
+      if (!Array.isArray(response.documents) || response.documents.length === 0) {
+        return callback(
+          new MongoError(`invalid killCursors result returned for cursor id ${cursorId}`)
+        );
+      }
+
+      callback(null, response.documents[0]);
+    });
+  }
+
+  getMore(server, ns, cursorState, batchSize, options, callback) {
+    options = options || {};
+    const getMoreCmd = {
+      getMore: cursorState.cursorId,
+      collection: collectionNamespace(ns),
+      batchSize: Math.abs(batchSize)
+    };
+
+    if (cursorState.cmd.tailable && typeof cursorState.cmd.maxAwaitTimeMS === 'number') {
+      getMoreCmd.maxTimeMS = cursorState.cmd.maxAwaitTimeMS;
+    }
+
+    function queryCallback(err, result) {
+      if (err) return callback(err);
+      const response = result.message;
+
+      // If we have a timed out query or a cursor that was killed
+      if (response.cursorNotFound) {
+        return callback(new MongoNetworkError('cursor killed or timed out'), null);
+      }
+
+      // Raw, return all the extracted documents
+      if (cursorState.raw) {
+        cursorState.documents = response.documents;
+        cursorState.cursorId = response.cursorId;
+        return callback(null, response.documents);
+      }
+
+      // We have an error detected
+      if (response.documents[0].ok === 0) {
+        return callback(new MongoError(response.documents[0]));
+      }
+
+      // Ensure we have a Long valid cursor id
+      const cursorId =
+        typeof response.documents[0].cursor.id === 'number'
+          ? Long.fromNumber(response.documents[0].cursor.id)
+          : response.documents[0].cursor.id;
+
+      cursorState.documents = response.documents[0].cursor.nextBatch;
+      cursorState.cursorId = cursorId;
+
+      callback(null, response.documents[0], response.connection);
+    }
+
+    const commandOptions = Object.assign(
+      {
+        returnFieldSelector: null,
+        documentsReturnedIn: 'nextBatch'
+      },
+      options
+    );
+
+    this.command(server, ns, getMoreCmd, commandOptions, queryCallback);
+  }
+
+  query(server, ns, cmd, cursorState, options, callback) {
+    options = options || {};
+    if (cursorState.cursorId != null) {
+      return callback();
+    }
+
+    if (cmd == null) {
+      return callback(new MongoError(`command ${JSON.stringify(cmd)} does not return a cursor`));
+    }
+
+    const readPreference = getReadPreference(cmd, options);
+    const findCmd = prepareFindCommand(server, ns, cmd, cursorState, options);
+
+    // NOTE: This actually modifies the passed in cmd, and our code _depends_ on this
+    //       side-effect. Change this ASAP
+    cmd.virtual = false;
+
+    const commandOptions = Object.assign(
+      {
+        documentsReturnedIn: 'firstBatch',
+        numberToReturn: 1,
+        slaveOk: readPreference.slaveOk()
+      },
+      options
+    );
+
+    if (cmd.readPreference) commandOptions.readPreference = readPreference;
+    this.command(server, ns, findCmd, commandOptions, callback);
+  }
+
+  command(server, ns, cmd, options, callback) {
+    if (typeof options === 'function') (callback = options), (options = {});
+    options = options || {};
+
+    if (cmd == null) {
+      return callback(new MongoError(`command ${JSON.stringify(cmd)} does not return a cursor`));
+    }
+
+    const bson = server.s.bson;
+    const pool = server.s.pool;
+    const readPreference = getReadPreference(cmd, options);
+
+    let finalCmd = Object.assign({}, cmd);
+    if (isMongos(server) && readPreference && readPreference.preference !== 'primary') {
+      finalCmd = {
+        $query: finalCmd,
+        $readPreference: readPreference.toJSON()
+      };
+    }
+
+    const err = decorateWithSessionsData(finalCmd, options.session, options);
+    if (err) {
+      return callback(err);
+    }
+
+    const commandOptions = Object.assign(
+      {
+        command: true,
+        numberToSkip: 0,
+        numberToReturn: -1,
+        checkKeys: false
+      },
+      options
+    );
+
+    // This value is not overridable
+    commandOptions.slaveOk = readPreference.slaveOk();
+
+    try {
+      const query = new Query(bson, `${databaseNamespace(ns)}.$cmd`, finalCmd, commandOptions);
+      pool.write(query, commandOptions, callback);
+    } catch (err) {
+      callback(err);
+    }
+  }
+}
 
 function isTransactionCommand(command) {
   return !!(command.commitTransaction || command.abortTransaction);
@@ -29709,9 +29688,7 @@ function decorateWithSessionsData(command, session, options) {
   }
 }
 
-//
-// Execute a write operation
-function executeWrite(pool, bson, type, opsField, ns, ops, options, callback) {
+function executeWrite(handler, server, type, opsField, ns, ops, options, callback) {
   if (ops.length === 0) throw new MongoError('insert must contain at least one document');
   if (typeof options === 'function') {
     callback = options;
@@ -29719,25 +29696,18 @@ function executeWrite(pool, bson, type, opsField, ns, ops, options, callback) {
     options = options || {};
   }
 
-  // Split the ns up to get db and collection
-  const p = ns.split('.');
-  const d = p.shift();
-  // Options
   const ordered = typeof options.ordered === 'boolean' ? options.ordered : true;
   const writeConcern = options.writeConcern;
 
-  // return skeleton
   const writeCommand = {};
-  writeCommand[type] = p.join('.');
+  writeCommand[type] = collectionNamespace(ns);
   writeCommand[opsField] = ops;
   writeCommand.ordered = ordered;
 
-  // Did we specify a write concern
   if (writeConcern && Object.keys(writeConcern).length > 0) {
     writeCommand.writeConcern = writeConcern;
   }
 
-  // If we have collation passed in
   if (options.collation) {
     for (let i = 0; i < writeCommand[opsField].length; i++) {
       if (!writeCommand[opsField][i].collation) {
@@ -29746,349 +29716,28 @@ function executeWrite(pool, bson, type, opsField, ns, ops, options, callback) {
     }
   }
 
-  // Do we have bypassDocumentValidation set, then enable it on the write command
   if (options.bypassDocumentValidation === true) {
     writeCommand.bypassDocumentValidation = options.bypassDocumentValidation;
   }
 
-  // optionally decorate command with transactions data
-  const err = decorateWithSessionsData(writeCommand, options.session, options, callback);
-  if (err) {
-    return callback(err, null);
-  }
+  const commandOptions = Object.assign(
+    {
+      checkKeys: type === 'insert',
+      numberToReturn: 1
+    },
+    options
+  );
 
-  // Options object
-  const opts = { command: true };
-  if (typeof options.session !== 'undefined') opts.session = options.session;
-  const queryOptions = { checkKeys: false, numberToSkip: 0, numberToReturn: 1 };
-  if (type === 'insert') queryOptions.checkKeys = true;
-  if (typeof options.checkKeys === 'boolean') queryOptions.checkKeys = options.checkKeys;
-
-  // Ensure we support serialization of functions
-  if (options.serializeFunctions) queryOptions.serializeFunctions = options.serializeFunctions;
-  // Do not serialize the undefined fields
-  if (options.ignoreUndefined) queryOptions.ignoreUndefined = options.ignoreUndefined;
-
-  try {
-    // Create write command
-    const cmd = new Query(bson, `${d}.$cmd`, writeCommand, queryOptions);
-    // Execute command
-    pool.write(cmd, opts, callback);
-  } catch (err) {
-    callback(err);
-  }
+  handler.command(server, ns, writeCommand, commandOptions, callback);
 }
 
-//
-// Needs to support legacy mass insert as well as ordered/unordered legacy
-// emulation
-//
-WireProtocol.prototype.insert = function(pool, ns, bson, ops, options, callback) {
-  executeWrite(pool, bson, 'insert', 'documents', ns, ops, options, callback);
-};
-
-WireProtocol.prototype.update = function(pool, ns, bson, ops, options, callback) {
-  executeWrite(pool, bson, 'update', 'updates', ns, ops, options, callback);
-};
-
-WireProtocol.prototype.remove = function(pool, ns, bson, ops, options, callback) {
-  executeWrite(pool, bson, 'delete', 'deletes', ns, ops, options, callback);
-};
-
-WireProtocol.prototype.killCursor = function(bson, ns, cursorState, pool, callback) {
-  // Build command namespace
-  const parts = ns.split(/\./);
-  // Command namespace
-  const commandns = `${parts.shift()}.$cmd`;
-  const cursorId = cursorState.cursorId;
-  // Create killCursor command
-  const killcursorCmd = {
-    killCursors: parts.join('.'),
-    cursors: [cursorId]
-  };
-
-  // Build Query object
-  const query = new Query(bson, commandns, killcursorCmd, {
-    numberToSkip: 0,
-    numberToReturn: -1,
-    checkKeys: false,
-    returnFieldSelector: null
-  });
-
-  // Kill cursor callback
-  function killCursorCallback(err, result) {
-    if (err) {
-      if (typeof callback !== 'function') return;
-      return callback(err);
-    }
-
-    // Result
-    const r = result.message;
-    // If we have a timed out query or a cursor that was killed
-    if ((r.responseFlags & (1 << 0)) !== 0) {
-      if (typeof callback !== 'function') return;
-      return callback(new MongoNetworkError('cursor killed or timed out'), null);
-    }
-
-    if (!Array.isArray(r.documents) || r.documents.length === 0) {
-      if (typeof callback !== 'function') return;
-      return callback(
-        new MongoError(`invalid killCursors result returned for cursor id ${cursorId}`)
-      );
-    }
-
-    // Return the result
-    if (typeof callback === 'function') {
-      callback(null, r.documents[0]);
-    }
-  }
-
-  const options = { command: true };
-  if (typeof cursorState.session === 'object') {
-    options.session = cursorState.session;
-  }
-
-  // Execute the kill cursor command
-  if (pool && pool.isConnected()) {
-    try {
-      pool.write(query, options, killCursorCallback);
-    } catch (err) {
-      killCursorCallback(err, null);
-    }
-
-    return;
-  }
-
-  // Callback
-  if (typeof callback === 'function') callback(null, null);
-};
-
-WireProtocol.prototype.getMore = function(
-  bson,
-  ns,
-  cursorState,
-  batchSize,
-  raw,
-  connection,
-  options,
-  callback
-) {
-  options = options || {};
-  // Build command namespace
-  const parts = ns.split(/\./);
-  // Command namespace
-  const commandns = `${parts.shift()}.$cmd`;
-
-  // Create getMore command
-  const getMoreCmd = {
-    getMore: cursorState.cursorId,
-    collection: parts.join('.'),
-    batchSize: Math.abs(batchSize)
-  };
-
-  // optionally decorate command with transactions data
-  const err = decorateWithSessionsData(getMoreCmd, options.session, options, callback);
-  if (err) {
-    return callback(err, null);
-  }
-
-  if (cursorState.cmd.tailable && typeof cursorState.cmd.maxAwaitTimeMS === 'number') {
-    getMoreCmd.maxTimeMS = cursorState.cmd.maxAwaitTimeMS;
-  }
-
-  // Build Query object
-  const query = new Query(bson, commandns, getMoreCmd, {
-    numberToSkip: 0,
-    numberToReturn: -1,
-    checkKeys: false,
-    returnFieldSelector: null
-  });
-
-  // Query callback
-  function queryCallback(err, result) {
-    if (err) return callback(err);
-    // Get the raw message
-    const r = result.message;
-
-    // If we have a timed out query or a cursor that was killed
-    if ((r.responseFlags & (1 << 0)) !== 0) {
-      return callback(new MongoNetworkError('cursor killed or timed out'), null);
-    }
-
-    // Raw, return all the extracted documents
-    if (raw) {
-      cursorState.documents = r.documents;
-      cursorState.cursorId = r.cursorId;
-      return callback(null, r.documents);
-    }
-
-    // We have an error detected
-    if (r.documents[0].ok === 0) {
-      return callback(new MongoError(r.documents[0]));
-    }
-
-    // Ensure we have a Long valid cursor id
-    const cursorId =
-      typeof r.documents[0].cursor.id === 'number'
-        ? Long.fromNumber(r.documents[0].cursor.id)
-        : r.documents[0].cursor.id;
-
-    // Set all the values
-    cursorState.documents = r.documents[0].cursor.nextBatch;
-    cursorState.cursorId = cursorId;
-
-    // Return the result
-    callback(null, r.documents[0], r.connection);
-  }
-
-  // Query options
-  const queryOptions = { command: true };
-
-  // If we have a raw query decorate the function
-  if (raw) {
-    queryOptions.raw = raw;
-  }
-
-  // Add the result field needed
-  queryOptions.documentsReturnedIn = 'nextBatch';
-
-  // Check if we need to promote longs
-  if (typeof cursorState.promoteLongs === 'boolean') {
-    queryOptions.promoteLongs = cursorState.promoteLongs;
-  }
-
-  if (typeof cursorState.promoteValues === 'boolean') {
-    queryOptions.promoteValues = cursorState.promoteValues;
-  }
-
-  if (typeof cursorState.promoteBuffers === 'boolean') {
-    queryOptions.promoteBuffers = cursorState.promoteBuffers;
-  }
-
-  if (typeof cursorState.session === 'object') {
-    queryOptions.session = cursorState.session;
-  }
-
-  // Write out the getMore command
-  connection.write(query, queryOptions, queryCallback);
-};
-
-WireProtocol.prototype.command = function(bson, ns, cmd, cursorState, topology, options) {
-  options = options || {};
-  // Check if this is a wire protocol command or not
-  const wireProtocolCommand =
-    typeof options.wireProtocolCommand === 'boolean' ? options.wireProtocolCommand : true;
-
-  // Establish type of command
-  let query;
-  if (cmd.find && wireProtocolCommand) {
-    // Create the find command
-    query = executeFindCommand(bson, ns, cmd, cursorState, topology, options);
-
-    // Mark the cmd as virtual
-    cmd.virtual = false;
-    // Signal the documents are in the firstBatch value
-    query.documentsReturnedIn = 'firstBatch';
-  } else if (cursorState.cursorId != null) {
-    return;
-  } else if (cmd) {
-    query = setupCommand(bson, ns, cmd, cursorState, topology, options);
-  } else {
-    return new MongoError(`command ${JSON.stringify(cmd)} does not return a cursor`);
-  }
-
-  if (query instanceof MongoError) {
-    return query;
-  }
-
-  // optionally decorate query with transaction data
-  const err = decorateWithSessionsData(query.query, options.session, options);
-  if (err) {
-    return err;
-  }
-
-  return query;
-};
-
-// // Command
-// {
-//     find: ns
-//   , query: <object>
-//   , limit: <n>
-//   , fields: <object>
-//   , skip: <n>
-//   , hint: <string>
-//   , explain: <boolean>
-//   , snapshot: <boolean>
-//   , batchSize: <n>
-//   , returnKey: <boolean>
-//   , maxScan: <n>
-//   , min: <n>
-//   , max: <n>
-//   , showDiskLoc: <boolean>
-//   , comment: <string>
-//   , maxTimeMS: <n>
-//   , raw: <boolean>
-//   , readPreference: <ReadPreference>
-//   , tailable: <boolean>
-//   , oplogReplay: <boolean>
-//   , noCursorTimeout: <boolean>
-//   , awaitdata: <boolean>
-//   , exhaust: <boolean>
-//   , partial: <boolean>
-// }
-
-// FIND/GETMORE SPEC
-// {
-//     “find”: <string>,
-//     “filter”: { ... },
-//     “sort”: { ... },
-//     “projection”: { ... },
-//     “hint”: { ... },
-//     “skip”: <int>,
-//     “limit”: <int>,
-//     “batchSize”: <int>,
-//     “singleBatch”: <bool>,
-//     “comment”: <string>,
-//     “maxScan”: <int>,
-//     “maxTimeMS”: <int>,
-//     “max”: { ... },
-//     “min”: { ... },
-//     “returnKey”: <bool>,
-//     “showRecordId”: <bool>,
-//     “snapshot”: <bool>,
-//     “tailable”: <bool>,
-//     “oplogReplay”: <bool>,
-//     “noCursorTimeout”: <bool>,
-//     “awaitData”: <bool>,
-//     “partial”: <bool>,
-//     “$readPreference”: { ... }
-// }
-
-//
-// Execute a find command
-function executeFindCommand(bson, ns, cmd, cursorState, topology, options) {
-  // Ensure we have at least some options
-  options = options || {};
-  // Get the readPreference
-  const readPreference = getReadPreference(cmd, options);
-
-  // Set the optional batchSize
+function prepareFindCommand(server, ns, cmd, cursorState) {
   cursorState.batchSize = cmd.batchSize || cursorState.batchSize;
-
-  // Build command namespace
-  const parts = ns.split(/\./);
-  // Command namespace
-  const commandns = `${parts.shift()}.$cmd`;
-
-  // Build actual find command
   let findCmd = {
-    find: parts.join('.')
+    find: collectionNamespace(ns)
   };
 
-  // I we provided a filter
   if (cmd.query) {
-    // Check if the user is passing in the $query parameter
     if (cmd.query['$query']) {
       findCmd.filter = cmd.query['$query'];
     } else {
@@ -30096,35 +29745,28 @@ function executeFindCommand(bson, ns, cmd, cursorState, topology, options) {
     }
   }
 
-  // Sort value
   let sortValue = cmd.sort;
-
-  // Handle issue of sort being an Array
   if (Array.isArray(sortValue)) {
     const sortObject = {};
 
     if (sortValue.length > 0 && !Array.isArray(sortValue[0])) {
       let sortDirection = sortValue[1];
-      // Translate the sort order text
       if (sortDirection === 'asc') {
         sortDirection = 1;
       } else if (sortDirection === 'desc') {
         sortDirection = -1;
       }
 
-      // Set the sort order
       sortObject[sortValue[0]] = sortDirection;
     } else {
-      for (var i = 0; i < sortValue.length; i++) {
+      for (let i = 0; i < sortValue.length; i++) {
         let sortDirection = sortValue[i][1];
-        // Translate the sort order text
         if (sortDirection === 'asc') {
           sortDirection = 1;
         } else if (sortDirection === 'desc') {
           sortDirection = -1;
         }
 
-        // Set the sort order
         sortObject[sortValue[i][0]] = sortDirection;
       }
     }
@@ -30132,24 +29774,16 @@ function executeFindCommand(bson, ns, cmd, cursorState, topology, options) {
     sortValue = sortObject;
   }
 
-  // Add sort to command
   if (cmd.sort) findCmd.sort = sortValue;
-  // Add a projection to the command
   if (cmd.fields) findCmd.projection = cmd.fields;
-  // Add a hint to the command
   if (cmd.hint) findCmd.hint = cmd.hint;
-  // Add a skip
   if (cmd.skip) findCmd.skip = cmd.skip;
-  // Add a limit
   if (cmd.limit) findCmd.limit = cmd.limit;
-
-  // Check if we wish to have a singleBatch
   if (cmd.limit < 0) {
     findCmd.limit = Math.abs(cmd.limit);
     findCmd.singleBatch = true;
   }
 
-  // Add a batchSize
   if (typeof cmd.batchSize === 'number') {
     if (cmd.batchSize < 0) {
       if (cmd.limit !== 0 && Math.abs(cmd.batchSize) < Math.abs(cmd.limit)) {
@@ -30162,48 +29796,22 @@ function executeFindCommand(bson, ns, cmd, cursorState, topology, options) {
     findCmd.batchSize = Math.abs(cmd.batchSize);
   }
 
-  // If we have comment set
   if (cmd.comment) findCmd.comment = cmd.comment;
-
-  // If we have maxScan
   if (cmd.maxScan) findCmd.maxScan = cmd.maxScan;
-
-  // If we have maxTimeMS set
   if (cmd.maxTimeMS) findCmd.maxTimeMS = cmd.maxTimeMS;
-
-  // If we have min
   if (cmd.min) findCmd.min = cmd.min;
-
-  // If we have max
   if (cmd.max) findCmd.max = cmd.max;
-
-  // If we have returnKey set
   findCmd.returnKey = cmd.returnKey ? cmd.returnKey : false;
-
-  // If we have showDiskLoc set
   findCmd.showRecordId = cmd.showDiskLoc ? cmd.showDiskLoc : false;
-
-  // If we have snapshot set
   if (cmd.snapshot) findCmd.snapshot = cmd.snapshot;
-
-  // If we have tailable set
   if (cmd.tailable) findCmd.tailable = cmd.tailable;
-
-  // If we have oplogReplay set
   if (cmd.oplogReplay) findCmd.oplogReplay = cmd.oplogReplay;
-
-  // If we have noCursorTimeout set
   if (cmd.noCursorTimeout) findCmd.noCursorTimeout = cmd.noCursorTimeout;
-
-  // If we have awaitData set
   if (cmd.awaitData) findCmd.awaitData = cmd.awaitData;
   if (cmd.awaitdata) findCmd.awaitData = cmd.awaitdata;
-
-  // If we have partial set
   if (cmd.partial) findCmd.partial = cmd.partial;
-
-  // If we have collation passed in
   if (cmd.collation) findCmd.collation = cmd.collation;
+  if (cmd.readConcern) findCmd.readConcern = cmd.readConcern;
 
   // If we have explain, we need to rewrite the find command
   // to wrap it in the explain command
@@ -30213,99 +29821,7 @@ function executeFindCommand(bson, ns, cmd, cursorState, topology, options) {
     };
   }
 
-  // Did we provide a readConcern
-  if (cmd.readConcern) findCmd.readConcern = cmd.readConcern;
-
-  // Set up the serialize and ignoreUndefined fields
-  const serializeFunctions =
-    typeof options.serializeFunctions === 'boolean' ? options.serializeFunctions : false;
-  const ignoreUndefined =
-    typeof options.ignoreUndefined === 'boolean' ? options.ignoreUndefined : false;
-
-  // We have a Mongos topology, check if we need to add a readPreference
-  if (topology.type === 'mongos' && readPreference && readPreference.preference !== 'primary') {
-    findCmd = {
-      $query: findCmd,
-      $readPreference: readPreference.toJSON()
-    };
-  }
-
-  // optionally decorate query with transaction data
-  const err = decorateWithSessionsData(findCmd, options.session, options);
-  if (err) {
-    return err;
-  }
-
-  // Build Query object
-  const query = new Query(bson, commandns, findCmd, {
-    numberToSkip: 0,
-    numberToReturn: 1,
-    checkKeys: false,
-    returnFieldSelector: null,
-    serializeFunctions: serializeFunctions,
-    ignoreUndefined: ignoreUndefined
-  });
-
-  // Set query flags
-  query.slaveOk = readPreference.slaveOk();
-
-  // Return the query
-  return query;
-}
-
-//
-// Set up a command cursor
-function setupCommand(bson, ns, cmd, cursorState, topology, options) {
-  // Set empty options object
-  options = options || {};
-  // Get the readPreference
-  const readPreference = getReadPreference(cmd, options);
-
-  // Final query
-  let finalCmd = {};
-  for (let name in cmd) {
-    finalCmd[name] = cmd[name];
-  }
-
-  // Build command namespace
-  const parts = ns.split(/\./);
-
-  // Serialize functions
-  const serializeFunctions =
-    typeof options.serializeFunctions === 'boolean' ? options.serializeFunctions : false;
-
-  // Set up the serialize and ignoreUndefined fields
-  const ignoreUndefined =
-    typeof options.ignoreUndefined === 'boolean' ? options.ignoreUndefined : false;
-
-  // We have a Mongos topology, check if we need to add a readPreference
-  if (topology.type === 'mongos' && readPreference && readPreference.preference !== 'primary') {
-    finalCmd = {
-      $query: finalCmd,
-      $readPreference: readPreference.toJSON()
-    };
-  }
-
-  // optionally decorate query with transaction data
-  const err = decorateWithSessionsData(finalCmd, options.session, options);
-  if (err) {
-    return err;
-  }
-
-  // Build Query object
-  const query = new Query(bson, `${parts.shift()}.$cmd`, finalCmd, {
-    numberToSkip: 0,
-    numberToReturn: -1,
-    checkKeys: false,
-    serializeFunctions: serializeFunctions,
-    ignoreUndefined: ignoreUndefined
-  });
-
-  // Set query flags
-  query.slaveOk = readPreference.slaveOk();
-
-  // Return the query
-  return query;
+  return findCmd;
 }
 
 module.exports = WireProtocol;
@@ -30455,11 +29971,57 @@ var parseHeader = function(message) {
   };
 };
 
+function applyCommonQueryOptions(queryOptions, options) {
+  Object.assign(queryOptions, {
+    raw: typeof options.raw === 'boolean' ? options.raw : false,
+    promoteLongs: typeof options.promoteLongs === 'boolean' ? options.promoteLongs : true,
+    promoteValues: typeof options.promoteValues === 'boolean' ? options.promoteValues : true,
+    promoteBuffers: typeof options.promoteBuffers === 'boolean' ? options.promoteBuffers : false,
+    monitoring: typeof options.monitoring === 'boolean' ? options.monitoring : false,
+    fullResult: typeof options.fullResult === 'boolean' ? options.fullResult : false
+  });
+
+  if (typeof options.socketTimeout === 'number') {
+    queryOptions.socketTimeout = options.socketTimeout;
+  }
+
+  if (options.session) {
+    queryOptions.session = options.session;
+  }
+
+  if (typeof options.documentsReturnedIn === 'string') {
+    queryOptions.documentsReturnedIn = options.documentsReturnedIn;
+  }
+
+  return queryOptions;
+}
+
+function isMongos(server) {
+  if (server.type === 'mongos') return true;
+  if (server.parent && server.parent.type === 'mongos') return true;
+  // NOTE: handle unified topology
+  return false;
+}
+
+function databaseNamespace(ns) {
+  return ns.split('.')[0];
+}
+function collectionNamespace(ns) {
+  return ns
+    .split('.')
+    .slice(1)
+    .join('.');
+}
+
 module.exports = {
-  getReadPreference: getReadPreference,
-  MESSAGE_HEADER_SIZE: MESSAGE_HEADER_SIZE,
-  opcodes: opcodes,
-  parseHeader: parseHeader
+  getReadPreference,
+  MESSAGE_HEADER_SIZE,
+  opcodes,
+  parseHeader,
+  applyCommonQueryOptions,
+  isMongos,
+  databaseNamespace,
+  collectionNamespace
 };
 
 
@@ -30472,7 +30034,7 @@ module.exports = {
 /*! exports provided: name, version, description, main, files, scripts, repository, keywords, dependencies, devDependencies, peerOptionalDependencies, author, license, bugs, homepage, optionalDependencies, default */
 /***/ (function(module) {
 
-module.exports = {"name":"mongodb-core","version":"3.1.9","description":"Core MongoDB driver functionality, no bells and whistles and meant for integration not end applications","main":"index.js","files":["index.js","lib"],"scripts":{"test":"npm run lint && mongodb-test-runner -t 60000 test/tests","coverage":"node_modules/.bin/nyc node test/runner.js -t functional -l && node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls","lint":"eslint index.js lib test","format":"prettier --print-width 100 --tab-width 2 --single-quote --write index.js 'test/**/*.js' 'lib/**/*.js'","changelog":"conventional-changelog -p angular -i HISTORY.md -s","atlas":"node ./test/atlas.js","release":"standard-version -i HISTORY.md"},"repository":{"type":"git","url":"git://github.com/mongodb-js/mongodb-core.git"},"keywords":["mongodb","core"],"dependencies":{"bson":"^1.1.0","require_optional":"^1.0.1","safe-buffer":"^5.1.2"},"devDependencies":{"chai":"^4.1.2","chai-subset":"^1.6.0","co":"^4.6.0","eslint":"^4.6.1","eslint-plugin-prettier":"^2.2.0","jsdoc":"3.5.4","mongodb-extjson":"^2.1.2","mongodb-mock-server":"^1.0.0","mongodb-test-runner":"^1.1.18","prettier":"~1.12.0","sinon":"^6.0.0","snappy":"^6.1.1","standard-version":"^4.4.0"},"peerOptionalDependencies":{"kerberos":"^1.0.0","mongodb-extjson":"^2.1.2","snappy":"^6.1.1","bson-ext":"^2.0.0"},"author":"Christian Kvalheim","license":"Apache-2.0","bugs":{"url":"https://github.com/mongodb-js/mongodb-core/issues"},"homepage":"https://github.com/mongodb-js/mongodb-core","optionalDependencies":{"saslprep":"^1.0.0"}};
+module.exports = {"name":"mongodb-core","version":"3.1.11","description":"Core MongoDB driver functionality, no bells and whistles and meant for integration not end applications","main":"index.js","files":["index.js","lib"],"scripts":{"test":"npm run lint && mongodb-test-runner -t 60000 test/tests","coverage":"node_modules/.bin/nyc node test/runner.js -t functional -l && node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls","lint":"eslint index.js lib test","format":"prettier --print-width 100 --tab-width 2 --single-quote --write index.js test/**/*.js lib/**/*.js","changelog":"conventional-changelog -p angular -i HISTORY.md -s","atlas":"node ./test/atlas.js","release":"standard-version -i HISTORY.md"},"repository":{"type":"git","url":"git://github.com/mongodb-js/mongodb-core.git"},"keywords":["mongodb","core"],"dependencies":{"bson":"^1.1.0","require_optional":"^1.0.1","safe-buffer":"^5.1.2"},"devDependencies":{"chai":"^4.1.2","chai-subset":"^1.6.0","co":"^4.6.0","eslint":"^4.6.1","eslint-plugin-prettier":"^2.2.0","jsdoc":"3.5.4","mongodb-extjson":"^2.1.2","mongodb-mock-server":"^1.0.0","mongodb-test-runner":"^1.1.18","prettier":"~1.12.0","sinon":"^6.0.0","snappy":"^6.1.1","standard-version":"^4.4.0"},"peerOptionalDependencies":{"kerberos":"^1.0.0","mongodb-extjson":"^2.1.2","snappy":"^6.1.1","bson-ext":"^2.0.0"},"author":"Christian Kvalheim","license":"Apache-2.0","bugs":{"url":"https://github.com/mongodb-js/mongodb-core/issues"},"homepage":"https://github.com/mongodb-js/mongodb-core","optionalDependencies":{"saslprep":"^1.0.0"}};
 
 /***/ }),
 
@@ -32182,6 +31744,13 @@ class BulkOperationBase {
     const maxWriteBatchSize =
       isMaster && isMaster.maxWriteBatchSize ? isMaster.maxWriteBatchSize : 1000;
 
+    // Calculates the largest possible size of an Array key, represented as a BSON string
+    // element. This calculation:
+    //     1 byte for BSON type
+    //     # of bytes = length of (string representation of (maxWriteBatchSize - 1))
+    //   + 1 bytes for null terminator
+    const maxKeySize = (maxWriteBatchSize - 1).toString(10).length + 2;
+
     // Final options for retryable writes and write concern
     let finalOptions = Object.assign({}, options);
     finalOptions = applyRetryableWrites(finalOptions, collection.s.db);
@@ -32225,6 +31794,7 @@ class BulkOperationBase {
       // Max batch size options
       maxBatchSizeBytes: maxBatchSizeBytes,
       maxWriteBatchSize: maxWriteBatchSize,
+      maxKeySize,
       // Namespace
       namespace: namespace,
       // BSON
@@ -32609,6 +32179,7 @@ const executeOperation = utils.executeOperation;
 const MongoWriteConcernError = __webpack_require__(/*! mongodb-core */ "../node_modules/mongodb-core/index.js").MongoWriteConcernError;
 const handleMongoWriteConcernError = __webpack_require__(/*! ./common */ "../node_modules/mongodb/lib/bulk/common.js").handleMongoWriteConcernError;
 const bson = common.bson;
+const isPromiseLike = __webpack_require__(/*! ../utils */ "../node_modules/mongodb/lib/utils.js").isPromiseLike;
 
 /**
  * Add to internal list of Operations
@@ -32632,10 +32203,12 @@ function addToOperationsList(bulkOperation, docType, document) {
   if (bulkOperation.s.currentBatch == null)
     bulkOperation.s.currentBatch = new Batch(docType, bulkOperation.s.currentIndex);
 
+  const maxKeySize = bulkOperation.s.maxKeySize;
+
   // Check if we need to create a new batch
   if (
     bulkOperation.s.currentBatchSize + 1 >= bulkOperation.s.maxWriteBatchSize ||
-    bulkOperation.s.currentBatchSizeBytes + bulkOperation.s.currentBatchSizeBytes >=
+    bulkOperation.s.currentBatchSizeBytes + maxKeySize + bsonSize >=
       bulkOperation.s.maxBatchSizeBytes ||
     bulkOperation.s.currentBatch.batchType !== docType
   ) {
@@ -32648,10 +32221,6 @@ function addToOperationsList(bulkOperation, docType, document) {
     // Reset the current size trackers
     bulkOperation.s.currentBatchSize = 0;
     bulkOperation.s.currentBatchSizeBytes = 0;
-  } else {
-    // Update current batch size
-    bulkOperation.s.currentBatchSize = bulkOperation.s.currentBatchSize + 1;
-    bulkOperation.s.currentBatchSizeBytes = bulkOperation.s.currentBatchSizeBytes + bsonSize;
   }
 
   if (docType === common.INSERT) {
@@ -32664,12 +32233,13 @@ function addToOperationsList(bulkOperation, docType, document) {
   // We have an array of documents
   if (Array.isArray(document)) {
     throw toError('operation passed in cannot be an Array');
-  } else {
-    bulkOperation.s.currentBatch.originalIndexes.push(bulkOperation.s.currentIndex);
-    bulkOperation.s.currentBatch.operations.push(document);
-    bulkOperation.s.currentBatchSizeBytes = bulkOperation.s.currentBatchSizeBytes + bsonSize;
-    bulkOperation.s.currentIndex = bulkOperation.s.currentIndex + 1;
   }
+
+  bulkOperation.s.currentBatch.originalIndexes.push(bulkOperation.s.currentIndex);
+  bulkOperation.s.currentBatch.operations.push(document);
+  bulkOperation.s.currentBatchSize += 1;
+  bulkOperation.s.currentBatchSizeBytes += maxKeySize + bsonSize;
+  bulkOperation.s.currentIndex += 1;
 
   // Return bulkOperation
   return bulkOperation;
@@ -32712,6 +32282,10 @@ class OrderedBulkOperation extends BulkOperationBase {
    */
   execute(_writeConcern, options, callback) {
     const ret = this.bulkExecute(_writeConcern, options, callback);
+    if (isPromiseLike(ret)) {
+      return ret;
+    }
+
     options = ret.options;
     callback = ret.callback;
 
@@ -32799,6 +32373,7 @@ const executeOperation = utils.executeOperation;
 const MongoWriteConcernError = __webpack_require__(/*! mongodb-core */ "../node_modules/mongodb-core/index.js").MongoWriteConcernError;
 const handleMongoWriteConcernError = __webpack_require__(/*! ./common */ "../node_modules/mongodb/lib/bulk/common.js").handleMongoWriteConcernError;
 const bson = common.bson;
+const isPromiseLike = __webpack_require__(/*! ../utils */ "../node_modules/mongodb/lib/utils.js").isPromiseLike;
 
 /**
  * Add to internal list of Operations
@@ -32827,6 +32402,8 @@ function addToOperationsList(bulkOperation, docType, document) {
     bulkOperation.s.currentBatch = bulkOperation.s.currentRemoveBatch;
   }
 
+  const maxKeySize = bulkOperation.s.maxKeySize;
+
   // Create a new batch object if we don't have a current one
   if (bulkOperation.s.currentBatch == null)
     bulkOperation.s.currentBatch = new Batch(docType, bulkOperation.s.currentIndex);
@@ -32834,7 +32411,8 @@ function addToOperationsList(bulkOperation, docType, document) {
   // Check if we need to create a new batch
   if (
     bulkOperation.s.currentBatch.size + 1 >= bulkOperation.s.maxWriteBatchSize ||
-    bulkOperation.s.currentBatch.sizeBytes + bsonSize >= bulkOperation.s.maxBatchSizeBytes ||
+    bulkOperation.s.currentBatch.sizeBytes + maxKeySize + bsonSize >=
+      bulkOperation.s.maxBatchSizeBytes ||
     bulkOperation.s.currentBatch.batchType !== docType
   ) {
     // Save the batch to the execution stack
@@ -32847,11 +32425,11 @@ function addToOperationsList(bulkOperation, docType, document) {
   // We have an array of documents
   if (Array.isArray(document)) {
     throw toError('operation passed in cannot be an Array');
-  } else {
-    bulkOperation.s.currentBatch.operations.push(document);
-    bulkOperation.s.currentBatch.originalIndexes.push(bulkOperation.s.currentIndex);
-    bulkOperation.s.currentIndex = bulkOperation.s.currentIndex + 1;
   }
+
+  bulkOperation.s.currentBatch.operations.push(document);
+  bulkOperation.s.currentBatch.originalIndexes.push(bulkOperation.s.currentIndex);
+  bulkOperation.s.currentIndex = bulkOperation.s.currentIndex + 1;
 
   // Save back the current Batch to the right type
   if (docType === common.INSERT) {
@@ -32867,8 +32445,8 @@ function addToOperationsList(bulkOperation, docType, document) {
   }
 
   // Update current batch size
-  bulkOperation.s.currentBatch.size = bulkOperation.s.currentBatch.size + 1;
-  bulkOperation.s.currentBatch.sizeBytes = bulkOperation.s.currentBatch.sizeBytes + bsonSize;
+  bulkOperation.s.currentBatch.size += 1;
+  bulkOperation.s.currentBatch.sizeBytes += maxKeySize + bsonSize;
 
   // Return bulkOperation
   return bulkOperation;
@@ -32910,6 +32488,10 @@ class UnorderedBulkOperation extends BulkOperationBase {
    */
   execute(_writeConcern, options, callback) {
     const ret = this.bulkExecute(_writeConcern, options, callback);
+    if (isPromiseLike(ret)) {
+      return ret;
+    }
+
     options = ret.options;
     callback = ret.callback;
 
@@ -32956,9 +32538,18 @@ function executeBatch(bulkOperation, batch, options, callback) {
  */
 function executeBatches(bulkOperation, options, callback) {
   let numberOfCommandsToExecute = bulkOperation.s.batches.length;
+  let hasErrored = false;
   // Execute over all the batches
   for (let i = 0; i < bulkOperation.s.batches.length; i++) {
     executeBatch(bulkOperation, bulkOperation.s.batches[i], options, function(err) {
+      if (hasErrored) {
+        return;
+      }
+
+      if (err) {
+        hasErrored = true;
+        return handleCallback(callback, err);
+      }
       // Count down the number of commands left to execute
       numberOfCommandsToExecute = numberOfCommandsToExecute - 1;
 
@@ -33369,6 +32960,20 @@ function processNewChange(args) {
   const change = args.change;
   const callback = args.callback;
   const eventEmitter = args.eventEmitter || false;
+
+  // If the changeStream is closed, then it should not process a change.
+  if (changeStream.isClosed()) {
+    // We do not error in the eventEmitter case.
+    if (eventEmitter) {
+      return;
+    }
+
+    const error = new MongoError('ChangeStream is closed');
+    return typeof callback === 'function'
+      ? callback(error, null)
+      : changeStream.promiseLibrary.reject(error);
+  }
+
   const topology = changeStream.topology;
   const options = changeStream.cursor.options;
 
@@ -34272,7 +33877,7 @@ Collection.prototype.updateMany = function(filter, update, options, callback) {
  * Updates documents.
  * @method
  * @param {object} selector The selector for the update operation.
- * @param {object} document The update document.
+ * @param {object} update The update operations to be applied to the documents
  * @param {object} [options] Optional settings.
  * @param {(number|string)} [options.w] The write concern.
  * @param {number} [options.wtimeout] The write concern timeout.
@@ -34288,7 +33893,7 @@ Collection.prototype.updateMany = function(filter, update, options, callback) {
  * @return {Promise} returns Promise if no callback passed
  * @deprecated use updateOne, updateMany or bulkWrite
  */
-Collection.prototype.update = deprecate(function(selector, document, options, callback) {
+Collection.prototype.update = deprecate(function(selector, update, options, callback) {
   if (typeof options === 'function') (callback = options), (options = {});
   options = options || {};
 
@@ -34301,7 +33906,7 @@ Collection.prototype.update = deprecate(function(selector, document, options, ca
   return executeOperation(this.s.topology, updateDocuments, [
     this,
     selector,
-    document,
+    update,
     options,
     callback
   ]);
@@ -35160,6 +34765,7 @@ Collection.prototype.findAndRemove = deprecate(function(query, sort, options, ca
  * @param {boolean} [options.promoteBuffers=false] Promotes Binary BSON values to native Node Buffers.
  * @param {object} [options.collation] Specify collation (MongoDB 3.4 or higher) settings for update operation (see 3.4 documentation for available fields).
  * @param {string} [options.comment] Add a comment to an aggregation command
+ * @param {string|object} [options.hint] Add an index selection hint to an aggregation command
  * @param {ClientSession} [options.session] optional session to use for this operation
  * @param {Collection~aggregationCallback} callback The command result callback
  * @return {(null|AggregationCursor)}
@@ -35515,11 +35121,17 @@ Collection.prototype.mapReduce = function(map, reduce, options, callback) {
  * @param {(number|string)} [options.w] The write concern.
  * @param {number} [options.wtimeout] The write concern timeout.
  * @param {boolean} [options.j=false] Specify a journal write concern.
+ * @param {boolean} [options.ignoreUndefined=false] Specify if the BSON serializer should ignore undefined fields.
  * @param {ClientSession} [options.session] optional session to use for this operation
  * @return {UnorderedBulkOperation}
  */
 Collection.prototype.initializeUnorderedBulkOp = function(options) {
   options = options || {};
+  // Give function's options precedence over session options.
+  if (options.ignoreUndefined == null) {
+    options.ignoreUndefined = this.s.options.ignoreUndefined;
+  }
+
   options.promiseLibrary = this.s.promiseLibrary;
   return unordered(this.s.topology, this, options);
 };
@@ -35533,11 +35145,16 @@ Collection.prototype.initializeUnorderedBulkOp = function(options) {
  * @param {number} [options.wtimeout] The write concern timeout.
  * @param {boolean} [options.j=false] Specify a journal write concern.
  * @param {ClientSession} [options.session] optional session to use for this operation
+ * @param {boolean} [options.ignoreUndefined=false] Specify if the BSON serializer should ignore undefined fields.
  * @param {OrderedBulkOperation} callback The command result callback
  * @return {null}
  */
 Collection.prototype.initializeOrderedBulkOp = function(options) {
   options = options || {};
+  // Give function's options precedence over session's options.
+  if (options.ignoreUndefined == null) {
+    options.ignoreUndefined = this.s.options.ignoreUndefined;
+  }
   options.promiseLibrary = this.s.promiseLibrary;
   return ordered(this.s.topology, this, options);
 };
@@ -42245,6 +41862,21 @@ const MongoError = __webpack_require__(/*! mongodb-core */ "../node_modules/mong
 const ReadPreference = __webpack_require__(/*! mongodb-core */ "../node_modules/mongodb-core/index.js").ReadPreference;
 const toError = __webpack_require__(/*! ../utils */ "../node_modules/mongodb/lib/utils.js").toError;
 
+let collection;
+function loadCollection() {
+  if (!collection) {
+    collection = __webpack_require__(/*! ../collection */ "../node_modules/mongodb/lib/collection.js");
+  }
+  return collection;
+}
+let db;
+function loadDb() {
+  if (!db) {
+    db = __webpack_require__(/*! ../db */ "../node_modules/mongodb/lib/db.js");
+  }
+  return db;
+}
+
 /**
  * Group function helper
  * @ignore
@@ -43210,7 +42842,7 @@ function mapReduce(coll, map, reduce, options, callback) {
     if (result.result != null && typeof result.result === 'object') {
       const doc = result.result;
       // Return a collection from another db
-      const Db = __webpack_require__(/*! ../db */ "../node_modules/mongodb/lib/db.js");
+      let Db = loadDb();
       collection = new Db(doc.db, coll.s.db.s.topology, coll.s.db.s.options).collection(
         doc.collection
       );
@@ -43427,7 +43059,7 @@ function removeDocuments(coll, selector, options, callback) {
  * @param {Collection~collectionResultCallback} [callback] The results callback
  */
 function rename(coll, newName, options, callback) {
-  const Collection = __webpack_require__(/*! ../collection */ "../node_modules/mongodb/lib/collection.js");
+  let Collection = loadCollection();
   // Check the collection name
   checkCollectionName(newName);
   // Build the command
@@ -43720,6 +43352,14 @@ const handleCallback = __webpack_require__(/*! ../utils */ "../node_modules/mong
 const MongoError = __webpack_require__(/*! mongodb-core */ "../node_modules/mongodb-core/index.js").MongoError;
 const push = Array.prototype.push;
 
+let cursor;
+function loadCursor() {
+  if (!cursor) {
+    cursor = __webpack_require__(/*! ../cursor */ "../node_modules/mongodb/lib/cursor.js");
+  }
+  return cursor;
+}
+
 /**
  * Get the count of documents for this cursor.
  *
@@ -43788,7 +43428,7 @@ function count(cursor, applySkipLimit, opts, callback) {
  * @param {Cursor~resultCallback} callback The result callback.
  */
 function each(cursor, callback) {
-  const Cursor = __webpack_require__(/*! ../cursor */ "../node_modules/mongodb/lib/cursor.js");
+  let Cursor = loadCursor();
 
   if (!callback) throw MongoError.create({ message: 'callback is mandatory', driver: true });
   if (cursor.isNotified()) return;
@@ -43828,7 +43468,7 @@ function each(cursor, callback) {
  * @param {Cursor~resultCallback} [callback] The result callback.
  */
 function hasNext(cursor, callback) {
-  const Cursor = __webpack_require__(/*! ../cursor */ "../node_modules/mongodb/lib/cursor.js");
+  let Cursor = loadCursor();
 
   if (cursor.s.currentDoc) {
     return callback(null, true);
@@ -43879,7 +43519,7 @@ function next(cursor, callback) {
 
 // Get the next available document from the cursor, returns null if no more documents are available.
 function nextObject(cursor, callback) {
-  const Cursor = __webpack_require__(/*! ../cursor */ "../node_modules/mongodb/lib/cursor.js");
+  let Cursor = loadCursor();
 
   if (cursor.s.state === Cursor.CLOSED || (cursor.isDead && cursor.isDead()))
     return handleCallback(
@@ -43910,7 +43550,7 @@ function nextObject(cursor, callback) {
  * @param {Cursor~toArrayResultCallback} [callback] The result callback.
  */
 function toArray(cursor, callback) {
-  const Cursor = __webpack_require__(/*! ../cursor */ "../node_modules/mongodb/lib/cursor.js");
+  let Cursor = loadCursor();
 
   const items = [];
 
@@ -43985,6 +43625,21 @@ const findOne = __webpack_require__(/*! ./collection_ops */ "../node_modules/mon
 const remove = __webpack_require__(/*! ./collection_ops */ "../node_modules/mongodb/lib/operations/collection_ops.js").remove;
 const updateOne = __webpack_require__(/*! ./collection_ops */ "../node_modules/mongodb/lib/operations/collection_ops.js").updateOne;
 
+let collection;
+function loadCollection() {
+  if (!collection) {
+    collection = __webpack_require__(/*! ../collection */ "../node_modules/mongodb/lib/collection.js");
+  }
+  return collection;
+}
+let db;
+function loadDb() {
+  if (!db) {
+    db = __webpack_require__(/*! ../db */ "../node_modules/mongodb/lib/db.js");
+  }
+  return db;
+}
+
 const debugFields = [
   'authSource',
   'w',
@@ -44032,7 +43687,7 @@ const illegalCommandFields = [
  * @param {Db~resultCallback} [callback] The command result callback
  */
 function addUser(db, username, password, options, callback) {
-  const Db = __webpack_require__(/*! ../db */ "../node_modules/mongodb/lib/db.js");
+  let Db = loadDb();
 
   // Did the user destroy the topology
   if (db.serverConfig && db.serverConfig.isDestroyed())
@@ -44100,7 +43755,7 @@ function addUser(db, username, password, options, callback) {
  * @param {Db~collectionsResultCallback} [callback] The results callback
  */
 function collections(db, options, callback) {
-  const Collection = __webpack_require__(/*! ../collection */ "../node_modules/mongodb/lib/collection.js");
+  let Collection = loadCollection();
 
   options = Object.assign({}, options, { nameOnly: true });
   // Let's get the collection names
@@ -44140,7 +43795,7 @@ function collections(db, options, callback) {
  * @param {Db~collectionResultCallback} [callback] The results callback
  */
 function createCollection(db, name, options, callback) {
-  const Collection = __webpack_require__(/*! ../collection */ "../node_modules/mongodb/lib/collection.js");
+  let Collection = loadCollection();
 
   // Get the write concern options
   const finalOptions = applyWriteConcern(Object.assign({}, options), { db }, options);
@@ -44201,11 +43856,16 @@ function createCollection(db, name, options, callback) {
       // Execute command
       executeCommand(db, cmd, finalOptions, err => {
         if (err) return handleCallback(callback, err);
-        handleCallback(
-          callback,
-          null,
-          new Collection(db, db.s.topology, db.s.databaseName, name, db.s.pkFactory, options)
-        );
+
+        try {
+          return handleCallback(
+            callback,
+            null,
+            new Collection(db, db.s.topology, db.s.databaseName, name, db.s.pkFactory, options)
+          );
+        } catch (err) {
+          return handleCallback(callback, err);
+        }
       });
     });
 }
@@ -44600,7 +44260,7 @@ function profilingLevel(db, options, callback) {
  * @param {Db~resultCallback} [callback] The command result callback
  */
 function removeUser(db, username, options, callback) {
-  const Db = __webpack_require__(/*! ../db */ "../node_modules/mongodb/lib/db.js");
+  let Db = loadDb();
 
   // Attempt to execute command
   executeAuthRemoveUserCommand(db, username, options, (err, result) => {
@@ -44977,6 +44637,14 @@ const ReplSet = __webpack_require__(/*! ../topologies/replset */ "../node_module
 const Server = __webpack_require__(/*! ../topologies/server */ "../node_modules/mongodb/lib/topologies/server.js");
 const ServerSessionPool = __webpack_require__(/*! mongodb-core */ "../node_modules/mongodb-core/index.js").Sessions.ServerSessionPool;
 
+let client;
+function loadClient() {
+  if (!client) {
+    client = __webpack_require__(/*! ../mongo_client */ "../node_modules/mongodb/lib/mongo_client.js");
+  }
+  return client;
+}
+
 const monitoringEvents = [
   'timeout',
   'close',
@@ -45093,7 +44761,7 @@ function clearAllEvents(topology) {
 
 // Collect all events in order from SDAM
 function collectEvents(mongoClient, topology) {
-  const MongoClient = __webpack_require__(/*! ../mongo_client */ "../node_modules/mongodb/lib/mongo_client.js");
+  let MongoClient = loadClient();
   const collectedEvents = [];
 
   if (mongoClient instanceof MongoClient) {
@@ -48760,7 +48428,10 @@ function decorateWithCollation(command, target, options) {
  * @param {object} command the command on which to apply the read concern
  * @param {Collection} coll the parent collection of the operation calling this method
  */
-function decorateWithReadConcern(command, coll) {
+function decorateWithReadConcern(command, coll, options) {
+  if (options && options.session && options.session.inTransaction()) {
+    return;
+  }
   let readConcern = Object.assign({}, command.readConcern || {});
   if (coll.s.readConcern) {
     Object.assign(readConcern, coll.s.readConcern);
@@ -48885,7 +48556,7 @@ module.exports = {
 /*! exports provided: name, version, description, main, files, repository, keywords, dependencies, devDependencies, license, engines, bugs, scripts, homepage, default */
 /***/ (function(module) {
 
-module.exports = {"name":"mongodb","version":"3.1.10","description":"The official MongoDB driver for Node.js","main":"index.js","files":["index.js","lib"],"repository":{"type":"git","url":"git@github.com:mongodb/node-mongodb-native.git"},"keywords":["mongodb","driver","official"],"dependencies":{"mongodb-core":"3.1.9","safe-buffer":"^5.1.2"},"devDependencies":{"bluebird":"3.5.0","bson":"^1.0.4","chai":"^4.1.1","chai-subset":"^1.6.0","co":"4.6.0","coveralls":"^2.11.6","eslint":"^4.5.0","eslint-plugin-prettier":"^2.2.0","istanbul":"^0.4.5","jsdoc":"3.5.5","lodash.camelcase":"^4.3.0","mocha-sinon":"^2.1.0","mongodb-extjson":"^2.1.1","mongodb-mock-server":"^1.0.0","mongodb-test-runner":"^1.1.18","prettier":"~1.12.0","semver":"^5.5.0","sinon":"^4.3.0","sinon-chai":"^3.2.0","standard-version":"^4.4.0","worker-farm":"^1.5.0"},"license":"Apache-2.0","engines":{"node":">=4"},"bugs":{"url":"https://github.com/mongodb/node-mongodb-native/issues"},"scripts":{"test":"npm run lint && mongodb-test-runner -t 60000 test/unit test/functional","coverage":"istanbul cover mongodb-test-runner -- -t 60000  test/unit test/functional","lint":"eslint lib test","format":"prettier --print-width 100 --tab-width 2 --single-quote --write 'test/**/*.js' 'lib/**/*.js'","bench":"node test/driverBench/","generate-evergreen":"node .evergreen/generate_evergreen_tasks.js","release":"standard-version -i HISTORY.md"},"homepage":"https://github.com/mongodb/node-mongodb-native"};
+module.exports = {"name":"mongodb","version":"3.1.13","description":"The official MongoDB driver for Node.js","main":"index.js","files":["index.js","lib"],"repository":{"type":"git","url":"git@github.com:mongodb/node-mongodb-native.git"},"keywords":["mongodb","driver","official"],"dependencies":{"mongodb-core":"3.1.11","safe-buffer":"^5.1.2"},"devDependencies":{"bluebird":"3.5.0","bson":"^1.0.4","chai":"^4.1.1","chai-subset":"^1.6.0","co":"4.6.0","coveralls":"^2.11.6","eslint":"^4.5.0","eslint-plugin-prettier":"^2.2.0","istanbul":"^0.4.5","jsdoc":"3.5.5","lodash.camelcase":"^4.3.0","mocha-sinon":"^2.1.0","mongodb-extjson":"^2.1.1","mongodb-mock-server":"^1.0.0","mongodb-test-runner":"^1.1.18","prettier":"~1.12.0","semver":"^5.5.0","sinon":"^4.3.0","sinon-chai":"^3.2.0","standard-version":"^4.4.0","worker-farm":"^1.5.0"},"license":"Apache-2.0","engines":{"node":">=4"},"bugs":{"url":"https://github.com/mongodb/node-mongodb-native/issues"},"scripts":{"test":"npm run lint && mongodb-test-runner -t 60000 test/unit test/functional","coverage":"istanbul cover mongodb-test-runner -- -t 60000  test/unit test/functional","lint":"eslint lib test","format":"prettier --print-width 100 --tab-width 2 --single-quote --write 'test/**/*.js' 'lib/**/*.js'","bench":"node test/driverBench/","generate-evergreen":"node .evergreen/generate_evergreen_tasks.js","release":"standard-version -i HISTORY.md"},"homepage":"https://github.com/mongodb/node-mongodb-native"};
 
 /***/ }),
 
@@ -51787,9 +51458,15 @@ Connection.prototype.openUri = function(uri, options, callback) {
 
       // Backwards compat for mongoose 4.x
       db.on('reconnect', function() {
-        _this.readyState = STATES.connected;
-        _this.emit('reconnect');
-        _this.emit('reconnected');
+        // If we aren't disconnected, we assume this reconnect is due to a
+        // socket timeout. If there's no activity on a socket for
+        // `socketTimeoutMS`, the driver will attempt to reconnect and emit
+        // this event.
+        if (_this.readyState !== STATES.connected) {
+          _this.readyState = STATES.connected;
+          _this.emit('reconnect');
+          _this.emit('reconnected');
+        }
       });
       db.s.topology.on('reconnectFailed', function() {
         _this.emit('reconnectFailed');
@@ -53075,7 +52752,7 @@ function Document(obj, fields, skipId, options) {
 
   // determine if this doc is a result of a query with
   // excluded fields
-  if (fields && utils.getFunctionName(fields.constructor) === 'Object') {
+  if (utils.isPOJO(fields)) {
     exclude = isExclusive(fields);
   }
 
@@ -53491,8 +53168,7 @@ function init(self, obj, doc, prefix) {
       return;
     }
 
-    if (!schema && utils.isObject(obj[i]) &&
-        (!obj[i].constructor || utils.getFunctionName(obj[i].constructor) === 'Object')) {
+    if (!schema && utils.isPOJO(obj[i])) {
       // assume nested object
       if (!doc[i]) {
         doc[i] = {};
@@ -53684,7 +53360,7 @@ Document.prototype.$session = function $session(session) {
  */
 
 Document.prototype.$set = function $set(path, val, type, options) {
-  if (type && utils.getFunctionName(type.constructor) === 'Object') {
+  if (utils.isPOJO(type)) {
     options = type;
     type = undefined;
   }
@@ -53760,11 +53436,7 @@ Document.prototype.$set = function $set(path, val, type, options) {
       delete this._doc[key];
     }
 
-    if (path[key] !== null &&
-        path[key] !== void 0 &&
-        // need to know if plain object - no Buffer, ObjectId, ref, etc
-        utils.isObject(path[key]) &&
-        (!path[key].constructor || utils.getFunctionName(path[key].constructor) === 'Object') &&
+    if (utils.isPOJO(path[key]) &&
         pathtype !== 'virtual' &&
         pathtype !== 'real' &&
         !(this.$__path(pathName) instanceof MixedSchema) &&
@@ -53809,8 +53481,7 @@ Document.prototype.$set = function $set(path, val, type, options) {
 
   const pathType = this.schema.pathType(path);
   if (pathType === 'nested' && val) {
-    if (utils.isObject(val) &&
-        (!val.constructor || utils.getFunctionName(val.constructor) === 'Object')) {
+    if (utils.isPOJO(val)) {
       if (!merge) {
         this.setValue(path, null);
         cleanModifiedSubpaths(this, path);
@@ -54186,7 +53857,7 @@ Document.prototype.$__set = function(pathToMark, path, constructing, parts, sche
         obj[parts[i]] = val;
       }
     } else {
-      if (obj[parts[i]] && utils.getFunctionName(obj[parts[i]].constructor) === 'Object') {
+      if (utils.isPOJO(obj[parts[i]])) {
         obj = obj[parts[i]];
       } else if (obj[parts[i]] && obj[parts[i]] instanceof Embedded) {
         obj = obj[parts[i]];
@@ -54767,7 +54438,8 @@ function _getPathsToValidate(doc) {
     for (i = 0; i < len; ++i) {
       subdoc = subdocs[i];
       if (doc.isModified(subdoc.$basePath, modifiedPaths) &&
-          !doc.isDirectModified(subdoc.$basePath)) {
+          !doc.isDirectModified(subdoc.$basePath) &&
+          !doc.$isDefault(subdoc.$basePath)) {
         // Remove child paths for now, because we'll be validating the whole
         // subdoc
         paths = paths.filter(function(p) {
@@ -54958,7 +54630,7 @@ Document.prototype.$__validate = function(callback) {
  *     }
  *
  * @param {Array|string} pathsToValidate only validate the given paths
- * @return {MongooseError|undefined} MongooseError if there are errors during validation, or undefined if there is no error.
+ * @return {ValidationError|undefined} ValidationError if there are errors during validation, or undefined if there is no error.
  * @api public
  */
 
@@ -55462,9 +55134,7 @@ Document.prototype.$toObject = function(options, json) {
   defaultOptions = utils.options(defaultOptions, clone(schemaOptions[path] || {}));
 
   // If options do not exist or is not an object, set it to empty object
-  options = options && utils.getFunctionName(options.constructor) === 'Object' ?
-    clone(options) :
-    {};
+  options = utils.isPOJO(options) ? clone(options) : {};
 
   if (!('flattenMaps' in options)) {
     options.flattenMaps = defaultOptions.flattenMaps;
@@ -55841,8 +55511,7 @@ Document.prototype.toJSON = function(options) {
  */
 
 Document.prototype.inspect = function(options) {
-  const isPOJO = options &&
-    utils.getFunctionName(options.constructor) === 'Object';
+  const isPOJO = utils.isPOJO(options);
   let opts;
   if (isPOJO) {
     opts = options;
@@ -57117,6 +56786,8 @@ MongooseError.CastError = __webpack_require__(/*! ./cast */ "../node_modules/mon
 
 /**
  * An instance of this error class will be returned when [validation](/docs/validation.html) failed.
+ * The `errors` property contains an object whose keys are the paths that failed and whose values are
+ * instances of CastError or ValidationError.
  *
  * @api public
  */
@@ -58166,8 +57837,7 @@ function compile(tree, proto, prefix, options) {
     key = keys[i];
     limb = tree[key];
 
-    const hasSubprops = utils.getFunctionName(limb.constructor) === 'Object' &&
-      Object.keys(limb).length &&
+    const hasSubprops = utils.isPOJO(limb) && Object.keys(limb).length &&
       (!limb[options.typeKey] || (options.typeKey === 'type' && limb.type.type));
     const subprops = hasSubprops ? limb : null;
 
@@ -60180,7 +59850,7 @@ function castUpdateVal(schema, val, op, $conditional, context, path) {
   if (cond && op !== '$set') {
     // Cast values for ops that add data to MongoDB.
     // Ensures embedded documents get ObjectIds etc.
-    const tmp = schema.cast(val);
+    const tmp = schema.cast(Array.isArray(val) ? val : [val]);
     if (Array.isArray(val)) {
       val = tmp;
     } else if (Array.isArray(tmp)) {
@@ -63024,6 +62694,7 @@ function generateVersionError(doc, modifiedPaths) {
  * @param {Number} [options.wtimeout] sets a [timeout for the write concern](https://docs.mongodb.com/manual/reference/write-concern/#wtimeout). Overrides the [schema-level `writeConcern` option](/docs/guide.html#writeConcern).
  * @param {Boolean} [options.checkKeys=true] the MongoDB driver prevents you from saving keys that start with '$' or contain '.' by default. Set this option to `false` to skip that check. See [restrictions on field names](https://docs.mongodb.com/manual/reference/limits/#Restrictions-on-Field-Names)
  * @param {Boolean} [options.timestamps=true] if `false` and [timestamps](./guide.html#timestamps) are enabled, skip timestamps for this `save()`.
+ * @param {Session} [options.session=null] the [session](https://docs.mongodb.com/manual/reference/server-sessions/) associated with this save operation. If not specified, defaults to the [document's associated session](api.html#document_Document-$session).
  * @param {Function} [fn] optional callback
  * @return {Promise|undefined} Returns undefined if used with callback or a Promise otherwise.
  * @api public
@@ -64184,15 +63855,35 @@ Model.discriminators;
  * @return {Object} the translated 'pure' fields/conditions
  */
 Model.translateAliases = function translateAliases(fields) {
-  const aliases = this.schema.aliases;
-
   if (typeof fields === 'object') {
     // Fields is an object (query conditions or document fields)
     for (const key in fields) {
-      if (aliases[key]) {
-        fields[aliases[key]] = fields[key];
-        delete fields[key];
+      let alias;
+      const translated = [];
+      const fieldKeys = key.split('.');
+      let currentSchema = this.schema;
+      for (const field in fieldKeys) {
+        const name = fieldKeys[field];
+        if (currentSchema && currentSchema.aliases[name]) {
+          alias = currentSchema.aliases[name];
+          // Alias found,
+          translated.push(alias);
+        } else {
+          // Alias not found, so treat as un-aliased key
+          translated.push(name);
+        }
+
+        // Check if aliased path is a schema
+        if (currentSchema.paths[alias])
+          currentSchema = currentSchema.paths[alias].schema;
+        else
+          currentSchema = null;
       }
+
+      const translatedKey = translated.join('.');
+      fields[translatedKey] = fields[key];
+      if (translatedKey !== key)
+        delete fields[key]; // We'll be using the translated key instead
     }
 
     return fields;
@@ -64322,16 +64013,16 @@ Model.deleteMany = function deleteMany(conditions, options, callback) {
  *     // named john and at least 18
  *     MyModel.find({ name: 'john', age: { $gte: 18 }});
  *
- *     // executes immediately, passing results to callback
+ *     // executes, passing results to callback
  *     MyModel.find({ name: 'john', age: { $gte: 18 }}, function (err, docs) {});
  *
- *     // name LIKE john and only selecting the "name" and "friends" fields, executing immediately
+ *     // executes, name LIKE john and only selecting the "name" and "friends" fields
  *     MyModel.find({ name: /john/i }, 'name friends', function (err, docs) { })
  *
  *     // passing options
  *     MyModel.find({ name: /john/i }, null, { skip: 10 })
  *
- *     // passing options and executing immediately
+ *     // passing options and executes
  *     MyModel.find({ name: /john/i }, null, { skip: 10 }, function (err, docs) {});
  *
  *     // executing a query explicitly
@@ -64404,7 +64095,7 @@ Model.find = function find(conditions, projection, options, callback) {
  *
  * ####Example:
  *
- *     // find adventure by id and execute immediately
+ *     // find adventure by id and execute
  *     Adventure.findById(id, function (err, adventure) {});
  *
  *     // same as above
@@ -64630,7 +64321,7 @@ Model.count = function count(conditions, callback) {
 /**
  * Creates a Query for a `distinct` operation.
  *
- * Passing a `callback` immediately executes the query.
+ * Passing a `callback` executes the query.
  *
  * ####Example
  *
@@ -64720,7 +64411,7 @@ Model.$where = function $where() {
 /**
  * Issues a mongodb findAndModify update command.
  *
- * Finds a matching document, updates it according to the `update` arg, passing any `options`, and returns the found document (if any) to the callback. The query executes immediately if `callback` is passed else a Query object is returned.
+ * Finds a matching document, updates it according to the `update` arg, passing any `options`, and returns the found document (if any) to the callback. The query executes if `callback` is passed else a Query object is returned.
  *
  * ####Options:
  *
@@ -64853,8 +64544,7 @@ function _decorateUpdateWithVersionKey(update, options, versionKey) {
  *
  * Finds a matching document, updates it according to the `update` arg,
  * passing any `options`, and returns the found document (if any) to the
- * callback. The query executes immediately if `callback` is passed else a
- * Query object is returned.
+ * callback. The query executes if `callback` is passed.
  *
  * This function triggers the following middleware.
  *
@@ -64952,7 +64642,7 @@ Model.findByIdAndUpdate = function(id, update, options, callback) {
  * Finds a matching document, removes it, and passes the found document
  * (if any) to the callback.
  *
- * Executes immediately if `callback` is passed else a Query object is returned.
+ * Executes the query if `callback` is passed.
  *
  * This function triggers the following middleware.
  *
@@ -65073,7 +64763,7 @@ Model.findByIdAndDelete = function(id, options, callback) {
  * Finds a matching document, replaces it with the provided doc, and passes the
  * returned doc to the callback.
  *
- * Executes immediately if `callback` is passed else a Query object is returned.
+ * Executes the query if `callback` is passed.
  *
  * This function triggers the following query middleware.
  *
@@ -65142,7 +64832,7 @@ Model.findOneAndReplace = function(conditions, options, callback) {
  *
  * Finds a matching document, removes it, passing the found document (if any) to the callback.
  *
- * Executes immediately if `callback` is passed else a Query object is returned.
+ * Executes the query if `callback` is passed.
  *
  * This function triggers the following middleware.
  *
@@ -65225,7 +64915,7 @@ Model.findOneAndRemove = function(conditions, options, callback) {
  *
  * Finds a matching document, removes it, passing the found document (if any) to the callback.
  *
- * Executes immediately if `callback` is passed, else a `Query` object is returned.
+ * Executes the query if `callback` is passed.
  *
  * This function triggers the following middleware.
  *
@@ -67541,7 +67231,7 @@ module.exports.storeShard = storeShard;
 function storeShard() {
   // backwards compat
   const key = this.schema.options.shardKey || this.schema.options.shardkey;
-  if (!(key && utils.getFunctionName(key.constructor) === 'Object')) {
+  if (!utils.isPOJO(key)) {
     return;
   }
 
@@ -67697,6 +67387,7 @@ module.exports = store;
 const CastError = __webpack_require__(/*! ./error/cast */ "../node_modules/mongoose/lib/error/cast.js");
 const DocumentNotFoundError = __webpack_require__(/*! ./error/notFound */ "../node_modules/mongoose/lib/error/notFound.js");
 const Kareem = __webpack_require__(/*! kareem */ "../node_modules/kareem/index.js");
+const MongooseError = __webpack_require__(/*! ./error/mongooseError */ "../node_modules/mongoose/lib/error/mongooseError.js");
 const ObjectParameterError = __webpack_require__(/*! ./error/objectParameter */ "../node_modules/mongoose/lib/error/objectParameter.js");
 const QueryCursor = __webpack_require__(/*! ./cursor/QueryCursor */ "../node_modules/mongoose/lib/cursor/QueryCursor.js");
 const ReadPreference = __webpack_require__(/*! ./driver */ "../node_modules/mongoose/lib/driver.js").get().ReadPreference;
@@ -67852,8 +67543,6 @@ Query.use$geoWithin = mquery.use$geoWithin;
  *       }
  *     })
  *     Adventure().highlyRated.startsWith('Life').exec(callback)
- *
- * New in 3.7.3
  *
  * @return {Query} subclass-of-Query
  * @api public
@@ -68905,8 +68594,6 @@ Query.prototype.wtimeout = function wtimeout(ms) {
  *
  * When a Query is passed, conditions, field selection and options are merged.
  *
- * New in 3.7.0
- *
  * @method merge
  * @memberOf Query
  * @instance
@@ -69586,6 +69273,8 @@ Query.prototype.merge = function(source) {
     if (source._distinct) {
       this._distinct = source._distinct;
     }
+
+    utils.merge(this._mongooseOptions, source._mongooseOptions);
 
     return this;
   }
@@ -70392,7 +70081,9 @@ function prepareDiscriminatorCriteria(query) {
 /**
  * Issues a mongodb [findAndModify](http://www.mongodb.org/display/DOCS/findAndModify+Command) update command.
  *
- * Finds a matching document, updates it according to the `update` arg, passing any `options`, and returns the found document (if any) to the callback. The query executes immediately if `callback` is passed.
+ * Finds a matching document, updates it according to the `update` arg, passing any `options`, and returns the found
+ * document (if any) to the callback. The query executes if
+ * `callback` is passed.
  *
  * This function triggers the following middleware.
  *
@@ -70523,7 +70214,8 @@ Query.prototype._findOneAndUpdate = wrapThunk(function(callback) {
 /**
  * Issues a mongodb [findAndModify](http://www.mongodb.org/display/DOCS/findAndModify+Command) remove command.
  *
- * Finds a matching document, removes it, passing the found document (if any) to the callback. Executes immediately if `callback` is passed.
+ * Finds a matching document, removes it, passing the found document (if any) to
+ * the callback. Executes if `callback` is passed.
  *
  * This function triggers the following middleware.
  *
@@ -70601,7 +70293,8 @@ Query.prototype.findOneAndRemove = function(conditions, options, callback) {
 /**
  * Issues a MongoDB [findOneAndDelete](https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndDelete/) command.
  *
- * Finds a matching document, removes it, and passes the found document (if any) to the callback. Executes immediately if `callback` is passed.
+ * Finds a matching document, removes it, and passes the found document (if any)
+ * to the callback. Executes if `callback` is passed.
  *
  * This function triggers the following middleware.
  *
@@ -70723,7 +70416,8 @@ Query.prototype._findOneAndDelete = wrapThunk(function(callback) {
 /**
  * Issues a MongoDB [findOneAndReplace](https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndReplace/) command.
  *
- * Finds a matching document, removes it, and passes the found document (if any) to the callback. Executes immediately if `callback` is passed.
+ * Finds a matching document, removes it, and passes the found document (if any)
+ * to the callback. Executes if `callback` is passed.
  *
  * This function triggers the following middleware.
  *
@@ -71150,6 +70844,11 @@ function _updateThunk(op, callback) {
   this._update = utils.clone(this._update, options);
   const isOverwriting = this.options.overwrite && !hasDollarKeys(this._update);
   if (isOverwriting) {
+    if (op === 'updateOne' || op === 'updateMany') {
+      return callback(new MongooseError('The MongoDB server disallows ' +
+        'overwriting documents using `' + op + '`. See: ' +
+        'https://mongoosejs.com/docs/deprecations.html#-update-'));
+    }
     castedDoc = new this.model(this._update, null, true);
   } else {
     castedDoc = castDoc(this, options.overwrite);
@@ -71386,7 +71085,7 @@ Query.prototype.update = function(conditions, doc, options, callback) {
  * @param {Object} [criteria]
  * @param {Object} [doc] the update command
  * @param {Object} [options]
- @param {Boolean} [options.multipleCastError] by default, mongoose only returns the first error that occurred in casting the query. Turn on this option to aggregate all the cast errors.
+ * @param {Boolean} [options.multipleCastError] by default, mongoose only returns the first error that occurred in casting the query. Turn on this option to aggregate all the cast errors.
  * @param {Function} [callback] optional params are (error, writeOpResult)
  * @return {Query} this
  * @see Model.update #model_Model.update
@@ -71440,7 +71139,7 @@ Query.prototype.updateMany = function(conditions, doc, options, callback) {
  * @param {Object} [criteria]
  * @param {Object} [doc] the update command
  * @param {Object} [options]
- @param {Boolean} [options.multipleCastError] by default, mongoose only returns the first error that occurred in casting the query. Turn on this option to aggregate all the cast errors.
+ * @param {Boolean} [options.multipleCastError] by default, mongoose only returns the first error that occurred in casting the query. Turn on this option to aggregate all the cast errors.
  * @param {Function} [callback] params are (error, writeOpResult)
  * @return {Query} this
  * @see Model.update #model_Model.update
@@ -71551,7 +71250,7 @@ function _update(query, op, filter, doc, options, callback) {
   }
 
   // strict is an option used in the update checking, make sure it gets set
-  if (options) {
+  if (options != null) {
     if ('strict' in options) {
       query._mongooseOptions.strict = options.strict;
     }
@@ -72521,8 +72220,6 @@ Query.prototype.box = function(ll, ur) {
  *     // alternatively
  *     query.circle('loc', area);
  *
- * New in 3.7.0
- *
  * @method circle
  * @memberOf Query
  * @instance
@@ -73373,6 +73070,11 @@ Schema.prototype.add = function add(obj, prefix) {
     return;
   }
 
+  if (obj._id === false) {
+    delete obj._id;
+    this.options._id = false;
+  }
+
   prefix = prefix || '';
   const keys = Object.keys(obj);
 
@@ -73387,8 +73089,7 @@ Schema.prototype.add = function add(obj, prefix) {
       throw new TypeError('Invalid value for schema Array path `' + prefix + key + '`');
     }
 
-    if (utils.isObject(obj[key]) &&
-        (!obj[key].constructor || utils.getFunctionName(obj[key].constructor) === 'Object') &&
+    if (utils.isPOJO(obj[key]) &&
         (!obj[key][this.options.typeKey] || (this.options.typeKey === 'type' && obj[key].type.type))) {
       if (Object.keys(obj[key]).length) {
         // nested object { last: { name: String }}
@@ -73644,7 +73345,7 @@ Schema.prototype.interpretAsType = function(path, obj, options) {
     : {};
   let name;
 
-  if (utils.getFunctionName(type.constructor) === 'Object' || type === 'mixed') {
+  if (utils.isPOJO(type) || type === 'mixed') {
     return new MongooseTypes.Mixed(path, obj);
   }
 
@@ -73670,7 +73371,7 @@ Schema.prototype.interpretAsType = function(path, obj, options) {
     if (typeof cast === 'string') {
       cast = MongooseTypes[cast.charAt(0).toUpperCase() + cast.substring(1)];
     } else if (cast && (!cast[options.typeKey] || (options.typeKey === 'type' && cast.type.type))
-        && utils.getFunctionName(cast.constructor) === 'Object') {
+        && utils.isPOJO(cast)) {
       if (Object.keys(cast).length) {
         // The `minimize` and `typeKey` options propagate to child schemas
         // declared inline, like `{ arr: [{ val: { $type: String } }] }`.
@@ -73921,7 +73622,7 @@ Schema.prototype.setupTimestamp = function(timestamps) {
       let ts = defaultTimestamp;
       if (this.isNew) {
         if (createdAt != null) {
-          ts = this.get(createdAt);
+          ts = this.getValue(createdAt);
         } else if (auto_id) {
           ts = this._id.getTimestamp();
         }
@@ -74859,7 +74560,7 @@ function SchemaArray(key, cast, options, schemaOptions) {
   if (cast) {
     let castOptions = {};
 
-    if (utils.getFunctionName(cast.constructor) === 'Object') {
+    if (utils.isPOJO(cast)) {
       if (cast[typeKey]) {
         // support { type: Woot }
         castOptions = utils.clone(cast); // do not alter user arguments
@@ -75409,8 +75110,11 @@ Object.defineProperty(SchemaBoolean, 'convertToFalse', {
  */
 
 SchemaBoolean.prototype.cast = function(value) {
+  const castBoolean = typeof this.constructor.cast === 'function' ?
+    this.constructor.cast() :
+    SchemaBoolean.cast();
   try {
-    return this.constructor.cast()(value);
+    return castBoolean(value);
   } catch (error) {
     throw new CastError('Boolean', value, this.path);
   }
@@ -75890,7 +75594,13 @@ SchemaDate.prototype.checkRequired = function(value, doc) {
   if (SchemaType._isRef(this, value, doc, true)) {
     return !!value;
   }
-  return this.constructor._checkRequired(value);
+
+  // `require('util').inherits()` does **not** copy static properties, and
+  // plugins like mongoose-float use `inherits()` for pre-ES6.
+  const _checkRequired = typeof this.constructor.checkRequired == 'function' ?
+    this.constructor.checkRequired() :
+    SchemaDate.checkRequired();
+  return _checkRequired(value);
 };
 
 /**
@@ -76013,9 +75723,11 @@ SchemaDate.prototype.max = function(value, message) {
  */
 
 SchemaDate.prototype.cast = function(value) {
-  const _castDate = this.constructor.cast();
+  const castDate = typeof this.constructor.cast === 'function' ?
+    this.constructor.cast() :
+    SchemaDate.cast();
   try {
-    return _castDate(value);
+    return castDate(value);
   } catch (error) {
     throw new CastError('date', value, this.path);
   }
@@ -76197,7 +75909,14 @@ Decimal128.prototype.checkRequired = function checkRequired(value, doc) {
   if (SchemaType._isRef(this, value, doc, true)) {
     return !!value;
   }
-  return this.constructor._checkRequired(value);
+
+  // `require('util').inherits()` does **not** copy static properties, and
+  // plugins like mongoose-float use `inherits()` for pre-ES6.
+  const _checkRequired = typeof this.constructor.checkRequired == 'function' ?
+    this.constructor.checkRequired() :
+    Decimal128.checkRequired();
+
+  return _checkRequired(value);
 };
 
 /**
@@ -76251,9 +75970,11 @@ Decimal128.prototype.cast = function(value, doc, init) {
     return ret;
   }
 
-  const _castDecimal128 = this.constructor.cast();
+  const castDecimal128 = typeof this.constructor.cast === 'function' ?
+    this.constructor.cast() :
+    Decimal128.cast();
   try {
-    return _castDecimal128(value);
+    return castDecimal128(value);
   } catch (error) {
     throw new CastError('Decimal128', value, this.path);
   }
@@ -77465,7 +77186,14 @@ SchemaNumber.prototype.checkRequired = function checkRequired(value, doc) {
   if (SchemaType._isRef(this, value, doc, true)) {
     return !!value;
   }
-  return this.constructor._checkRequired(value);
+
+  // `require('util').inherits()` does **not** copy static properties, and
+  // plugins like mongoose-float use `inherits()` for pre-ES6.
+  const _checkRequired = typeof this.constructor.checkRequired == 'function' ?
+    this.constructor.checkRequired() :
+    SchemaNumber.checkRequired();
+
+  return _checkRequired(value);
 };
 
 /**
@@ -77623,8 +77351,11 @@ SchemaNumber.prototype.cast = function(value, doc, init) {
     value._id : // documents
     value;
 
+  const castNumber = typeof this.constructor.cast === 'function' ?
+    this.constructor.cast() :
+    SchemaNumber.cast();
   try {
-    return this.constructor.cast()(val);
+    return castNumber(val);
   } catch (err) {
     throw new CastError('number', val, this.path);
   }
@@ -77871,7 +77602,14 @@ ObjectId.prototype.checkRequired = function checkRequired(value, doc) {
   if (SchemaType._isRef(this, value, doc, true)) {
     return !!value;
   }
-  return this.constructor._checkRequired(value);
+
+  // `require('util').inherits()` does **not** copy static properties, and
+  // plugins like mongoose-float use `inherits()` for pre-ES6.
+  const _checkRequired = typeof this.constructor.checkRequired == 'function' ?
+    this.constructor.checkRequired() :
+    ObjectId.checkRequired();
+
+  return _checkRequired(value);
 };
 
 /**
@@ -77927,8 +77665,11 @@ ObjectId.prototype.cast = function(value, doc, init) {
     return ret;
   }
 
+  const castObjectId = typeof this.constructor.cast === 'function' ?
+    this.constructor.cast() :
+    ObjectId.cast();
   try {
-    return this.constructor.cast()(value);
+    return castObjectId(value);
   } catch (error) {
     throw new CastError('ObjectId', value, this.path);
   }
@@ -78795,7 +78536,14 @@ SchemaString.prototype.checkRequired = function checkRequired(value, doc) {
   if (SchemaType._isRef(this, value, doc, true)) {
     return !!value;
   }
-  return this.constructor._checkRequired(value, doc);
+
+  // `require('util').inherits()` does **not** copy static properties, and
+  // plugins like mongoose-float use `inherits()` for pre-ES6.
+  const _checkRequired = typeof this.constructor.checkRequired == 'function' ?
+    this.constructor.checkRequired() :
+    SchemaString.checkRequired();
+
+  return _checkRequired(value);
 };
 
 /**
@@ -78838,8 +78586,11 @@ SchemaString.prototype.cast = function(value, doc, init) {
     return ret;
   }
 
+  const castString = typeof this.constructor.cast === 'function' ?
+    this.constructor.cast() :
+    SchemaString.cast();
   try {
-    return this.constructor.cast()(value);
+    return castString(value);
   } catch (error) {
     throw new CastError('string', value, this.path);
   }
@@ -79538,7 +79289,7 @@ SchemaType.prototype.validate = function(obj, message, type) {
 
   for (i = 0, length = arguments.length; i < length; i++) {
     arg = arguments[i];
-    if (!(arg && utils.getFunctionName(arg.constructor) === 'Object')) {
+    if (!utils.isPOJO(arg)) {
       const msg = 'Invalid validator. Received (' + typeof arg + ') '
           + arg
           + '. See http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate';
@@ -81680,12 +81431,6 @@ function MongooseDocumentArray(values, path, doc) {
   // TODO: replace this with `new CoreMongooseArray().concat()` when we remove
   // support for node 4.x and 5.x, see https://i.imgur.com/UAAHk4S.png
   const arr = new CoreMongooseArray();
-  if (Array.isArray(values)) {
-    values.forEach(v => {
-      arr.push(v);
-    });
-  }
-  arr._path = path;
 
   const props = {
     isMongooseDocumentArray: true,
@@ -81694,6 +81439,18 @@ function MongooseDocumentArray(values, path, doc) {
     _schema: void 0,
     _handlers: void 0
   };
+
+  if (Array.isArray(values)) {
+    if (values instanceof CoreMongooseArray &&
+        values._path === path &&
+        values._parent === doc) {
+      props._atomics = Object.assign({}, values._atomics);
+    }
+    values.forEach(v => {
+      arr.push(v);
+    });
+  }
+  arr._path = path;
 
   // Values always have to be passed to the constructor to initialize, since
   // otherwise MongooseArray#push will mark the array as modified to the parent.
@@ -83416,8 +83173,7 @@ exports.toObject = function toObject(obj) {
     return ret;
   }
 
-  if ((obj.constructor && exports.getFunctionName(obj.constructor) === 'Object') ||
-      (!obj.constructor && exports.isObject(obj))) {
+  if (exports.isPOJO(obj)) {
     ret = {};
 
     for (const k in obj) {
@@ -83449,7 +83205,11 @@ exports.isObject = function(arg) {
 };
 
 /*!
- * Determines if `arg` is a plain object.
+ * Determines if `arg` is a plain old JavaScript object (POJO). Specifically,
+ * `arg` must be an object but not an instance of any special class, like String,
+ * ObjectId, etc.
+ *
+ * `Object.getPrototypeOf()` is part of ES5: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf
  *
  * @param {Object|Array|String|Function|RegExp|any} arg
  * @api private
@@ -83457,7 +83217,14 @@ exports.isObject = function(arg) {
  */
 
 exports.isPOJO = function(arg) {
-  return arg instanceof Object && arg.constructor.name === 'Object';
+  if (arg == null || typeof arg !== 'object') {
+    return false;
+  }
+  const proto = Object.getPrototypeOf(arg);
+  // Prototype may be null if you used `Object.create(null)`
+  // Checking `proto`'s constructor is safe because `getPrototypeOf()`
+  // explicitly crosses the boundary from object data to object metadata
+  return !proto || proto.constructor.name === 'Object';
 };
 
 /*!
@@ -84115,7 +83882,7 @@ module.exports = VirtualType;
 /*! exports provided: name, description, version, author, keywords, license, dependencies, devDependencies, directories, scripts, main, engines, bugs, repository, homepage, browser, eslintConfig, default */
 /***/ (function(module) {
 
-module.exports = {"name":"mongoose","description":"Mongoose MongoDB ODM","version":"5.4.9","author":"Guillermo Rauch <guillermo@learnboost.com>","keywords":["mongodb","document","model","schema","database","odm","data","datastore","query","nosql","orm","db"],"license":"MIT","dependencies":{"async":"2.6.1","bson":"~1.1.0","kareem":"2.3.0","mongodb":"3.1.10","mongodb-core":"3.1.9","mongoose-legacy-pluralize":"1.0.2","mpath":"0.5.1","mquery":"3.2.0","ms":"2.0.0","regexp-clone":"0.0.1","safe-buffer":"5.1.2","sliced":"1.0.1"},"devDependencies":{"acorn":"5.7.3","acquit":"1.0.2","acquit-ignore":"0.1.0","acquit-require":"0.1.1","babel-loader":"7.1.4","babel-preset-es2015":"6.24.1","benchmark":"2.1.2","bluebird":"3.5.0","chalk":"2.4.1","co":"4.6.0","dox":"0.3.1","eslint":"5.3.0","highlight.js":"9.1.0","jade":"1.11.0","lodash":"4.17.5","markdown":"0.5.0","marked":"0.3.9","mocha":"5.2.0","mongodb-topology-manager":"1.0.11","mongoose-long":"0.2.1","node-static":"0.7.10","nyc":"11.8.0","power-assert":"1.4.1","promise-debug":"0.1.1","q":"1.5.1","semver":"5.5.0","uuid":"2.0.3","uuid-parse":"1.0.0","validator":"10.8.0","webpack":"4.16.4"},"directories":{"lib":"./lib/mongoose"},"scripts":{"lint":"eslint .","release":"git pull && git push origin master --tags && npm publish","release-legacy":"git pull origin 4.x && git push origin 4.x --tags && npm publish --tag legacy","test":"mocha --exit test/*.test.js test/**/*.test.js","test-cov":"nyc --reporter=html --reporter=text npm test"},"main":"./index.js","engines":{"node":">=4.0.0"},"bugs":{"url":"https://github.com/Automattic/mongoose/issues/new"},"repository":{"type":"git","url":"git://github.com/Automattic/mongoose.git"},"homepage":"http://mongoosejs.com","browser":"./browser.js","eslintConfig":{"extends":["eslint:recommended"],"parserOptions":{"ecmaVersion":2015},"env":{"node":true,"es6":true},"rules":{"comma-style":"error","consistent-this":["error","_this"],"indent":["error",2,{"SwitchCase":1,"VariableDeclarator":2}],"keyword-spacing":"error","no-buffer-constructor":"warn","no-console":"off","no-multi-spaces":"error","func-call-spacing":"error","no-trailing-spaces":"error","quotes":["error","single"],"semi":"error","space-before-blocks":"error","space-before-function-paren":["error","never"],"space-infix-ops":"error","space-unary-ops":"error","no-var":"warn","prefer-const":"warn","strict":["error","global"],"no-restricted-globals":["error",{"name":"context","message":"Don't use Mocha's global context"}]}}};
+module.exports = {"name":"mongoose","description":"Mongoose MongoDB ODM","version":"5.4.13","author":"Guillermo Rauch <guillermo@learnboost.com>","keywords":["mongodb","document","model","schema","database","odm","data","datastore","query","nosql","orm","db"],"license":"MIT","dependencies":{"async":"2.6.1","bson":"~1.1.0","kareem":"2.3.0","mongodb":"3.1.13","mongodb-core":"3.1.11","mongoose-legacy-pluralize":"1.0.2","mpath":"0.5.1","mquery":"3.2.0","ms":"2.1.1","regexp-clone":"0.0.1","safe-buffer":"5.1.2","sliced":"1.0.1"},"devDependencies":{"acorn":"5.7.3","acquit":"1.0.2","acquit-ignore":"0.1.0","acquit-require":"0.1.1","babel-loader":"7.1.4","babel-preset-es2015":"6.24.1","benchmark":"2.1.2","bluebird":"3.5.0","chalk":"2.4.1","cheerio":"1.0.0-rc.2","co":"4.6.0","dox":"0.3.1","eslint":"5.3.0","highlight.js":"9.1.0","jade":"1.11.0","lodash":"4.17.11","markdown":"0.5.0","marked":"0.3.9","mocha":"5.2.0","mongodb-topology-manager":"1.0.11","mongoose-long":"0.2.1","node-static":"0.7.10","nyc":"11.8.0","power-assert":"1.4.1","promise-debug":"0.1.1","q":"1.5.1","semver":"5.5.0","uuid":"2.0.3","uuid-parse":"1.0.0","validator":"10.8.0","webpack":"4.16.4"},"directories":{"lib":"./lib/mongoose"},"scripts":{"lint":"eslint .","release":"git pull && git push origin master --tags && npm publish","release-legacy":"git pull origin 4.x && git push origin 4.x --tags && npm publish --tag legacy","test":"mocha --exit test/*.test.js test/**/*.test.js","test-cov":"nyc --reporter=html --reporter=text npm test"},"main":"./index.js","engines":{"node":">=4.0.0"},"bugs":{"url":"https://github.com/Automattic/mongoose/issues/new"},"repository":{"type":"git","url":"git://github.com/Automattic/mongoose.git"},"homepage":"http://mongoosejs.com","browser":"./browser.js","eslintConfig":{"extends":["eslint:recommended"],"parserOptions":{"ecmaVersion":2015},"env":{"node":true,"es6":true},"rules":{"comma-style":"error","consistent-this":["error","_this"],"indent":["error",2,{"SwitchCase":1,"VariableDeclarator":2}],"keyword-spacing":"error","no-buffer-constructor":"warn","no-console":"off","no-multi-spaces":"error","func-call-spacing":"error","no-trailing-spaces":"error","quotes":["error","single"],"semi":"error","space-before-blocks":"error","space-before-function-paren":["error","never"],"space-infix-ops":"error","space-unary-ops":"error","no-var":"warn","prefer-const":"warn","strict":["error","global"],"no-restricted-globals":["error",{"name":"context","message":"Don't use Mocha's global context"}]}}};
 
 /***/ }),
 

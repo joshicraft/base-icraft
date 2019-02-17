@@ -45,7 +45,7 @@
                     If you want to know more about how these services can help you, click the button below and get in touch with us today.
                 </p>
                 <v-btn
-                        @click="goToAndScroll('contact')"
+                        @click="goToAndScroll('Contact')"
                         class="ml-0 mt-4 primary"
                 >
                     get in touch
