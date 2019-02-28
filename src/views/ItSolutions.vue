@@ -27,7 +27,7 @@
                     <li>Build powerful yet easy to use Spread Sheets that can be used for financial documents, stock
                         lists or anything that involves lots of numbers and data.
                     </li>
-                    <li>Store or back-up your files on the cloud so that anyone who you choose can have access to from
+                    <li>Store or back-up your files on the cloud so that anyone who you choose can access from
                         any location at any time.
                     </li>
                     <li>Create secure group chats or make video calls and easily stay in touch with your team.</li>

@@ -259,7 +259,8 @@
                     name: this.name,
                     message: this.message,
                     email: this.email,
-                    phone: this.phone
+                    phone: this.phone,
+                    website: window.location.host
                 }
                 this.failed = false
                 this.submitting = true

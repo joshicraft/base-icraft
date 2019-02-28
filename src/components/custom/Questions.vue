@@ -189,48 +189,51 @@
                                 </v-icon>
                             </v-flex>
                         </v-card>
-                        <div
-                                v-if="results.featureResultInformation"
-                        >
-                        <div
-                                :class="$vuetify.breakpoint.smAndUp ? 'mw-1' : ''"
-                        >
-                            <h1
-
-                                    :class="$vuetify.breakpoint.smAndUp ? 'ml-4' : 'ml-2'"
-                                    class="mt-5 mb-4 white--text font-weight-thin"
+                        <template v-if="data.results.features">
+                            <div
+                                    :class="$vuetify.breakpoint.smAndUp ? 'mw-1' : ''"
                             >
-                                You may also be interested in...
-                            </h1>
-                        </div>
-                        <v-container
+                                <h1
 
-                                class="pa-0"
-                                :class="$vuetify.breakpoint.smAndUp ? 'mw-1' : ''"
-                                grid-list-md
-                        >
-                            <v-layout class="no-max" row wrap>
-                                <v-flex
-                                        lg6
-                                        md12
-                                        d-flex
-                                        v-for="(f, i) in results.featureResultInformation"
-                                        v-if="f.checked"
+                                        :class="$vuetify.breakpoint.smAndUp ? 'ml-4' : 'ml-2'"
+                                        class="mt-5 mb-4 white--text font-weight-thin"
                                 >
-                                    <v-card
-                                            :class="{'pl-4 pt-4 pr-4 pb-4': $vuetify.breakpoint.smAndUp, 'pl-0': i === 0, 'pr-0': i === results.features.length-1}"
-                                            class="pt-2 pr-2 pb-2 pl-2 ma-3 ml-0 lighten-2 elevation-0 md12 lg6"
+                                    You may also be interested in...
+                                </h1>
+                            </div>
+                            <v-container
+                                    class="pa-0"
+                                    :class="$vuetify.breakpoint.smAndUp ? 'mw-1' : ''"
+                                    grid-list-md
+                            >
+                                <v-layout class="no-max" row wrap>
+                                    <template
+                                        v-for="(feature, i) in data.results.features"
                                     >
-                                        <v-layout justify-center align-center row wrap>
-                                            <h3 class="mb-4">{{f.title}}</h3>
-                                            <v-icon class="mb-4 ml-4" color="primary" x-large>{{f.icon}}</v-icon>
-                                        </v-layout>
-                                        <p>{{f.subTitle}}</p>
-                                    </v-card>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                        </div>
+                                        <v-flex
+                                                lg6
+                                                md12
+                                                d-flex
+                                                v-if="feature.checked"
+                                        >
+                                            <template>
+                                                <v-card
+                                                        :class="{'pl-4 pt-4 pr-4 pb-4': $vuetify.breakpoint.smAndUp, 'pl-0': i === 0, 'pr-0': i === results.features.length-1}"
+                                                        class="pt-2 pr-2 pb-2 pl-2 ma-3 ml-0 lighten-2 elevation-0 md12 lg6"
+                                                >
+                                                    <v-layout justify-center align-center row wrap>
+                                                        <h3 class="mb-4">{{feature.title}}</h3>
+                                                        <v-icon class="mb-4 ml-4" color="primary" x-large>{{feature.icon}}
+                                                        </v-icon>
+                                                    </v-layout>
+                                                    <p>{{feature.subTitle}}</p>
+                                                </v-card>
+                                            </template>
+                                        </v-flex>
+                                    </template>
+                                </v-layout>
+                            </v-container>
+                        </template>
                     </v-flex>
                 </v-card>
             </v-stepper-content>
@@ -286,6 +289,7 @@
                     v => !!v || 'E-mail is required',
                     v => /.+@.+/.test(v) || 'E-mail must be valid'
                 ],
+                features: [],
                 dialog: false,
                 e1: 1,
                 steps: this.data.questions.length,
@@ -308,12 +312,12 @@
             getEl() {
                 return this.el
             },
-            hasResultsFeatures(){
+            hasResultsFeatures() {
                 console.log(this.results)
-                if(!this.results || !this.results.featureResultInformation){
+                if (!this.results || !this.results.features) {
                     return false
                 }
-                return this.featureResultInformation.length > 0
+                return this.features.length > 0
             }
         },
         mounted() {
@@ -330,11 +334,11 @@
         methods: {
             ...mapMutations('app', ['setQuestionsResult']),
             ...mapGetters('app', ['getQuestionsResult']),
-            resultsSolutionMatch(max, featureResultInformation) {
+            resultsSolutionMatch(max, features) {
                 let result = this.matches.find(item => item.rank === max);
                 result.generating = true
                 result.resultsMatch = max;
-                result.featureResultInformation = featureResultInformation;
+                result.features = features;
                 this.setQuestionsResult(result);
                 this.results = result
                 // return result
@@ -430,10 +434,11 @@
                     return false
                 }
                 let max = Object.keys(results).reduce((a, b) => results[a] > results[b] ? a : b);
-                let featureResultInformation = Object.keys(features).length !== 0 && !Object.keys(features).some(v => v < 1) ? features : false;
-                this.resultsSolutionMatch(max, featureResultInformation);
+                let featuresResult = Object.keys(features).length !== 0 && !Object.keys(features).some(v => v < 1) ? features : false;
+                this.resultsSolutionMatch(max, featuresResult);
+                this.features = featuresResult
                 // this.resultsMatch = max;
-                // this.featureResultInformation =
+                // this.features =
                 this.submitQuestions({
                     endResult: max,
                     selections: selections,
@@ -459,7 +464,7 @@
                 }
             },
             loadResults() {
-                this.featureResultInformation = false;
+                this.features = false;
                 this.resultsGenerating = true;
                 this.resultsLoadingIndex = 0;
                 this.resultsGenerated = false;
@@ -479,9 +484,10 @@
     }
 </script>
 <style lang="stylus">
-    .-c-pad{
+    .-c-pad {
         margin-bottom: 10vh
     }
+
     .mw-1
         max-width 1440px
         width 100%
