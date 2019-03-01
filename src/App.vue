@@ -32,13 +32,13 @@
                    v-if="getLoadCount(2)"/>
 
         <core-footer v-if="getLoadCount(2)"/>
-        <cookie-law theme="dark-lime"></cookie-law>
+        <!--<cookie-law theme="dark-lime"></cookie-law>-->
     </v-app>
 </template>
 <script>
     /* eslint-disable no-undef,spaced-comment */
     import {mapMutations, mapGetters} from 'vuex'
-    import CookieLaw from 'vue-cookie-law'
+    // import CookieLaw from 'vue-cookie-law'
     import animationLibrary from './plugins/gsap-animation-library'
     export default {
         data() {
@@ -60,7 +60,6 @@
             });
             $this.animateLoaded();
             clearTimeout(this.delayAnimated);
-            console.log('Time to Load: ' + timeLoad);
             this.delayAnimated = setTimeout(() => {
                 document.getElementById('home-loader').classList.add('hide-');
                 $this.setLazyLoaded(true);
@@ -71,7 +70,6 @@
         },
         watch: {
             $route(frm, to) {
-                console.log(to);
                 if (to.name) {
                     document.getElementById('home-loader').classList.add('hide-');
                     clearTimeout(this.delayAnimated)

@@ -200,12 +200,6 @@
     // import content from '../lang/en/Views/Contact'
 
     export default {
-        props: {
-            loadTickerCount: {
-                default: 0,
-                type: Number
-            }
-        },
         data() {
             return {
                 submitStatus: {
@@ -241,12 +235,6 @@
             }
         },
         methods: {
-            loadLimit(i) {
-                return this.loadTickerCount <= i
-            },
-            loadPoint(i) {
-                return this.loadTickerCount >= i
-            },
             resetForm() {
                 this.submitted = false
                 this.failed = false

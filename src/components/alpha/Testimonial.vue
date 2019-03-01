@@ -39,6 +39,7 @@
       align-items: flex-start
       display: flex
       justify-content: space-between
+      font-size 1.2em
 
     &__footer-bar
       height: 4px

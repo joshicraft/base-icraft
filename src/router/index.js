@@ -30,7 +30,7 @@ function route(path, parentPath) {
         name: path.name,
         nested: path.nestedItems,
         props: parentPath ? {nestedPath: dirPath} : {},
-        component: (resovle) => import(
+        component: (resovle) => import(/** webpackPrefetch: false */
             `@/views/${dirPath}.vue`
             ).then(resovle)
 
@@ -52,8 +52,6 @@ function makeRoutes(){
     routes = [...routes, ...nestedRoutes].concat([
         {path: '*', redirect: '/'}
     ])
-    console.log('Routes:')
-    console.log(routes)
     return routes
 }
 
@@ -104,7 +102,6 @@ router.beforeEach((to, from, next) => {
     }, 1)
 })
 
-console.log(router)
 Vue.use(Meta)
 
 export default router

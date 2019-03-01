@@ -33,7 +33,7 @@
                         class="d-flex fill-height _questions-bg"
                         height="100vh"
                 >
-                    <custom-questions v-if=loaded :data="data.data" :matches="packages"></custom-questions>
+                    <custom-questions v-if="loaded" :data="data.data" :matches="packages"></custom-questions>
                 </v-flex>
                 <!--</v-card>-->
             </v-flex>

@@ -57,27 +57,7 @@
 </template>
 
 <script>
-    // import content from '../lang/en/Views/ItSolutions'
     export default {
-        props: {
-            loadTickerCount: {
-                default: 0,
-                type: Number
-            }
-        },
-        computed: {
-            items() {
-                return this.$t('Views.ItSolutions.items')
-            }
-        },
-        methods: {
-            loadLimit(i) {
-                return this.loadTickerCount <= i
-            },
-            loadPoint(i) {
-                return this.loadTickerCount >= i
-            }
-        }
     }
 </script>
 

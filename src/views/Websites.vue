@@ -1,11 +1,13 @@
 <template>
     <div class="relative">
-
+        <template
+                v-if="loaded"
+                >
         <v-flex
                 v-scroll="topScroll"
                 v-for="(service, i) in content.items"
                 :key="i"
-                v-if="loadPoint(1)"
+
         >
             <div
 
@@ -300,7 +302,7 @@
 
 
         </v-flex>
-
+        </template>
     </div>
 </template>
 
@@ -318,6 +320,7 @@
                 showQuestions: false,
                 resultsGenerated: false,
                 resultName: '',
+                loaded: false,
                 content: this.$t('Views.Websites')
             }
         },
@@ -326,6 +329,12 @@
                 default: 0,
                 type: Number
             }
+        },
+        mounted () {
+          let $t = this
+          setTimeout(()=>{
+              $t.loaded = true
+          }, 800)
         },
         methods: {
             showQuestionFrame() {
@@ -347,12 +356,6 @@
                     $e.scrollAnimated = false
                     TweenMax.set($e, {autoAlpha: 0})
                 }
-            },
-            loadLimit(i) {
-                return this.loadTickerCount <= i
-            },
-            loadPoint(i) {
-                return this.loadTickerCount >= i
             },
             goToContact () {
                 this.$router.push({name:'Contact'})

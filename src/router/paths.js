@@ -94,7 +94,7 @@ let paths = [
 
     {
         path: '/get-IT-training',
-        name: 'ItSolutions',
+        name: 'ITSolutions',
         text: "IT Solutions"
     },
     {

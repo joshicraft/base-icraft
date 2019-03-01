@@ -47,7 +47,8 @@ Vue.mixin({
                     let api = process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : '/.netlify/functions';
                     fetch(api + path, {
                         method: method,
-                        body: data
+                        body: data,
+                        dataType: 'json'
                     }).then(response => {
                         resolve(response)
                     }).catch(err => {
@@ -56,7 +57,6 @@ Vue.mixin({
                 })
             },
             imgC(name, img, ext, thumb, addPath) {
-                console.log(name);
                 let path = '/static/' + (addPath || '');
                 let size = '';
                 let bp = this.$vuetify.breakpoint;
@@ -82,7 +82,15 @@ Vue.mixin({
                 if (thumb) {
                     size = '568'
                 }
-
+                // if(this.$el) {
+                //     let s = this.submitToServer(
+                //         {
+                //             img: (window.location.origin + path + size + '-' + name + '.jpg'),
+                //             w: this.$el.getBoundingClientRect().width,
+                //             h: this.$el.getBoundingClientRect().height,
+                //             ext: (this.ext(ext || 'jpg'))
+                //         }, 'POST', '/image-resizer')
+                // }
                 return path + size + '-' + name + (this.ext(ext || 'jpg'))
             },
             firstBGColor: '#fafafa',
@@ -90,7 +98,6 @@ Vue.mixin({
             secondBGColor: '#303030',
             getNameSpace() {
                 let nested = this.$route.matched[0] ? this.$route.matched[0].props.default.nestedPath : false;
-                console.log(nested);
                 let nestedPath = nested ? nested.replace('/', '.') : this.$route.name;
                 return this.$route.name ? nestedPath : 'Home'
             },

@@ -4,7 +4,7 @@
                   v-for="(item, i) in items"
                   :key="i"
                   >
-            <home-section v-if="loadPoint(i)"
+            <home-section v-if="loaded"
                           :item="item" :i="i"></home-section>
 
         </v-layout>
@@ -16,12 +16,18 @@
 
         </div>
         </div>
-        <alpha-hero
-                alt="testimonial picture"
-                v-if="loadPoint(items.length)"
+        <!--<alpha-hero-->
+                <!--alt="testimonial picture"-->
+                <!---->
+                <!--dark>-->
+        <v-img
+
+                height="100vh"
+                v-if="loadPoint(items.length-1)"
                 :src="imgC('testimonial')"
-                :jumbotron="false"
-                dark>
+                dark
+        >
+            <div class="bg-darken"></div>
             <v-container
                     fill-height
                     grid-list-xl
@@ -42,7 +48,6 @@
                             <v-carousel-item
                                     v-for="(testimonial, i) in testimonials"
                                     :key="i"
-                                    :src="testimonial.src"
                                     :interval="8000"
                                     align-center
                                     justify-space-around
@@ -50,6 +55,7 @@
                             >
 
                                 <alpha-testimonial
+                                        dark
                                         :author="testimonial.author"
                                         :title="testimonial.title"
                                         :quote="testimonial.quote"
@@ -60,7 +66,7 @@
                     </v-flex>
                 </v-layout>
             </v-container>
-        </alpha-hero>
+        </v-img>
     </div>
 </template>
 
@@ -79,8 +85,15 @@
                 items: this.$t('Views.Home.items'),
                 currentIndex: 0,
                 length: 3,
-                onboarding: 0
+                onboarding: 0,
+                loaded: false
             }
+        },
+        mounted () {
+            let $t = this
+            setTimeout(()=>{
+                $t.loaded = true
+            }, 800)
         },
         methods: {
             next() {
@@ -116,6 +129,12 @@
 </style>
 
 <style lang="stylus" scoped>
+    .bg-darken
+        background rgba(0,0,0,0.7)
+        position absolute
+        pointer-events none
+        width: 100%
+        height 100%
     .v-carousel
         box-shadow none
 

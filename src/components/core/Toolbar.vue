@@ -83,7 +83,6 @@
             isScrolling: false
         }),
         mounted () {
-            console.log(paths)
           this.items = this.getItems()
         },
         methods: {
