@@ -1,29 +1,24 @@
 <template>
-    <div >
+    <div>
         <v-layout
-                  v-for="(item, i) in items"
-                  :key="i"
-                  >
-            <home-section v-if="loaded"
+                v-for="(item, i) in items"
+                :key="i"
+        >
+            <home-section v-if="loadPoint(i-1)"
                           :item="item" :i="i"></home-section>
 
         </v-layout>
         <div class="relative">
-        <div class="jumbo-bot-arrow">
-            <svg viewBox="0,0,500,100" preserveAspectRatio="none">
-                <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
-            </svg>
-
+            <div class="jumbo-bot-arrow">
+                <svg viewBox="0,0,500,100" preserveAspectRatio="none">
+                    <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
+                </svg>
+            </div>
         </div>
-        </div>
-        <!--<alpha-hero-->
-                <!--alt="testimonial picture"-->
-                <!---->
-                <!--dark>-->
         <v-img
 
                 height="100vh"
-                v-if="loadPoint(items.length-1)"
+                v-if="loaded"
                 :src="imgC('testimonial')"
                 dark
         >
@@ -72,6 +67,7 @@
 
 <script>
     import HomeSection from '../components/custom/HomeSection'
+
     export default {
         components: {HomeSection},
         props: {
@@ -89,9 +85,9 @@
                 loaded: false
             }
         },
-        mounted () {
+        mounted() {
             let $t = this
-            setTimeout(()=>{
+            setTimeout(() => {
                 $t.loaded = true
             }, 800)
         },
@@ -130,11 +126,12 @@
 
 <style lang="stylus" scoped>
     .bg-darken
-        background rgba(0,0,0,0.7)
+        background rgba(0, 0, 0, 0.7)
         position absolute
         pointer-events none
         width: 100%
         height 100%
+
     .v-carousel
         box-shadow none
 

@@ -17,6 +17,7 @@ import App from './App'
 import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
+import VueAnalytics from 'vue-analytics'
 // import * as CONTENT from './lang/en/Views'
 import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 
@@ -29,6 +30,11 @@ const myTransition = createSimpleTransition('my-transition');
 Vue.component('my-transition', myTransition);
 
 sync(store, router);
+
+Vue.use(VueAnalytics, {
+    id: 'UA-128666877-1',
+    router
+})
 
 Vue.config.productionTip = false;
 /* eslint-disable no-undef,spaced-comment */

@@ -32,6 +32,7 @@
                    v-if="getLoadCount(2)"/>
 
         <core-footer v-if="getLoadCount(2)"/>
+
         <!--<cookie-law theme="dark-lime"></cookie-law>-->
     </v-app>
 </template>
