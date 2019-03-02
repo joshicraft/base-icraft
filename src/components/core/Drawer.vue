@@ -5,21 +5,6 @@
             v-model="inputValue"
             left
     >
-        <!--<v-list>-->
-        <!--<v-list-tile>-->
-        <!--<v-spacer />-->
-        <!--<v-btn aria-label="close-menu"  icon @click="toggleDrawer">-->
-        <!--<v-icon>mdi-close</v-icon>-->
-        <!--</v-btn>-->
-        <!--</v-list-tile>-->
-        <!--<v-list-tile-->
-        <!--v-for="(item, i) in items"-->
-        <!--:key="i"-->
-        <!--:to="item.to"-->
-        <!--&gt;-->
-        <!--<v-list-tile-title v-text="item.text" />-->
-        <!--</v-list-tile>-->
-        <!--</v-list>-->
         <div
                 class="drawer-wrapper"
                 :class="{'-show-right': selected.length > 0}"
@@ -28,24 +13,28 @@
                 <v-list
 
                         v-for="(item, i) in items"
-                        v-if="!item.noToolbar"
-                >
-                    <v-list-tile
-                            v-if="item.nestedItems"
-                            :to="{name: item.name}"
-                            exact
-                    >
-                        <v-list-tile-title v-text="item.text"/>
-                        <v-icon @click="selected=item.nestedItems">mdi-arrow-right</v-icon>
-                    </v-list-tile>
-                    <v-list-tile
-                            v-else-if="!item.nestedItems"
-                            :to="{name: item.name}"
-                            exact
-                    >
-                        <v-list-tile-title v-text="item.text"/>
 
-                    </v-list-tile>
+                >
+                    <template
+                            v-if="!item.noToolbar"
+                    >
+                        <v-list-tile
+                                v-if="item.nestedItems"
+                                :to="{name: item.name}"
+                                exact
+                        >
+                            <v-list-tile-title v-text="item.text"/>
+                            <v-icon @click="selected=item.nestedItems">mdi-arrow-right</v-icon>
+                        </v-list-tile>
+                        <v-list-tile
+                                v-else-if="!item.nestedItems"
+                                :to="{name: item.name}"
+                                exact
+                        >
+                            <v-list-tile-title v-text="item.text"/>
+
+                        </v-list-tile>
+                    </template>
                 </v-list>
             </div>
             <div class="__drawer-right"
