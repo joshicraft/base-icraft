@@ -62,7 +62,7 @@
             $this.animateLoaded();
             clearTimeout(this.delayAnimated);
             this.delayAnimated = setTimeout(() => {
-                document.getElementById('home-loader').classList.add('hide-');
+                // document.getElementById('home-loader').classList.add('hide-');
                 $this.setLazyLoaded(true);
                 $this.setLoader(true)
             }, timeLoad < 10 ? 10 : 15)
