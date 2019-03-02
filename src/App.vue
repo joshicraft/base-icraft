@@ -1,7 +1,7 @@
 <template>
     <v-app>
 
-        <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 1)"/>
+        <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 0.5)"/>
 
         <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
         <!--<core-side-drawer></core-side-drawer>-->
@@ -29,9 +29,9 @@
             </v-btn>
         </div>
         <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"
-                   v-if="getLoadCount(2)"/>
+                   v-if="getLoadCount(0.5)"/>
 
-        <core-footer v-if="getLoadCount(2)"/>
+        <core-footer v-if="getLoadCount(3)"/>
 
         <!--<cookie-law theme="dark-lime"></cookie-law>-->
     </v-app>
@@ -120,7 +120,7 @@
                 }
             },
             loadTick() {
-                this.loadTickerCount++;
+                this.loadTickerCount+=1;
                 if (this.loadTickerCount > this.tickerLimit) {
                     clearInterval(this.loadTicker)
                 }
