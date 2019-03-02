@@ -1,9 +1,11 @@
 <template>
     <v-app>
 
-        <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 0.5)"/>
+        <!--<core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 0.5)"/>-->
+        <core-toolbar/>
 
-        <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
+        <!--<core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>-->
+        <core-drawer/>
         <!--<core-side-drawer></core-side-drawer>-->
         <core-jumbotron app/>
         <div class="contact-ico bot-p left-p">
@@ -28,10 +30,13 @@
                 </v-icon>
             </v-btn>
         </div>
-        <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"
-                   v-if="getLoadCount(0.5)"/>
+        <!--<core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"-->
+                   <!--v-if="getLoadCount(0.5)"/>  -->
 
-        <core-footer v-if="getLoadCount(3)"/>
+        <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"/>
+
+        <!--<core-footer v-if="getLoadCount(3)"/>-->
+        <core-footer/>
 
         <!--<cookie-law theme="dark-lime"></cookie-law>-->
     </v-app>
@@ -72,7 +77,7 @@
         watch: {
             $route(frm, to) {
                 if (to.name) {
-                    document.getElementById('home-loader').classList.add('hide-');
+                    // document.getElementById('home-loader').classList.add('hide-');
                     clearTimeout(this.delayAnimated)
                 }
                 this.startLoadTicker(false);
