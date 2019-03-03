@@ -81,6 +81,14 @@ let paths = [
                 name: 'WebsiteTerms',
                 text: "Terms",
                 nestedPath: 'Websites',
+            },
+
+            {
+                path: 'business-website-questions',
+                name: 'InfoQuestionnaire',
+                text: "Questionnaire",
+                nestedPath: 'Websites',
+                noToolbar: true
             }
         ]
     },

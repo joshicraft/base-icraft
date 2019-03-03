@@ -74,19 +74,19 @@ module.exports = {
     //         }
     //     }
     // }
-    // pwa: {
-    //     name: 'ICRAFT',
-    //     themeColor: '#4DBA87',
-    //     msTileColor: '#000000',
-    //     appleMobileWebAppCapable: 'yes',
-    //     appleMobileWebAppStatusBarStyle: 'black',
-    //     workboxPluginMode: 'InjectManifest',
-    //     workboxOptions: {
-    //         // swSrc is required in InjectManifest mode.
-    //         swSrc: './build/service-worker-prod.js',
-    //         // ...other Workbox options...
-    //     }
-    // },
+    pwa: {
+        name: 'ICRAFT',
+        themeColor: '#4DBA87',
+        msTileColor: '#000000',
+        appleMobileWebAppCapable: 'yes',
+        appleMobileWebAppStatusBarStyle: 'black',
+        workboxPluginMode: 'InjectManifest',
+        workboxOptions: {
+            // swSrc is required in InjectManifest mode.
+            swSrc: './build/service-worker-prod.js',
+            // ...other Workbox options...
+        }
+    }
     // chainWebpack: config => {
     //     config.externals({
     //         'sharp': 'node_modules\\sharp\\vendor'

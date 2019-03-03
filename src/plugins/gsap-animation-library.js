@@ -158,7 +158,7 @@ var animations = {
             },
             tL,
             s;
-        s = $.extend({}, defaults, settings);
+        s = {...defaults, ...settings};
         tL = new TimelineMax(s);
         elm = s.use_child ? elm.querySelectorAll(s.use_child) : elm;
         for (var i = s.count; i > 0; i--) {

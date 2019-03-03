@@ -6,32 +6,14 @@
         <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
 
         <core-jumbotron app/>
-        <div class="contact-ico bot-p left-p">
-            <v-btn
-                    aria-label="go-to-contact"
-                    v-if="$route.name !== 'Contact'"
-                    @click="goToContact"
-                    fab
-                    dark
-                    medium
-                    :small="$vuetify.breakpoint.smAndDown"
-                    color="primary"
-                    :class="$vuetify.breakpoint.smAndDown ? 'bot' : ''"
-                    class="darken-3"
-            >
-                <v-icon
-                        large
-                        :medium="$vuetify.breakpoint.mdAndDown"
-                        dark
-                >
-                    mdi-phone
-                </v-icon>
-            </v-btn>
-        </div>
+
         <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"
                    v-if="getLoadCount(0.5)"/>
 
         <core-footer v-if="getLoadCount(1.5)"/>
+
+        <custom-contact-icon></custom-contact-icon>
+        <custom-gift-icon></custom-gift-icon>
 
         <!--<cookie-law theme="dark-lime"></cookie-law>-->
     </v-app>
@@ -77,6 +59,7 @@
                 }
                 this.startLoadTicker(false);
                 animationLibrary.wobble(document.querySelector('.contact-ico'), {transformOrigin: '0% 100%'})
+                animationLibrary.wobble(document.querySelector('.gift-ico'), {transformOrigin: '0% 100%', delay: 0.8})
             }
         },
         computed: {
@@ -101,14 +84,6 @@
                     js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'))
-            },
-            goToContact () {
-                this.playSound('click', 0.3)
-                this.$router.push({name:'Contact'});
-                setTimeout(() => {
-                    this.$vuetify.goTo(window.innerHeight, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
-                }, 2000)
-
             },
             getLoadCount(i) {
                 return i < this.loadCount
@@ -204,23 +179,6 @@
 
     .-transparent-bg
         background transparent !important
-
-    .contact-ico
-        right 0
-        top 0
-        bottom 0
-        margin auto
-        position: fixed
-        z-index: 50
-        .v-btn
-            border-radius 0
-            margin 0
-        &.bot-p
-            top initial
-            bottom: 0px
-        &.left-p
-            right initial
-            left 0
 
     .-border-btn
         background: #ffffff1c !important;
@@ -363,6 +321,42 @@
             transform rotate(360deg)
             // opacity 0
         }
+    }
+
+
+
+    @-webkit-keyframes wobble-hor-bottom {
+        0%,  100% {
+            -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+            -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+        }
+        15% {
+            -webkit-transform: translateX(-30px) rotate(-6deg);
+            transform: translateX(-30px) rotate(-6deg);
+        }
+        30% {
+            -webkit-transform: translateX(15px) rotate(6deg);
+            transform: translateX(15px) rotate(6deg);
+        }
+        45% {
+            -webkit-transform: translateX(-15px) rotate(-3.6deg);
+            transform: translateX(-15px) rotate(-3.6deg);
+        }
+        60% {
+            -webkit-transform: translateX(9px) rotate(2.4deg);
+            transform: translateX(9px) rotate(2.4deg);
+        }
+        75% {
+                -webkit-transform: translateX(-6px) rotate(-1.2deg);
+                transform: translateX(-6px) rotate(-1.2deg);
+            }
+    }
+
+    .wobble-hor-bottom {
+        -webkit-animation: wobble-hor-bottom 0.8s 1s infinite both;
+        animation: wobble-hor-bottom 0.8s 1s infinite both;
     }
 
     @keyframes jello-diagonal-2 {
