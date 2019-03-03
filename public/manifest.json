@@ -1,6 +1,6 @@
 {
-  "name": "ICRAFT",
-  "short_name": "",
+  "name": "icraft",
+  "short_name": "icraft",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
