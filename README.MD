@@ -94,4 +94,9 @@ npm test
 ```bash
     vue add @vue/pwa
 ```
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+* Don't forget to add any generated items via git before deploying
+
+
+
+
+#####For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

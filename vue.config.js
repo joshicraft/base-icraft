@@ -18,6 +18,23 @@ module.exports = {
             }
         }
     },
+
+    pwa: {
+        name: 'ICRAFT',
+        themeColor: '#4DBA87',
+        msTileColor: '#000000',
+        appleMobileWebAppCapable: 'yes',
+        appleMobileWebAppStatusBarStyle: 'black',
+        workboxPluginMode: 'GenerateSW',
+        manifestPath: 'manifest.json',
+        iconPaths: {
+            favicon32: 'favicon/favicon-32x32.png',
+            favicon16: 'favicon/favicon-16x16.png',
+            appleTouchIcon: 'favicon/apple-touch-icon-152x152.png',
+            maskIcon: 'favicon/safari-pinned-tab.svg',
+            msTileImage: 'favicon/msapplication-icon-144x144.png'
+        }
+    },
     configureWebpack: {
         plugins: [
             new CompressionWebpackPlugin({
@@ -74,22 +91,6 @@ module.exports = {
     //         }
     //     }
     // }
-    pwa: {
-        name: 'ICRAFT',
-        themeColor: '#4DBA87',
-        msTileColor: '#000000',
-        appleMobileWebAppCapable: 'yes',
-        appleMobileWebAppStatusBarStyle: 'black',
-        workboxPluginMode: 'GenerateSW',
-        manifestPath: 'manifest.json',
-        iconPaths: {
-            favicon32: 'favicon/favicon-32x32.png',
-            favicon16: 'favicon/favicon-16x16.png',
-            appleTouchIcon: 'favicon/apple-touch-icon-152x152.png',
-            maskIcon: 'favicon/safari-pinned-tab.svg',
-            msTileImage: 'favicon/msapplication-icon-144x144.png'
-        }
-    }
     // chainWebpack: config => {
     //     config.externals({
     //         'sharp': 'node_modules\\sharp\\vendor'

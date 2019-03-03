@@ -33,7 +33,7 @@
       "themeColor": "#ffffff",
       "manifest": {
         "name": "ICRAFT",
-        "startUrl": "https://www.icraft.co.nz",
+        "startUrl": "./index.html",
         "display": "standalone",
         "orientation": "notSet",
         "onConflict": "override",
