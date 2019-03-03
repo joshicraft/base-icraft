@@ -66,4 +66,32 @@ npm run e2e
 npm test
 ```
 
+
+###Favicons
+#### See [this](https://realfavicongenerator.net/favicon_result?file_id=p1d52nm0rq1m1j91km81e0k1aeq6#.XHxJgYgzaUl) site for more info.
+* Install cli-real-favicon:
+``` bash
+    npm install -g cli-real-favicon
+```
+* Create a file named faviconDescription.json and populate it with, use the generated data.
+
+* In the code above, replace TODO: Path to your master picture with the path of your master picture. For example, assets/images/master_picture.png.
+
+* Generate your icons:
+``` bash
+    mkdir public/favicon
+    real-favicon generate faviconDescription.json faviconData.json public/favicon
+```
+* Inject the HTML code in your pages:
+``` bash
+    real-favicon inject faviconData.json public public/*.html
+```
+* Run the build to update the dist folder with the new icons
+```bash
+    npm run build
+```
+* If using the vue pwa plugin run the following to build the assets and manifest
+```bash
+    vue add @vue/pwa
+```
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

@@ -35,7 +35,8 @@ exports.handler = function (event, content, cb) {
                         phone: body.phone,
                         email: body.email,
                         message: body.message,
-                        website: body.website
+                        website: body.website,
+                        promoCode: body.code
                     }
             }
         ],
@@ -67,7 +68,8 @@ exports.handler = function (event, content, cb) {
                             phone: body.phone,
                             email: body.email,
                             message: body.message,
-                            website: body.website
+                            website: body.website,
+                            promoCode: body.code
                         }
                 }
             ],
@@ -81,7 +83,9 @@ exports.handler = function (event, content, cb) {
             },
             template_id: process.env.SENT_TEMPLATE_ID
         }
-        return post(options).then(()=>{cb()}).catch(error => {
+        return post(options).then(()=>{cb(null, {
+            statusCode: 200
+        })}).catch(error => {
             console.log('ERROR - Sender')
             cb(error)
         })

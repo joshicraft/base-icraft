@@ -88,7 +88,6 @@
         },
         mounted(){
             let $text = this.$el.querySelectorAll('.text')
-
             setTimeout(()=> {
                 let tL = new TimelineMax()
                 $text.forEach(($e) => {
@@ -158,9 +157,7 @@
         max-width: 80vw;
         max-height: 90vh
         margin: auto;
-
         padding: 50px
-
 
     .gift-ico
         right 0

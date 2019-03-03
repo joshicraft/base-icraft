@@ -79,6 +79,13 @@
                                 type="text"
                                 required
                         ></v-textarea>
+                        <v-text-field
+                                prepend-icon="mdi-gift"
+                                v-model="code"
+                                label="Promo Code"
+                                name="code"
+                                type="text"
+                        ></v-text-field>
 
                     </v-form>
                     <v-card-actions class="mt-5">
@@ -225,6 +232,10 @@
                     v => !!v || 'Message must be valid',
                     v => (v && v.length >= 10) || 'Your message must be more than 10 characters'
                 ],
+                code: '',
+                codeRules: [
+                    v => (v && v.length <= 10) || 'The code must be less than 10 characters'
+                ],
                 phone: '',
                 select: null
             }
@@ -248,7 +259,8 @@
                     message: this.message,
                     email: this.email,
                     phone: this.phone,
-                    website: window.location.host
+                    website: window.location.host,
+                    code: this.code.length > 0 ? this.code : false
                 }
                 this.failed = false
                 this.submitting = true
