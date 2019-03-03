@@ -13,7 +13,7 @@
         <core-footer v-if="getLoadCount(1.5)"/>
 
         <custom-contact-icon></custom-contact-icon>
-        <custom-gift-icon></custom-gift-icon>
+        <!--<custom-gift-icon></custom-gift-icon>-->
 
         <!--<cookie-law theme="dark-lime"></cookie-law>-->
     </v-app>
