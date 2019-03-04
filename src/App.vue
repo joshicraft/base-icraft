@@ -1,14 +1,14 @@
 <template>
     <v-app>
 
-        <core-toolbar  v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 0.5)"/>
+        <core-toolbar  v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 0)"/>
 
-        <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
+        <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 0 : 2)"/>
 
         <core-jumbotron @clicked="clickScrolled" app/>
 
         <core-view
-                    v-if="scrolled"
+                   :scrolled="scrolled"
                    @scroll="handleScroll"
                    @clicked="clickScrolled"
                    :loadTickerCount="loadTickerCount"

@@ -7,7 +7,7 @@
             </svg>
         </div>
 
-        <router-view :loadTickerCount="loadTickerCount"/>
+        <router-view v-if="scrolled" :loadTickerCount="loadTickerCount"/>
     </v-content>
 </template>
 
@@ -19,6 +19,7 @@
             }
         },
         props: {
+            scrolled: Boolean,
             loadTickerCount: {
                 default: 0,
                 type: Number
