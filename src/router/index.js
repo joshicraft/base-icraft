@@ -30,7 +30,8 @@ function route(path, parentPath) {
         name: path.name,
         nested: path.nestedItems,
         props: parentPath ? {nestedPath: dirPath} : {},
-        component: (resovle) => import(/** webpackPreload: true */
+        component: (resovle) => import(
+            /** webpackPreload: true */
             `@/views/${dirPath}.vue`
             ).then(resovle)
 
