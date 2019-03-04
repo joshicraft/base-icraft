@@ -22,7 +22,7 @@ import VueAnalytics from 'vue-analytics'
 // import * as CONTENT from './lang/en/Views'
 import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 
-import './registerServiceWorker'
+// import './registerServiceWorker'
 
 // import './registerServiceWorker'
 // Sync store with router

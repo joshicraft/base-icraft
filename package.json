@@ -13,11 +13,7 @@
     "start:lambda": "netlify-lambda serve func -c webpack.server.js"
   },
   "dependencies": {
-    "@vue/cli-shared-utils": "^3.4.1",
-    "intersection-observer": "^0.5.1",
-    "register-service-worker": "^1.5.2",
-    "webpack": ">=4 < 4.29",
-    "workbox-webpack-plugin": "^3.6.3"
+    "@vue/cli-shared-utils": "^3.4.1"
   },
   "devDependencies": {
     "@mdi/font": "^2.5.94",
