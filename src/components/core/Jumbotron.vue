@@ -37,7 +37,7 @@
                                         
                                         large
                                         class="font-weight-bold mt-5 -border-btn elevation-19"
-                                        @click="goToID('#view')"
+                                        @click="goTo('#view')"
                                 >IGNITION</v-btn>
                             </v-layout>
                     </v-layout>
@@ -66,6 +66,9 @@
                 ]
             }
         },
+        props: {
+          scrolled: Boolean
+        },
         data: () => ({
             scrolling: false,
             isBooted: false,
@@ -73,10 +76,8 @@
         methods: {
 
             goTo () {
-                this.playSound('click', 0.3)
-                this.scrolling = true
-                this.toolBarHeight = document.querySelector('.v-toolbar').getBoundingClientRect().height
-                this.$vuetify.goTo(window.innerHeight, { offset: 0})
+                this.$emit('clicked', true)
+                this.goToID('#view')
             }
         },
 

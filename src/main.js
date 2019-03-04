@@ -44,6 +44,7 @@ Vue.config.productionTip = false;
 Vue.mixin({
     data() {
         return {
+            // scrolled: false,
             webp: document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0,
             ext(type, thumb) {
                 type = type || 'jpg';
@@ -70,6 +71,7 @@ Vue.mixin({
                 let size = '';
                 let bp = this.$vuetify.breakpoint;
                 let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568];
+
                 if (img) {
                     let width = img.getBoundingClientRect().width;
                     for (let i = 0; i < sizes.length; i++) {
@@ -167,10 +169,14 @@ Vue.mixin({
                 request.send();
             },
             goToID(id) {
+                // this.scrolled = true;
                 this.playSound('click', 0.3);
-                this.$vuetify.goTo(id)
+                setTimeout(() => {
+                    this.$vuetify.goTo(id)
+                }, 250)
             },
             goToAndScroll(to, delay, params) {
+                // this.scrolled = true;
                 this.playSound('click', 0.3);
                 this.$router.push({name: to || '', params: params || {}});
                 setTimeout(() => {
@@ -178,6 +184,7 @@ Vue.mixin({
                 }, delay || 4000)
             },
             scroll() {
+                // this.scrolled = true;
                 let current = window.pageYOffset;
                 let pos = window.innerHeight;
                 let tBHeight = document.querySelector('.v-toolbar');
@@ -202,10 +209,7 @@ Vue.mixin({
                         autoKill: false
                     }
                 })
-            },
-            // bakedViews: CONTENT.default.en.Views,
-            // bakedLayout: CONTENT.default.en.Layout,
-            scrolled: false
+            }
         }
     }
 });

@@ -1,14 +1,18 @@
 <template>
     <v-app>
 
-        <core-toolbar v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 0.5)"/>
+        <core-toolbar  v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 0.5)"/>
 
         <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 1 : 2)"/>
 
-        <core-jumbotron app/>
+        <core-jumbotron @clicked="clickScrolled" app/>
 
-        <core-view :loadTickerCount="loadTickerCount" :class="this.$route.path === '/' ? 'no-pad' : ''"
-                   v-if="getLoadCount(0.5)"/>
+        <core-view
+                    v-if="scrolled"
+                   @scroll="handleScroll"
+                   @clicked="clickScrolled"
+                   :loadTickerCount="loadTickerCount"
+                   :class="this.$route.path === '/' ? 'no-pad' : ''"/>
 
         <core-footer v-if="getLoadCount(1.5)"/>
 
@@ -23,15 +27,31 @@
     import {mapMutations, mapGetters} from 'vuex'
     // import CookieLaw from 'vue-cookie-law'
     import animationLibrary from './plugins/gsap-animation-library'
+
+    // io.POLL_INTERVAL = 100; // Time in milliseconds.
+    // var options = {
+    //     root: document.querySelector('#core-view'),
+    //     rootMargin: '0px',
+    //     threshold: 1.0
+    // }
+    // var observer = new IntersectionObserver(callback);
+
     export default {
         data() {
             return {
+                scrolled: false,
                 componentsLoaded: null,
                 loadTickerCount: 0,
                 loadCount: 0,
                 loader: false,
                 lazyTriggered: null
             }
+        },
+        created () {
+            window.addEventListener('scroll', this.handleScroll);
+        },
+        destroyed () {
+            window.removeEventListener('scroll', this.handleScroll);
         },
         // components: { CookieLaw },
         mounted() {
@@ -68,6 +88,9 @@
             },
             loaded() {
                 return this.getLoader()
+            },
+            getScrolled() {
+                return this.scrolled
             }
         },
         methods: {
@@ -75,15 +98,12 @@
             ...mapMutations('app', ['setLoader']),
             ...mapGetters('app', ['getLazy']),
             ...mapGetters('app', ['getLoader']),
-            mountFBChat() {
-                (function (d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'))
+            handleScroll () {
+                this.scrolled = this.scrolled || window.scrollY > 0;
+            },
+            clickScrolled(value){
+                console.log(value)
+                this.scrolled = value
             },
             getLoadCount(i) {
                 return i < this.loadCount
