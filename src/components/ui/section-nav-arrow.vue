@@ -6,9 +6,10 @@
                     'c-2' : index%2!==0,
                     'prev-arrow': direction === 'prev',
                     'next-arrow': direction === 'next',
-                    'section-arrow-small': $vuetify.breakpoint.smAndDown
+                    'section-arrow-small': $vuetify.breakpoint.smAndDown,
+                    'd-block': $vuetify.breakpoint.mdAndUp
                     }"
-            class="section-arrow"
+            class="section-arrow d-none"
             @click="navArrowScroll(direction)"
     >
         <svg viewBox="0 0 100 50">
@@ -20,7 +21,6 @@
 </template>
 
 <script>
-    import Sound from '../../plugins/sound'
     export default {
         props: {
             index: {

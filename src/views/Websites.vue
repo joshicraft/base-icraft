@@ -637,7 +637,7 @@
         min-height: 100vh;
 
 
-    @media  (min-width: 320px) {
+    @media  (min-width: 321px) {
         .title-a > div {
             padding 5vh 0;
         }
