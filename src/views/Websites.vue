@@ -511,7 +511,7 @@
         width 80%
         margin 0 auto
         max-width: 537px;
-        padding 5vh 0
+        padding 60px 0
 
 
 
@@ -637,7 +637,11 @@
         min-height: 100vh;
 
 
-
+    @media  (min-width: 320px) {
+        .title-a > div {
+            padding 5vh 0;
+        }
+    }
 
 
 </style>
