@@ -55,7 +55,7 @@
                                 Fast, secure, responsive, customizable and comes with some of the cheapest hosting rates out there!
                             </h3>
                             <p class="">
-                                You know those nasty hosting rates that come out of your pocket every month? They can generally cost anywhere between $30-$70 USD a month! Well... we've figured out how to get them down to as little as $5 a month including email!
+                                You know those nasty hosting rates that come out of your pocket every month? They can generally cost anywhere between $30-$70 USD a month! Well... we've figured out how to get them down to as little as $5 a month.
                             </p>
                             <div class="mt-5">
                                 <v-btn
