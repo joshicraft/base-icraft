@@ -20,6 +20,7 @@
                     >
                         <v-list-tile
                                 v-if="item.nestedItems"
+                                :aria-label="item.name + '-drawer'"
                                 :to="{name: item.name}"
                                 exact
                         >
@@ -27,6 +28,7 @@
                             <v-icon @click="selected=item.nestedItems">mdi-arrow-right</v-icon>
                         </v-list-tile>
                         <v-list-tile
+                                :aria-label="item.name + '-drawer'"
                                 v-else-if="!item.nestedItems"
                                 :to="{name: item.name}"
                                 exact
@@ -51,6 +53,7 @@
                     <v-list-tile
                             class="ml-5"
                             :to="{name: item.name}"
+                            :aria-label="item.name + '-drawer'"
                     >
                         <v-list-tile-title  v-text="item.text"/>
                     </v-list-tile>

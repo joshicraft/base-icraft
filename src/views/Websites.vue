@@ -623,9 +623,6 @@
     .bg-gradient
         background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(100, 100, 100, 0.7) 100%);
 
-
-
-
     .-_arrow-pt
         padding-top: 80px
 

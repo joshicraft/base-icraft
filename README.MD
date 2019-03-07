@@ -97,6 +97,10 @@ npm test
 * Don't forget to add any generated items via git before deploying
 
 
+###KNOWN BUGS
+
+* IE-11 Babel-Polyfill vuetify bug
+* netlify.toml redirects file for history mode refresh bug
 
 
 #####For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

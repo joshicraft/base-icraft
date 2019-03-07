@@ -10,7 +10,7 @@
             class="_visible elevation-0"
     >
         <div class="toolbar-svg-wrapper" @click="playSound('click', 0.3)">
-            <router-link :to="{name: 'Home'}" >
+            <router-link aria-label="home-link" :to="{name: 'Home'}" >
             <custom-logo-side :hide-text="true"></custom-logo-side>
             </router-link>
         </div>
@@ -45,6 +45,7 @@
                             v-for="(path, index) in item.nestedItems"
                             v-if="!path.noToolbar"
                             :key="index"
+                            :aria-label="path.name + '-toolbar'"
                             :class="getCurrentRouteClass(path)"
                             @click="playSound('click', 0.3)"
                             :to="{name: path.name, params: {nestedPath: item.name}}">
