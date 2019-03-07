@@ -1,10 +1,10 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-// const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const { VuetifyProgressiveModule } = require('vuetify-loader')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 // const productionGzipExtensions = ['js', 'css']
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const path = require('path')
 // const loadMinified = require('./build/load-minified')
 module.exports = {
@@ -41,6 +41,11 @@ module.exports = {
                 ),
                 threshold: 10240,
                 minRatio: 0.8
+            }),
+            new HtmlWebpackPlugin(),
+            new PreloadWebpackPlugin({
+                rel: 'preload',
+                as: 'style'
             })
         ]
 
