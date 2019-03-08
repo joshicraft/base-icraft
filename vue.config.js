@@ -56,8 +56,8 @@ module.exports = {
         config.plugin('vuetify-loader')
             .use(VuetifyLoaderPlugin);
         // config.plugin('workbox')
-        config.plugins.delete('prefetch')
-        config.plugin('preload')
+        // config.plugins.delete('prefetch')
+        // config.plugin('preload')
 
         if (process.env.npm_config_argv.indexOf('--report') != -1) {
             config.plugin('webpack-bundle-analyzer')
@@ -86,17 +86,5 @@ module.exports = {
             .loader('url-loader')
             .options({limit: 8000})
             .end()
-    },
-    // css: {
-    //     loaderOptions: {
-    //         css: {
-    //             camelCase: 'none'
-    //         }
-    //     }
-    // }
-    // chainWebpack: config => {
-    //     config.externals({
-    //         'sharp': 'node_modules\\sharp\\vendor'
-    //     })
-    // }
+    }
 }
