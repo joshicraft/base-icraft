@@ -7,9 +7,9 @@
                     'prev-arrow': direction === 'prev',
                     'next-arrow': direction === 'next',
                     'section-arrow-small': $vuetify.breakpoint.smAndDown,
-                    'd-block': $vuetify.breakpoint.mdAndUp
+                    'd-none': $vuetify.breakpoint.smAndDown
                     }"
-            class="section-arrow d-none"
+            class="section-arrow"
             @click="navArrowScroll(direction)"
     >
         <svg viewBox="0 0 100 50">

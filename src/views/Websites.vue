@@ -386,40 +386,6 @@
     }
 </script>
 
-<style lang="stylus">
-    .v-list__group__header__append-icon
-        .v-icon
-            background #5a5a5a
-            border-radius 30px
-
-    @keyframes shake-vertical {
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-        10%,
-        30%,
-        50%,
-        70% {
-            transform: translateY(-4px);
-        }
-        20%,
-        40%,
-        60% {
-            transform: translateY(4px);
-        }
-        80% {
-            transform: translateY(3.4px);
-        }
-        90% {
-            transform: translateY(-3.4px);
-        }
-    }
-</style>
-<style lang="stylus">
-    .vid-bg .v-image__image
-        z-index 0
-</style>
 <style lang="stylus" scoped>
     /*.max-view-width*/
     /*width 100% !important*/

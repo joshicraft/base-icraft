@@ -11,7 +11,6 @@
     >
 
         <v-card class="elevation-2 --anim-2">
-            <!--<c-img :src="data.img" height="300px"></c-img>-->
             <v-img
                     :src="imgC(data.img)"
                     :lazy-src="imgC(data.img, false, false, true)"
@@ -88,19 +87,9 @@
     }
 </script>
 
-<style lang="stylus">
-    .v-timeline--dense .v-timeline-item__body {
-        max-width: calc(100% - 44px);
-    }
-    .v-timeline-item .--anim-2
-        opacity 0
-</style>
 <style scoped lang="stylus">
-    /*.v-card*/
-        /*opacity 0*/
 
     .opposite_tl
         font-size: 3.5em
-
 
 </style>

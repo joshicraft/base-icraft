@@ -172,6 +172,7 @@
         }
     }
 </script>
+
 <style module lang="stylus">
     li
         font-size 17px
@@ -181,8 +182,8 @@
         min-height 100vh
         padding-top: 10vh
         padding-bottom: 10vh
-
 </style>
+
 <style scoped lang="stylus">
 
     .-view-height

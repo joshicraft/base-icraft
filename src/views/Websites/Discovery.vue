@@ -69,7 +69,6 @@
 </script>
 
 <style scoped>
-
     .dark-bg {
         padding-bottom: 5vh;
         background-color: rgb(48, 48, 48);

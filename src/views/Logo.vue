@@ -157,20 +157,3 @@
     }
   }
 </script>
-<style lang="stylus">
-  .sprite-wrapper
-    margin 0 auto
-    width 200px
-    height 200px
-    overflow hidden
-    position relative
-
-  .loader
-
-  .sprite
-    position absolute
-    background-position 0 0
-    background-repeat no-repeat
-    background-size auto
-
-</style>

@@ -58,11 +58,6 @@ module.exports = {
         // config.plugin('workbox')
         config.plugins.delete('prefetch')
         config.plugin('preload')
-            .use(PreloadWebpackPlugin)
-            .tap({
-                rel: 'preload',
-                as: 'style'
-            })
 
         if (process.env.npm_config_argv.indexOf('--report') != -1) {
             config.plugin('webpack-bundle-analyzer')

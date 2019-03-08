@@ -41,14 +41,3 @@
         padding: 12vh 0;
 
 </style>
-
-<style lang="stylus">
-    .shadow
-        -moz-box-shadow inset 0px 1px 3px #5d5d5d
-        -webkit-box-shadow inset 0px 1px 3px #5d5d5d
-        box-shadow inset 0px 1px 3px #5d5d5d
-
-    #cube .--active
-        opacity: 1 !important
-
-</style>

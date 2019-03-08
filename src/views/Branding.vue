@@ -182,12 +182,6 @@
     }
 </script>
 
-<style lang="stylus">
-    .v-list__group__header__append-icon
-        .v-icon
-            background #5a5a5a
-            border-radius 30px
-</style>
 <style lang="stylus" scoped>
     /*.max-view-width*/
     /*width 100% !important*/

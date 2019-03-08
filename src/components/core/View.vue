@@ -28,8 +28,6 @@
     }
 </script>
 <style lang="stylus" scoped>
-
-
     .v-content
         min-height 100vh
         opacity 0

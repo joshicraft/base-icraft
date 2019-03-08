@@ -117,12 +117,7 @@
     }
 </script>
 
-<style lang="stylus">
-    .testimonial-carousel .v-responsive__content
-        justify-content center
-        align-items center
-        display flex
-</style>
+
 
 <style lang="stylus" scoped>
     .bg-darken

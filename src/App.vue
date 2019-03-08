@@ -201,9 +201,9 @@
         background transparent !important
 
     .-border-btn
-        background: #ffffff1c !important;
-        border: 1px solid #ffffff14;
-        color: #fff !important;
+        background: #ffffff1c !important
+        border: 1px solid #ffffff14
+        color: #fff !important
     .title-a
         max-width 999px
         margin-left auto
@@ -233,19 +233,19 @@
         display flex
 
     .nested-menu::after
-        content: '';
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        border-left: 50px solid transparent;
-        border-right: 50px solid transparent;
-        border-top: 6px solid #03a9f4;
+        content: ''
+        position: absolute
+        top: 100%
+        left: 0
+        width: 100%
+        height: 2px
+        border-left: 50px solid transparent
+        border-right: 50px solid transparent
+        border-top: 6px solid #03a9f4
 
     .jumbo-bot-arrow
         width 100%
-        height: 300px;
+        height: 300px
         pointer-events none
         position absolute
         margin-top -150px
@@ -256,7 +256,7 @@
             position absolute
             height 100%
             display: block
-            width: 100%;
+            width: 100%
         polygon
             fill #5a5a5a
 
@@ -279,11 +279,11 @@
         justify-items center
         flex-direction row
         justify-content center
-        //padding-top: 10vh;
+        //padding-top: 10vh
         //padding-bottom 10vh
 
     #webchat
-        z-index: 20;
+        z-index: 20
         position fixed
         bottom: 0
         right: 0
@@ -334,7 +334,7 @@
 
     @keyframes rotate-in-center {
         0% {
-            transform: rotate(0deg);
+            transform: rotate(0deg)
             //opacity 0
         }
         100% {
@@ -347,59 +347,59 @@
 
     @-webkit-keyframes wobble-hor-bottom {
         0%,  100% {
-            -webkit-transform: translateX(0%);
-            transform: translateX(0%);
-            -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
+            -webkit-transform: translateX(0%)
+            transform: translateX(0%)
+            -webkit-transform-origin: 50% 50%
+            transform-origin: 50% 50%
         }
         15% {
-            -webkit-transform: translateX(-30px) rotate(-6deg);
-            transform: translateX(-30px) rotate(-6deg);
+            -webkit-transform: translateX(-30px) rotate(-6deg)
+            transform: translateX(-30px) rotate(-6deg)
         }
         30% {
-            -webkit-transform: translateX(15px) rotate(6deg);
-            transform: translateX(15px) rotate(6deg);
+            -webkit-transform: translateX(15px) rotate(6deg)
+            transform: translateX(15px) rotate(6deg)
         }
         45% {
-            -webkit-transform: translateX(-15px) rotate(-3.6deg);
-            transform: translateX(-15px) rotate(-3.6deg);
+            -webkit-transform: translateX(-15px) rotate(-3.6deg)
+            transform: translateX(-15px) rotate(-3.6deg)
         }
         60% {
-            -webkit-transform: translateX(9px) rotate(2.4deg);
-            transform: translateX(9px) rotate(2.4deg);
+            -webkit-transform: translateX(9px) rotate(2.4deg)
+            transform: translateX(9px) rotate(2.4deg)
         }
         75% {
-                -webkit-transform: translateX(-6px) rotate(-1.2deg);
-                transform: translateX(-6px) rotate(-1.2deg);
+                -webkit-transform: translateX(-6px) rotate(-1.2deg)
+                transform: translateX(-6px) rotate(-1.2deg)
             }
     }
 
     .wobble-hor-bottom {
-        -webkit-animation: wobble-hor-bottom 0.8s 1s infinite both;
-        animation: wobble-hor-bottom 0.8s 1s infinite both;
+        -webkit-animation: wobble-hor-bottom 0.8s 1s infinite both
+        animation: wobble-hor-bottom 0.8s 1s infinite both
     }
 
     @keyframes jello-diagonal-2 {
         10% {
-            transform: skew(0deg 0deg);
+            transform: skew(0deg 0deg)
         }
         30% {
-            transform: skew(-25deg -25deg);
+            transform: skew(-25deg -25deg)
         }
         40% {
-            transform: skew(15deg, 15deg);
+            transform: skew(15deg, 15deg)
         }
         50% {
-            transform: skew(-15deg, -15deg);
+            transform: skew(-15deg, -15deg)
         }
         65% {
-            transform: skew(5deg, 5deg);
+            transform: skew(5deg, 5deg)
         }
         75% {
-            transform: skew(-5deg, -5deg);
+            transform: skew(-5deg, -5deg)
         }
         100% {
-            transform: skew(0deg 0deg);
+            transform: skew(0deg 0deg)
         }
     }
 
@@ -424,12 +424,12 @@
         z-index 3
 
     .fixed-content-bg
-        position: absolute;
-        z-index: -1;
-        width: 100vw;
-        height: 200vh;
-        top: 0;
-        left: 0;
+        position: absolute
+        z-index: -1
+        width: 100vw
+        height: 200vh
+        top: 0
+        left: 0
 
     .no-pad
         padding-bottom: 0 !important
@@ -442,7 +442,7 @@
         position: relative
 
     .theme--light.v-stepper--vertical .v-stepper__content:not(:last-child)
-        border-left: 0 solid rgba(0, 0, 0, 0.12);
+        border-left: 0 solid rgba(0, 0, 0, 0.12)
 
     .row-reverse
         flex-direction row-reverse
@@ -488,20 +488,291 @@
 
     #fb-root
         .fb_dialog
-            bottom: 0 !important;
-            display: inline !important;
-            height: 40px !important;
-            padding: 0 !important;
-            position: fixed !important;
-            right: 0 !important;
-            top: auto !important;
-            width: 40px !important;
-            z-index: 2147483646 !important;
-            background: #005da0 !important;
-            border-radius: 0 !important;
+            bottom: 0 !important
+            display: inline !important
+            height: 40px !important
+            padding: 0 !important
+            position: fixed !important
+            right: 0 !important
+            top: auto !important
+            width: 40px !important
+            z-index: 2147483646 !important
+            background: #005da0 !important
+            border-radius: 0 !important
             svg
                 height: 40px !important
                 width: 40px !important
 
+    /*
+        Copied global styles
+     */
 
+    .testimonial-carousel .v-responsive__content
+        justify-content center
+        align-items center
+        display flex
+
+    .v-list__group__header__append-icon
+        .v-icon
+            background #5a5a5a
+            border-radius 30px
+
+    .v-list__group__header__append-icon
+        .v-icon
+            background #5a5a5a
+            border-radius 30px
+    /*
+    Logo
+     */
+    .sprite-wrapper
+        margin 0 auto
+        width 200px
+        height 200px
+        overflow hidden
+        position relative
+
+    .sprite
+        position absolute
+        background-position 0 0
+        background-repeat no-repeat
+        background-size auto
+
+    /*
+    Cube
+     */
+    #cube
+        .shadow
+            -moz-box-shadow inset 0px 1px 3px #5d5d5d
+            -webkit-box-shadow inset 0px 1px 3px #5d5d5d
+            box-shadow inset 0px 1px 3px #5d5d5d
+
+        .--active
+            opacity: 1 !important
+
+    /*
+    Websites
+     */
+    @keyframes shake-vertical {
+        0%,
+        100% {
+            transform: translateY(0)
+        }
+        10%,
+        30%,
+        50%,
+        70% {
+            transform: translateY(-4px)
+        }
+        20%,
+        40%,
+        60% {
+            transform: translateY(4px)
+        }
+        80% {
+            transform: translateY(3.4px)
+        }
+        90% {
+            transform: translateY(-3.4px)
+        }
+    }
+    .vid-bg .v-image__image
+        z-index 0
+
+    /*
+        Comp - Hero
+     */
+
+    .v-parallax--dark,
+    .v-parallax--light
+    .v-parallax__image-container:after
+        bottom: 0
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        top: 0
+        z-index: 1
+
+    .v-parallax
+        &--light &__image-container:after
+            background: linear-gradient(to top, rgba(#fff, .8), rgba(#fff, .9))
+
+        &--dark &__image-container:after
+            background: linear-gradient(to top, rgba(10, 10, 10, .85) 0%, rgba(10, 10, 10, .9) 50%, rgba(10, 10, 10, .85) 100%)
+
+    .alpha-testimonial
+        &__content
+            align-items: flex-start
+            display: flex
+            justify-content: space-between
+            font-size 1.2em
+
+        &__footer-bar
+            height: 4px
+            margin: 20px 0 20px auto
+            width: 100px
+
+        .v-icon
+            justify-content: flex-end
+            flex: 0 1 10%
+            margin-top: -8px
+            transform: rotate(180deg)
+
+        p
+            flex: 1 1 85%
+            line-height: 2
+
+        footer
+            flex: 1 0 auto
+            text-align: right
+
+            .title
+                font-weight: 300
+
+        &--dark
+            color: #fff
+
+    /*
+    Comp - Toolbar
+     */
+    .v-toolbar.v-toolbar--fixed
+        z-index 4
+        opacity 0
+        pointer-events none
+        transition opacity 0.5s ease-in
+        opacity 1
+
+
+
+    .--icon-dark
+        .v-icon
+            color: black !important
+
+    .--icon-light
+        .v-icon
+            color: white !important
+
+    .v-btn.v-btn--router
+        border-radius 0
+
+    .v-toolbar__content
+        padding-right 0
+
+
+    .v-toolbar__items
+        pointer-events all
+        /*background #5a5a5a*/
+        padding 4px 4px 4px 0
+        height: 100%
+
+    .v-btn
+        pointer-events all
+
+    .toolbar-svg-wrapper
+        height: 100%
+        position: relative
+        left -24px
+        pointer-events all
+        svg
+            width: auto
+            height: 100%
+
+    ._visible
+        opacity: 1
+
+    .v-list
+        display: flex
+        margin-top: 5px
+        flex-direction: column
+
+    .v-menu__content
+        box-shadow none
+
+        .v-btn
+            margin 0
+
+        .v-list
+            background transparent
+            padding 0
+
+    @media only screen and (max-width: 959px)
+        .toolbar-svg-wrapper
+            left -16px
+
+    /*
+    Comp - Questions
+
+     */
+
+    .-c-pad 
+        margin-bottom: 10vh
+    
+
+    .mw-1
+        max-width 1440px
+        width 100%
+        margin-left auto
+        margin-right auto
+
+    .v-input--is-label-active
+        label.v-label
+            font-weight bold
+            color white
+
+    /*color black*/
+
+    .no-message
+        .v-messages
+            display none
+
+    .scale-anim
+        .v-input--selection-controls__input
+            animation scale-up 0.29s ease-out forwards
+            transform-origin center center
+
+    @keyframes scale-up {
+        0% {
+            transform: scale(1)
+        }
+        100% {
+            transform: scale(1.1)
+        }
+    }
+
+    /*
+    Comp - Timeline Piece
+     */
+
+    .v-timeline--dense .v-timeline-item__body 
+        max-width: calc(100% - 44px)
+    
+    .v-timeline-item .--anim-2
+        opacity 0
+
+    /*
+    Comp - Videobackground
+     */
+
+    .VideoBg 
+        position: relative
+        background-size: cover
+        background-position: center
+        overflow: hidden
+    
+
+    .VideoBg video 
+        position: absolute
+        top: 50%
+        left: 50%
+        visibility: hidden
+        transform: translate(-50%, -50%)
+    
+
+    .VideoBg__content 
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+    
 </style>

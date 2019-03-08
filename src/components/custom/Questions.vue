@@ -483,42 +483,7 @@
         }
     }
 </script>
-<style lang="stylus">
-    .-c-pad {
-        margin-bottom: 10vh
-    }
 
-    .mw-1
-        max-width 1440px
-        width 100%
-        margin-left auto
-        margin-right auto
-
-    .v-input--is-label-active
-        label.v-label
-            font-weight bold
-            color white
-
-    /*color black*/
-
-    .no-message
-        .v-messages
-            display none
-
-    .scale-anim
-        .v-input--selection-controls__input
-            animation scale-up 0.29s ease-out forwards
-            transform-origin center center
-
-    @keyframes scale-up {
-        0% {
-            transform: scale(1)
-        }
-        100% {
-            transform: scale(1.1)
-        }
-    }
-</style>
 <style scoped lang="stylus">
 
     .display-none
@@ -546,10 +511,6 @@
         height: 40vh
         overflow-y scroll
 
-    /*.v-input--is-label-active*/
-    /*label*/
-    /*font-weight bold*/
-    /*color black*/
     .results-anim
         animation: pulsate-bck 0.5s ease-in-out infinite both;
 
