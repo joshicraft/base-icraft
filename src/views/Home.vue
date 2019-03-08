@@ -117,9 +117,7 @@
     }
 </script>
 
-
-
-<style lang="stylus" scoped>
+<style scoped lang="stylus">
     .bg-darken
         background rgba(0, 0, 0, 0.7)
         position absolute
@@ -129,6 +127,4 @@
 
     .v-carousel
         box-shadow none
-
-
 </style>
