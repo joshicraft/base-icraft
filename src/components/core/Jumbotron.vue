@@ -29,6 +29,7 @@
                                     text-xs-center
                                     :key="$route.path"
                                     class="title title-a"
+                                    :class="$vuetify.breakpoint.mdAndUp ? 'show-text-anim' : ''"
                             >
                                 <h1 class="mb-3 -text-anim">{{title}}</h1>
                                 <h4 class="-text-anim">{{subTitle}}</h4>
@@ -36,7 +37,7 @@
                                 <v-btn
                                         
                                         large
-                                        class="font-weight-bold mt-5 -border-btn elevation-19"
+                                        class="-text-anim font-weight-bold mt-5 -border-btn elevation-19"
                                         @click="goTo('#view')"
                                 >IGNITION</v-btn>
                             </v-layout>
@@ -144,7 +145,8 @@
     .title
         color: #fafafa
         .-text-anim
-            opacity 0
+            opacity 1
+
         h1
             /*font-size: 3em*/
             margin-left: 3px;
@@ -153,6 +155,10 @@
         h4, h3
             /*font-size: 1em;*/
             font-weight: 100
+
+        &.show-text-anim
+            .-text-anim
+                opacity 0
 
 
 

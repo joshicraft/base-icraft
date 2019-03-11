@@ -73,10 +73,10 @@ const router = new Router({
     }
 })
 
-// router.afterEach((to, from, next) => {
-//
-//
-// })
+router.afterEach((to, from, next) => {
+
+
+})
 router.beforeEach((to, from, next) => {
     if (from.name === null) {
         next()

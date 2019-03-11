@@ -16,7 +16,7 @@
         </div>
 
         <v-spacer/>
-        <h3 class="mdi mr-5 pa-2">
+        <h3 class="mdi mr-5 pa-2 pointer-all">
             For a free quote call us on: <a :href="'tel: ' + contact.phone">{{contact.phone}}</a> or email us at: <a :href="'mailto: ' + contact.email">{{contact.email}}</a>
         </h3>
         <v-spacer/>
