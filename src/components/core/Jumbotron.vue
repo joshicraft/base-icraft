@@ -33,11 +33,11 @@
                             >
                                 <h1 class="mb-3 -text-anim">{{title}}</h1>
                                 <h4 class="-text-anim">{{subTitle}}</h4>
-                                <p class="mt-3 -text-anim" v-if="subSubTitle">{{subSubTitle}}</p>
+                                <!--<p class="mt-3" v-if="subSubTitle">{{subSubTitle}}</p>-->
                                 <v-btn
                                         
                                         large
-                                        class="-text-anim font-weight-bold mt-5 -border-btn elevation-19"
+                                        class="font-weight-bold mt-5 -border-btn elevation-19 -text-anim"
                                         @click="goTo('#view')"
                                 >IGNITION</v-btn>
                             </v-layout>

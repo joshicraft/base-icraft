@@ -101,9 +101,34 @@ router.beforeEach((to, from, next) => {
 
         let tL = new TimelineMax()
         console.log(to)
+        let title = document.querySelector('#jumbotron .title')
+        let text = title.querySelectorAll('#jumbotron .title .-text-anim')
+        let button = title.querySelectorAll('#jumbotron .title button')
+        let subText = title.querySelectorAll('#jumbotron .title p')
+        var tl = new TimelineLite({delay: 0}),
+            mySplitText = new SplitText(text, {type: "words,chars"}),
+            chars = mySplitText.chars; //an array of all the divs that wrap each character
+        TweenLite.set(text, {perspective: 400});
+
         tL
             .to(window, scrollPos === 0 ? 0 : 0.35, {scrollTo: {y: 0}}, 'a')
-            .call(next)
+        .set(text, {opacity: 1}, 'a')
+
+        .staggerTo(chars, 0.6, {
+            opacity: 0,
+            scale: 0,
+            y: -60,
+            rotationX: 180,
+            transformOrigin: "0% 50% 50",
+            ease: Back.easeIn
+        }, 0.01, "+=0")
+            .to([button], 0.5, {opacity: 0,
+                scale: 0,
+                y: -30,
+                rotationX: 0,
+                transformOrigin: "0% 50% 50",
+                ease: Back.easeIn}, 'a')
+            .call(next, [], this, '-=0.2')
             .to(gradient, duration, {autoAlpha: 0.82})
             .to(gradient, duration, {autoAlpha: 1})
 
