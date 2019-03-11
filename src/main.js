@@ -138,6 +138,7 @@ Vue.mixin({
             },
             animateJumbotronChange(from, to){
                 if(this.$vuetify.breakpoint.mdAndUp) {
+
                     setTimeout(() => {
                         let title = document.querySelector('#jumbotron .title')
                         let text = title.querySelectorAll('#jumbotron .title .-text-anim')

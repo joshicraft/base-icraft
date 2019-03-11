@@ -11,7 +11,7 @@
     >
         <div class="toolbar-svg-wrapper" @click="playSound('click', 0.3)">
             <router-link aria-label="home-link" :to="{name: 'Home'}" >
-            <custom-logo-side :hide-text="true"></custom-logo-side>
+                <custom-logo-side :hide-text="true"></custom-logo-side>
             </router-link>
         </div>
 

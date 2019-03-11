@@ -94,11 +94,18 @@ router.beforeEach((to, from, next) => {
         let gradient = jumbo.querySelector('#jumbo-gradient')
         // let text = jumbo.querySelector('h1')
         let duration = 0.6
+        let newSound
         let scrollPos = window.pageYOffset ||
             document.documentElement.scrollTop
         TweenMax.killAll()
 
+            newSound = {
+                data: new Audio('/static/sound/light_woosh.mp3')
+            };
+            newSound.data.volume = 1;
 
+
+        newSound.data.play()
         let tL = new TimelineMax()
         console.log(to)
         let title = document.querySelector('#jumbotron .title')
