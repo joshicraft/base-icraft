@@ -191,7 +191,7 @@
                             </v-icon>
                             <a
                                     class="ml-2 p-format"
-                                    :mailto="person.email"
+                                    :href="'mailto:' + person.email"
                                     v-text="person.email">
                             </a>
                         </v-layout>
