@@ -131,7 +131,16 @@ Vue.mixin({
                 return size + '/'
             },
             sounds: [],
-            playSound(file, volume, check) {
+            delayPlaySound(file, volume, delay){
+              setTimeout(()=>{
+                  this.playSound(file, volume)
+              },delay * 1000)
+            },
+            playSound(file, volume, delay) {
+                if(delay){
+                    this.delayPlaySound(file, volume, delay)
+                    return
+                }
                 let newSound;
                 let found = this.sounds.find(sound => sound.id === file);
 

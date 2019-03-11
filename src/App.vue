@@ -77,6 +77,7 @@
                     // document.getElementById('home-loader').classList.add('hide-');
                     clearTimeout(this.delayAnimated)
                 }
+                this.playSound('deep_woosh-a', 1, 0.8)
                 this.startLoadTicker(false);
                 animationLibrary.wobble(document.querySelector('.contact-ico'), {transformOrigin: '0% 100%'});
                 //animationLibrary.wobble(document.querySelector('.gift-ico'), {transformOrigin: '0% 100%', delay: 0.8})
