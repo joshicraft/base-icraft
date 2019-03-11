@@ -16,9 +16,9 @@
         </div>
 
         <v-spacer/>
-        <h3 class="mdi mr-5 pa-2 pointer-all" v-if="$vuetify.breakpoint.mdAndUp && !isScrolling">
-            For a free quote call us on: <a :href="'tel: ' + contact.phone">{{contact.phone}}</a> or email us at: <a :href="'mailto: ' + contact.email">{{contact.email}}</a>
-        </h3>
+        <!--<h3 class="mdi mr-5 pa-2 pointer-all top-o" :class="{'slide-top': $vuetify.breakpoint.mdAndUp && isScrolling}">-->
+            <!--For a free quote call on: <a :href="'tel: ' + contact.phone">{{contact.phone}}</a> or email us at: <a :href="'mailto: ' + contact.email">{{contact.email}}</a>-->
+        <!--</h3>-->
         <v-spacer/>
 
         <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">

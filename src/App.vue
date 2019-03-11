@@ -77,7 +77,7 @@
                     // document.getElementById('home-loader').classList.add('hide-');
                     clearTimeout(this.delayAnimated)
                 }
-                this.playSound('deep_woosh-a', 1, 0.8)
+                this.playSound('deep_woosh', 1, 0.8)
                 this.startLoadTicker(false);
                 animationLibrary.wobble(document.querySelector('.contact-ico'), {transformOrigin: '0% 100%'});
                 //animationLibrary.wobble(document.querySelector('.gift-ico'), {transformOrigin: '0% 100%', delay: 0.8})
@@ -97,7 +97,7 @@
                             transformOrigin: "0% 50% -50",
                             ease: Back.easeOut
                         }, 0.01, "+=0");
-                    }, 900)
+                    }, 800)
                 }
             }
         },
@@ -365,8 +365,21 @@
         }
     }
 
+    .slide-top {
+        animation: slide-top .5s cubic-bezier(.25, .46, .45, .94) both
+    }
+    .top-0{
+        top: 0
+    }
 
-
+    @keyframes slide-top {
+        0% {
+            transform:translateY(0)
+        }
+        100% {
+            transform:translateY(-100px)
+        }
+    }
     @-webkit-keyframes wobble-hor-bottom {
         0%,  100% {
             -webkit-transform: translateX(0%)
@@ -726,9 +739,9 @@
 
      */
 
-    .-c-pad 
+    .-c-pad
         margin-bottom: 10vh
-    
+
 
     .mw-1
         max-width 1440px
@@ -765,9 +778,9 @@
     Comp - Timeline Piece
      */
 
-    .v-timeline--dense .v-timeline-item__body 
+    .v-timeline--dense .v-timeline-item__body
         max-width: calc(100% - 44px)
-    
+
     .v-timeline-item .--anim-2
         opacity 0
 
@@ -775,26 +788,26 @@
     Comp - Videobackground
      */
 
-    .VideoBg 
+    .VideoBg
         position: relative
         background-size: cover
         background-position: center
         overflow: hidden
-    
 
-    .VideoBg video 
+
+    .VideoBg video
         position: absolute
         top: 50%
         left: 50%
         visibility: hidden
         transform: translate(-50%, -50%)
-    
 
-    .VideoBg__content 
+
+    .VideoBg__content
         position: absolute
         top: 0
         left: 0
         width: 100%
         height: 100%
-    
+
 </style>
