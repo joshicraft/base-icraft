@@ -28,9 +28,9 @@ import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 // Sync store with router
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
-const myTransition = createSimpleTransition('my-transition');
-
-Vue.component('my-transition', myTransition);
+// // const myTransition = createSimpleTransition('my-transition');
+// //
+// Vue.component('my-transition', myTransition);
 
 sync(store, router);
 
@@ -142,7 +142,6 @@ Vue.mixin({
                         let title = document.querySelector('#jumbotron .title')
                         let text = title.querySelectorAll('#jumbotron .title .-text-anim')
                         let button = title.querySelectorAll('#jumbotron .title button')
-                        let subText = title.querySelectorAll('#jumbotron .title p')
                         var tl = new TimelineLite({delay: 0}),
                             mySplitText = new SplitText(text, {type: "words,chars"}),
                             chars = mySplitText.chars; //an array of all the divs that wrap each character
@@ -164,7 +163,7 @@ Vue.mixin({
                                 rotationX: 180,
                                 transformOrigin: "0% 50% -20",
                                 ease: Back.easeOut}, '')
-                    }, 700);
+                    }, 850);
                     this.playSound('deep_woosh', 1, 0.8);
                 }
             },

@@ -60,7 +60,7 @@
                 this.$router.push({name:'Contact'});
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight, { offset: -document.querySelector('.v-toolbar').getBoundingClientRect().height })
-                }, 2000)
+                }, 3300)
 
             },
         }

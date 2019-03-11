@@ -14,7 +14,7 @@
         >
             <div class="z0 bg-gradient" id="jumbo-gradient"></div>
 
-            <my-transition mode="out-in">
+            <!--<my-transition mode="out-in">-->
                 <v-container
                         fill-height
                         :key="$route.path"
@@ -43,7 +43,7 @@
                             </v-layout>
                     </v-layout>
                 </v-container>
-            </my-transition>
+            <!--</my-transition>-->
             <div
                     @click="goTo('#view')"
                     class="scroll-wheel-wrap scrollwheel"
