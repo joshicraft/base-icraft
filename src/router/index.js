@@ -73,6 +73,10 @@ const router = new Router({
     }
 })
 
+// router.afterEach((to, from, next) => {
+//
+//
+// })
 router.beforeEach((to, from, next) => {
     if (from.name === null) {
         next()
@@ -88,10 +92,13 @@ router.beforeEach((to, from, next) => {
             return
         }
         let gradient = jumbo.querySelector('#jumbo-gradient')
+        // let text = jumbo.querySelector('h1')
         let duration = 0.6
         let scrollPos = window.pageYOffset ||
             document.documentElement.scrollTop
         TweenMax.killAll()
+
+
         let tL = new TimelineMax()
         console.log(to)
         tL

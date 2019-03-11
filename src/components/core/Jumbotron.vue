@@ -30,9 +30,9 @@
                                     :key="$route.path"
                                     class="title title-a"
                             >
-                                <h1 class="mb-3">{{title}}</h1>
-                                <h4>{{subTitle}}</h4>
-                                <p class="mt-3" v-if="subSubTitle">{{subSubTitle}}</p>
+                                <h1 class="mb-3 -text-anim">{{title}}</h1>
+                                <h4 class="-text-anim">{{subTitle}}</h4>
+                                <p class="mt-3 -text-anim" v-if="subSubTitle">{{subSubTitle}}</p>
                                 <v-btn
                                         
                                         large
@@ -142,9 +142,9 @@
         margin: 0 auto 3em auto;
 
     .title
-        /*display none*/
         color: #fafafa
-        /*color: #438ccb*/
+        .-text-anim
+            opacity 0
         h1
             /*font-size: 3em*/
             margin-left: 3px;
@@ -153,6 +153,8 @@
         h4, h3
             /*font-size: 1em;*/
             font-weight: 100
+
+
 
     .st10{fill:none;stroke:#FFF;stroke-width:3;stroke-miterlimit:10;}
 

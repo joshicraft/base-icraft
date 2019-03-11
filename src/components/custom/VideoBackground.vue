@@ -33,6 +33,10 @@
                 if (from !== null) {
                     this.play()
                     this.video.currentTime = 5.65
+
+                }
+                if (to) {
+
                 }
             }
         },

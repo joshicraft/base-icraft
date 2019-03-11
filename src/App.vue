@@ -78,8 +78,18 @@
                     clearTimeout(this.delayAnimated)
                 }
                 this.startLoadTicker(false);
-                animationLibrary.wobble(document.querySelector('.contact-ico'), {transformOrigin: '0% 100%'})
+                animationLibrary.wobble(document.querySelector('.contact-ico'), {transformOrigin: '0% 100%'});
                 //animationLibrary.wobble(document.querySelector('.gift-ico'), {transformOrigin: '0% 100%', delay: 0.8})
+
+                setTimeout(()=> {
+                    let text = document.querySelectorAll('#jumbotron .title .-text-anim')
+                    var tl = new TimelineLite({delay: 0}),
+                        mySplitText = new SplitText(text, {type:"words,chars"}),
+                        chars = mySplitText.chars; //an array of all the divs that wrap each character
+                    TweenLite.set(text, {perspective:400});
+                    tl.set(text, {opacity: 1})
+                    tl.staggerFrom(chars, 0.8, {opacity:0, scale:0, y:80, rotationX:180, transformOrigin:"0% 50% -50",  ease:Back.easeOut}, 0.01, "+=0");
+                },1000)
             }
         },
         computed: {

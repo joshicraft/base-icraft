@@ -14,8 +14,15 @@
             <custom-logo-side :hide-text="true"></custom-logo-side>
             </router-link>
         </div>
+
         <v-spacer/>
+        <h3 class="mdi mr-5 pa-2">
+            For a free quote call us on: <a :href="'tel: ' + contact.phone">{{contact.phone}}</a> or email us at: <a :href="'mailto: ' + contact.email">{{contact.email}}</a>
+        </h3>
+        <v-spacer/>
+
         <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
+
             <v-menu
                     open-on-hover
                     offset-y
@@ -86,6 +93,12 @@
         mounted () {
           this.items = this.getItems()
         },
+
+        computed: {
+            contact() {
+                return this.$t('Views.Contact')
+            }
+        },
         methods: {
             ...mapMutations('app', ['toggleDrawer']),
             clickRoute(route){
@@ -125,10 +138,6 @@
                     let $text = $svg.querySelector(".logo-text")
                     let $logoIcon = $svg.querySelector(".logo-icon")
                     this.timelineAnimation = new TimelineMax()
-
-                    // .to([$logoIcon], 0.5, {x: -185, rotation: 0, autoAlpha:1, transformOrigin: '50% 50%'}, 'a')
-                    // .to([$text], 0.7, {x: -200, autoAlpha:1}, 'a')
-                    // .to([$svg], 0.2, {y: 0, x: 0, transformOrigin: '50% 50%'}, '-=0.1')
                 }
             }
         }
