@@ -42,7 +42,7 @@
                             could be missing out on...
                         </p>
                         <p>
-                            To find out how we can remedy that you can get in touch with us or find out how we make our websites.
+                            To find out how we can remedy that you can get in touch with us for a FREE quote or you can checkout how we make our websites.
                         </p>
                         <div class="mt-5">
                             <v-btn
