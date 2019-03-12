@@ -209,11 +209,11 @@ Vue.mixin({
                 };
                 request.send();
             },
-            goToID(id) {
+            goToID(id, offset) {
                 // this.scrolled = true;
                 this.playSound('click', 0.3);
                 setTimeout(() => {
-                    this.$vuetify.goTo(id)
+                    this.$vuetify.goTo(id, {offset: offset || 0})
                 }, 250)
             },
             goToAndScroll(to, delay, params) {
@@ -222,7 +222,7 @@ Vue.mixin({
                 this.$router.push({name: to || '', params: params || {}});
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight)
-                }, delay || 4000)
+                }, delay || 5500)
             },
             scroll() {
                 // this.scrolled = true;

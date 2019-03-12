@@ -78,7 +78,7 @@
 
             goTo () {
                 this.$emit('clicked', true)
-                this.goToID('#view')
+                this.goToID('#view', -48)
             }
         },
 

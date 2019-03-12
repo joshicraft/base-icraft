@@ -77,6 +77,12 @@ let paths = [
 
             },
             {
+                path: 'mobile-friendly-websites',
+                name: 'Mobile',
+                text: "Mobile",
+                nestedPath: 'Websites',
+            },
+            {
                 path: 'icrafts-website-terms',
                 name: 'WebsiteTerms',
                 text: "Terms",

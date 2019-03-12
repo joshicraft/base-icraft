@@ -222,6 +222,7 @@
         background: #ffffff1c !important
         border: 1px solid #ffffff14
         color: #fff !important
+
     .title-a
         max-width 999px
         margin-left auto
@@ -586,6 +587,69 @@
     /*
     Websites
      */
+    .video-wrapper
+        position: absolute;
+        top 0
+        left 0
+        width 100%
+        height 100%
+        perspective 617px
+
+
+
+    .web-video
+        z-index: 1;
+        position: absolute;
+        height: 42%;
+        top: 37%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        transform: translateX(43.5%) translateY(-115%) rotate(-15.5deg) skew(2deg, -5deg) scaleX(0.63) scaleY(0.99) rotateY(8deg) rotateX(-5deg);
+
+    .web-packages-video
+        transform-origin: 50% 0% 0px;
+        top 10%
+        height 48%
+        transform: translateX(-26%) matrix3d(0.9,-0.02,0.00,0.0002,0.02,0.98,0.17,0,0,-0.17,0.98,0,10,0,00,1);
+        transform: perspective(2800px) translateZ(0) rotateX(-4deg) rotateY(51deg) scaleX(1) translateX(-52%) translateY(22%) rotate(-8deg);
+        height: 36%;
+
+    .web-video-1
+        z-index: 1;
+        position: absolute;
+        height: 42%;
+        top: 92%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        transform: translateX(-35.15%) translateY(-90.2%) rotate(-15.5deg) skew(5deg, -5deg) scaleX(0.47) scaleY(0.83) rotateY(8deg) rotateX(66.5deg);
+
+    .screen-panel-anim
+        position: absolute;
+        height: 44.4%;
+        top: 58%;
+        left: 37%;
+        transform scaleX(0.95)
+
+
+    .phone-video-wrapper
+        position: absolute;
+        top 0
+        left 0
+        width 100%
+        height 100%
+        perspective 617px
+
+    .phone-web-video
+        z-index 1
+        position: absolute;
+        height: 43.1%;
+        top: 15.6%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        transform: translateX(95%) translateY(15%) skew(-11.5deg, 13deg) rotateY(-4deg) rotateX(-2deg) scaleX(0.95) rotate(-0.5deg);
     @keyframes shake-vertical {
         0%,
         100% {
