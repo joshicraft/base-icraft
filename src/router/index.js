@@ -132,7 +132,7 @@ router.beforeEach((to, from, next) => {
             .to([button], 0.5, {opacity: 0,
                 scale: 0,
                 y: -30,
-                rotationX: 0,
+                rotationX: 180,
                 transformOrigin: "0% 50% 50",
                 ease: Back.easeIn}, 'a')
             .call(next, [], this, '-=0.2')

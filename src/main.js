@@ -160,8 +160,8 @@ Vue.mixin({
                             .from([button], 0.5, {
                                 opacity: 0,
                                 scale: 0,
-                                y: 60,
-                                rotationX: 180,
+                                y: -60,
+                                rotationX: -180,
                                 transformOrigin: "0% 50% -20",
                                 ease: Back.easeOut}, '')
                     }, 850);
