@@ -11,7 +11,7 @@
         >
             <div class="__drawer-left">
                 <v-list
-
+                        v-if="!item.noToolbar"
                         v-for="(item, i) in items"
 
                 >
