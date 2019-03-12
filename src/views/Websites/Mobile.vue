@@ -42,7 +42,7 @@
                             could be missing out on...
                         </p>
                         <p>
-                            To find out how we can remedy that you can get in touch with us or learn more about how we make our websites.
+                            To find out how we can remedy that you can get in touch with us or find out how we make our websites.
                         </p>
                         <div class="mt-5">
                             <v-btn
@@ -55,7 +55,7 @@
                                     class="primary ml-0 mr-3"
                                     @click="goToAndScroll('Websites')"
                             >
-                                Learn more
+                                Websites
                             </v-btn>
                         </div>
                     </div>
