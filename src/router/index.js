@@ -97,7 +97,7 @@ router.beforeEach((to, from, next) => {
         let newSound
         let scrollPos = window.pageYOffset ||
             document.documentElement.scrollTop
-        TweenMax.killAll()
+        // TweenMax.killAll()
 
             newSound = {
                 data: new Audio('/static/sound/light_woosh.mp3')
@@ -107,7 +107,6 @@ router.beforeEach((to, from, next) => {
 
         newSound.data.play()
         let tL = new TimelineMax()
-        console.log(to)
         let title = document.querySelector('#jumbotron .title')
         let text = title.querySelectorAll('#jumbotron .title .-text-anim')
         let button = title.querySelectorAll('#jumbotron .title button')

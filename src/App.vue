@@ -8,7 +8,7 @@
         <core-jumbotron @clicked="clickScrolled" app/>
 
         <core-view
-                   :scrolled="scrolled"
+                    :scrolled="scrolled"
                    @scroll="handleScroll"
                    @clicked="clickScrolled"
                    :loadTickerCount="loadTickerCount"
@@ -16,7 +16,7 @@
 
         <core-footer v-if="getLoadCount(1.5)"/>
 
-        <custom-contact-icon></custom-contact-icon>
+        <custom-contact-icon :atTop="atTop" ></custom-contact-icon>
         <!--<custom-gift-icon></custom-gift-icon>-->
 
         <!--<cookie-law theme="dark-lime"></cookie-law>-->
@@ -40,6 +40,7 @@
         data() {
             return {
                 scrolled: false,
+                atTop: true,
                 componentsLoaded: null,
                 loadTickerCount: 0,
                 loadCount: 0,
@@ -79,9 +80,14 @@
                 }
 
                 this.startLoadTicker(false);
-                animationLibrary.wobble(document.querySelector('.contact-ico'), {transformOrigin: '0% 100%'});
-                //animationLibrary.wobble(document.querySelector('.gift-ico'), {transformOrigin: '0% 100%', delay: 0.8})
                 this.animateJumbotronChange(true)
+                clearTimeout(this.contactAnimDelay)
+                this.contactAnimDelay = setTimeout(()=>{
+                    animationLibrary.wobble(document.querySelector('.contact-ico .v-btn'), {transformOrigin: '0% 100%', modifier: 0.2});
+                    animationLibrary.textAnimOne(document.querySelector('.contact-ico'));
+                }, 2000)
+                //animationLibrary.wobble(document.querySelector('.gift-ico'), {transformOrigin: '0% 100%', delay: 0.8})
+
             }
         },
         computed: {
@@ -101,7 +107,11 @@
             ...mapGetters('app', ['getLazy']),
             ...mapGetters('app', ['getLoader']),
             handleScroll () {
-                this.scrolled = this.scrolled || window.scrollY > 0;
+
+                let scrollPos = (window.pageYOffset ||
+                    document.documentElement.scrollTop || 0)
+                this.scrolled = this.scrolled || scrollPos > 0;
+                this.atTop = scrollPos < 100
             },
             clickScrolled(value){
                 console.log(value)
@@ -137,12 +147,18 @@
                 this.loadComponentsTicker = setInterval(this.increment, 300)
             },
             onScroll(e) {
+                let scrollPos = (window.pageYOffset ||
+                    document.documentElement.scrollTop || 0)
                 if (this.lazyTriggered && !this.getLazy()) {
                     this.setLazyLoaded(true);
                     this.setLoader(true)
                 }
-                this.lazyTriggered = (window.pageYOffset ||
-                    document.documentElement.scrollTop || 0) >
+                console.log('ssss' + scrollPos)
+                if(scrollPos < 50){
+                    console.log('ssss')
+                    this.atTop = true
+                }
+                this.lazyTriggered = scrollPos >
                     (50);
                 if (!this.scrolled) {
                     if (!e) {

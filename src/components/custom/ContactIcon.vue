@@ -21,7 +21,9 @@
                 mdi-phone
             </v-icon>
         </v-btn>
-        <div class="contact-text absolute d-flex justify-center align-center">
+        <div v-if="$route.name === 'Home' || $route.name === 'Websites' && $vuetify.breakpoint.mdAndUp"
+             :class="{'invisible': !atTop}"
+             class="contact-text absolute d-flex justify-center align-center">
             <div class="text-wrapper d-flex justify-center align-center"
                  @click="goToContact"
             >
@@ -42,46 +44,22 @@
 
 <script>
     export default {
+        props: {
+            scrolled: false,
+          atTop: {
+              type: Boolean,
+              default: true
+          }
+        },
+        data () {
+            return {
+                isAtTop: this.atTop
+            }
+        },
         computed: {
           contact(){
               return this.$t('Views.Contact')
           }
-        },
-        mounted(){
-            let $text = this.$el.querySelectorAll('.text')
-
-            setTimeout(()=> {
-                let tL = new TimelineMax({repeat: -1, repeatDelay: 0})
-                $text.forEach(($e, i) => {
-                    let newTL = new TimelineMax(),
-                        text = $e,
-                        mySplitText = new SplitText(text, {type: "words,chars"}),
-                        chars = mySplitText.chars; //an array of all the divs that wrap each character
-                    TweenLite.set(text, {perspective: 400});
-                    newTL
-                        .set($e, {display: 'block'}, 'a+' + i)
-                        .staggerFrom(chars, 1, {
-                            opacity: 0,
-                            scale: 0,
-                            y: -60,
-                            rotationX: 180,
-                            transformOrigin: "0% 50% 50",
-                            ease: Back.easeInOut
-                        }, 0.01)
-                        .staggerTo(chars, 1, {
-                            opacity: 0,
-                            scale: 0,
-                            y: 60,
-                            rotationX: -180,
-                            transformOrigin: "0% 50% 50",
-                            ease: Back.easeInOut
-                        }, 0.01, '+=5')
-                        .set($e, {display: 'none'})
-                    tL.add(newTL)
-                })
-            })
-
-
         },
         methods:{
 
@@ -116,7 +94,7 @@
         height: 40px;
         padding: 10px;
         border-radius: 10px;
-        background: #595959;
+        /*background: #595959;*/
         h3
             display block
     .text

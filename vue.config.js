@@ -59,10 +59,10 @@ module.exports = {
         // config.plugins.delete('prefetch')
         // config.plugin('preload')
 
-        if (process.env.npm_config_argv.indexOf('--report') != -1) {
-            config.plugin('webpack-bundle-analyzer')
-                .use(BundleAnalyzerPlugin);
-        }
+        // if (process.env.npm_config_argv.indexOf('--report') != -1) {
+        //     config.plugin('webpack-bundle-analyzer')
+        //         .use(BundleAnalyzerPlugin);
+        // }
         config.module
             .rule('vue')
             .use('vue-loader')

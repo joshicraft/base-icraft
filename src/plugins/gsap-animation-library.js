@@ -9,6 +9,44 @@ var animations = {
         })
             .set(elm, {autoAlpha: 1})[settings.to || 'staggerTo'](elm.querySelectorAll('path, circle, rect, line'), settings.stagger_dur || 0.5, {drawSVG: '100%'}, settings.stagger || 0.1).set(elm.querySelectorAll('path, circle, rect, line'), {className: '-=stroke-' + (settings.stroke || 3)});
     },
+    textAnimOne: function($el){
+
+        if(this.textAnimOneTl){
+            this.textAnimOneTl.play(0)
+            return
+        }
+
+        let $text = $el.querySelectorAll('.text')
+        let tL = new TimelineMax({repeat: -1, repeatDelay: 0})
+        $text.forEach(($e, i) => {
+            let newTL = new TimelineMax(),
+                text = $e,
+                mySplitText = new SplitText(text, {type: "words,chars"}),
+                chars = mySplitText.chars; //an array of all the divs that wrap each character
+            TweenLite.set(text, {perspective: 400});
+            newTL
+                .set($e, {display: 'block'}, 'a+' + i)
+                .staggerFrom(chars, 1, {
+                    opacity: 0,
+                    scale: 0,
+                    y: -60,
+                    rotationX: 180,
+                    transformOrigin: "0% 50% 50",
+                    ease: Back.easeInOut
+                }, 0.01)
+                .staggerTo(chars, 1, {
+                    opacity: 0,
+                    scale: 0,
+                    y: 60,
+                    rotationX: -180,
+                    transformOrigin: "0% 50% 50",
+                    ease: Back.easeInOut
+                }, 0.01, '+=5')
+                .set($e, {display: 'none'})
+            tL.add(newTL)
+        })
+        this.textAnimOneTl = tL
+    },
     wobble: function (elm, settings) {
         settings = settings || {};
         var defaults = {
