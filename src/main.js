@@ -147,23 +147,23 @@ Vue.mixin({
                             mySplitText = new SplitText(text, {type: "words,chars"}),
                             chars = mySplitText.chars; //an array of all the divs that wrap each character
                         TweenLite.set(text, {perspective: 400});
-                        tl.set([text, button], {opacity: 1}, 'a');
-                        tl.staggerFrom(chars, 0.8, {
-                            opacity: 0,
-                            scale: 0,
-                            y: from ? 80 : -80,
-                            rotationX: from ? 180 : -180,
-                            transformOrigin: "0% 50% -50",
-                            ease: Back.easeOut
-                        }, 0.01, "+=0")
-
+                        tl
+                            .set([text, button], {opacity: 1}, 'a')
+                            .staggerFrom(chars, 0.8, {
+                                opacity: 0,
+                                scale: 0,
+                                y: from ? 80 : -80,
+                                rotationX: from ? 180 : -180,
+                                transformOrigin: "0% 50% -50",
+                                ease: Back.easeOut
+                            }, 0.01, "+=0")
                             .from([button], 0.5, {
                                 opacity: 0,
                                 scale: 0,
                                 y: -60,
                                 rotationX: -180,
                                 transformOrigin: "0% 50% -20",
-                                ease: Back.easeOut}, '')
+                                ease: Back.easeOut}, 'a')
                     }, 850);
                     this.playSound('deep_woosh', 1, 0.8);
                 }
