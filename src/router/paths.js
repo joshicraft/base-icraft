@@ -118,6 +118,12 @@ let paths = [
         noToolbar: true
     },
     {
+        path: '/icrafts-it-blog',
+        name: 'Blog',
+        text: "Blog",
+        noToolbar: process.env.NODE_ENV !== 'development'
+    },
+    {
         path: '/contact-icraft',
         name: 'Contact',
         text: "Contact"

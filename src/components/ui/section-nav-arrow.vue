@@ -37,7 +37,6 @@
                 this.playSound('click', 0.3);
                 let dimensions = this.$el.getBoundingClientRect();
                 let next = dir === 'next';
-                console.log(dimensions)
                 this.$vuetify.goTo(
                     window.pageYOffset +
                     (next ?
