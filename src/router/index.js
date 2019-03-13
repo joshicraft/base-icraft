@@ -38,14 +38,14 @@ function route(path, parentPath) {
     }
 }
 
-function makeRoutes(){
-    let routes = paths.map((path)=>{
+function makeRoutes() {
+    let routes = paths.map((path) => {
         return route(path)
     })
     let nestedRoutes = []
-    paths.forEach((path)=>{
-        if(path.nestedItems){
-            path.nestedItems.forEach((nestedPath)=>{
+    paths.forEach((path) => {
+        if (path.nestedItems) {
+            path.nestedItems.forEach((nestedPath) => {
                 nestedRoutes.unshift(route(nestedPath, path))
             })
         }
@@ -95,48 +95,53 @@ router.beforeEach((to, from, next) => {
         // let text = jumbo.querySelector('h1')
         let duration = 0.6
         let newSound
+        let dur = window.screen.width < 960 ? 0 : 1
         let scrollPos = window.pageYOffset ||
             document.documentElement.scrollTop
-        // TweenMax.killAll()
+        let tl = new TimelineLite({delay: 0}),
+            mySplitText,
+            chars
+        let tL = new TimelineMax()
+        let title = document.querySelector('#jumbotron .title')
 
+        let button = title.querySelectorAll('#jumbotron .title button')
+        let text = title.querySelectorAll('#jumbotron .title .-text-anim')
+        // TweenMax.killAll()
+        if (dur) {
             newSound = {
                 data: new Audio('/static/sound/light_woosh.mp3')
             };
             newSound.data.volume = 1;
-
-
-        newSound.data.play()
-        let tL = new TimelineMax()
-        let title = document.querySelector('#jumbotron .title')
-        let text = title.querySelectorAll('#jumbotron .title .-text-anim')
-        let button = title.querySelectorAll('#jumbotron .title button')
-        let subText = title.querySelectorAll('#jumbotron .title p')
-        var tl = new TimelineLite({delay: 0}),
+            newSound.data.play()
             mySplitText = new SplitText(text, {type: "words,chars"}),
-            chars = mySplitText.chars; //an array of all the divs that wrap each character
-        TweenLite.set(text, {perspective: 400});
+                chars = mySplitText.chars; //an array of all the divs that wrap each character
+            TweenLite.set(text, {perspective: 400});
+        }
+
+
 
         tL
             .to(window, scrollPos === 0 ? 0 : 0.35, {scrollTo: {y: 0}}, 'a')
-        .set(text, {opacity: 1}, 'a')
-
-        .staggerTo(chars, 0.6, {
-            opacity: 0,
-            scale: 0,
-            y: -60,
-            rotationX: 180,
-            transformOrigin: "0% 50% 50",
-            ease: Back.easeIn
-        }, 0.01, "+=0")
-            .to([button], 0.5, {opacity: 0,
+            .set(text, {opacity: 1}, 'a')
+            .staggerTo(chars, 0.6 * dur, {
+                opacity: 0,
+                scale: 0,
+                y: -60,
+                rotationX: 180,
+                transformOrigin: "0% 50% 50",
+                ease: Back.easeIn
+            }, 0.01, "+=0")
+            .to([button], 0.5 * dur, {
+                opacity: 0,
                 scale: 0,
                 y: -30,
                 rotationX: 180,
                 transformOrigin: "0% 50% 50",
-                ease: Back.easeIn}, 'a')
+                ease: Back.easeIn
+            }, 'a')
             .call(next, [], this, '-=0.2')
-            .to(gradient, duration, {autoAlpha: 0.82})
-            .to(gradient, duration, {autoAlpha: 1})
+            .to(gradient, duration * dur, {autoAlpha: 0.82})
+            .to(gradient, duration * dur, {autoAlpha: 1})
 
     }, 1)
 })

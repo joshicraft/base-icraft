@@ -21,7 +21,7 @@
                         <v-list-tile
                                 v-if="item.nestedItems"
                                 :aria-label="item.name + '-drawer'"
-                                :to="{name: item.name}"
+                                @click="goToAndScroll(item.name)"
                                 exact
                         >
                             <v-list-tile-title v-text="item.text"/>
@@ -30,7 +30,7 @@
                         <v-list-tile
                                 :aria-label="item.name + '-drawer'"
                                 v-else-if="!item.nestedItems"
-                                :to="{name: item.name}"
+                                @click="goToAndScroll(item.name)"
                                 exact
                         >
                             <v-list-tile-title v-text="item.text"/>
@@ -42,7 +42,7 @@
             <div class="__drawer-right"
 
             >
-                <v-icon large @click="selected = []">mdi-arrow-left</v-icon>
+                <v-icon large @click.stop="selected = []">mdi-arrow-left</v-icon>
                 <h1 class="ml-4 mt-4" v-if="selected.length > 0">{{selected[0].nestedPath}}</h1>
                 <v-list
 
