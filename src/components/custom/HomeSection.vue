@@ -2,6 +2,7 @@
     <v-layout
             align-center lg12
             class="relative overflow-hidden"
+            :id="$route.name + '-section-' + i"
             :class="{'row-reverse c-1': i%2===0, 'c-2': i%2!==0}"
             v-scroll="scrollH"
     >

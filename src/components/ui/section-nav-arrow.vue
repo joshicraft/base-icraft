@@ -37,11 +37,12 @@
                 this.playSound('click', 0.3);
                 let dimensions = this.$el.getBoundingClientRect();
                 let next = dir === 'next';
+                console.log(dimensions)
                 this.$vuetify.goTo(
                     window.pageYOffset +
-                    ((next ? 0 : -window.innerHeight) +
-                    dimensions.top) +
-                    (next ? dimensions.height : 0)
+                    (next ?
+                        (dimensions.top + dimensions.height + 48) :
+                            (dimensions.top - window.innerHeight + 48))
                 )
             }
         }
