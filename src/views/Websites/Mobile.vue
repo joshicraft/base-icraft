@@ -42,7 +42,7 @@
                             could be missing out on...
                         </p>
                         <p>
-                            To find out how we can remedy that you can get in touch with us and request FREE mobile audit of your website.
+                            To find out how we can remedy that you can get in touch with us and request a FREE mobile audit of your website.
                         </p>
                         <div class="mt-5">
                             <v-btn

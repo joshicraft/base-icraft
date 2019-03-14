@@ -7,7 +7,6 @@
             <div class="title-a text-lg-center mb-5">
                 <h1 class="mt-5 mb-3">WE'D LIKE TO HEAR FROM YOU</h1>
                 <h3 class="mb-4">You can use one of the methods below to get in touch.</h3>
-                <p>To find out the best solution for you its best to get in touch with us so we can find out exactly what you're after.</p>
             </div>
             <v-flex xs12 lg7 mx2 dark>
                 <v-card dark class="pa-4 form-wrap">
@@ -47,7 +46,7 @@
                                 prepend-icon="mdi-account"
                                 v-model="name"
                                 :rules="nameRules"
-                                label="name"
+                                label="Name"
                                 name="name"
                                 type="text"
                                 required
@@ -65,7 +64,7 @@
                         <v-text-field
                                 prepend-icon="mdi-phone"
                                 v-model="phone"
-                                label="phone"
+                                label="Phone"
                                 name="phone"
                                 type="number"
                                 required
