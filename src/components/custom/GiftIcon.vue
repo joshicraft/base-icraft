@@ -1,9 +1,10 @@
 <template>
     <div class="gift-ico bot-p ">
+        <div class="relative">
         <v-btn
                 aria-label="go-to-contact"
                 v-if="$route.name !== 'Contact'"
-                @click="showGift = !showGift"
+                @click="goToAndScroll('Contact')"
                 fab
                 dark
                 medium
@@ -20,14 +21,18 @@
                 mdi-gift
             </v-icon>
         </v-btn>
-        <div class="relative">
-            <div class="text-wrapper">
-                <div class="text">
-                    <p>Get in touch here.</p>
-                </div>
-                <div class="text">
-                    <p>Get a FREE quote today.</p>
-                </div>
+        <div v-if="$route.name === 'Home' || $route.name === 'Websites' && $vuetify.breakpoint.mdAndUp"
+             :class="{'invisible': !atTop}"
+             class="contact-text absolute d-flex justify-center align-center">
+            <div class="text-wrapper d-flex justify-center align-center"
+                 @click="goToAndScroll('Contact')"
+            >
+                <a class="text">
+                    <h3>10% Off Select Websites!!</h3>
+                </a>
+                <a class="text">
+                    <h3>Use the promo code 10WEB4U</h3>
+                </a>
             </div>
         </div>
         <v-dialog v-model="showGift" dark width="80vw">
@@ -68,12 +73,20 @@
                 </div>
             </div>
         </v-dialog>
+        </div>
     </div>
 </template>
 
 <script>
     import animLib from '../../plugins/gsap-animation-library'
     export default {
+        props: {
+            scrolled: false,
+            atTop: {
+                type: Boolean,
+                default: true
+            }
+        },
         data () {
             return {
                 showGift: null,
@@ -86,22 +99,22 @@
                 ]
             }
         },
-        mounted(){
-            let $text = this.$el.querySelectorAll('.text')
-            setTimeout(()=> {
-                let tL = new TimelineMax()
-                $text.forEach(($e) => {
-                    let newTL = new TimelineMax()
-                    newTL
-                        .set($e, {display: 'block'})
-                        .to($e, 2, {autoAlpha: 1, yoyo: true, repeat: 1})
-                        .set($e, {display: 'none'})
-                    tL.add(newTL)
-                }, 2000)
-            })
-
-
-        },
+        // mounted(){
+        //     let $text = this.$el.querySelectorAll('.text')
+        //     setTimeout(()=> {
+        //         let tL = new TimelineMax()
+        //         $text.forEach(($e) => {
+        //             let newTL = new TimelineMax()
+        //             newTL
+        //                 .set($e, {display: 'block'})
+        //                 .to($e, 2, {autoAlpha: 1, yoyo: true, repeat: 1})
+        //                 .set($e, {display: 'none'})
+        //             tL.add(newTL)
+        //         }, 2000)
+        //     })
+        //
+        //
+        // },
         methods:{
             submit(){
 
@@ -136,19 +149,35 @@
 
     .relative
         position: relative;
+    .absolute
+        width: 100%
+        height: 100%
+        position: absolute;
+        top:0;
 
     .text-wrapper
-        overflow visible
+        text-align right
+        overflow: visible;
         position: absolute;
-        bottom:100%;
-        left:100%;
-        width: 300px;
-
+        right: 120%;
+        width: 285px;
+        height: 40px;
+        padding: 10px;
+        border-radius: 10px;
+        /*background: #595959;*/
+        h3
+            display block
     .text
         display none
-        visibility: hidden;
-        opacity: 0;
-
+        text-align right
+        position absolute
+        top: 8px;
+        left: 10px;
+        color white
+        cursor pointer
+        transition color 0.3s
+        &:hover
+            color: #56a3ff
     .bg-white
         background #eaeaea
 

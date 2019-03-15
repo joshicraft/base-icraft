@@ -17,7 +17,7 @@
         <core-footer v-if="getLoadCount(1.5)"/>
 
         <custom-contact-icon :atTop="atTop" ></custom-contact-icon>
-        <!--<custom-gift-icon></custom-gift-icon>-->
+        <custom-gift-icon :atTop="atTop" ></custom-gift-icon>
 
         <!--<cookie-law theme="dark-lime"></cookie-law>-->
     </v-app>
@@ -85,6 +85,7 @@
                 this.contactAnimDelay = setTimeout(()=>{
                     animationLibrary.wobble(document.querySelector('.contact-ico .v-btn'), {transformOrigin: '0% 100%', modifier: 0.2});
                     animationLibrary.textAnimOne(document.querySelector('.contact-ico'));
+                     animationLibrary.textAnimOne(document.querySelector('.gift-ico'), {delay: 0.666});
                 }, 2000)
                 //animationLibrary.wobble(document.querySelector('.gift-ico'), {transformOrigin: '0% 100%', delay: 0.8})
 

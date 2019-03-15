@@ -9,15 +9,17 @@ var animations = {
         })
             .set(elm, {autoAlpha: 1})[settings.to || 'staggerTo'](elm.querySelectorAll('path, circle, rect, line'), settings.stagger_dur || 0.5, {drawSVG: '100%'}, settings.stagger || 0.1).set(elm.querySelectorAll('path, circle, rect, line'), {className: '-=stroke-' + (settings.stroke || 3)});
     },
-    textAnimOne: function($el){
+    textAnimOne: function($el, settings){
 
-        if(this.textAnimOneTl){
-            this.textAnimOneTl.play(0)
-            return
-        }
+        // if(this.textAnimOneTl){
+        //     this.textAnimOneTl.play(0)
+        //     return
+        // }
 
         let $text = $el.querySelectorAll('.text')
-        let tL = new TimelineMax({repeat: -1, repeatDelay: 0})
+        let defaults = {repeat: -1, repeatDelay: 0}
+        let s = {...defaults, ...settings};
+        let tL = new TimelineMax(s)
         $text.forEach(($e, i) => {
             let newTL = new TimelineMax(),
                 text = $e,
@@ -45,7 +47,8 @@ var animations = {
                 .set($e, {display: 'none'})
             tL.add(newTL)
         })
-        this.textAnimOneTl = tL
+        return tL
+        // this.textAnimOneTl = tL
     },
     wobble: function (elm, settings) {
         settings = settings || {};
