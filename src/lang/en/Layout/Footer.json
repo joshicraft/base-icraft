@@ -5,7 +5,7 @@
   "ourTeam": "Our Team",
   "communityCommitment": "Commitment to the Community",
   "rights": "All Rights reserved.",
-  "social": [
+  "links": [
     {
       "text": "Websites",
       "name": "Websites"
@@ -21,6 +21,14 @@
     {
       "text": "Contact",
       "name": "Contact"
+    },
+    {
+      "text": "Privacy Policy",
+      "name": "PrivacyPolicy"
+    },
+    {
+      "text": "Terms & Conditions",
+      "name": "WebsiteTerms"
     },
     {
       "text": "Site Map",

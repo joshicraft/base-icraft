@@ -129,6 +129,12 @@ let paths = [
         text: "Contact"
     },
     {
+        path: '/privacy-policy',
+        name: 'PrivacyPolicy',
+        text: "Privacy Policy",
+        noToolbar: true
+    },
+    {
         path: '/sitemap',
         name: 'SiteMap',
         text: "Site Map",

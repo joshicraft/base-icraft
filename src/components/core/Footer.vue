@@ -1,7 +1,7 @@
 <template>
   <alpha-footer
     :company="content.company"
-    :social="social"
+    :links="links"
     :categories="categories"
   >
     <span>
@@ -20,8 +20,8 @@
         content () {
             return this.$t('Layout.Footer')
         },
-      social () {
-        return this.$t('Layout.Footer.social')
+      links () {
+        return this.$t('Layout.Footer.links')
         // return this.bakedLayout.Footer.social
       },
       categories () {

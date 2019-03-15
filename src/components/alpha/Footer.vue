@@ -15,7 +15,7 @@
         >
           <h5 class="title pb-3" v-text="company" />
           <ul>
-            <li v-for="(item, i) in computedSocial" :key="i">
+            <li v-for="(item, i) in computedLinks" :key="i">
               <router-link :to="{name: item.name}" class="layout align-center">
                 <v-icon
                   dark
@@ -128,7 +128,7 @@
       company: String,
       facebook: String,
       github: String,
-      social: {
+      links: {
         type: Array,
         default: () => []
       },
@@ -139,8 +139,8 @@
         return this.$t('Views.Contact')
         // return this.bakedViews.Contact
       },
-      computedSocial () {
-        if (this.social.length) return this.social
+      computedLinks () {
+        if (this.links.length) return this.links
 
         const social = []
 
