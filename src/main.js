@@ -107,7 +107,8 @@ Vue.mixin({
                     return path + size + '-' + name + (this.ext(ext || 'jpg'))
                 }else{
                     useH = this.$el || img
-                    h = this.$el ? this.$el : img ? img.getBoundingClientRect().height
+                    h = this.$el ? this.$el : img
+                    h = h.getBoundingClientRect().height
                     return path + sizes[0] + name + '?nf_resize=fit&h=' + h + this.ext(ext || 'jpg')
                 }
             },
