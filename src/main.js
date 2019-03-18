@@ -72,6 +72,7 @@ Vue.mixin({
                 let bp = this.$vuetify.breakpoint;
                 let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
                 let h
+
                 let useH
                 if(process.env.NODE_ENV === 'development') {
                     if (img) {
