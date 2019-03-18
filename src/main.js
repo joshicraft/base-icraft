@@ -73,7 +73,7 @@ Vue.mixin({
                 let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
                 let h
                 let useH
-                if(process.env.NODE_ENV === 'development') {
+                if(process.env.NODE_ENV === 'developmentd') {
                     if (img) {
                         let width = img.getBoundingClientRect().width;
                         for (let i = 0; i < sizes.length; i++) {
@@ -110,7 +110,7 @@ Vue.mixin({
                     h = this.$el ? this.$el : img
                     console.log(h)
                     h = h.getBoundingClientRect ? h.getBoundingClientRect().height : sizes[0]
-                    return path + sizes[0] + '-' + name + '?nf_resize=fit&h=' + h + this.ext(ext || 'jpg')
+                    return path + sizes[0] + '-' + name + this.ext(ext || 'jpg') + '?nf_resize=fit&h=' + h
                 }
             },
             firstBGColor: '#fafafa',
