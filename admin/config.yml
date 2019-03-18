@@ -3,30 +3,55 @@ backend:
   branch: master
 
 
-media_folder: "static/uploads"
-public_folder: "dist/static"
+media_folder: static/uploads
+public_folder: dist/static
 
 collections:
-  - label: "Pages"
-    name: "pages"
+  - label: Pages
+    name: pages
 
     files:
-      - label: "Home"
-        file: "/src/lang/en/Views/Home.json"
-        name: "Home"
-        widget: "object"
+      - label: Home
+        file: /src/lang/en/Views/Home.json
+        name: Home
+        widget: object
         fields:
-          - {label: "Jumbotron Title", name: "jumbotronTitle", widget: "string"}
-          - {label: "Jumbotron Sub Title", name: "jumbotronSubTitle", widget: "string"}
-          - {label: "Testimonial Title", name: "testimonialsTitle", widget: "string"}
-          - label: "Testimonials"
-            name: "testimonials"
-            widget: "list"
+          - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
+          - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
+          - {label: Testimonial Title, name: testimonialsTitle, widget: string}
+          - label: Testimonials
+            name: testimonials
+            widget: list
             fields:
-              - {label: "Author", name: "author", widget: "string"}
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Quote", name: "quote", widget: "string"}
-          - label: "Card Features"
-            name: "cardFeatures"
-            widget: "list"
+              - {label: Author, name: author, widget: string}
+              - {label: Title, name: title, widget: string}
+              - {label: Quote, name: quote, widget: string}
+
+      - name: posts # Used in routes, ie.: /admin/collections/:slug/edit
+          label: Posts # Used in the UI
+          label_singular: Post # Used in the UI, ie: New Post
+          description: >
+            The description is a great place for tone setting, high level information, and editing
+            guidelines that are specific to a collection.
+          folder: _posts
+          slug: {{year}}-{{month}}-{{day}}-{{slug}}
+          create: true # Allow users to create new documents in this collection
+          fields: # The fields each document in this collection have
+            - { label: Title, name: title, widget: string, tagname: h1 }
+            - {
+              label: Publish Date,
+              name: date,
+              widget: datetime,
+              dateFormat: YYYY-MM-DD,
+              timeFormat: HH:mm,
+              format: YYYY-MM-DD HH:mm,
+            }
+            - label: Cover Image
+              name: image
+              widget: image
+              required: false
+              tagname: 
+            - { label: Body, name: body, widget: markdown, hint: Main content goes here. }
+            meta:
+              - { label: SEO Description, name: description, widget: text }
 
