@@ -6,7 +6,6 @@ site_url: https://icraft.co.nz
 
 media_folder: public/static/uploads
 
-publish_mode: editorial_workflow
 
 collections:
 - name: pages
@@ -20,5 +19,17 @@ collections:
         - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
         - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
         - {label: Jumbotron Sub Sub Title, name: jumbotronSubSubTitle, widget: string}
-
+- name: blog
+  label: Blog
+  folder: public/blog
+  create: true
+  slug: {{year}}-{{month}}-{{day}}-{{slug}}
+  fields:
+    - {label: Title, name: title, widget: string}
+    - {label: Layout, name: layout, default: post-layout}
+    - {label: Tags, name: tags, widget: string}
+    - {label: Category, name: category, widget: string}
+    - {label: Publish Date, name: date, widget: datetime}
+    - {label: Summary, name: summary, widget: string}
+    - {label: Body, name: body, widget: markdown}
 
