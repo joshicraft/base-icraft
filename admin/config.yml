@@ -25,6 +25,7 @@ collections:
   folder: "public/blog"
   create: true
   format: json
+  sort: "date:desc"
   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
   fields:
     - {label: "Title", name: "title", widget: "string"}
