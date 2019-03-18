@@ -91,7 +91,6 @@ Vue.mixin({
                             size = '1920'
                         }
                     }
-
                     if (thumb) {
                         size = '568'
                     }
