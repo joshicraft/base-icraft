@@ -73,7 +73,7 @@ Vue.mixin({
                 let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
                 let h
                 let useH
-                if(process.env.NODE_ENV === 'developmentd') {
+                if(process.env.NODE_ENV !== 'developmentd') {
                     if (img) {
                         let width = img.getBoundingClientRect().width;
                         for (let i = 0; i < sizes.length; i++) {
