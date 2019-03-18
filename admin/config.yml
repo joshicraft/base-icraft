@@ -2,8 +2,10 @@ backend:
   name: git-gateway
   branch: master
 
+site_url: https://icraft.co.nz
+
 media_folder: static
-public_folder: dist/static
+publish_mode: editorial_workflow
 
 collections:
   - label: Pages
