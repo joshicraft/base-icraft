@@ -72,6 +72,7 @@ Vue.mixin({
                 let bp = this.$vuetify.breakpoint;
                 let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
                 let h
+                let useH
                 if(process.env.NODE_ENV === 'development') {
                     if (img) {
                         let width = img.getBoundingClientRect().width;
@@ -105,8 +106,9 @@ Vue.mixin({
                     // }
                     return path + size + '-' + name + (this.ext(ext || 'jpg'))
                 }else{
-                    h = this.$el || img.getBoundingClientRect().height
-                    return path + sizes[0] + name + this.ext(ext || 'jpg') + '?nf_resize=fit&h=' + h
+                    useH = this.$el || img
+                    h = this.$el ? this.$el : img ? img.getBoundingClientRect().height
+                    return path + sizes[0] + name + '?nf_resize=fit&h=' + h + this.ext(ext || 'jpg')
                 }
             },
             firstBGColor: '#fafafa',
