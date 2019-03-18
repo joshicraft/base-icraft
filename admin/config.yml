@@ -4,8 +4,7 @@ backend:
 
 site_url: https://icraft.co.nz
 
-media_folder: "public/static/uploads"
-public_folder: "/images/uploads"
+media_folder: public/static/uploads
 
 publish_mode: editorial_workflow
 
