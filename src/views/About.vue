@@ -12,6 +12,7 @@
         <v-flex md8 xs12 d-flex
           :class="[{'column':$vuetify.breakpoint.xsOnly}]"
         >
+
           <v-flex
             dark
             md6
