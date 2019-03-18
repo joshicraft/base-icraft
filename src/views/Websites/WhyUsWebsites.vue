@@ -42,6 +42,7 @@
                         column
                         justify-center
                         v-for="(val, v) in data.values"
+                        :key="v + val.title"
                         sm6
                         class="py-5 px-4"
                         :dark="v%2===0"
@@ -89,6 +90,7 @@
                             lg6
                             sm12
                             v-for="(content, j) in item.items"
+                            :key="j + content.title"
                     >
                         <v-layout
                                 :class="$vuetify.breakpoint.smAndDown ? '__auto-height' : '__c-height'"

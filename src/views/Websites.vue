@@ -6,7 +6,7 @@
         <v-flex
                 v-scroll="topScroll"
                 v-for="(service, i) in content.items"
-                :key="i"
+                :key="i + '-website-service'"
 
         >
             <div

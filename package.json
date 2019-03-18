@@ -9,14 +9,12 @@
     "build-node": "node build/build.js",
     "build:lambda": "netlify-lambda build func",
     "copy-admin-files": "copyfiles admin/**/*.html admin/**/*.yml ./dist",
-    "report": "vue-cli-service build --report && npm run copy-admin-files",
+    "report": "vue-cli-service build && npm run copy-admin-files",
     "start:lambda": "netlify-lambda serve func -c webpack.server.js"
   },
-  "dependencies": {
-    "@vue/cli-shared-utils": "^3.5.0",
-    "netlify-cli": "^2.8.3"
-  },
   "devDependencies": {
+    "@vue/cli-shared-utils": "^3.5.0",
+    "netlify-cli": "^2.8.3",
     "@mdi/font": "^2.5.94",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",

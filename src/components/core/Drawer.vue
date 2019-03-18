@@ -13,6 +13,7 @@
                 <v-list
                         v-if="!item.noToolbar"
                         v-for="(item, i) in items"
+                        :key="i + '-drawer-item'"
 
                 >
                     <template
@@ -49,6 +50,7 @@
                         v-if="selected.length > 0 && !item.noToolbar"
                         v-model="selected"
                         v-for="(item, i) in selected"
+                        :key="i + 'drawer-nested-item'"
                 >
                     <v-list-tile
                             class="ml-5"
