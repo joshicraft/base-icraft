@@ -17,7 +17,6 @@
             dark
             md6
             xs12
-
           >
             <v-card
               class="pa-4 elevation-0"
