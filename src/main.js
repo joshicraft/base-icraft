@@ -108,8 +108,9 @@ Vue.mixin({
                 }else{
                     useH = this.$el || img
                     h = this.$el ? this.$el : img
-                    h = h.getBoundingClientRect().height
-                    return path + sizes[0] + name + '?nf_resize=fit&h=' + h + this.ext(ext || 'jpg')
+                    console.log(h)
+                    h = h.getBoundingClientRect ? h.getBoundingClientRect().height : sizes[0]
+                    return path + sizes[0] + '-' + name + '?nf_resize=fit&h=' + h + this.ext(ext || 'jpg')
                 }
             },
             firstBGColor: '#fafafa',
