@@ -19,7 +19,7 @@ collections:
         - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
         - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
         - {label: Jumbotron Sub Sub Title, name: jumbotronSubSubTitle, widget: string}
-        -
+
 - name: blog
   label: Blog
   folder: "public/blog"
