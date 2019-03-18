@@ -47,15 +47,9 @@
                         <div class="mt-5">
                             <v-btn
                                     class="primary ml-0 mr-3"
-                                    @click="goToAndScroll('Contact')"
+                                    @click="goToAndScroll('Contact', 0, {title: 'mobile quote'})"
                             >
-                                get in touch <v-icon right>mdi-phone</v-icon>
-                            </v-btn>
-                            <v-btn
-                                    class="primary ml-0 mr-3"
-                                    @click="goToAndScroll('Websites')"
-                            >
-                                Websites
+                                FREE QUOTE OR AUDIT <v-icon right>mdi-phone</v-icon>
                             </v-btn>
                         </div>
                     </div>

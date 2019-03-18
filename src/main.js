@@ -222,7 +222,7 @@ Vue.mixin({
                 this.$router.push({name: to || '', params: params || {}});
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight)
-                }, delay || 5500)
+                }, delay || this.$vuetify.breakpoint.smAndDown ? 3400  : 5500)
             },
             scroll() {
                 // this.scrolled = true;

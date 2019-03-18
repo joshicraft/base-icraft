@@ -4,14 +4,15 @@
             <!--<v-flex md1 class="img-wrap">-->
             <!--<img src="/static/device-iphone-contact.png"/>-->
             <!--</v-flex>-->
-            <div class="title-a text-lg-center mb-5">
-                <h1 class="mt-5 mb-3">WE'D LIKE TO HEAR FROM YOU</h1>
-                <h3 class="mb-4">You can use one of the methods below to get in touch.</h3>
+            <div class="title-a text-lg-center mb-4">
+                <h1 class="mt-5 mb-3">{{heading.h1}}</h1>
+                <h3 class="mb-4">{{heading.h2}}</h3>
+                <p v-if="heading.p">{{heading.p}}</p>
             </div>
             <v-flex xs12 lg7 mx2 dark>
                 <v-card dark class="pa-4 form-wrap">
-                    <h2 class="headline mb-2" v-text="contact.heading1"/>
-                    <p class="mb-4" v-text="contact.headingText1"/>
+                    <!--<h2 class="headline mb-2" v-text="heading.h1"/>-->
+                    <!--<p class="mb-4" v-text="heading.h2"/>-->
                     <div v-if="submitting" class="progress-wrap">
                         <v-progress-circular
                                 :size="100"
@@ -85,6 +86,20 @@
                                 name="code"
                                 type="text"
                         ></v-text-field>
+
+                        <v-radio-group v-model="radioGroup">
+
+                                <div class="mb-4">How would you like us to contact you? <strong>{{radioGroup}}</strong></div>
+                            <div v-for="n in contactPreferences" @click="playSound('Click')">
+                            <v-radio
+
+                                    class="mb-3"
+                                    :key="n"
+                                    :label="n"
+                                    :value="n"
+                            ></v-radio>
+                            </div>
+                        </v-radio-group>
 
                     </v-form>
                     <v-card-actions class="mt-5">
@@ -212,6 +227,11 @@
                     t1: '',
                     t2: ''
                 },
+                contactPreferences: [
+                  "E-mail",
+                  "Phone"
+                ],
+                radioGroup: "E-mail",
                 failed: false,
                 submitting: null,
                 submitted: null,
@@ -242,6 +262,21 @@
         computed: {
             contact() {
                 return this.$t('Views.Contact')
+            },
+
+            heading () {
+                if (this.$route.params.title === 'mobile quote'){
+                    return {
+                        h1: "After a free quote or mobile audit?",
+                        h2: "Fill out the forms below with a few details describing what you're after.",
+                        p: "We'll get back to you withing 2 working days with your quote or audit results."
+                    }
+                }else{
+                    return {
+                        h1: this.contact.heading1,
+                        h2: this.contact.headingText1
+                    }
+                }
             }
         },
         methods: {
