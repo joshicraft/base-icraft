@@ -1,4 +1,0 @@
-[build]
-  publish = "dist"
-  functions = "functions-dist"
-  command = "npm run build && cd func && npm install && cd .. && netlify-lambda build func"
