@@ -4,7 +4,7 @@ backend:
 
 site_url: https://icraft.co.nz
 
-media_folder: static
+media_folder: public/static/uploads
 publish_mode: editorial_workflow
 
 collections:
@@ -19,12 +19,5 @@ collections:
       - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
       - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
       - {label: Testimonial Title, name: testimonialsTitle, widget: string}
-      - label: Testimonials
-        name: testimonials
-        widget: list
-        fields:
-          - {label: Author, name: author, widget: string}
-          - {label: Title, name: title, widget: string}
-          - {label: Quote, name: quote, widget: string}
 
 
