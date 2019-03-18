@@ -4,20 +4,22 @@ backend:
 
 site_url: https://icraft.co.nz
 
-media_folder: public/static/uploads
+media_folder: "public/static/uploads"
+public_folder: "/images/uploads"
+
 publish_mode: editorial_workflow
 
 collections:
 - label: Pages
   name: pages
   files:
-  - file: /src/lang/en/Views/Home.json
+  - file: "/src/lang/en/Views/Home.json"
     label: Home
     name: Home
     widget: object
     fields:
-      - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
-      - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
-      - {label: Testimonial Title, name: testimonialsTitle, widget: string}
+      - {label: "Jumbotron Title", name: jumbotronTitle, widget: string}
+      - {label: "Jumbotron Sub Title", name: jumbotronSubTitle, widget: string}
+      - {label: "Testimonial Title", name: testimonialsTitle, widget: string}
 
 
