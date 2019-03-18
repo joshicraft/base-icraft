@@ -70,39 +70,44 @@ Vue.mixin({
                 let path = '/static/' + (addPath || '');
                 let size = '';
                 let bp = this.$vuetify.breakpoint;
-                let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568];
+                let sizes = [2100, 1920, 1440, 1280, 1024, 768, 568]
+                let h
+                if(process.env.NODE_ENV === 'development') {
+                    if (img) {
+                        let width = img.getBoundingClientRect().width;
+                        for (let i = 0; i < sizes.length; i++) {
+                            if (sizes[i] < width) {
+                                size = sizes[i]
+                            }
+                        }
 
-                if (img) {
-                    let width = img.getBoundingClientRect().width;
-                    for (let i = 0; i < sizes.length; i++) {
-                        if (sizes[i] < width) {
-                            size = sizes[i]
+                    } else {
+                        if (bp.smAndDown) {
+                            size = '768'
+                        } else if (bp.lgAndDown) {
+                            size = '1280'
+                        } else {
+                            size = '1920'
                         }
                     }
 
-                } else {
-                    if (bp.smAndDown) {
-                        size = '768'
-                    } else if (bp.lgAndDown) {
-                        size = '1280'
-                    } else {
-                        size = '1920'
+                    if (thumb) {
+                        size = '568'
                     }
+                    // if(this.$el) {
+                    //     let s = this.submitToServer(
+                    //         {
+                    //             img: (window.location.origin + path + size + '-' + name + '.jpg'),
+                    //             w: this.$el.getBoundingClientRect().width,
+                    //             h: this.$el.getBoundingClientRect().height,
+                    //             ext: (this.ext(ext || 'jpg'))
+                    //         }, 'POST', '/image-resizer')
+                    // }
+                    return path + size + '-' + name + (this.ext(ext || 'jpg'))
+                }else{
+                    h = img.getBoundingClientRect().height
+                    return path + sizes[0] + name + this.ext(ext || 'jpg') + '?nf_resize=fit&h=' + h
                 }
-
-                if (thumb) {
-                    size = '568'
-                }
-                // if(this.$el) {
-                //     let s = this.submitToServer(
-                //         {
-                //             img: (window.location.origin + path + size + '-' + name + '.jpg'),
-                //             w: this.$el.getBoundingClientRect().width,
-                //             h: this.$el.getBoundingClientRect().height,
-                //             ext: (this.ext(ext || 'jpg'))
-                //         }, 'POST', '/image-resizer')
-                // }
-                return path + size + '-' + name + (this.ext(ext || 'jpg'))
             },
             firstBGColor: '#fafafa',
             currentBGColor: '#fafafa',
