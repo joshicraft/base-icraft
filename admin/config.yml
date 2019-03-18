@@ -5,6 +5,7 @@ backend:
 site_url: https://icraft.co.nz
 
 media_folder: public/static/uploads
+public_folder: dist
 
 
 collections:
