@@ -81,6 +81,7 @@ Vue.mixin({
                                 size = sizes[i]
                             }
                         }
+
                     } else {
                         if (bp.smAndDown) {
                             size = '768'
@@ -90,6 +91,7 @@ Vue.mixin({
                             size = '1920'
                         }
                     }
+
                     if (thumb) {
                         size = '568'
                     }
