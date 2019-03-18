@@ -81,7 +81,6 @@ Vue.mixin({
                                 size = sizes[i]
                             }
                         }
-
                     } else {
                         if (bp.smAndDown) {
                             size = '768'
