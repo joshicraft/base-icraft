@@ -20,6 +20,8 @@ collections:
         - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
         - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
         - {label: Jumbotron Sub Sub Title, name: jumbotronSubSubTitle, widget: string}
+        - {label: Meta Description, name: headDescription, widget: string}
+        - {label: Meta Title, name: headTitle, widget: string}
 
 - name: blog
   label: Blog
@@ -27,7 +29,7 @@ collections:
   create: true
   format: json
   sort: date:desc
-  slug: {{year}}-{{month}}-{{day}}-{{slug}}
+  slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
   fields:
     - {label: Title, name: title, widget: string}
     - {label: Layout, name: layout, default: post-layout}
@@ -36,10 +38,5 @@ collections:
     - {label: Publish Date, name: date, widget: datetime}
     - {label: Summary, name: summary, widget: string}
     - {label: Body, name: body, widget: markdown}
-    - label: Images
-      name: images
-      widget: image
-      media_library:
-        config:
-          multiple: true
+    - {label: Images, name: images, widget: image}
 
