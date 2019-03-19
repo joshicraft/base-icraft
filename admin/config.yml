@@ -103,17 +103,17 @@ collections:
             - {label: Mobile, name: mobile, widget: string}
             - {label: Email, name: email, widget: string}
 
-      - label: Social Media Links
-        name: socialMedia
-        file: src/lang/en/SocialMedia.json
-        widget: object
-        fields:
-          - label: Social Media
-            name: socialMedia
-            widget: list
-            create: true
-            fields:
-              - {label: Icon, name: icon, widget: string}
-              - {label: Text, name: text, widget: string}
-              - {label: To, name: to, widget: string}
+    - label: Social Media Links
+      name: socialMedia
+      file: src/lang/en/SocialMedia.json
+      widget: object
+      fields:
+        - label: Social Media
+          name: socialMedia
+          widget: list
+          create: true
+          fields:
+            - {label: Icon, name: icon, widget: string}
+            - {label: Text, name: text, widget: string}
+            - {label: To, name: to, widget: string}
 
