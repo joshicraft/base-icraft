@@ -3,10 +3,13 @@ backend:
   branch: master
 
 site_url: https://icraft.co.nz
+logo_url: https://icraft.co.nz/logo.png
 
 media_folder: public/static/uploads
 public_folder: /static/uploads
 
+editor:
+  preview: false
 
 collections:
 - name: pages
@@ -29,7 +32,7 @@ collections:
   create: true
   format: json
   sort: date:desc
-  slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  slug: {{year}}-{{month}}-{{day}}-{{slug}}
   fields:
     - {label: Title, name: title, widget: string}
     - {label: Layout, name: layout, default: post-layout}
@@ -38,10 +41,8 @@ collections:
     - {label: Publish Date, name: date, widget: datetime}
     - {label: Summary, name: summary, widget: string}
     - {label: Body, name: body, widget: markdown}
-    - label: "Featured Image"
-      name: "thumbnail"
-      widget: "image"
-      media_library:
-        config:
-          multiple: true
+    - label: Featured Image
+      name: thumbnail
+      widget: image
+      allow_multiple: true
 
