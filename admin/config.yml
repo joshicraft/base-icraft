@@ -106,7 +106,6 @@ collections:
     - label: Social Media Links
       name: SocialMedia
       file: src/lang/en/SocialMedia.json
-      widget: object
       fields:
         - label: Social Media
           name: socialMedia
