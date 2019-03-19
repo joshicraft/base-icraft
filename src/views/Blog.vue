@@ -19,7 +19,8 @@
         },
         computed: {
             items () {
-                return this.$t('Views.Blog.items')
+                console.log(Object.values(this.$t('Blog')))
+                return Object.values(this.$t('Blog'))
             }
         }
     }

@@ -4,12 +4,12 @@
             align-center lg12
             class="relative overflow-hidden -view-height"
             :class="{'row-reverse c-1': index%2===0, 'c-2': index%2!==0}"
-            v-scroll="scrollH"
+            v-scroll="scrollS"
     >
         <ui-section-nav-arrow :index="index" direction="prev"></ui-section-nav-arrow>
         <ui-section-nav-arrow :index="index" direction="next"></ui-section-nav-arrow>
         <v-img
-
+                v-if="item.images"
                 class="section-img"
                 lg6
                 :lazy-src="imgC(item.images[0], false, false, true)"
@@ -22,9 +22,9 @@
         <v-flex lg6 pa-5 class="d-flex section-title" justify-center>
             <div class="title-a" :class="{'align-left': index%2===0}">
                 <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
-                <h3 class="mb-4">{{item.subtitle}}</h3>
+                <!--<h3 class="mb-4">{{item.summary}}</h3>-->
                 <p class="mb-4">{{item.date}}</p>
-                <p class="mb-4">{{item.text}}</p>
+                <p class="mb-4" v-html="item.body"></p>
                 <v-btn @click="goToAndScroll('')" class="ml-0 primary">Show more</v-btn>
             </div>
         </v-flex>
@@ -32,13 +32,13 @@
 </template>
 
 <script>
-    export default {
+ export default {
         props: {
             index: Number,
             item: Object
         },
         methods: {
-            scrollH(e) {
+            scrollS(e) {
                 let $e = this.$el,
                     $title,
                     distance;
