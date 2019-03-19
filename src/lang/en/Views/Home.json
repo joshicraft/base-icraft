@@ -1,50 +1,7 @@
 {
-  "headTitle": "ICRAFT - Design, Websites, Branding - Located in Franklin, South Auckland.",
-  "headDescription": "Get your business or personal website needs met with our affordable, fast, secure and engaging websites. We are situated in Auckland so if your local we can meet you :)",
   "jumbotronTitle": "ICRAFT",
   "jumbotronSubTitle": "DIGITAL, WEBSITES, BRANDING",
   "jumbotronSubSubTitle": "Want to know what we can do for you? Then hit the ignition button below to find out.",
-  "items": [
-    {
-      "name": "intro",
-      "title": "LOOKING TO UPGRADE YOUR DIGITAL PRESENCE?",
-      "text": "Here at ICRAFT we provide a range of quality solutions that will boost your online presence or make your day-to-day more efficient. For more info you can get in touch with us today.",
-      "img": "web-3",
-      "button": "GET IN TOUCH",
-      "to": "Contact"
-    },
-    {
-      "name": "websites",
-      "title": "STUNNING, FAST AND SECURE WEBSITES",
-      "text": "ICRAFT's Top Quality websites are hand crafted to support your brand. On-top of that, they also come with some of the lowest on-going costs out there!",
-      "img": "home-websites",
-      "button": "MORE HERE",
-      "to": "Websites"
-    },
-    {
-      "name": "branding",
-      "title": "PERSONALISED BRANDED CONTENT",
-      "text": "From Logo's to Flyer's to Business Cards and the good stuff in between. We create unique and impacting content that helps your business stand out for the right reasons.",
-      "img": "b-card",
-      "button": "LEARN MORE",
-      "to": "Branding"
-    },
-    {
-      "name": "it solutions",
-      "title": "IMPROVE YOUR WORKFLOW TOOLS",
-      "text": "This modern age is full of helpful tools to help you focus on what you do best. ICRAFT can help find the right tools for you.",
-      "img": "it-training",
-      "button": "MORE HERE",
-      "to": "ItSolutions"
-    }
-
-  ],
-  "testimonialsTitle": "Testimonials",
-  "testimonials": [
-    {
-      "author": "John Marshall",
-      "title": "Previous Owner, Nectar Beverages",
-      "quote": "Holy c#@p Josh that is insane! Completely exceeded my expectations, you are modern day Picasso!!"
-    }
-  ]
+  "headDescription": "Get your business or personal website needs met with our affordable, fast, secure and engaging websites. We are situated in Auckland so if your local we can meet you :)",
+  "headTitle": "ICRAFT - We Do Design, Websites & Branding - Located in Auckland."
 }
