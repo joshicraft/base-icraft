@@ -32,7 +32,7 @@ collections:
   create: true
   format: json
   sort: date:desc
-  slug: {{year}}-{{month}}-{{day}}-{{slug}}
+  slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
   fields:
     - {label: Title, name: title, widget: string}
     - {label: Layout, name: layout, default: post-layout}
@@ -41,10 +41,8 @@ collections:
     - {label: Publish Date, name: date, widget: datetime}
     - {label: Summary, name: summary, widget: string}
     - {label: Body, name: body, widget: markdown}
-    - label: Featured Image
-      name: featuredImage
-      widget: image
+    - {label: Featured Image, name: featuredImage, widget: image}
     - label: Other Images
       name: images
       widget: list
-      - {label: Image, name: image, widget: image}
+      - {label: Image, create: true, name: image, widget: image}
