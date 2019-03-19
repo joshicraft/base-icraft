@@ -111,7 +111,7 @@
         },
         computed: {
             testimonials() {
-                return this.$t('Testimonials.testimonials5')
+                return this.$t('Testimonials.testimonials')
             }
         }
     }

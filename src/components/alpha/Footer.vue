@@ -136,7 +136,7 @@
     },
     computed: {
       contact () {
-        return this.$t('Views.Contact')
+        return this.$t('ContactInfo')
         // return this.bakedViews.Contact
       },
       computedLinks () {
