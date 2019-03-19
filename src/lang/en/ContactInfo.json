@@ -1,0 +1,39 @@
+{
+  "zip": "2582",
+  "cityState": "Auckland",
+  "address": "106 North Road Clevedon",
+  "phone": "021 0285 9043",
+  "email": "josh@icraft.co.nz",
+  "name": "Josh Scorrar",
+  "people": [
+    {
+      "name": "Josh Scorrar",
+      "title": "Director",
+      "mobile": "+64 021 0285 9043",
+      "email": "josh@icraft.co.nz"
+    }
+  ],
+  "hours": {
+    "weekday": "Mon - Fri: 8:30am - 5:30pm",
+    "weekend": "Sat: 9:00am - 12:30pm"
+  },
+  "socialMedia": [
+    {
+      "text": "facebook",
+      "to": "facebook",
+      "icon": "mdi-facebook"
+    }
+  ],
+  "map": {
+    "zoom": 17,
+    "center": {
+      "lat": -36.960861,
+      "lng": 174.8920137
+    },
+    "markers": [
+      {
+        "title": "ICRAFT"
+      }
+    ]
+  }
+}

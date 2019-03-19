@@ -25,6 +25,66 @@ collections:
         - {label: Jumbotron Sub Sub Title, name: jumbotronSubSubTitle, widget: string}
         - {label: Meta Description, name: headDescription, widget: string}
         - {label: Meta Title, name: headTitle, widget: string}
+        - label: Items
+          name: items
+          widget: object
+          - {label: Name, name: name, widget: string}
+          - {label: Title, name: title, widget: string}
+          - {label: Text, name: text, widget: string}
+          - {label: Image, name: img, widget: image}
+          - {label: Button Text, name: name, widget: string}
+          - {label: Link, name: to, widget: string}
+
+- name: contact
+  label: Contact Information
+  file: src/lang/en/ContactInfo.json
+  fields:
+    - {label: Phone, name: phone, widget: string}
+    - {label: Address, name: address, widget: string}
+    - {label: City, name: cityState, widget: string}
+    - {label: ZIP, name: zip, widget: string}
+    - label: Opening Hours
+      name: hours
+      widget: object
+      create: true
+      fields:
+        - {label: Weekdays, name: weekday, widget: string}
+        - {label: Weekend, name: weekend, widget: string}
+    - label: Map
+      name: map
+      widget: object
+      create: true
+      fields:
+        - {label: Zoom, name: zoom, widget: string}
+        - label: Center
+          name: center
+          widget: object
+          fields:
+            - {label: Latitude, name: lat, widget: string}
+            - {label: Longditude, name: lng, widget: string}
+        - label: Markers
+          name: markers
+          widget: list
+          fields:
+            - {label: Title, name: title, widget: string}
+    - label: People
+      name: people
+      widget: list
+      create: true
+      fields:
+        - {label: Name, name: name, widget: string}
+        - {label: Title, name: title, widget: string}
+        - {label: Mobile, name: mobile, widget: string}
+        - {label: Email, name: email, widget: string}
+    - label: Social Media Links
+        name: socialMedia
+        widget: list
+        create: true
+        fields:
+          - {label: Icon, name: icon, widget: string}
+          - {label: Text, name: text, widget: string}
+          - {label: To, name: to, widget: string}
+
 
 - name: blog
   label: Blog
