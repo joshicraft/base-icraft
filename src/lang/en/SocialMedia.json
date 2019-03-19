@@ -1,0 +1,9 @@
+{
+  "socialMedia": [
+    {
+      "text": "facebook",
+      "to": "facebook",
+      "icon": "mdi-facebook"
+    }
+  ]
+}

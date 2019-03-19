@@ -17,13 +17,6 @@
     "weekday": "Mon - Fri: 8:30am - 5:30pm",
     "weekend": "Sat: 9:00am - 12:30pm"
   },
-  "socialMedia": [
-    {
-      "text": "facebook",
-      "to": "facebook",
-      "icon": "mdi-facebook"
-    }
-  ],
   "map": {
     "zoom": 17,
     "center": {
