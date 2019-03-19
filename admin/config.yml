@@ -28,12 +28,13 @@ collections:
         - label: Items
           name: items
           widget: list
-          - {label: Name, name: name, widget: string}
-          - {label: Title, name: title, widget: string}
-          - {label: Text, name: text, widget: string}
-          - {label: Image, name: img, widget: image}
-          - {label: Button Text, name: name, widget: string}
-          - {label: Link, name: to, widget: string}
+          fields:
+            - {label: Name, name: name, widget: string}
+            - {label: Title, name: title, widget: string}
+            - {label: Text, name: text, widget: string}
+            - {label: Image, name: img, widget: image}
+            - {label: Button Text, name: name, widget: string}
+            - {label: Link, name: to, widget: string}
 
 - name: contact
   label: Contact Information
