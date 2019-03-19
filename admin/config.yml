@@ -106,4 +106,5 @@ collections:
     - label: Other Images
       name: images
       widget: list
-      - {label: Image, create: true, name: image, widget: image}
+      fields:
+        - {label: Image, create: true, name: image, widget: image}
