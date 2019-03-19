@@ -38,5 +38,10 @@ collections:
     - {label: Publish Date, name: date, widget: datetime}
     - {label: Summary, name: summary, widget: string}
     - {label: Body, name: body, widget: markdown}
-    - {label: Images, name: images, widget: image}
+    - label: "Featured Image"
+      name: "thumbnail"
+      widget: "image"
+      media_library:
+        config:
+          multiple: true
 
