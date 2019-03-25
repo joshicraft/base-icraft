@@ -186,6 +186,13 @@ Vue.mixin({
                                 ease: Back.easeOut}, 'a')
                     }, 850);
                     this.playSound('deep_woosh', 1, 0.8);
+                }else{
+                    setTimeout(() => {
+                        let title = document.querySelector('#jumbotron .title')
+                        new TimelineMax()
+                            .to(title, 0.42, {scale:0.4, opacity: 0})
+                            .to(title, 0.42, {scale:1, opacity: 1})
+                    }, 200)
                 }
             },
             playSound(file, volume, delay) {
