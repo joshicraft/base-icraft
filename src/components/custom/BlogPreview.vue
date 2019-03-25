@@ -9,14 +9,27 @@
         <ui-section-nav-arrow :index="index" direction="prev"></ui-section-nav-arrow>
         <ui-section-nav-arrow :index="index" direction="next"></ui-section-nav-arrow>
         <v-img
-                v-if="item.images"
                 class="section-img"
                 lg6
-                :lazy-src="imgC(item.images[0], false, false, true)"
-                :alt="item.images[0]"
-                :src="imgC(item.images[0])"
+                :alt="item.featuredImage"
+                :src="item.featuredImage"
                 height="100vh"
         >
+            <v-layout
+                    v-if="item.images"
+                    class="absolute blog-img-thumbs"
+            >
+                <v-flex
+                    class="fill-height"
+                    lg6
+                    v-for="(img, j) in item.images"
+                >
+                    <v-img
+                        class="fill-height"
+                        :src="img.image"
+                    ></v-img>
+                </v-flex>
+            </v-layout>
         </v-img>
 
         <v-flex lg6 pa-5 class="d-flex section-title" justify-center>
@@ -24,7 +37,10 @@
                 <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
                 <!--<h3 class="mb-4">{{item.summary}}</h3>-->
                 <p class="mb-4">{{item.date}}</p>
-                <p class="mb-4" v-html="item.body"></p>
+                <p class="mb-4">
+                    {{item.summary}}
+                    <!--<VueShowdown :markdown="item.body"/>-->
+                </p>
                 <v-btn @click="goToAndScroll('')" class="ml-0 primary">Show more</v-btn>
             </div>
         </v-flex>
@@ -38,6 +54,11 @@
             item: Object
         },
         methods: {
+            getHTML(d){
+                d = d.replace("\n", "<br/><br/>");
+                d.replace(/ *\([^)]*\) */g, "");
+                return d
+            },
             scrollS(e) {
                 let $e = this.$el,
                     $title,
@@ -60,6 +81,15 @@
         }
     }
 </script>
+
+<style lang="stylus">
+    .blog-img-thumbs
+        height: 30vh
+        width: 100%
+        bottom: 0;
+        left: 0;
+        position: absolute;
+</style>
 
 <style scoped lang="stylus">
     $color-1 = #e8e8e8

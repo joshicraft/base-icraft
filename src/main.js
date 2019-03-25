@@ -3,6 +3,10 @@
 // import 'babel-polyfill'
 import Vue from 'vue'
 // import '@babel/polyfill'
+
+import VueShowdown from 'vue-showdown'
+
+
 // Components
 import './components'
 
@@ -31,7 +35,14 @@ import {createSimpleTransition} from 'vuetify/es5/util/helpers'
 // // const myTransition = createSimpleTransition('my-transition');
 // //
 // Vue.component('my-transition', myTransition);
-
+Vue.use(VueShowdown, {
+    // set default flavor of showdown
+    flavor: 'github',
+    // set default options of showdown (will override the flavor options)
+    options: {
+        emoji: false,
+    },
+})
 sync(store, router);
 
 Vue.use(VueAnalytics, {
