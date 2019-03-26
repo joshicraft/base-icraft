@@ -213,8 +213,11 @@ Vue.mixin({
                 } else {
                     newSound = found
                 }
-
-                newSound.data.play()
+                try {
+                    newSound.data.play()
+                } catch (e){
+                    console.log(file + ' sound not yet ready')
+                }
             },
             makeSound(sound) {
                 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
