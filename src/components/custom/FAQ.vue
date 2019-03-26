@@ -3,7 +3,7 @@
     <v-expansion-panel focusable>
         <v-expansion-panel-content
                 v-for="(item,i) in 5"
-                :key="i"
+                :key="'faq-exp-panel-'+i"
         >
             <template v-slot:header>
                 <div>Item</div>

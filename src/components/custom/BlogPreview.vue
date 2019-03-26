@@ -23,6 +23,7 @@
                     class="fill-height"
                     lg6
                     v-for="(img, j) in item.images"
+                    :key="'blog-img' + img"
                 >
                     <v-img
                         class="fill-height"
