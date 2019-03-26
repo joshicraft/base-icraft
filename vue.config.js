@@ -34,6 +34,9 @@ module.exports = {
     // },
     configureWebpack: {
         plugins: [
+
+            new VuetifyLoaderPlugin(),
+            // new PreloadWebpackPlugin()
             // new CompressionWebpackPlugin({
             //     algorithm: 'gzip',
             //     test: new RegExp(
@@ -53,8 +56,8 @@ module.exports = {
         // config.resolve.alias
         //     .set('vuetify/lib', 'vuetify/es5/components');
         config.module.rules.delete('eslint')
-        config.plugin('vuetify-loader')
-            .use(VuetifyLoaderPlugin);
+        // config.plugin('vuetify-loader')
+        //     .use(VuetifyLoaderPlugin);
         // config.plugin('workbox')
         // config.plugins.delete('prefetch')
         // config.plugin('preload')

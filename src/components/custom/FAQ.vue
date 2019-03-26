@@ -2,14 +2,14 @@
     <div class="-view-height">
     <v-expansion-panel focusable>
         <v-expansion-panel-content
-                v-for="(item,i) in 5"
+                v-for="(item,i) in items"
                 :key="'faq-exp-panel-'+i"
         >
             <template v-slot:header>
-                <div>Item</div>
+                <div>{{item.title}}</div>
             </template>
             <v-card>
-                <v-card-text class="grey lighten-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
+                <v-card-text class="grey lighten-3" v-html="item.title"></v-card-text>
             </v-card>
         </v-expansion-panel-content>
     </v-expansion-panel>
@@ -25,7 +25,7 @@
                         title: "How much does it cost to make a website?",
                         content: "",
                         links: [
-
+                            "Packages"
                         ]
                     },
                     {
@@ -46,7 +46,7 @@
                         title: "Why do I need a website?",
                         content: "",
                         links: [
-
+                            "Discovery"
                         ]
                     },
                     {
@@ -74,7 +74,7 @@
                         title: "How do I make my website work on a mobile device?",
                         content: "",
                         links: [
-
+                            "Mobile"
                         ]
                     },
                     {

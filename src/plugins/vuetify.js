@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+import Vuetify from 'vuetify'
 import theme from './theme'
 import {Resize} from 'vuetify/lib/directives'
 import Scroll from './scroll'
