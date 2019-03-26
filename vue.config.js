@@ -44,7 +44,7 @@ module.exports = {
             }),
             new PreloadWebpackPlugin({
                 rel: 'preload',
-                as: 'stylesheet'
+                as: 'css'
             })
         ]
 
