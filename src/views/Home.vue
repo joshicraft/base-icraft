@@ -91,6 +91,7 @@
                 $t.loaded = true
             }, 800)
         },
+
         methods: {
             next() {
                 this.onboarding = this.onboarding + 1 === length
