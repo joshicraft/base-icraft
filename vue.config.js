@@ -19,19 +19,19 @@ module.exports = {
         }
     },
 
-    pwa: {
-        name: 'ICRAFT',
-        themeColor: '#4DBA87',
-        msTileColor: '#000000',
-        manifestPath: 'manifest.json',
-        iconPaths: {
-            favicon32: 'favicon/favicon-32x32.png',
-            favicon16: 'favicon/favicon-16x16.png',
-            appleTouchIcon: 'favicon/apple-touch-icon-152x152.png',
-            maskIcon: 'favicon/safari-pinned-tab.svg',
-            msTileImage: 'favicon/msapplication-icon-144x144.png'
-        }
-    },
+    // pwa: {
+    //     name: 'ICRAFT',
+    //     themeColor: '#4DBA87',
+    //     msTileColor: '#000000',
+    //     manifestPath: 'manifest.json',
+    //     iconPaths: {
+    //         favicon32: 'favicon/favicon-32x32.png',
+    //         favicon16: 'favicon/favicon-16x16.png',
+    //         appleTouchIcon: 'favicon/apple-touch-icon-152x152.png',
+    //         maskIcon: 'favicon/safari-pinned-tab.svg',
+    //         msTileImage: 'favicon/msapplication-icon-144x144.png'
+    //     }
+    // },
     configureWebpack: {
         plugins: [
             // new CompressionWebpackPlugin({
@@ -63,28 +63,28 @@ module.exports = {
         //     config.plugin('webpack-bundle-analyzer')
         //         .use(BundleAnalyzerPlugin);
         // }
-        config.module
-            .rule('vue')
-            .use('vue-loader')
-            .loader('vue-loader')
-            .tap(options => {
-                options.compilerOptions.modules = [VuetifyProgressiveModule];
-                return options;
-            });
-        const imagesRule = config.module.rule('images');
-        imagesRule.uses.clear();
-        config.module
-            .rule('images')
-            .test(/\.(png|jpe?g|gif|webp)(\?.*)?$/)
-            .oneOf('progressiveImages')
-            .test(/\.(png|jpe?g|gif)$/)
-            .resourceQuery(/vuetify-preload/)
-            .use('progressiveLoader')
-            .loader('vuetify-loader/progressive-loader')
-            .end()
-            .use('notProgressive')
-            .loader('url-loader')
-            .options({limit: 8000})
-            .end()
+        // config.module
+        //     .rule('vue')
+        //     .use('vue-loader')
+        //     .loader('vue-loader')
+        //     .tap(options => {
+        //         options.compilerOptions.modules = [VuetifyProgressiveModule];
+        //         return options;
+        //     });
+        // const imagesRule = config.module.rule('images');
+        // imagesRule.uses.clear();
+        // config.module
+        //     .rule('images')
+        //     .test(/\.(png|jpe?g|gif|webp)(\?.*)?$/)
+        //     .oneOf('progressiveImages')
+        //     .test(/\.(png|jpe?g|gif)$/)
+        //     .resourceQuery(/vuetify-preload/)
+        //     .use('progressiveLoader')
+        //     .loader('vuetify-loader/progressive-loader')
+        //     .end()
+        //     .use('notProgressive')
+        //     .loader('url-loader')
+        //     .options({limit: 8000})
+        //     .end()
     }
 }
