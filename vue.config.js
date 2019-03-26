@@ -49,8 +49,8 @@ module.exports = {
         // config.resolve.alias
         //     .set('vuetify/lib', 'vuetify/es5/components');
         config.module.rules.delete('eslint')
-        // config.plugin('vuetify-loader')
-        //     .use(VuetifyLoaderPlugin);
+        config.plugin('vuetify-loader')
+            .use(VuetifyLoaderPlugin);
         // // config.plugin('workbox')
         // // config.plugins.delete('prefetch')
         // // config.plugin('preload')
@@ -59,29 +59,29 @@ module.exports = {
         // //     config.plugin('webpack-bundle-analyzer')
         // //         .use(BundleAnalyzerPlugin);
         // // }
-        // config.module
-        //     .rule('vue')
-        //     .use('vue-loader')
-        //     .loader('vue-loader')
-        //     .tap(options => {
-        //         options.compilerOptions.modules = [VuetifyProgressiveModule];
-        //         return options;
-        //     });
-        // config.module.rule('stylus')
-        // const imagesRule = config.module.rule('images');
-        // imagesRule.uses.clear();
-        // config.module
-        //     .rule('images')
-        //     .test(/\.(png|jpe?g|gif|webp)(\?.*)?$/)
-        //     .oneOf('progressiveImages')
-        //     .test(/\.(png|jpe?g|gif)$/)
-        //     .resourceQuery(/vuetify-preload/)
-        //     .use('progressiveLoader')
-        //     .loader('vuetify-loader/progressive-loader')
-        //     .end()
-        //     .use('notProgressive')
-        //     .loader('url-loader')
-        //     .options({limit: 8000})
-        //     .end()
+        config.module
+            .rule('vue')
+            .use('vue-loader')
+            .loader('vue-loader')
+            .tap(options => {
+                options.compilerOptions.modules = [VuetifyProgressiveModule];
+                return options;
+            });
+        config.module.rule('stylus')
+        const imagesRule = config.module.rule('images');
+        imagesRule.uses.clear();
+        config.module
+            .rule('images')
+            .test(/\.(png|jpe?g|gif|webp)(\?.*)?$/)
+            .oneOf('progressiveImages')
+            .test(/\.(png|jpe?g|gif)$/)
+            .resourceQuery(/vuetify-preload/)
+            .use('progressiveLoader')
+            .loader('vuetify-loader/progressive-loader')
+            .end()
+            .use('notProgressive')
+            .loader('url-loader')
+            .options({limit: 8000})
+            .end()
     }
 }
