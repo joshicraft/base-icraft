@@ -3,7 +3,9 @@ import Vuetify from 'vuetify/lib'
 import theme from './theme'
 import {Resize} from 'vuetify/lib/directives'
 import Scroll from './scroll'
+// import '~vuetify/src/stylus/main'
 import 'vuetify/src/stylus/app.styl'
+import '../style/main.styl'
 import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(Vuetify, {
