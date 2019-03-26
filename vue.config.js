@@ -34,14 +34,14 @@ module.exports = {
     },
     configureWebpack: {
         plugins: [
-            new CompressionWebpackPlugin({
-                algorithm: 'gzip',
-                test: new RegExp(
-                    '\\.(js|css)$'
-                ),
-                threshold: 10240,
-                minRatio: 0.8
-            })
+            // new CompressionWebpackPlugin({
+            //     algorithm: 'gzip',
+            //     test: new RegExp(
+            //         '\\.(js|css)$'
+            //     ),
+            //     threshold: 10240,
+            //     minRatio: 0.8
+            // })
             // new PreloadWebpackPlugin({
             //     rel: 'preload',
             //     as: 'style'
