@@ -24,17 +24,24 @@ let routes = makeRoutes()
 function route(path, parentPath) {
     let newPath = parentPath ? parentPath.path + '/' + path.path : path.path
     let dirPath = parentPath ? parentPath.name + '/' + path.name : path.name
-    // console.log(newPath)
-    return {
+    let r = {
         path: newPath,
         name: path.name,
         nested: path.nestedItems,
-        props: parentPath ? {nestedPath: dirPath} : {},
-        component: (resovle) => import(
+        props: parentPath ? {nestedPath: dirPath} : {}
+    }
+    if(r.name === 'Home'){
+        r.component = (resovle) => import(
+            /*webpackPrefect: true*/
             `@/views/${dirPath}.vue`
             ).then(resovle)
-
+    }else{
+        r.component = (resovle) => import(
+            `@/views/${dirPath}.vue`
+            ).then(resovle)
     }
+    // console.log(newPath)
+    return r
 }
 
 function makeRoutes() {
