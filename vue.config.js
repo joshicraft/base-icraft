@@ -42,6 +42,10 @@ module.exports = {
                 threshold: 10240,
                 minRatio: 0.8
             })
+            // new PreloadWebpackPlugin({
+            //     rel: 'preload',
+            //     as: 'style'
+            // })
         ]
 
     },
@@ -51,14 +55,14 @@ module.exports = {
         config.module.rules.delete('eslint')
         config.plugin('vuetify-loader')
             .use(VuetifyLoaderPlugin);
-        // // config.plugin('workbox')
-        // // config.plugins.delete('prefetch')
-        // // config.plugin('preload')
-        //
-        // // if (process.env.npm_config_argv.indexOf('--report') != -1) {
-        // //     config.plugin('webpack-bundle-analyzer')
-        // //         .use(BundleAnalyzerPlugin);
-        // // }
+        // config.plugin('workbox')
+        // config.plugins.delete('prefetch')
+        // config.plugin('preload')
+
+        // if (process.env.npm_config_argv.indexOf('--report') != -1) {
+        //     config.plugin('webpack-bundle-analyzer')
+        //         .use(BundleAnalyzerPlugin);
+        // }
         config.module
             .rule('vue')
             .use('vue-loader')
@@ -67,7 +71,6 @@ module.exports = {
                 options.compilerOptions.modules = [VuetifyProgressiveModule];
                 return options;
             });
-        config.module.rule('stylus')
         const imagesRule = config.module.rule('images');
         imagesRule.uses.clear();
         config.module
