@@ -29,7 +29,7 @@
             once the project has been completed. In some cases, such as extended projects, we may require progress payments.
         </p>
         <p>
-            Payments can be made by internet banking or online. Click here to pay now.
+            Payments can be made by internet banking.
         </p>
         <p>
             Non-payment of an invoice in full may result in forfeiting the website and related services. We also reserve
