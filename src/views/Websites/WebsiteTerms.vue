@@ -106,7 +106,7 @@
             Communication
         </h2>
         <p>
-            Communication about your website is to be primarily conducted by email, ff the client if close enough
+            Communication about your website is to be primarily conducted by email, or if the client is close enough
             communication can be done in person at a pre-arranged location. Email provides both parties with a clear
             record
             of what has been discussed. If you need to talk to us, we do offer phone contact. We may not be available to
