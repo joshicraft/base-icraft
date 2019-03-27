@@ -7,6 +7,7 @@
     "build": "vue-cli-service build && npm run copy-admin-files",
     "lint": "vue-cli-service lint",
     "build-node": "node build/build.js",
+    "build-t": "vue-cli-service build",
     "build:lambda": "netlify-lambda build func",
     "copy-admin-files": "copyfiles admin/**/*.html admin/**/*.yml ./dist",
     "report": "vue-cli-service build && npm run copy-admin-files",
