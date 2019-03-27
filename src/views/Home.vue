@@ -62,9 +62,9 @@
                 </v-layout>
             </v-container>
         </v-img>
-        <v-layout class="-view-height">
-            <custom-faq></custom-faq>
-        </v-layout>
+        <!--<v-layout class="-view-height">-->
+            <!--<custom-faq></custom-faq>-->
+        <!--</v-layout>-->
     </div>
 </template>
 
