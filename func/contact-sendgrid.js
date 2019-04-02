@@ -19,6 +19,7 @@ const post = (opt) => {
 
 exports.handler = function (event, content, cb) {
     let body = JSON.parse(event.body)
+    console.log(body)
     options.data = {
         personalizations: [
             {
@@ -88,9 +89,7 @@ exports.handler = function (event, content, cb) {
             statusCode: 200
         })}).catch(error => {
             console.log('ERROR - Sender')
-            cb(error, {
-                statusCode: 500
-            })
+            cb(error)
         })
     }).catch(error => {
         console.log('ERROR - Recipient')

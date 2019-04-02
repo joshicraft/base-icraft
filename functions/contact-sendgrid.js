@@ -3711,6 +3711,7 @@ var post = function post(opt) {
 
 exports.handler = function (event, content, cb) {
   var body = JSON.parse(event.body);
+  console.log(body);
   options.data = {
     personalizations: [{
       to: [{
@@ -3767,16 +3768,11 @@ exports.handler = function (event, content, cb) {
     };
     return post(options).then(function () {
       cb(null, {
-        body: {
-          message: "message sent"
-        },
         statusCode: 200
       });
     }).catch(function (error) {
       console.log('ERROR - Sender');
-      cb(error, {
-        statusCode: 500
-      });
+      cb(error);
     });
   }).catch(function (error) {
     console.log('ERROR - Recipient');
