@@ -311,7 +311,10 @@
                     }
                     this.submitted = true
                     this.submitting = false
-                }).catch(() => {
+                }).catch((e) => {
+                    console.log(e)
+                    this.submitStatus.t1 = "Opp's, looks like an error occurred :("
+                    this.submitStatus.t2 = 'Try fill out the form again or get in touch via phone or email.'
                     this.failed = true
                     this.submitted = true
                     this.submitting = false

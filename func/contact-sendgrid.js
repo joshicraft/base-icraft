@@ -91,7 +91,9 @@ exports.handler = function (event, content, cb) {
             statusCode: 200
         })}).catch(error => {
             console.log('ERROR - Sender')
-            cb(error)
+            cb(error, {
+                statusCode: 500
+            })
         })
     }).catch(error => {
         console.log('ERROR - Recipient')

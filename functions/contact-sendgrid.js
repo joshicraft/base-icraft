@@ -3774,7 +3774,9 @@ exports.handler = function (event, content, cb) {
       });
     }).catch(function (error) {
       console.log('ERROR - Sender');
-      cb(error);
+      cb(error, {
+        statusCode: 500
+      });
     });
   }).catch(function (error) {
     console.log('ERROR - Recipient');
