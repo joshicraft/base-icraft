@@ -69,7 +69,7 @@
                 </svg>
             </div>
         </div>
-        <v-layout class="-view-height -arrow-buffer-top">
+        <v-layout class="-view-height -arrow-buffer-top -arrow-buffer-bot">
             <custom-faq></custom-faq>
         </v-layout>
     </div>

@@ -21,7 +21,7 @@
                         <v-flex v-for="(link, l) in item.links"
                                 :key="'faq-answer-'+ l"
                         >
-                            <v-btn class="primary" :to="link.to">{{link.name}}</v-btn>
+                            <v-btn class="primary" :to="{name: link.to}">{{link.name}}</v-btn>
                         </v-flex>
                     </v-card-text>
                 </v-card>
@@ -54,9 +54,12 @@
                             "There are many ways to increase the number of people who visit your website. \n" +
                             "* To start, you need to make sure your website is mobile friendly. Up to 47% of people in New Zealand alone browse the web on a mobile or tablet device. \n" +
                             "* Make your website fast to load, this is best done in the initial set-up phase.\n" +
-                            "* Market your website on Social Media Platforms such as Facebook, linked in and Instagram. Use the paid ad platforms with each of these services to reach even more people; this comes at a cost though so make sure you know what you're doing o hire someone who does. \n" +
-                            "* Use SEO techniques to improve how your website appears on google. There are many techniques such as keyword optimization, title, and description tags and content filling. \n" +
-                            "These are only a few examples to get you started in the right direction, to find out more feel free to get in touch."
+                            "* Market your website on Social Media Platforms such as Facebook, linked in and Instagram. Use the paid ad platforms with each of these services to reach even more people; this comes at a cost though so make sure you know what you're doing or hire someone who does. \n" +
+                            "* Use SEO techniques to improve how your website appears on google. There are many techniques such as keyword optimization, title, and description tags and content filling. </br></br>" +
+                            "These are only a few examples to get you started in the right direction, to find out more feel free to get in touch.",
+                        links: [
+                            {name: "Contact US", to: 'Contact'}
+                        ]
                     },
                     {
                         title: "Why do I need a website?",
@@ -71,7 +74,16 @@
                     },
                     {
                         title: "How long does a website take to make?",
-                        content: ""
+                        content: "Websites can take anywhere from a few days to many months. But to provide you some more accurate time frames; </br> \n" +
+                            "* An simple 1 page website would take <strong>2-4</strong> days. \n" +
+                            "* An complete professional or small business <strong>4-8</strong> page website would take 2-4 weeks. \n" +
+                            "* An custom and hand built website would take <strong>3-5</strong> weeks. \n" +
+                            "* An complex website with more than 8 pages and some unique features could take between <strong>4-8</strong> weeks. \n\n</br>" +
+                            "As you can see there's allot of variety in these answers but if you'd like to learn more you can checkout our baseline packages or discover how your requirements might fit.",
+                        links: [
+                            {name: "Packages", to: "Packages"},
+                            {name: "Website Discovery", to: "Discovery"}
+                        ]
                     },
                     {
                         title: "Can I make my own website?",
