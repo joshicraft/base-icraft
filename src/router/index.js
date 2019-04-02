@@ -32,7 +32,6 @@ function route(path, parentPath) {
     }
     if(r.name === 'Home'){
         r.component = (resovle) => import(
-            /*webpackPrefect: true*/
             `@/views/${dirPath}.vue`
             ).then(resovle)
     }else{

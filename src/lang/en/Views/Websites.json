@@ -350,9 +350,9 @@
           "icon": "mdi-account-multiple-check"
         },
         {
-          "title": "SEO",
+          "title": "Basic SEO",
           "subTitle": "Getting Your Site Noticed.",
-          "subSubTitle": "By populating your site with specific words and information we can make it easier for search engines to find you. This is only one step in getting your site noticed as its just small branch of Digital Marketing. If you're after some of that too, click the button to find out more.",
+          "subSubTitle": "By populating your site with specific words and information we can make it easier for search engines to find you. This is only one step in getting your site noticed as its just small branch of Digital Marketing.",
           "img": "search",
           "icon": "mdi-search-web"
         }
