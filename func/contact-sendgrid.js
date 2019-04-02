@@ -85,9 +85,6 @@ exports.handler = function (event, content, cb) {
             template_id: process.env.SENT_TEMPLATE_ID
         }
         return post(options).then(()=>{cb(null, {
-            body:{
-                message: "message sent"
-            },
             statusCode: 200
         })}).catch(error => {
             console.log('ERROR - Sender')
