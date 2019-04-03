@@ -43,6 +43,7 @@ Vue.use(VueShowdown, {
         emoji: false,
     },
 })
+
 sync(store, router);
 
 Vue.use(VueAnalytics, {

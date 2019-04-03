@@ -9,7 +9,7 @@ media_folder: public/static/uploads
 public_folder: static/uploads
 
 editor:
-  preview: false
+  preview: true
 
 collections:
 - name: pages
