@@ -19,6 +19,7 @@ collections:
       label: Home
       name: Home
       widget: object
+      preview_path: contact-icraft
       fields:
         - {label: Jumbotron Title, name: jumbotronTitle, widget: string}
         - {label: Jumbotron Sub Title, name: jumbotronSubTitle, widget: string}
