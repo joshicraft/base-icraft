@@ -42,6 +42,7 @@ collections:
   create: true
   format: json
   sort: date:desc
+  preview_path: blog/
   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
   fields:
     - {label: Title, name: title, widget: string}
