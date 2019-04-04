@@ -1,14 +1,14 @@
 {
-  "headTitle": "ICRAFT - Design, Websites, Branding - Located in Franklin, South Auckland.",
-  "headDescription": "Get your business or personal website needs met with our affordable, fast, secure and engaging websites. We are situated in Auckland so if your local we can meet you :)",
-  "jumbotronTitle": "ICRAFT",
-  "jumbotronSubTitle": "DIGITAL, WEBSITES, BRANDING",
+  "headTitle": "ICRAFT - Auckland Web Design Company",
+  "headDescription": "Get your company, business or personal website needs met with our affordable, fast, secure and engaging websites. Auckland Web Design Company",
+  "jumbotronTitle": "ICRAFT - WEB DESIGN COMPANY",
+  "jumbotronSubTitle": "WE CRAFT TOP QUALTIY WEBSITES IN AUCKLAND",
   "jumbotronSubSubTitle": "Want to know what we can do for you? Then hit the ignition button below to find out.",
   "items": [
     {
       "name": "intro",
-      "title": "LOOKING TO UPGRADE YOUR DIGITAL PRESENCE?",
-      "text": "Here at ICRAFT we provide a range of quality solutions that will boost your online presence or make your day-to-day more efficient. For more info you can get in touch with us today.",
+      "title": "LOOKING TO UPGRADE YOUR COMPANIES WEB PRESENCE?",
+      "text": "Our web design company can provide a range of quality solutions that will boost your online presence or make your day-to-day more efficient. For more info you can get in touch with us today.",
       "img": "web-3",
       "button": "GET IN TOUCH",
       "to": "Contact"
@@ -16,7 +16,7 @@
     {
       "name": "websites",
       "title": "STUNNING, FAST AND SECURE WEBSITES",
-      "text": "ICRAFT's Top Quality websites are hand crafted to support your brand. On-top of that, they also come with some of the lowest on-going costs out there!",
+      "text": "ICRAFT's web design services are hand crafted to support you or your company. Let us design your companies web presence so you can be proud to show it off.",
       "img": "home-websites",
       "button": "MORE HERE",
       "to": "Websites"
@@ -24,7 +24,7 @@
     {
       "name": "branding",
       "title": "PERSONALISED BRANDED CONTENT",
-      "text": "From Logo's to Flyer's to Business Cards and the good stuff in between. We create unique and impacting content that helps your business stand out for the right reasons.",
+      "text": "From Logo's to Flyer's to Business Cards and the good stuff in between. We design unique and impacting content to match your company, it's website and branding.",
       "img": "b-card",
       "button": "LEARN MORE",
       "to": "Branding"
@@ -32,7 +32,7 @@
     {
       "name": "it solutions",
       "title": "IMPROVE YOUR WORKFLOW TOOLS",
-      "text": "This modern age is full of helpful tools to help you focus on what you do best. ICRAFT can help find the right tools for you.",
+      "text": "This modern age is full of helpful tools to help you focus on what you do best. ICRAFT can design and discover tools to make you, your business or company more effective.",
       "img": "it-training",
       "button": "MORE HERE",
       "to": "ItSolutions"
