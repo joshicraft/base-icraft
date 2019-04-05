@@ -4,7 +4,7 @@
                 v-for="(item, i) in items"
                 :key="i"
         >
-            <home-section v-if="loadPoint(i-1)"
+            <home-section v-if="loadPoint(i-100)"
                           :item="item" :i="i"></home-section>
 
         </v-layout>
