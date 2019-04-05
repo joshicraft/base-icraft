@@ -18,6 +18,8 @@ import Meta from 'vue-meta'
 // Routes
 import paths from './paths'
 
+import fs from 'fs'
+
 let routes = makeRoutes()
 
 
@@ -30,11 +32,13 @@ function route(path, parentPath) {
         nested: path.nestedItems,
         props: parentPath ? {nestedPath: dirPath} : {}
     }
-    if(r.name === 'Home'){
+    console.log(dirPath)
+
+    if (r.name === 'Home') {
         r.component = (resovle) => import(
             `@/views/${dirPath}.vue`
             ).then(resovle)
-    }else{
+    } else {
         r.component = (resovle) => import(
             `@/views/${dirPath}.vue`
             ).then(resovle)
@@ -58,8 +62,21 @@ function makeRoutes() {
     routes = [...routes, ...nestedRoutes].concat([
         {path: '*', redirect: '/'}
     ])
+    fs.write('C:/sitemap.xml', getRoutesXML(routes))
     return routes
 }
+
+function getRoutesXML(routes) {
+    const list = routes
+        .map(route => `<url><loc>${route}</loc></url>`)
+        .join('\r\n');
+    const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    ${list}
+  </urlset>`;
+    console.log(sitemap)
+    return sitemap
+}
+
 
 Vue.use(Router)
 
@@ -122,7 +139,6 @@ router.beforeEach((to, from, next) => {
                 chars = mySplitText.chars; //an array of all the divs that wrap each character
             TweenLite.set(text, {perspective: 400});
         }
-
 
 
         tL

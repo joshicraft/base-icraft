@@ -16,7 +16,7 @@
             </div>
         </div>
         <v-img
-
+                class="c-box-shadow"
                 height="100vh"
                 v-if="loaded"
                 :src="imgC('testimonial')"
@@ -138,4 +138,6 @@
 
     .v-carousel
         box-shadow none
+
+
 </style>

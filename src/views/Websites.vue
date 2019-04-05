@@ -27,7 +27,7 @@
                             :class="{'-_arrow-pt': $vuetify.breakpoint.smAndDown}"
                             lg6
                             :alt="'web-1'"
-                            class="vid-bg -_grid-img"
+                            class="vid-bg c-box-shadow"
                             :height="$vuetify.breakpoint.smAndDown ? '50vh' : '100vh'"
                     >
                         <div class="video-wrapper">
@@ -124,6 +124,7 @@
                         </div>
                     </v-flex>
                     <v-img
+                            class="c-box-shadow"
                             v-if="$vuetify.breakpoint.smAndUp"
                             lg6
                             lazy-src="/static/web-img-4.jpg"
@@ -147,6 +148,7 @@
                         align-center
                 >
                     <v-img
+                            class="c-box-shadow"
                             v-if="$vuetify.breakpoint.smAndUp"
                             lg6
                             :alt="'web-1'"
@@ -234,6 +236,7 @@
                         </div>
                     </v-flex>
                     <v-img
+                            class="c-box-shadow"
                             v-if="$vuetify.breakpoint.smAndUp"
                             lg6
                             :alt="'web-1'"
@@ -255,6 +258,7 @@
                         align-center
                 >
                     <v-img
+                            class="c-box-shadow"
                             v-if="$vuetify.breakpoint.smAndUp"
                             lg6
                             :alt="'web-1'"
