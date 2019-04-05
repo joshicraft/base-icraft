@@ -63,13 +63,13 @@ function makeRoutes() {
         {path: '*', redirect: '/'}
     ])
     // fs.write('@/sitemap.xml', getRoutesXML(routes))
-    getRoutesXML(routes)
+    getRoutesXML(routes, 'https://www.icraft.co.nz')
     return routes
 }
 
-function getRoutesXML(routes) {
+function getRoutesXML(routes, website) {
     const list = routes
-        .map(route => `<url><loc>${route.path}</loc></url>`)
+        .map(route => `<url><loc>${website + route.path}</loc></url>`)
         .join('\r\n');
     const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     ${list}
