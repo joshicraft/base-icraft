@@ -1,19 +1,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-    <url><loc>/get-a-website</loc></url>
-    <url><loc>/brand-your-business</loc></url>
-    <url><loc>/get-IT-training</loc></url>
-    <url><loc>/icrafts-portfolio</loc></url>
-    <url><loc>/icrafts-it-blog</loc></url>
-    <url><loc>/contact-icraft</loc></url>
-    <url><loc>/privacy-policy</loc></url>
-    <url><loc>/sitemap</loc></url>
-    <url><loc>/get-a-website/business-website-questions</loc></url>
-    <url><loc>/get-a-website/icrafts-website-terms</loc></url>
-    <url><loc>/get-a-website/mobile-friendly-websites</loc></url>
-    <url><loc>/get-a-website/business-website-process</loc></url>
-    <url><loc>/get-a-website/our-website-packages</loc></url>
-    <url><loc>/get-a-website/why-choose-icraft-websites</loc></url>
-    <url><loc>/get-a-website/discover-the-website-for-you</loc></url>
-
+    <url><loc>https://www.icraft.co.nz</loc></url>
+    <url><loc>https://www.icraft.co.nz/get-a-website</loc></url>
+    <url><loc>https://www.icraft.co.nz/brand-your-business</loc></url>
+    <url><loc>https://www.icraft.co.nz/get-IT-training</loc></url>
+    <url><loc>https://www.icraft.co.nz/icrafts-portfolio</loc></url>
+    <url><loc>https://www.icraft.co.nz/icrafts-it-blog</loc></url>
+    <url><loc>https://www.icraft.co.nz/contact-icraft</loc></url>
+    <url><loc>https://www.icraft.co.nz/privacy-policy</loc></url>
+    <url><loc>https://www.icraft.co.nz/sitemap</loc></url>
+    <url><loc>https://www.icraft.co.nz/get-a-website/business-website-questions</loc></url>
+    <url><loc>https://www.icraft.co.nz/get-a-website/icrafts-website-terms</loc></url>
+    <url><loc>https://www.icraft.co.nz/get-a-website/mobile-friendly-websites</loc></url>
+    <url><loc>https://www.icraft.co.nz/get-a-website/business-website-process</loc></url>
+    <url><loc>https://www.icraft.co.nz/get-a-website/our-website-packages</loc></url>
+    <url><loc>https://www.icraft.co.nz/get-a-website/why-choose-icraft-websites</loc></url>
+    <url><loc>https://www.icraft.co.nz/get-a-website/discover-the-website-for-you</loc></url>
+    <url><loc>https://www.icraft.co.nz*</loc></url>
 </urlset>
