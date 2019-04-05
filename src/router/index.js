@@ -59,11 +59,14 @@ function makeRoutes() {
             })
         }
     })
+    if(process.env.NODE_ENV === 'development') {
+        getRoutesXML([...routes, ...nestedRoutes], 'https://www.icraft.co.nz')
+    }
     routes = [...routes, ...nestedRoutes].concat([
         {path: '*', redirect: '/'}
     ])
     // fs.write('@/sitemap.xml', getRoutesXML(routes))
-    getRoutesXML(routes, 'https://www.icraft.co.nz')
+
     return routes
 }
 

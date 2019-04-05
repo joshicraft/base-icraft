@@ -14,8 +14,13 @@
 <script>
     export default {
         metaInfo() {
+            console.log(window.location.href)
             return {
-                titleTemplate: '%s'
+                // titleTemplate: '%s',
+
+                links: [
+                    {rel: 'canonical', href: window.location.href}
+                ]
             }
         },
         props: {
