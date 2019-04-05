@@ -16,12 +16,15 @@ import Meta from 'vue-meta'
 
 
 // Routes
+import lang from '../lang'
 import paths from './paths'
 // const fs = require('fs')
 // import fs from 'fs'
+const blog = lang.en.Blog
 
 let routes = makeRoutes()
 
+console.log(blog)
 
 function route(path, parentPath) {
     let newPath = parentPath ? parentPath.path + '/' + path.path : path.path
@@ -48,18 +51,27 @@ function route(path, parentPath) {
 }
 
 function makeRoutes() {
+    let blogRoutesArray = Object.values(blog)
+    console.log(blogRoutesArray)
     let routes = paths.map((path) => {
+
         return route(path)
     })
     let nestedRoutes = []
     paths.forEach((path) => {
-        if (path.nestedItems) {
+        if (path.name === 'Blog'){
+            blogRoutesArray.forEach(blog => {
+                let slugName = Object.keys[blog]
+                console.log(slugName)
+            })
+        }else if (path.nestedItems) {
             path.nestedItems.forEach((nestedPath) => {
                 nestedRoutes.unshift(route(nestedPath, path))
             })
         }
     })
-    if(process.env.NODE_ENV === 'development') {
+
+    if (process.env.NODE_ENV === 'development') {
         getRoutesXML([...routes, ...nestedRoutes], 'https://www.icraft.co.nz')
     }
     routes = [...routes, ...nestedRoutes].concat([
