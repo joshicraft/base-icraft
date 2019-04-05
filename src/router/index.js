@@ -17,8 +17,8 @@ import Meta from 'vue-meta'
 
 // Routes
 import paths from './paths'
-
-import fs from 'fs'
+// const fs = require('fs')
+// import fs from 'fs'
 
 let routes = makeRoutes()
 
@@ -32,7 +32,7 @@ function route(path, parentPath) {
         nested: path.nestedItems,
         props: parentPath ? {nestedPath: dirPath} : {}
     }
-    console.log(dirPath)
+    // console.log(dirPath)
 
     if (r.name === 'Home') {
         r.component = (resovle) => import(
@@ -62,13 +62,14 @@ function makeRoutes() {
     routes = [...routes, ...nestedRoutes].concat([
         {path: '*', redirect: '/'}
     ])
-    fs.write('C:/sitemap.xml', getRoutesXML(routes))
+    // fs.write('@/sitemap.xml', getRoutesXML(routes))
+    getRoutesXML(routes)
     return routes
 }
 
 function getRoutesXML(routes) {
     const list = routes
-        .map(route => `<url><loc>${route}</loc></url>`)
+        .map(route => `<url><loc>${route.path}</loc></url>`)
         .join('\r\n');
     const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     ${list}
