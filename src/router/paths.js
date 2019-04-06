@@ -46,51 +46,51 @@ let paths = [
         text: "Home"
     },
     {
-        path: '/get-a-website',
+        path: '/web-design',
         name: 'Websites',
         text: "Websites",
         nestedItems: [
 
             {
-                path: 'discover-the-website-for-you',
+                path: 'web-design-discovery',
                 name: 'Discovery',
                 text: "Discovery",
                 nestedPath: 'Websites',
             },
             {
-                path: 'why-choose-icraft-websites',
+                path: 'why-icraft-web-design',
                 name: 'WhyUsWebsites',
                 text: "Why ICRAFT",
                 nestedPath: 'Websites',
             },
             {
-                path: 'our-website-packages',
+                path: 'web-design-packages',
                 name: 'Packages',
                 text: "Packages",
                 nestedPath: 'Websites',
             },
             {
-                path: 'business-website-process',
+                path: 'web-design-process',
                 name: 'Process',
                 text: "Process",
                 nestedPath: 'Websites',
 
             },
             {
-                path: 'mobile-friendly-websites',
+                path: 'mobile-web-design',
                 name: 'Mobile',
                 text: "Mobile",
                 nestedPath: 'Websites',
             },
             {
-                path: 'icrafts-website-terms',
+                path: 'icraft-web-terms',
                 name: 'WebsiteTerms',
                 text: "Terms",
                 nestedPath: 'Websites',
             },
 
             {
-                path: 'business-website-questions',
+                path: 'web-design-questions',
                 name: 'InfoQuestionnaire',
                 text: "Questionnaire",
                 nestedPath: 'Websites',
