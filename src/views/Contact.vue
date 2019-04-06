@@ -25,10 +25,13 @@
                             justify-center
                             align-center
                             column
-                            class="v-form-success">
+                            class="v-form-success"
+                            dark
+                    >
                         <div class="wrap">
-                            <h1>{{submitStatus.t1}}</h1>
-                            <p>{{submitStatus.t2}}</p>
+                            <h1 class="white--text display-2 mb-4">{{submitStatus.t1}}</h1>
+                            <p class="white--text display-1 mb-5">{{submitStatus.t2}}</p>
+                            <img :src="'/static/gif/' + contactMethod === 'Phone' ? 'phone.gif' : 'email.gif'">
                         </div>
                         <v-btn aria-label="form-try-again" class="mt-5" v-if="failed" @click="resetForm">TRY AGAIN</v-btn>
                     </v-layout>
