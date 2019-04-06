@@ -37,7 +37,9 @@ exports.handler = function (event, content, cb) {
                         email: body.email,
                         message: body.message,
                         website: body.website,
-                        promoCode: body.code
+                        promoCode: body.code,
+                        signUp: body.signUp,
+                        contactMethod: body.contactMethod
                     }
             }
         ],
@@ -71,6 +73,8 @@ exports.handler = function (event, content, cb) {
                             message: body.message,
                             website: body.website,
                             promoCode: body.code,
+                            signUp: body.signUp,
+                            contactMethod: body.contactMethod,
                             reply_time: "2"
                         }
                 }
