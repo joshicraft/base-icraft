@@ -121,7 +121,7 @@ let paths = [
         path: '/blog',
         name: 'Blog',
         text: "Blog",
-        noToolbar: true
+        noToolbar: false
     },
     {
         path: '/contact-icraft',

@@ -1,15 +1,109 @@
 <template>
     <v-container fill-height class="mb-5 -arrow-buffer-top -arrow-buffer-bot">
-        <v-layout class="content-wrap" justify-space-between align-center wrap dark>
+        <v-layout class="content-wrap mt-5" justify-space-between align-center wrap dark>
             <!--<v-flex md1 class="img-wrap">-->
             <!--<img src="/static/device-iphone-contact.png"/>-->
             <!--</v-flex>-->
-            <div class="title-a text-lg-center mb-4">
-                <h1 class="mt-5 mb-3">{{heading.h1}}</h1>
-                <h3 class="mb-4">{{heading.h2}}</h3>
-                <p v-if="heading.p">{{heading.p}}</p>
-            </div>
-            <v-flex xs12 lg7 mx2>
+
+            <v-layout class="justify-center">
+                <v-flex xs12 md6>
+                    <v-card  class="pa-4 form-wrap grey lighten-2 align-center d-flex mb-5">
+                        <div class="title-a text-lg-left">
+                            <h1 class="mt-0 mb-3 text-uppercase">{{heading.h1}}</h1>
+                            <p class="mb-4">{{heading.h2}}</p>
+                            <p v-if="heading.p">{{heading.p}}</p>
+                        </div>
+                    </v-card>
+                    <v-card class="pa-3 grey lighten-2">
+                        <div class="contact-logo ml-3 mt-4">
+                            <custom-logo-side white></custom-logo-side>
+                        </div>
+                        <v-card-title class="headline">
+                            Contact Details
+                        </v-card-title>
+
+                        <v-card-text>
+                            <v-layout mb-2 justify-start align-center row>
+                                <v-icon
+                                        sm
+                                >mdi-phone
+                                </v-icon>
+                                <a class="ml-2 p-format" :href="'tel:' + contact.phone" v-text="contact.phone">
+                                </a>
+                            </v-layout>
+                            <v-layout mb-2 justify-start align-center row>
+                                <v-icon
+                                        sm
+                                >mdi-home
+                                </v-icon>
+                                <p class="ml-2 p-format" v-text="contact.address">
+                                </p>
+                            </v-layout>
+                            <v-layout justify-start align-start row>
+                                <v-icon
+                                        sm
+                                >mdi-clock-outline
+                                </v-icon>
+                                <v-layout justify-start column>
+                                    <p class="ml-2 p-format" v-text="contact.hours.weekday">
+                                    </p>
+                                    <p class="ml-2 p-format" v-text="contact.hours.weekend">
+                                    </p>
+                                </v-layout>
+                            </v-layout>
+                        </v-card-text>
+                        <v-card-title class="subheading">
+                            People
+                        </v-card-title>
+                        <v-card-text
+                                v-for="(person, i) in contact.people"
+                                :key="i"
+                        >
+                            <v-layout mb-2 justify-start align-center row>
+                                <v-icon
+                                        sm
+                                >mdi-account-circle
+                                </v-icon>
+                                <p class="ml-2 p-format" v-text="person.name">
+                                </p>
+                            </v-layout>
+                            <v-layout mb-2 justify-start align-center row>
+                                <v-icon
+                                        sm
+                                >mdi-label
+                                </v-icon>
+                                <p class="ml-2 p-format" v-text="person.title">
+                                </p>
+                            </v-layout>
+                            <v-layout mb-2 justify-start align-center row>
+                                <v-icon
+                                        sm
+                                >mdi-cellphone
+                                </v-icon>
+                                <a
+                                        class="ml-2 p-format"
+                                        :href="'tel:' + person.mobile"
+                                        v-text="person.mobile">
+                                </a>
+                            </v-layout>
+                            <v-layout
+                                    justify-start
+                                    row
+                            >
+                                <v-icon
+                                        sm
+                                >mdi-email
+                                </v-icon>
+                                <a
+                                        class="ml-2 p-format"
+                                        :href="'mailto:' + person.email"
+                                        v-text="person.email">
+                                </a>
+                            </v-layout>
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+            <v-flex xs12 md6 class="ml-5">
                 <v-card class="pa-4 form-wrap grey lighten-2">
                     <!--<h2 class="headline mb-2" v-text="heading.h1"/>-->
                     <!--<p class="mb-4" v-text="heading.h2"/>-->
@@ -28,10 +122,10 @@
                             class="v-form-success"
                             dark
                     >
-                        <div class="wrap">
-                            <h1 class="white--text display-2 mb-4">{{submitStatus.t1}}</h1>
-                            <p class="white--text display-1 mb-5">{{submitStatus.t2}}</p>
-                            <img :src="'/static/gif/' + contactMethod === 'Phone' ? 'phone.gif' : 'email.gif'">
+                        <div class="wrap pa-5">
+                            <h1 class="white--text display-2 text-lg-left mb-4">{{submitStatus.t1}}</h1>
+                            <p class="white--text display-1 text-lg-left mb-5">{{submitStatus.t2}}</p>
+                            <img :src="`/static/gif/${contactMethod === 'Phone' ? 'phone.gif' : 'email.gif'}`"/>
                         </div>
                         <v-btn aria-label="form-try-again" class="mt-5" v-if="failed" @click="resetForm">TRY AGAIN</v-btn>
                     </v-layout>
@@ -129,96 +223,8 @@
                     </v-card-actions>
                 </v-card>
             </v-flex>
-            <v-flex xs12 md4>
-                <v-card class="pa-3 grey lighten-2">
-                    <div class="contact-logo">
-                        <custom-logo-side white></custom-logo-side>
-                    </div>
-                    <v-card-title class="headline">
-                        Contact Details
-                    </v-card-title>
 
-                    <v-card-text>
-                        <v-layout mb-2 justify-start align-center row>
-                            <v-icon
-                                    sm
-                            >mdi-phone
-                            </v-icon>
-                            <a class="ml-2 p-format" :href="'tel:' + contact.phone" v-text="contact.phone">
-                            </a>
-                        </v-layout>
-                        <v-layout mb-2 justify-start align-center row>
-                            <v-icon
-                                    sm
-                            >mdi-home
-                            </v-icon>
-                            <p class="ml-2 p-format" v-text="contact.address">
-                            </p>
-                        </v-layout>
-                        <v-layout justify-start align-start row>
-                            <v-icon
-                                    sm
-                            >mdi-clock-outline
-                            </v-icon>
-                            <v-layout justify-start column>
-                                <p class="ml-2 p-format" v-text="contact.hours.weekday">
-                                </p>
-                                <p class="ml-2 p-format" v-text="contact.hours.weekend">
-                                </p>
-                            </v-layout>
-                        </v-layout>
-                    </v-card-text>
-                    <v-card-title class="subheading">
-                        People
-                    </v-card-title>
-                    <v-card-text
-                            v-for="(person, i) in contact.people"
-                            :key="i"
-                    >
-                        <v-layout mb-2 justify-start align-center row>
-                            <v-icon
-                                    sm
-                            >mdi-account-circle
-                            </v-icon>
-                            <p class="ml-2 p-format" v-text="person.name">
-                            </p>
-                        </v-layout>
-                        <v-layout mb-2 justify-start align-center row>
-                            <v-icon
-                                    sm
-                            >mdi-label
-                            </v-icon>
-                            <p class="ml-2 p-format" v-text="person.title">
-                            </p>
-                        </v-layout>
-                        <v-layout mb-2 justify-start align-center row>
-                            <v-icon
-                                    sm
-                            >mdi-cellphone
-                            </v-icon>
-                            <a
-                                    class="ml-2 p-format"
-                                    :href="'tel:' + person.mobile"
-                                    v-text="person.mobile">
-                            </a>
-                        </v-layout>
-                        <v-layout
-                                justify-start
-                                row
-                        >
-                            <v-icon
-                                    sm
-                            >mdi-email
-                            </v-icon>
-                            <a
-                                    class="ml-2 p-format"
-                                    :href="'mailto:' + person.email"
-                                    v-text="person.email">
-                            </a>
-                        </v-layout>
-                    </v-card-text>
-                </v-card>
-            </v-flex>
+            </v-layout>
         </v-layout>
     </v-container>
 </template>
