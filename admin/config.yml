@@ -5,6 +5,8 @@ backend:
 site_url: https://icraft.co.nz
 logo_url: https://icraft.co.nz/logo.png
 
+use_large_media_transforms_in_media_library: false
+
 media_folder: public/static/uploads
 public_folder: static/uploads
 
@@ -44,22 +46,23 @@ collections:
   format: json
   sort: date:desc
   preview_path: blog/
-  slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-  url: '{{slug}}'
+  slug: {{year}}-{{month}}-{{day}}-{{slug}}
+
   fields:
     - {label: Title, name: title, widget: string}
     - {label: Layout, name: layout, default: post-layout}
     - {label: Tags, name: tags, widget: string}
-    - {label: Category, name: category, widget: string}
+    - {label: Category, name: category, widget: relation, collection: blogcategories, searchFields: [title], valueField: title, displayFields: [title], required: false}
     - {label: Publish Date, name: date, widget: datetime}
     - {label: Summary, name: summary, widget: string}
     - {label: Body, name: body, widget: markdown}
-    - {label: Featured Image, name: featuredImage, widget: image}
+    - {label: Featured Image, name: featuredImage, widget: image, required: false}}
     - label: Other Images
       name: images
       widget: list
+      required: false
       fields:
-        - {label: Image, create: true, name: image, widget: image}
+        - {label: Image, create: true, name: image, widget: image, required: false}
 
 - name: contact
   label: Contact Information & Social Media

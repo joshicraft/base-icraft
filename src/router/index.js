@@ -51,8 +51,7 @@ function route(path, parentPath) {
 }
 
 function makeRoutes() {
-    let blogRoutesArray = Object.values(blog)
-    console.log(blogRoutesArray)
+
     let routes = paths.map((path) => {
 
         return route(path)
@@ -60,11 +59,14 @@ function makeRoutes() {
     let nestedRoutes = []
     paths.forEach((path) => {
         if (path.name === 'Blog'){
-            blogRoutesArray.forEach(blog => {
-                let slugName = Object.keys[blog]
-                console.log(slugName)
-            })
-        }else if (path.nestedItems) {
+            for(var i in blog){
+                blog[i].path = path.path + '/'+i
+                blog[i].name = 'BlogSlug'
+                blog[i].text = blog[i].title
+                // blog[i].props = true
+                nestedRoutes.unshift(route(blog[i]), path)
+            }
+        } else if (path.nestedItems) {
             path.nestedItems.forEach((nestedPath) => {
                 nestedRoutes.unshift(route(nestedPath, path))
             })

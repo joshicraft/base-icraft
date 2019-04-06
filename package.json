@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && npm run copy-admin-files",
+    "build": "vue-cli-service build && npm run copy-admin-files && npm run copy-blog-files",
     "lint": "vue-cli-service lint",
     "build-node": "node build/build.js",
     "build-t": "vue-cli-service build",
     "build:lambda": "netlify-lambda build func",
     "sitemap": "node src/plugins/sitemap-server",
     "copy-admin-files": "copyfiles admin/**/*.html admin/**/*.yml ./dist",
+    "copy-blog-files": "copyfiles src/lang/en/Blog/**/*.json ./dist",
     "report": "vue-cli-service build && npm run copy-admin-files",
     "start:lambda": "netlify-lambda serve func -c webpack.server.js"
   },

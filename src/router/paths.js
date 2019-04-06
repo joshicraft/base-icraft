@@ -118,10 +118,10 @@ let paths = [
         noToolbar: true
     },
     {
-        path: '/icrafts-it-blog',
+        path: '/blog',
         name: 'Blog',
         text: "Blog",
-        noToolbar: true
+        noToolbar: false
     },
     {
         path: '/contact-icraft',

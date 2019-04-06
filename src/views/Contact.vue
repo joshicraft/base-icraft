@@ -9,8 +9,8 @@
                 <h3 class="mb-4">{{heading.h2}}</h3>
                 <p v-if="heading.p">{{heading.p}}</p>
             </div>
-            <v-flex xs12 lg7 mx2 dark>
-                <v-card dark class="pa-4 form-wrap">
+            <v-flex xs12 lg7 mx2>
+                <v-card class="pa-4 form-wrap grey lighten-2">
                     <!--<h2 class="headline mb-2" v-text="heading.h1"/>-->
                     <!--<p class="mb-4" v-text="heading.h2"/>-->
                     <div v-if="submitting" class="progress-wrap">
@@ -65,10 +65,9 @@
                         <v-text-field
                                 prepend-icon="mdi-phone"
                                 v-model="phone"
-                                label="Phone"
+                                label="Phone (optional)"
                                 name="phone"
                                 type="number"
-                                required
                         ></v-text-field>
                         <v-textarea
                                 prepend-icon="mdi-message"
@@ -82,7 +81,7 @@
                         <v-text-field
                                 prepend-icon="mdi-gift"
                                 v-model="code"
-                                label="Promo Code"
+                                label="Promo Code (optional)"
                                 name="code"
                                 type="text"
                         ></v-text-field>
@@ -95,11 +94,16 @@
 
                                     class="mb-3"
                                     :key="n"
+                                    color="primary"
                                     :label="n"
                                     :value="n"
                             ></v-radio>
                             </div>
+
                         </v-radio-group>
+                        <div class="mb-4">Sign up to our news letter for new features, services and sales? <strong>{{newsletterSignUp ? 'Yes' : 'No'}}</strong></div>
+                        <v-checkbox v-model="newsletterSignUp" :label="newsletterSignUp ? 'Yes' : 'No'"></v-checkbox>
+                        <!--<v-checkbox v-model="checkbox1" :label="`Checkbox 2: ${checkbox1.toString()}`"></v-checkbox>-->
 
                     </v-form>
                     <v-card-actions class="mt-5">
@@ -123,7 +127,7 @@
                 </v-card>
             </v-flex>
             <v-flex xs12 md4>
-                <v-card dark class="pa-3">
+                <v-card class="pa-3 grey lighten-2">
                     <div class="contact-logo">
                         <custom-logo-side white></custom-logo-side>
                     </div>
@@ -231,6 +235,7 @@
                   "E-mail",
                   "Phone"
                 ],
+                newsletterSignUp: true,
                 radioGroup: "E-mail",
                 failed: false,
                 submitting: null,
@@ -294,6 +299,8 @@
                     email: this.email,
                     phone: this.phone,
                     website: window.location.host,
+                    signUp: this.newsletterSignUp ? "Yes" : "No",
+                    contactMethod: this.radioGroup,
                     code: this.code.length > 0 ? this.code : false
                 }
                 this.failed = false

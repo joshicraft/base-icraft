@@ -42,7 +42,7 @@
                     {{item.summary}}
                     <!--<VueShowdown :markdown="item.body"/>-->
                 </p>
-                <v-btn @click="goToAndScroll('')" class="ml-0 primary">Show more</v-btn>
+                <v-btn :to="{path: item.path, params: item}" class="ml-0 primary">Show more</v-btn>
             </div>
         </v-flex>
     </v-layout>
