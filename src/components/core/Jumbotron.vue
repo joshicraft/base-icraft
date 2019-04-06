@@ -5,6 +5,17 @@
                 <!--<polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>-->
             <!--</svg>-->
         <!--</div>-->
+        <noscript>
+
+
+
+            <h1 class="mb-3 -text-anim">{{title}}</h1>
+            <h2 class="-text-anim">{{subTitle}}</h2>
+
+
+            <p>We're sorry but ICRAFT Websites - Digital - Branding doesn't work properly without JavaScript enabled.</p>
+            <p>Please enable it to continue to check out our sweet business website deals and IT Solutions.</p>
+        </noscript>
         <custom-video-background
                 id="jumbotron"
                 class="vh"
@@ -32,7 +43,7 @@
                                     :class="$vuetify.breakpoint.mdAndUp ? 'show-text-anim' : ''"
                             >
                                 <h1 class="mb-3 -text-anim">{{title}}</h1>
-                                <h4 class="-text-anim">{{subTitle}}</h4>
+                                <h2 class="-text-anim">{{subTitle}}</h2>
                                 <!--<p class="mt-3" v-if="subSubTitle">{{subSubTitle}}</p>-->
                                 <v-btn
                                         
@@ -151,7 +162,8 @@
             /*font-size: 3em*/
             margin-left: 3px;
             ///*font-weight 500*/
-
+        h2
+            font-size 2em
         h4, h3
             /*font-size: 1em;*/
             font-weight: 100
