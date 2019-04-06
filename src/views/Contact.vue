@@ -86,9 +86,9 @@
                                 type="text"
                         ></v-text-field>
 
-                        <v-radio-group v-model="radioGroup">
+                        <v-radio-group v-model="contactMethod">
 
-                                <div class="mb-4">How would you like us to contact you? <strong>{{radioGroup}}</strong></div>
+                                <div class="mb-4">How would you like us to contact you? <strong>{{contactMethod}}</strong></div>
                             <div v-for="n in contactPreferences" @click="playSound('Click')">
                             <v-radio
 
@@ -236,7 +236,7 @@
                   "Phone"
                 ],
                 newsletterSignUp: true,
-                radioGroup: "E-mail",
+                contactMethod: "E-mail",
                 failed: false,
                 submitting: null,
                 submitted: null,
@@ -300,7 +300,7 @@
                     phone: this.phone,
                     website: window.location.host,
                     signUp: this.newsletterSignUp ? "Yes" : "No",
-                    contactMethod: this.radioGroup,
+                    contactMethod: this.contactMethod,
                     code: this.code.length > 0 ? this.code : false
                 }
                 this.failed = false
