@@ -15,6 +15,8 @@
 
             <p>We're sorry but ICRAFT Websites - Digital - Branding doesn't work properly without JavaScript enabled.</p>
             <p>Please enable it to continue to check out our sweet business website deals and IT Solutions.</p>
+            <p>If you can't do that email us at <a href="mailto:josh@icraft.co.nz">josh@icraft.co.nz</a> or give us a call on <a href="tel:02102859043">02102859043</a></p>
+
         </noscript>
         <custom-video-background
                 id="jumbotron"
