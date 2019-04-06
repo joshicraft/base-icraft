@@ -59,13 +59,18 @@ function makeRoutes() {
     let nestedRoutes = []
     paths.forEach((path) => {
         if (path.name === 'Blog'){
+            path.children = []
             for(var i in blog){
                 blog[i].path = path.path + '/'+i
                 blog[i].name = 'BlogSlug'
+                blog[i].props = true
                 blog[i].text = blog[i].title
                 // blog[i].props = true
+
+                path.children.push(route(blog[i], path))
                 nestedRoutes.unshift(route(blog[i]), path)
             }
+            // nestedRoutes.unshift(route(path))
         } else if (path.nestedItems) {
             path.nestedItems.forEach((nestedPath) => {
                 nestedRoutes.unshift(route(nestedPath, path))
@@ -119,6 +124,9 @@ router.afterEach((to, from, next) => {
 })
 router.beforeEach((to, from, next) => {
     if (from.name === null) {
+        next()
+        return
+    }  if (from.name === 'Blog') {
         next()
         return
     }

@@ -41,7 +41,7 @@ collections:
 
 - name: blog
   label: Blog
-  folder: src/lang/en/Blog
+  folder: public/blog
   create: true
   format: json
   sort: date:desc

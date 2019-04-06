@@ -4,10 +4,10 @@
             align-center lg12
             class="relative overflow-hidden -view-height"
             :class="{'row-reverse c-1': index%2===0, 'c-2': index%2!==0}"
-            v-scroll="scrollS"
+
     >
-        <ui-section-nav-arrow :index="index" direction="prev"></ui-section-nav-arrow>
-        <ui-section-nav-arrow :index="index" direction="next"></ui-section-nav-arrow>
+        <!--<ui-section-nav-arrow :index="index" direction="prev"></ui-section-nav-arrow>-->
+        <!--<ui-section-nav-arrow :index="index" direction="next"></ui-section-nav-arrow>-->
         <v-img
                 class="section-img"
                 lg6
@@ -33,7 +33,7 @@
             </v-layout>
         </v-img>
 
-        <v-flex lg6 pa-5 class="d-flex section-title" justify-center>
+        <v-flex lg6 pa-2 class="d-flex section-title" justify-center>
             <div class="title-a" :class="{'align-left': index%2===0}">
                 <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
                 <!--<h3 class="mb-4">{{item.summary}}</h3>-->
@@ -55,6 +55,9 @@
             item: Object
         },
         methods: {
+            openBlog(data){
+              this.$router.push(data)
+            },
             getHTML(d){
                 d = d.replace("\n", "<br/><br/>");
                 d.replace(/ *\([^)]*\) */g, "");
@@ -109,7 +112,7 @@
 
 
     .title-a
-        opacity 0
+        /*opacity 0*/
         max-width 64%
         width 70%
         text-align right
