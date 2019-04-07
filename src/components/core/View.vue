@@ -7,7 +7,7 @@
             </svg>
         </div>
 
-        <router-view v-if="scrolled" :loadTickerCount="loadTickerCount"/>
+        <router-view :loadTickerCount="loadTickerCount"/>
     </v-content>
 </template>
 

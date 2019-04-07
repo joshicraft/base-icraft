@@ -1,9 +1,9 @@
 <template>
     <v-app>
 
-        <core-toolbar  v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 2 : 0)"/>
+        <core-toolbar />
 
-        <core-drawer v-if="getLoadCount($vuetify.breakpoint.smAndDown ? 0 : 2)"/>
+        <core-drawer/>
 
         <core-jumbotron @clicked="clickScrolled" app/>
 
