@@ -36,7 +36,9 @@ function route(path, parentPath) {
         props: parentPath ? {nestedPath: dirPath} : {}
     }
     // console.log(dirPath)
-
+    if(r.component){
+        return r
+    }
     if (r.name === 'Home') {
         r.component = (resovle) => import(
             `@/views/${dirPath}.vue`
@@ -46,32 +48,40 @@ function route(path, parentPath) {
             `@/views/${dirPath}.vue`
             ).then(resovle)
     }
+    console.log(r)
     // console.log(newPath)
     return r
 }
 
 function makeRoutes() {
-
+    let nestedRoutes = []
     let routes = paths.map((path) => {
 
         return route(path)
     })
-    let nestedRoutes = []
+
     paths.forEach((path) => {
         if (path.name === 'Blog'){
             path.children = []
             for(var i in blog){
-                blog[i].path = path.path + '/'+i
-                blog[i].name = 'BlogSlug'
-                blog[i].props = true
-                blog[i].text = blog[i].title
-                // blog[i].props = true
+                let b = blog[i]
+                // b.path = i.replace('/blog', '')
+                b.path = '/blog/' + i
+                b.name = 'BlogSlug'
+                b.component = (resovle) => import(
+                    `@/views/BlogSlug.vue`
+                    ).then(resovle)
+                b.props = true
+                b.text = b.title
+                // b.props = true
 
-                path.children.push(route(blog[i], path))
-                nestedRoutes.unshift(route(blog[i]), path)
+                path.children.push(b)
+                nestedRoutes.unshift(route(b), path)
             }
             // nestedRoutes.unshift(route(path))
-        } else if (path.nestedItems) {
+        }
+
+       if (path.nestedItems) {
             path.nestedItems.forEach((nestedPath) => {
                 nestedRoutes.unshift(route(nestedPath, path))
             })
@@ -126,10 +136,12 @@ router.beforeEach((to, from, next) => {
     if (from.name === null) {
         next()
         return
-    }  if (from.name === 'Blog') {
-        next()
-        return
     }
+    // if (from.name === 'Blog' || to.name === 'Blog') {
+    //     // TweenMax.to('#jumbotron', 0.4, {autoAlpha: 0, onComplete: next})
+    //     next()
+    //     return
+    // }
     TweenMax.killAll()
 
     setTimeout(() => {
@@ -161,32 +173,37 @@ router.beforeEach((to, from, next) => {
             };
             newSound.data.volume = 1;
             newSound.data.play()
-            mySplitText = new SplitText(text, {type: "words,chars"}),
-                chars = mySplitText.chars; //an array of all the divs that wrap each character
-            TweenLite.set(text, {perspective: 400});
+            // mySplitText = new SplitText(text, {type: "words,chars"}),
+            //     chars = mySplitText.chars; //an array of all the divs that wrap each character
+            // TweenLite.set(text, {perspective: 400});
         }
 
 
         tL
             .to(window, scrollPos === 0 ? 0 : 0.35, {scrollTo: {y: 0}}, 'a')
-            .set(text, {opacity: 1}, 'a')
-            .staggerTo(chars, 0.6 * dur, {
+            // .set(text, {opacity: 1}, 'a')
+            // .staggerTo(chars, 0.6 * dur, {
+            //     opacity: 0,
+            //     scale: 0,
+            //     y: -60,
+            //     rotationX: 180,
+            //     transformOrigin: "0% 50% 50",
+            //     ease: Back.easeIn
+            // }, 0.01, "+=0")
+            .to(title, 0.3 * dur, {
                 opacity: 0,
-                scale: 0,
-                y: -60,
-                rotationX: 180,
-                transformOrigin: "0% 50% 50",
-                ease: Back.easeIn
+                scale: 0.77,
             }, 0.01, "+=0")
-            .to([button], 0.5 * dur, {
-                opacity: 0,
-                scale: 0,
-                y: -30,
-                rotationX: 180,
-                transformOrigin: "0% 50% 50",
-                ease: Back.easeIn
-            }, 'a')
-            .call(next, [], this, '-=0.2')
+
+            // .to([button], 0.5 * dur, {
+            //     opacity: 0,
+            //     scale: 0,
+            //     y: -30,
+            //     rotationX: 180,
+            //     transformOrigin: "0% 50% 50",
+            //     ease: Back.easeIn
+            // }, 'a')
+            .call(next, [], this, '-=0.002')
             .to(gradient, duration * dur, {autoAlpha: 0.82})
             .to(gradient, duration * dur, {autoAlpha: 1})
 

@@ -6,13 +6,12 @@
         <core-drawer/>
 
         <core-jumbotron @clicked="clickScrolled" app/>
-
         <core-view
                     :scrolled="scrolled"
                    @scroll="handleScroll"
                    @clicked="clickScrolled"
                    :loadTickerCount="loadTickerCount"
-                   :class="this.$route.path === '/' ? 'no-pad' : ''"/>
+                   :class="{'no-pad': $route.path === '/', 'fixedss': $route.path === '/blog'}"/>
 
         <core-footer v-if="getLoadCount(0)"/>
 
@@ -74,6 +73,14 @@
         },
         watch: {
             $route(frm, to) {
+                if(to.name === 'Blog'){
+                    TweenMax.to('#jumbotron', 0.4, {position: 'relative', top: '0%'})
+                    // return
+                }
+                if(frm.name === 'Blog'){
+                    TweenMax.to('#jumbotron', 0.4, {position: 'relative', top: '-100%'})
+                    return
+                }
                 if (to.name) {
                     // document.getElementById('home-loader').classList.add('hide-');
                     clearTimeout(this.delayAnimated)
@@ -182,5 +189,6 @@
 
 <style lang="stylus">
 
-
+    .fixed
+        position: fixed;
 </style>

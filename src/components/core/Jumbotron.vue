@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="relative" v-if="$route.path !== '/blssog'">
         <!--<div class="jumbo-bot-arrow">-->
             <!--<svg viewBox="0,0,500,100" preserveAspectRatio="none">-->
                 <!--<polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>-->
@@ -34,7 +34,10 @@
                         v-if="isBooted"
                         class="z1"
                 >
-                    <v-layout align-center>
+                    <!--  v-if="$route.path !== '/blog'"-->
+                    <v-layout align-center
+
+                    >
                             <v-layout
                                     column
                                     justify-center
@@ -55,6 +58,11 @@
                                 >IGNITION</v-btn>
                             </v-layout>
                     </v-layout>
+                    <!--<v-layout-->
+                        <!--v-else-->
+                        <!--&gt;-->
+<!--<router-view></router-view>-->
+                    <!--</v-layout>-->
                 </v-container>
             <!--</my-transition>-->
             <div
@@ -171,8 +179,11 @@
             font-weight: 100
 
         &.show-text-anim
-            .-text-anim
-                opacity 0
+            opacity: 0;
+            transform scale(0.7)
+        /*&.show-text-anim*/
+            /*.-text-anim*/
+                /*opacity 0*/
 
 
 

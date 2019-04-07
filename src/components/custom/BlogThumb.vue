@@ -1,7 +1,7 @@
 <template>
     <v-layout
             :key="item.date + item.title"
-            align-center lg12
+            align-center
             class="relative"
             :class="{'row-reverse c-1': index%2===0, 'c-2': index%2!==0}"
             v-scroll="scrollS"
@@ -11,6 +11,7 @@
         <v-img
                 class="section-img"
                 lg6
+                contain
                 :alt="item.featuredImage"
                 :src="item.featuredImage"
                 :key="'blog-thumb-featured' + item.featuredImage"
@@ -42,7 +43,7 @@
                     {{item.summary}}
                     <!--<VueShowdown :markdown="item.body"/>-->
                 </p>
-                <v-btn :to="{path: item.path, params: item}" class="ml-0 primary">Show more</v-btn>
+                <v-btn :to="{path: item.path.replace('/blog/', ''), params: item}" class="ml-0 primary">Show more</v-btn>
             </div>
         </v-flex>
     </v-layout>
@@ -114,17 +115,17 @@
 
     .title-a
         /*opacity 0*/
-        max-width 64%
-        width 70%
+        /*max-width 64%*/
+        width 100%
         text-align right
 
         h1
             line-height 1.1
-            font-size 2.85em
+            font-size 2em
 
         h3
             line-height 1.2
-            font-size 1.85em
+            font-size 1.2em
             font-weight 100
 
         button
