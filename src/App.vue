@@ -91,8 +91,8 @@
                 clearTimeout(this.contactAnimDelay)
                 this.contactAnimDelay = setTimeout(()=>{
                     animationLibrary.wobble(document.querySelector('.contact-ico .v-btn'), {transformOrigin: '0% 100%', modifier: 0.2});
-                    animationLibrary.textAnimOne(document.querySelector('.contact-ico'));
-                    animationLibrary.textAnimOne(document.querySelector('.gift-ico'), {delay: 0.666});
+                    // animationLibrary.textAnimOne(document.querySelector('.contact-ico'));
+                    // animationLibrary.textAnimOne(document.querySelector('.gift-ico'), {delay: 0.666});
                 }, 2000)
                 //animationLibrary.wobble(document.querySelector('.gift-ico'), {transformOrigin: '0% 100%', delay: 0.8})
 

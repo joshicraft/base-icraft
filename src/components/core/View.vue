@@ -10,6 +10,19 @@
         </div>
 
         <router-view :loadTickerCount="loadTickerCount"/>
+        <noscript>
+
+
+
+            <h1 class="mb-3 -text-anim">{{title}}</h1>
+            <h2 class="-text-anim">{{subTitle}}</h2>
+
+
+            <p>We're sorry but ICRAFT Websites - Digital - Branding doesn't work properly without JavaScript enabled.</p>
+            <p>Please enable it to continue to check out our sweet business website deals and IT Solutions.</p>
+            <p>If you can't do that email us at <a href="mailto:josh@icraft.co.nz">josh@icraft.co.nz</a> or give us a call on <a href="tel:02102859043">02102859043</a></p>
+
+        </noscript>
     </v-content>
 </template>
 
@@ -23,6 +36,18 @@
                 links: [
                     {rel: 'canonical', href: window.location.href}
                 ]
+            }
+        },
+        computed: {
+
+            namespace() {
+                return this.getNameSpace()
+            },
+            title() {
+                return this.$t('Views.' + this.namespace + '.jumbotronTitle')
+            },
+            subTitle() {
+                return this.$t('Views.' + this.namespace + '.jumbotronSubTitle')
             }
         },
         props: {
