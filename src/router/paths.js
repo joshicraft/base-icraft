@@ -83,7 +83,7 @@ let paths = [
                 nestedPath: 'Websites',
             },
             {
-                path: 'icraft-web-terms',
+                path: 'icraft-web-design-terms',
                 name: 'WebsiteTerms',
                 text: "Terms",
                 nestedPath: 'Websites',
@@ -101,18 +101,18 @@ let paths = [
 
 
     {
-        path: '/brand-your-business',
+        path: '/graphic-design',
         name: 'Branding',
         text: "Branding"
     },
 
     {
-        path: '/get-IT-training',
+        path: '/web-solutions-and-training',
         name: 'ITSolutions',
         text: "IT Solutions"
     },
     {
-        path: '/icrafts-portfolio',
+        path: '/icraft-web-design-portfolio',
         name: 'Portfolio',
         text: "Portfolio",
         noToolbar: true
@@ -124,7 +124,7 @@ let paths = [
         noToolbar: true
     },
     {
-        path: '/contact-icraft',
+        path: '/contact-icraft-web-design',
         name: 'Contact',
         text: "Contact"
     },
