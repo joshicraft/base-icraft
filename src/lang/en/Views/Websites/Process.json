@@ -1,8 +1,8 @@
 {
-  "headTitle": "ICRAFTs Business Website creation process.",
-  "headDescription": "How ICRAFT puts together their websites with your help. If you're in Auckland we can discuss this face-to-face and in more detail.",
-  "jumbotronTitle": "OUR WEBSITE BUILD PROCESS",
-  "jumbotronSubTitle": "These steps help make your website vision a reality",
+  "headTitle": "ICRAFT | Web Design Process | Auckland",
+  "headDescription": "This is how ICRAFT goes about it's web design process. If you're in Auckland, let's meet face to face to really find you the right web design.",
+  "jumbotronTitle": "OUR WEB DESIGN PROCESS",
+  "jumbotronSubTitle": "These steps help make your web design vision a reality",
   "heading1": "",
   "contents": [
     {
@@ -26,8 +26,8 @@
       "icon": "mdi-animation-outline"
     }
   ],
-  "title": "OUR WEBSITE CREATION PROCESS",
-  "subTitle": "We follow our process to ensure we achieve your vision.",
+  "title": "THE WEB DESIGN PROCESS",
+  "subTitle": "We follow our web design process to ensure we achieve your vision.",
   "subSubTitle": "These steps help maintain communication, include the essentials and keep to deadlines.",
   "items": [
     {
@@ -38,14 +38,14 @@
       "icon": "mdi-book-open-page-variant"
     },
     {
-      "title": "DESIGN",
+      "title": "WEB DESIGN",
       "subTitle": "The Latest Design Trends.",
       "subSubTitle": "Helping visitors stay engaged and informed when using your super sweet website, Some techniques we employ are User Interface, User Experience design and material design. These are straight out of Silicon Valley and some are pioneered by companies like Google and Apple.",
       "img": "design",
       "icon": "mdi-brush"
     },
     {
-      "title": "DEVELOPMENT",
+      "title": "WEB DEVELOPMENT",
       "subTitle": "Fast, Secure and Powerful Tech.",
       "subSubTitle": "The World Wide Web has come a long way since its inception by Sir Tim Berners-Lee in 1989. The web moves fast and if you don't adapt, you die. That is why we use the latest tech such as Vue.js, Node.js, Lambda Functions, Optimized Media and variety of other cool Tech. It's in here we develop for mobile and integrate features like Google Maps, Form's, Quiz's and much much more.",
       "img": "development",
