@@ -35,7 +35,6 @@ function route(path, parentPath) {
         nested: path.nestedItems,
         props: parentPath ? {nestedPath: dirPath} : {}
     }
-    console.log('route: ' + dirPath)
     if (path.component) {
         return r
     }
@@ -56,7 +55,7 @@ function route(path, parentPath) {
 function makeRoutes() {
     let nestedRoutes = []
     let routes = paths
-        .filter(route => !route.dev)
+        .filter(route => !route.remove)
         .map((path) => {
             if (path.name === 'Blog') {
                 let p = {}
@@ -67,7 +66,6 @@ function makeRoutes() {
                 }
                 for (var i in blog) {
                     let b = blog[i]
-                    console.log(b)
                     b.path = i
                     b.component = (resovle) => import(
                         `@/views/BlogSlug.vue`
@@ -85,7 +83,6 @@ function makeRoutes() {
             }
             return route(path)
         })
-    console.log(routes)
     paths.forEach((path) => {
 
 
@@ -98,8 +95,6 @@ function makeRoutes() {
             })
         }
     })
-
-    console.log(routes)
 
     if (process.env.NODE_ENV === 'development') {
         getRoutesXML('https://www.icraft.co.nz')
