@@ -32,12 +32,13 @@ function route(path, parentPath) {
     let r = {
         path: newPath,
         name: path.name,
+        remove: path.remove,
         nested: path.nestedItems,
-        props: parentPath ? {nestedPath: dirPath} : {}
+        props: parentPath ? {nestedPath: dirPath, noToolbar: path.noToolbar} : {}
     }
-    if (path.component) {
-        return r
-    }
+    // if (path.component) {
+    //     return path
+    // }
     if (r.name === 'Home') {
         r.component = (resovle) => import(
             `@/views/${dirPath}.vue`
@@ -48,7 +49,7 @@ function route(path, parentPath) {
             ).then(resovle)
     }
     sitemapRoutes.push(r)
-    if(r.remove){
+    if(path.remove){
         r.noToolbar = true
     }
     // console.log(newPath)
@@ -57,55 +58,75 @@ function route(path, parentPath) {
 
 function makeRoutes() {
     let nestedRoutes = []
-    let routes = paths
-        .filter(route => !route.remove)
-        .map((path) => {
+    // let routes = paths
+        // .filter(route => !route.remove)
 
+        paths.forEach((path) => {
+            if(path.remove){
+                return
+            }
             if (path.name === 'Blog') {
-                let p = {}
-                path.children = []
+
+
                 let paths = []
-                path.props = {
-                    children: []
+                let item = {
+                    // props: {nestedPath: path.name}
                 }
+                item.children  =[]
                 for (var i in blog) {
                     let b = blog[i]
-                    b.path = i
-                    b.component = (resovle) => import(
+                    let r = {}
+                    r.path = i
+                    console.log(i)
+                    r.component = (resovle) => import(
                         `@/views/BlogSlug.vue`
                         ).then(resovle)
                     // b.props = true
-                    b.text = b.title
-                    sitemapRoutes.push(b)
-                    path.children.push(b)
-                    paths.push(b.path)
+                    r.text = b.title
+                    sitemapRoutes.push(item)
+                    item.children.push(r)
+                    paths.push(i)
                     // path.props.children.push(b.path)
                 }
-                path.nestedItems = paths
-                path.nested = true
+                item.path = path.path
+                item.name = path.name
+                item.nested = paths
+                item.props = {}
+                item.component = (resovle) => import(
+                    `@/views/${item.name}.vue`
+                    ).then(resovle)
+                // item.nested = true
+                nestedRoutes.unshift(item)
+                return
                 // path.params.children = paths
             }
-            return route(path)
+
+            if (path.nestedItems && !path.nested) {
+                path.nestedItems.forEach((nestedPath) => {
+                    if (!nestedPath.remove) {
+                        nestedRoutes.unshift(route(nestedPath, path))
+                    }
+                })
+            }
+            nestedRoutes.unshift(route(path))
+
         })
-    paths.forEach((path) => {
 
-
-        if (path.nestedItems && !path.nested) {
-            path.nestedItems.forEach((nestedPath) => {
-                if (!nestedPath.remove && !nestedPath.component) {
-                    routes.unshift(route(nestedPath, path))
-                }
-            })
-        }
-    })
+        // routes.forEach((path) => {
+        //     if(path.remove){
+        //         return
+        //     }
+        //
+        //
+        // })
 
     if (process.env.NODE_ENV === 'development') {
         getRoutesXML('https://www.icraft.co.nz')
     }
-    routes = [...routes, ...nestedRoutes].concat([
+    routes = nestedRoutes.concat([
         {path: '*', redirect: '/'}
     ])
-
+    console.log(routes)
     return routes
 }
 

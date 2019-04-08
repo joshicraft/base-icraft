@@ -1,6 +1,7 @@
 <template>
     <v-layout
-            :key="item.date + item.title"
+            v-if="item"
+            :key="item.title"
             align-center lg12
             class="relative overflow-hidden -view-height"
             :class="{'row-reverse c-1': index%2===0, 'c-2': index%2!==0}"
@@ -37,7 +38,7 @@
             <div class="title-a" :class="{'align-left': index%2===0}">
                 <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
                 <!--<h3 class="mb-4">{{item.summary}}</h3>-->
-                <p class="mb-4">{{item.date}}</p>
+                <!--<p class="mb-4">{{item.date}}</p>-->
                 <p class="mb-4">
                     {{item.summary}}
                     <!--<VueShowdown :markdown="item.body"/>-->
@@ -52,7 +53,7 @@
     export default {
         props: {
             index: Number,
-            item: Object
+
         },
         mounted() {
             let pth = this.$route.path.replace('/blog', '')
@@ -82,8 +83,7 @@
             return +to.query.page > +from.query.page ? 'slide-right' : 'slide-left'
         },
         data() {
-            console.log('ssss')
-            return {};
+            return {item: {}};
         },
 
         computed: {

@@ -110,19 +110,21 @@ let paths = [
     {
         path: '/web-solutions-and-training',
         name: 'ITSolutions',
-        text: "IT Solutions"
+        text: "IT Solutions",
+
     },
     {
         path: '/icraft-web-design-portfolio',
         name: 'Portfolio',
         text: "Portfolio",
+        noToolbar: true,
         remove: process.env.NODE_ENV === 'production'
     },
     {
         path: '/blog',
         name: 'Blog',
         text: "Blog",
-        props: true,
+        noToolbar: true,
         remove: process.env.NODE_ENV === 'production'
     },
     {

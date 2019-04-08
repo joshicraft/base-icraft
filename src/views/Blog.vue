@@ -14,7 +14,7 @@
                 </div>
             </v-flex>
             <v-flex md8>
-                <router-view></router-view>
+                <router-view :item="{path: 'ss'}"></router-view>
             </v-flex>
         </v-layout>
         <!--</router-link>-->
@@ -56,7 +56,7 @@
                 if (this.blogLoadIndex >= this.blogRoutes.length) {
                     return
                 }
-                let path = this.$route.path + this.blogRoutes[this.blogLoadIndex]
+                let path = this.$route.path +'' + this.blogRoutes[this.blogLoadIndex]
                 console.log('Fetching: ' + path)
                 fetch(path + ".json")
                     .then(res => {
