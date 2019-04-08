@@ -3,12 +3,21 @@
         <div class="cube relative">
             <div class="wrapper">
                 <div class="boxes" >
-                    <div class="box" @click="cube.click(i)" v-for="(item, i ) in items">
+                    <div class="box relative" @click="cube.click(i)" v-for="(item, i ) in items">
+                        <div class="animate-top absolute title">
+                            <v-card
+                                    height="90px"
+                            >
+                                <h1>{{item.title}}</h1>
+                                <v-btn :href="item.link" target="_blank">Visit</v-btn>
+                            </v-card>
+                        </div>
                         <v-img
+                                :style="{'marginTop': 90}"
 
                                 :src="item.img"
                         >
-                        <!--<h1>{{item.title}}</h1>-->
+
                         </v-img>
                     </div>
                 </div>
@@ -33,7 +42,7 @@
                     >
 
                     </v-img>
-                    <!--<h4>{{item.title}}</h4>-->
+
                 </div>
             </div>
             <div class="arrow left-arrow">
@@ -55,19 +64,23 @@
                 items: [
                     {
                         title: 'Nectar',
-                        img: 'static/nectar-bg-1.png'
+                        img: 'static/nectar-bg-1.png',
+                        link: 'https://www.nectarbeverages.co.nz'
                     },
                     {
                         title: 'Certified Welding',
-                        img: 'static/nectar-bg-1.png'
+                        img: 'static/nectar-bg-1.png',
+                        link: 'https://www.cert-weld.co.nz'
                     },
                     {
                         title: 'Tonys Rount Tuit',
-                        img: 'static/nectar-bg-1.png'
+                        img: 'static/nectar-bg-1.png',
+                        link: 'https://www.tonysrounttuit.co.nz'
                     },
                     {
                         title: 'Urban Socialite',
-                        img: 'static/nectar-bg-1.png'
+                        img: 'static/nectar-bg-1.png',
+                        link: 'https://www.urbansocialite.co.nz'
                     },
                     {
                         title: 'Nectar',
@@ -99,6 +112,8 @@
     .boxes
         width 100%
         height auto
+        .title
+            z-index 100
 
     .arrow:hover
         i

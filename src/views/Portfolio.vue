@@ -38,6 +38,6 @@
 <style lang="stylus" scoped>
     #cube-wrapper
         background: black
-        padding: 12vh 0;
+        /*padding: 12vh 0;*/
 
 </style>

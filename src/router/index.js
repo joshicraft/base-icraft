@@ -57,6 +57,9 @@ function makeRoutes() {
     let routes = paths
         .filter(route => !route.remove)
         .map((path) => {
+            if(path.remove){
+                path.noToolbar = true
+            }
             if (path.name === 'Blog') {
                 let p = {}
                 path.children = []
@@ -89,7 +92,6 @@ function makeRoutes() {
         if (path.nestedItems && !path.nested) {
             path.nestedItems.forEach((nestedPath) => {
                 if (!nestedPath.remove && !nestedPath.component) {
-                    console.warn(nestedPath)
                     routes.unshift(route(nestedPath, path))
                 }
             })
