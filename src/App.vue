@@ -16,7 +16,7 @@
         <core-footer v-if="getLoadCount(0)"/>
 
         <custom-contact-icon :atTop="atTop" ></custom-contact-icon>
-        <custom-gift-icon :atTop="atTop" v-if="this.$route.path === '/' && $vuetify.breakpoint.mdAndUp"></custom-gift-icon>
+        <!--<custom-gift-icon :atTop="atTop" v-if="this.$route.path === '/' && $vuetify.breakpoint.mdAndUp"></custom-gift-icon>-->
 
         <!--<cookie-law theme="dark-lime"></cookie-law>-->
     </v-app>

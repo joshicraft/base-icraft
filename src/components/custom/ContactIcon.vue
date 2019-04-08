@@ -21,23 +21,23 @@
                 mdi-phone
             </v-icon>
         </v-btn>
-        <div v-if="$route.name === 'Home' || $route.name === 'Websites' && $vuetify.breakpoint.mdAndUp"
-             :class="{'invisible': !atTop}"
-             class="contact-text absolute d-flex justify-center align-center">
-            <div class="text-wrapper d-flex justify-center align-center"
-                 @click="goToContact"
-            >
-                <a class="text">
-                    <h3>Click here for a FREE quote.</h3>
-                </a>
-                <a class="text">
-                    <h3>{{ contact.phone }}</h3>
-                </a>
-                <a class="text">
-                    <h3>{{ contact.email }}</h3>
-                </a>
-            </div>
-        </div>
+        <!--<div v-if="$route.name === 'Home' || $route.name === 'Websites' && $vuetify.breakpoint.mdAndUp"-->
+             <!--:class="{'invisible': !atTop}"-->
+             <!--class="contact-text absolute d-flex justify-center align-center">-->
+            <!--<div class="text-wrapper d-flex justify-center align-center"-->
+                 <!--@click="goToContact"-->
+            <!--&gt;-->
+                <!--<a class="text">-->
+                    <!--<h3>Click here for a FREE quote.</h3>-->
+                <!--</a>-->
+                <!--<a class="text">-->
+                    <!--<h3>{{ contact.phone }}</h3>-->
+                <!--</a>-->
+                <!--<a class="text">-->
+                    <!--<h3>{{ contact.email }}</h3>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
     </div>
 </template>
