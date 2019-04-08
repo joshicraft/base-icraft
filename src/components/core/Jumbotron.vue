@@ -5,8 +5,11 @@
                 <!--<polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>-->
             <!--</svg>-->
         <!--</div>-->
-
+        <div v-if="$route.path.indexOf('404') === 1">
+            <error-404></error-404>
+        </div>
         <custom-video-background
+                v-else
                 id="jumbotron"
                 class="vh"
                 :sources="[heroVideo + '.mp4']"

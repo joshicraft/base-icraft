@@ -14,7 +14,7 @@ import Meta from 'vue-meta'
 
 //     /** webpackPrefetch: false */
 
-
+import error404 from '../components/error/404'
 // Routes
 import lang from '../lang'
 import paths from './paths'
@@ -124,7 +124,9 @@ function makeRoutes() {
         getRoutesXML('https://www.icraft.co.nz')
     }
     routes = nestedRoutes.concat([
-        {path: '*', redirect: '/'}
+        { path: '/404', component: error404 },
+        { path: '*', redirect: '/404' },
+        // {path: '*', redirect: '/'}
     ])
     console.log(routes)
     return routes
