@@ -48,6 +48,9 @@ function route(path, parentPath) {
             ).then(resovle)
     }
     sitemapRoutes.push(r)
+    if(r.remove){
+        r.noToolbar = true
+    }
     // console.log(newPath)
     return r
 }
@@ -57,9 +60,7 @@ function makeRoutes() {
     let routes = paths
         .filter(route => !route.remove)
         .map((path) => {
-            if(path.remove){
-                path.noToolbar = true
-            }
+
             if (path.name === 'Blog') {
                 let p = {}
                 path.children = []
