@@ -43,7 +43,7 @@
                     {{item.summary}}
                     <!--<VueShowdown :markdown="item.body"/>-->
                 </p>
-                <v-btn :to="{path: path, params: item}" class="ml-0 primary">Show more</v-btn>
+                <v-btn @click="openBlog({path: path, params: item})" class="ml-0 primary">Show more</v-btn>
             </div>
         </v-flex>
     </v-layout>
@@ -58,6 +58,8 @@
         },
         methods: {
             openBlog(data){
+                // data.path =  data.path
+                console.log(data)
                 this.$router.push(data)
             },
             getHTML(d){

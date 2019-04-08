@@ -35,7 +35,7 @@ function route(path, parentPath) {
         nested: path.nestedItems,
         props: parentPath ? {nestedPath: dirPath} : {}
     }
-    // console.log(dirPath)
+    console.log('route: ' + dirPath)
     if (r.component) {
         return r
     }
@@ -56,7 +56,7 @@ function route(path, parentPath) {
 function makeRoutes() {
     let nestedRoutes = []
     let routes = paths
-        .filter(route => !route.remove)
+        .filter(route => !route.dev)
         .map((path) => {
             if (path.name === 'Blog') {
                 path.children = []
@@ -71,7 +71,7 @@ function makeRoutes() {
                     b.component = (resovle) => import(
                         `@/views/BlogSlug.vue`
                         ).then(resovle)
-                    b.props = true
+                    // b.props = true
                     b.text = b.title
                     sitemapRoutes.push(b)
                     path.children.push(b)
@@ -89,7 +89,7 @@ function makeRoutes() {
 
         if (path.nestedItems) {
             path.nestedItems.forEach((nestedPath) => {
-                if (!nestedPath.remove) {
+                if (!nestedPath.dev && !nestedPath.component) {
                     nestedRoutes.unshift(route(nestedPath, path))
                 }
             })

@@ -1,6 +1,6 @@
 <template>
-    <div class="wrapper -arrow-buffer-top" id="cube" v-resize="resize">
-        <div class="cube">
+    <div class="wrapper -arrow-buffer-top relative" id="cube" v-resize="resize">
+        <div class="cube relative">
             <div class="wrapper">
                 <div class="boxes" >
                     <div class="box" @click="cube.click(i)" v-for="(item, i ) in items">
@@ -119,14 +119,20 @@
             overflow-y scroll
     
     .thumbs-wrapper
-        position: relative
-        left: 0
-        width: 90%
-        max-width: 600px
-        z-index: 100
-        margin: 0 auto
-        height: 60px
-        margin-bottom 2em
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background: #333;
+        top: 45px;
+        z-index: 10;
+        width: 90%;
+        max-width: 600px;
+        z-index: 999;
+        /* margin: 0 auto; */
+        height: 60px;
+        box-shadow: 2px 2px 5px rgba(10,10,10,0.18);
+        /* margin-bottom: 2em; */
 
 
     .thumbs

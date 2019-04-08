@@ -116,14 +116,14 @@ let paths = [
         path: '/icraft-web-design-portfolio',
         name: 'Portfolio',
         text: "Portfolio",
-        remove: process.env.NODE_ENV !== 'development'
+        remove: process.env.NODE_ENV === 'production'
     },
     {
         path: '/blog',
         name: 'Blog',
         text: "Blog",
         props: true,
-        remove:  process.env.NODE_ENV !== 'development'
+        remove: process.env.NODE_ENV === 'production'
     },
     {
         path: '/contact-icraft-web-design',

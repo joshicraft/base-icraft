@@ -56,8 +56,8 @@
                 if (this.blogLoadIndex >= this.blogRoutes.length) {
                     return
                 }
-                let path = window.location.origin + this.blogRoutes[this.blogLoadIndex]
-                // console.log(path)
+                let path = this.$route.path + '/' + this.blogRoutes[this.blogLoadIndex]
+                console.log('Fetching: ' + path)
                 fetch(path + ".json")
                     .then(res => {
                         if (res.status !== 200) {
