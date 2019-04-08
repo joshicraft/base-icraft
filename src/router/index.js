@@ -36,7 +36,7 @@ function route(path, parentPath) {
         props: parentPath ? {nestedPath: dirPath} : {}
     }
     console.log('route: ' + dirPath)
-    if (r.component) {
+    if (path.component) {
         return r
     }
     if (r.name === 'Home') {
@@ -59,6 +59,7 @@ function makeRoutes() {
         .filter(route => !route.dev)
         .map((path) => {
             if (path.name === 'Blog') {
+                let p = {}
                 path.children = []
                 let paths = []
                 path.props = {
@@ -79,22 +80,26 @@ function makeRoutes() {
                     // path.props.children.push(b.path)
                 }
                 path.nestedItems = paths
+                path.nested = true
                 // path.params.children = paths
             }
             return route(path)
         })
-
+    console.log(routes)
     paths.forEach((path) => {
 
 
-        if (path.nestedItems) {
+        if (path.nestedItems && !path.nested) {
             path.nestedItems.forEach((nestedPath) => {
-                if (!nestedPath.dev && !nestedPath.component) {
-                    nestedRoutes.unshift(route(nestedPath, path))
+                if (!nestedPath.remove && !nestedPath.component) {
+                    console.warn(nestedPath)
+                    routes.unshift(route(nestedPath, path))
                 }
             })
         }
     })
+
+    console.log(routes)
 
     if (process.env.NODE_ENV === 'development') {
         getRoutesXML('https://www.icraft.co.nz')

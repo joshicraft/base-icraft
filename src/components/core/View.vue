@@ -1,7 +1,7 @@
 <template>
     <v-content id="view">
         <div class="jumbo-bot-arrow top"
-            v-if="$route.path !== '/blog/'"
+            v-if="$route.path !== '/blog'"
         >
             <svg viewBox="0,0,500,100" preserveAspectRatio="none">
                 <polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>
