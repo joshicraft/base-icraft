@@ -1,5 +1,5 @@
 <template>
-    <div class="relative" v-if="$route.path !== '/blssog'">
+    <div class="relative" v-if="$route.path.indexOf('/blog') === -1">
         <!--<div class="jumbo-bot-arrow">-->
             <!--<svg viewBox="0,0,500,100" preserveAspectRatio="none">-->
                 <!--<polygon fill="#fafafa" points="0,0 0,50 250,100 500,50 500,0 250,50"></polygon>-->

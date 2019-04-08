@@ -3,7 +3,7 @@
         <!--<h1>BLOG</h1>-->
         <!--<router-link name="BlogSlug">-->
         <v-layout >
-            <v-flex lg12 class="-arrow-buffer-bot">
+            <v-flex lg4 class="-arrow-buffer-bot">
                 <div class="fill-width fill-height">
                 <template
                         v-for="(item, i) in blogs"
@@ -13,9 +13,9 @@
                 </template>
                 </div>
             </v-flex>
-            <!--<v-flex md8>-->
-                <!--<router-view></router-view>-->
-            <!--</v-flex>-->
+            <v-flex md8>
+                <router-view></router-view>
+            </v-flex>
         </v-layout>
         <!--</router-link>-->
         <!--<router-link name="BlogSlug">-->
@@ -36,14 +36,16 @@
             }
         },
         mounted() {
+            console.log('SSSSSS')
             this.blogRoutes = this.filterBlogs()
+            console.log(this.blogRoutes)
             this.loadBlogs()
         },
         methods: {
             filterBlogs() {
-                return this.$router.options.routes.filter(route => {
-                    return route.path.search('/blog/') !== -1
-                })
+                return this.$router.options.routes.find(route => {
+                    return route.path.search('/blog') !== -1
+                }).nested
             },
             loadBlogs() {
                 let $this = this
@@ -54,9 +56,9 @@
                 if (this.blogLoadIndex >= this.blogRoutes.length) {
                     return
                 }
-                let path = window.location.origin + this.blogRoutes[this.blogLoadIndex].path + ".json"
-                console.log(path)
-                fetch(path)
+                let path = window.location.origin + this.blogRoutes[this.blogLoadIndex]
+                // console.log(path)
+                fetch(path + ".json")
                     .then(res => {
                         if (res.status !== 200) {
                             console.log('Looks like there was a problem. Status Code: ' +
@@ -66,8 +68,9 @@
 
                         // Examine the text in the response
                         res.json().then(function (data) {
-                            console.log(data)
-                            data.path = $this.blogRoutes[$this.blogLoadIndex].path
+                            // console.log(data)
+                            console.log(path)
+                            data.path =  $this.blogRoutes[$this.blogLoadIndex]
                             $this.blogs.push(data)
                             $this.blogLoadIndex++
                             $this.loadBlogs()

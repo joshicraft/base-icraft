@@ -21,10 +21,10 @@ import paths from './paths'
 // const fs = require('fs')
 // import fs from 'fs'
 const blog = lang.en.Blog
+let sitemapRoutes = []
 
 let routes = makeRoutes()
 
-console.log(blog)
 
 function route(path, parentPath) {
     let newPath = parentPath ? parentPath.path + '/' + path.path : path.path
@@ -36,7 +36,7 @@ function route(path, parentPath) {
         props: parentPath ? {nestedPath: dirPath} : {}
     }
     // console.log(dirPath)
-    if(r.component){
+    if (r.component) {
         return r
     }
     if (r.name === 'Home') {
@@ -48,60 +48,70 @@ function route(path, parentPath) {
             `@/views/${dirPath}.vue`
             ).then(resovle)
     }
-    console.log(r)
+    sitemapRoutes.push(r)
     // console.log(newPath)
     return r
 }
 
 function makeRoutes() {
     let nestedRoutes = []
-    let routes = paths.map((path) => {
-
-        return route(path)
-    })
+    let routes = paths
+        .filter(route => !route.remove)
+        .map((path) => {
+            if (path.name === 'Blog') {
+                path.children = []
+                let paths = []
+                path.props = {
+                    children: []
+                }
+                for (var i in blog) {
+                    let b = blog[i]
+                    console.log(b)
+                    b.path = i
+                    b.component = (resovle) => import(
+                        `@/views/BlogSlug.vue`
+                        ).then(resovle)
+                    b.props = true
+                    b.text = b.title
+                    sitemapRoutes.push(b)
+                    path.children.push(b)
+                    paths.push(b.path)
+                    // path.props.children.push(b.path)
+                }
+                path.nestedItems = paths
+                // path.params.children = paths
+            }
+            return route(path)
+        })
 
     paths.forEach((path) => {
-        if (path.name === 'Blog'){
-            path.children = []
-            for(var i in blog){
-                let b = blog[i]
-                // b.path = i.replace('/blog', '')
-                b.path = '/blog/' + i
-                b.name = 'BlogSlug'
-                b.component = (resovle) => import(
-                    `@/views/BlogSlug.vue`
-                    ).then(resovle)
-                b.props = true
-                b.text = b.title
-                // b.props = true
 
-                path.children.push(b)
-                nestedRoutes.unshift(route(b), path)
-            }
-            // nestedRoutes.unshift(route(path))
-        }
 
-       if (path.nestedItems) {
+        if (path.nestedItems) {
             path.nestedItems.forEach((nestedPath) => {
-                nestedRoutes.unshift(route(nestedPath, path))
+                if (!nestedPath.remove) {
+                    nestedRoutes.unshift(route(nestedPath, path))
+                }
             })
         }
     })
 
     if (process.env.NODE_ENV === 'development') {
-        getRoutesXML([...routes, ...nestedRoutes], 'https://www.icraft.co.nz')
+        getRoutesXML('https://www.icraft.co.nz')
     }
     routes = [...routes, ...nestedRoutes].concat([
         {path: '*', redirect: '/'}
     ])
-    // fs.write('@/sitemap.xml', getRoutesXML(routes))
 
     return routes
 }
 
-function getRoutesXML(routes, website) {
-    const list = routes
-        .map(route => `<url><loc>${website + route.path}</loc></url>`)
+
+function getRoutesXML(website) {
+    const list = sitemapRoutes
+        .map(route => {
+            return `<url><loc>${website + route.path}</loc></url>`
+        })
         .join('\r\n');
     const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     ${list}

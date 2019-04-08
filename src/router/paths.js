@@ -94,6 +94,7 @@ let paths = [
                 name: 'InfoQuestionnaire',
                 text: "Questionnaire",
                 nestedPath: 'Websites',
+                remove:  process.env.NODE_ENV === 'development',
                 noToolbar: true
             }
         ]
@@ -115,13 +116,14 @@ let paths = [
         path: '/icraft-web-design-portfolio',
         name: 'Portfolio',
         text: "Portfolio",
-        noToolbar: true
+        remove: process.env.NODE_ENV !== 'development'
     },
     {
         path: '/blog',
         name: 'Blog',
         text: "Blog",
-        noToolbar: true
+        props: true,
+        remove:  process.env.NODE_ENV !== 'development'
     },
     {
         path: '/contact-icraft-web-design',

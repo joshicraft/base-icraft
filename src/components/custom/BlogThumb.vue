@@ -43,7 +43,7 @@
                     {{item.summary}}
                     <!--<VueShowdown :markdown="item.body"/>-->
                 </p>
-                <v-btn :to="{path: item.path.replace('/blog/', ''), params: item}" class="ml-0 primary">Show more</v-btn>
+                <v-btn :to="{path: path, params: item}" class="ml-0 primary">Show more</v-btn>
             </div>
         </v-flex>
     </v-layout>
