@@ -1,3 +1,4 @@
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
         <loc>https://www.icraft.co.nz</loc>
@@ -55,36 +56,6 @@
     </url>
     <url>
         <loc>https://www.icraft.co.nz/web-solutions-and-training</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>0.5</priority>
-        <changefreq>hourly</changefreq>
-    </url>
-    <url>
-        <loc>https://www.icraft.co.nz/icraft-web-design-portfolio</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>0.5</priority>
-        <changefreq>hourly</changefreq>
-    </url>
-    <url>
-        <loc>https://www.icraft.co.nz/blog</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>0.5</priority>
-        <changefreq>hourly</changefreq>
-    </url>
-    <url>
-        <loc>https://www.icraft.co.nz/blog</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>0.5</priority>
-        <changefreq>hourly</changefreq>
-    </url>
-    <url>
-        <loc>https://www.icraft.co.nz/blog</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>0.5</priority>
-        <changefreq>hourly</changefreq>
-    </url>
-    <url>
-        <loc>https://www.icraft.co.nz/blog</loc>
         <lastmod>2019-04-09</lastmod>
         <priority>0.5</priority>
         <changefreq>hourly</changefreq>
