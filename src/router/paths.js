@@ -43,12 +43,14 @@ let paths = [
     {
         path: '',
         name: 'Home',
-        text: "Home"
+        text: "Home",
+        priority: 1
     },
     {
         path: '/web-design',
         name: 'Websites',
         text: "Websites",
+        priority: 1,
         nestedItems: [
 
             {
@@ -62,12 +64,14 @@ let paths = [
                 name: 'WhyUsWebsites',
                 text: "Why ICRAFT",
                 nestedPath: 'Websites',
+                priority: 1
             },
             {
                 path: 'web-design-packages',
                 name: 'Packages',
                 text: "Packages",
                 nestedPath: 'Websites',
+                priority: 1
             },
             {
                 path: 'web-design-process',

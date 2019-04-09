@@ -30,6 +30,8 @@ function route(path, parentPath) {
     let newPath = parentPath ? parentPath.path + '/' + path.path : path.path
     let dirPath = parentPath ? parentPath.name + '/' + path.name : path.name
     let r = {
+
+        priority: path.priority,
         path: newPath,
         name: path.name,
         remove: path.remove,
@@ -136,7 +138,12 @@ function makeRoutes() {
 function getRoutesXML(website) {
     const list = sitemapRoutes
         .map(route => {
-            return `<url><loc>${website + route.path}</loc></url>`
+            return `<url>
+                        <loc>${website + route.path}</loc>
+                        <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+                        <priority>${route.priority || 0.5}</priority>
+                        <changefreq>hourly</changefreq>
+                    </url>`
         })
         .join('\r\n');
     const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
