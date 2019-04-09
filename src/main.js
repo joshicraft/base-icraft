@@ -48,7 +48,7 @@ sync(store, router);
 
 if(process.env.NODE_ENV === 'production') {
     Vue.use(VueAnalytics, {
-        id: 'UA-128666877-1',
+        id: 'UA-128666877-4',
         router
     })
 }
