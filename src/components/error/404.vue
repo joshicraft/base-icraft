@@ -4,8 +4,8 @@
         <h1 class="mt-5 mb-3 text-lg-center">404</h1>
         <h3 class="mb-4 text-lg-center">Opps, looks like we can find what you're looking for</h3>
         <p class="text-lg-center">Go back or hit the home button to regather your bearings :)</p>
-        <v-btn primary class="b primary" to="/">HOME</v-btn>
-        <v-btn class="b secondary" @click="$router.go(-1)">BACK</v-btn>
+        <v-btn primary class="b" to="/">HOME</v-btn>
+        <v-btn class="b" @click="$router.go(-1)">BACK</v-btn>
     </v-layout>
 </template>
 
