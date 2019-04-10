@@ -8,6 +8,8 @@
         pt-5
         class="grey darken-4 fill-height"
       >
+
+
         <v-flex
           xs12
           sm4
@@ -34,6 +36,8 @@
                 sm4
                 class="pa-5 pb-3 rey darken-4 text-lg-right"
         >
+          <v-layout justify-space-between>
+          <v-flex xs10 class="row">
           <h5 class="title pb-3">
             Contact
           </h5>
@@ -127,36 +131,38 @@
               </v-layout>
             </li>
           </ul>
-        </v-flex>
-
-        <v-flex xs12>
-          <v-card
-            tile
-            light
-            dark
-            class="grey darken-3 text-xs-center"
-          >
-            <v-flex
-                    xs12
-                    class="grey darken-4"
+          </v-flex>
+          <v-flex xs1>
+            <v-card
+                    tile
+                    light
+                    dark
+                    class="grey darken-3 text-xs-center elevation-0"
             >
-              <div class="social-media-toolbar">
-                <v-layout  justify-between>
-                  <v-flex
-                          justify-between
-                          class="pa-2 py-1 text-xs-center"
-                          v-for="platform in social.platforms"
-                          :key="'platform-footer-' + platform.text"
+              <v-flex
+                      xs12
+                      class="grey darken-4"
+              >
+                <div class="social-media-toolbar">
+                  <v-layout  class="column">
+                    <v-flex
 
-                  >
+                            class="pa-2 py-1 text-xs-center"
+                            v-for="platform in social.platforms"
+                            :key="'platform-footer-' + platform.text"
 
-                    <v-btn small  :href="platform.to" target="_blank"><v-icon>{{platform.icon}}</v-icon></v-btn>
-                  </v-flex>
-                </v-layout>
-              </div>
-            </v-flex>
-          </v-card>
+                    >
+
+                      <v-btn fab light small  :href="platform.to" target="_blank"><v-icon>{{platform.icon}}</v-icon></v-btn>
+                    </v-flex>
+                  </v-layout>
+                </div>
+              </v-flex>
+            </v-card>
+          </v-flex>
+          </v-layout>
         </v-flex>
+
         <v-flex xs12>
           <v-card
                   tile
@@ -214,6 +220,9 @@
 </script>
 
 <style lang="stylus" scoped>
+
+  .social-media-toolbar
+    margin-top: -33px;
   .jumbo-bot-arrow
     top 1px
     bottom initial

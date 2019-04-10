@@ -2,7 +2,7 @@
     <div class="container">
         <div class="title-a mx-0 mb-5">
             <h1>FAQ</h1>
-            <h2>Some of questions we get asked allot about websites and stuff</h2>
+            <h2>Some of questions we get asked allot about websites, web design, our services and IT solutions.</h2>
         </div>
         <v-expansion-panel focusable>
             <v-expansion-panel-content
