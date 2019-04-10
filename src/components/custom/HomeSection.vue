@@ -11,7 +11,7 @@
         <ui-section-nav-arrow :index="i" direction="next"></ui-section-nav-arrow>
         <v-img
 
-                class="section-img c-box-shadow"
+                class="section-img"
                 lg6
                 :lazy-src="imgC(item.img, false, false, true)"
                 :alt="item.img"

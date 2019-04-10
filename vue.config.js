@@ -30,7 +30,7 @@ module.exports = {
     //         appleTouchIcon: 'favicon/apple-touch-icon-152x152.png',
     //         maskIcon: 'favicon/safari-pinned-tab.svg',
     //         msTileImage: 'favicon/msapplication-icon-144x144.png'
-    //     }
+    //     }b
     // },
     configureWebpack: {
         plugins: [

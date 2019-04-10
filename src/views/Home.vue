@@ -16,7 +16,7 @@
             </div>
         </div>
         <v-img
-                class="c-box-shadow"
+                class=""
                 height="100vh"
                 v-if="loaded"
                 :src="imgC('testimonial')"
