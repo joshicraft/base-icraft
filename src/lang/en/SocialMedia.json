@@ -1,9 +1,25 @@
 {
-  "socialMedia": [
+  "platforms": [
     {
-      "text": "facebook",
-      "to": "facebook",
+      "text": "Facebook",
+      "to": "https://www.facebook.com/icraftdigital",
       "icon": "mdi-facebook"
+    },{
+      "text": "Twitter",
+      "to": "https://twitter.com/icraft_digial",
+      "icon": "mdi-twitter"
+    },{
+      "text": "Instagram",
+      "to": "https://www.instagram.com/icraftwebsites/",
+      "icon": "mdi-instagram"
+    },{
+      "text": "LinkedIn",
+      "to": "https://www.linkedin.com/company/icraft-digital/",
+      "icon": "mdi-linkedin"
+    },{
+      "text": "Pintrest",
+      "to": "https://www.pinterest.nz/icraft_web_design/",
+      "icon": "mdi-pinterest"
     }
   ]
 }

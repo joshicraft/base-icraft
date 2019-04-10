@@ -10,12 +10,12 @@
       >
         <v-flex
           xs12
-          sm3
-          class="pa-5 grey darken-4"
+          sm4
+          class="px-5 py-5 pb-3 grey darken-4"
         >
           <h5 class="title pb-3" v-text="company" />
           <ul>
-            <li v-for="(item, i) in computedLinks" :key="i">
+            <li v-for="(item, i) in siteLinks" :key="i">
               <router-link :to="{name: item.name}" class="layout align-center">
                 <v-icon
                   dark
@@ -28,17 +28,18 @@
           </ul>
         </v-flex>
 
+
         <v-flex
                 xs12
-                sm3
-                class="pa-5 grey darken-4"
+                sm4
+                class="pa-5 pb-3 rey darken-4 text-lg-right"
         >
           <h5 class="title pb-3">
             Contact
           </h5>
           <ul>
             <li>
-              <v-layout justify-start row>
+              <v-layout justify-end row>
                 <v-icon
                         dark
                         class="mr-3"
@@ -50,7 +51,7 @@
               </v-layout>
             </li>
             <li>
-              <v-layout justify-start row>
+              <v-layout justify-end row>
                 <v-icon
                         dark
                         class="mr-3"
@@ -65,7 +66,7 @@
               </v-layout>
             </li>
             <li>
-              <v-layout justify-start row>
+              <v-layout justify-end row>
                 <v-icon
                         dark
                         class="mr-3"
@@ -77,29 +78,57 @@
               </v-layout>
             </li>
             <li>
-              <v-layout justify-start row>
+              <v-layout justify-end row>
                 <v-icon
                         dark
                         class="mr-3"
                 >
                   mdi-clock-outline
                 </v-icon>
-                <v-layout justify-start column>
                   <p class="p-format" v-text="contact.hours.weekday">
                   </p>
+
                   <p class="p-format" v-text="contact.hours.weekend">
                   </p>
-                </v-layout>
               </v-layout>
             </li>
           </ul>
         </v-flex>
+
         <v-flex xs12>
           <v-card
             tile
-            flat
+            light
             dark
             class="grey darken-3 text-xs-center"
+          >
+            <v-flex
+                    xs12
+                    class="grey darken-4"
+            >
+              <div class="social-media-toolbar">
+                <v-layout  justify-between>
+                  <v-flex
+                          justify-between
+                          class="pa-2 py-1 text-xs-center"
+                          v-for="platform in social.platforms"
+                          :key="'platform-footer-' + platform.text"
+
+                  >
+
+                    <v-btn small  :href="platform.to" target="_blank"><v-icon>{{platform.icon}}</v-icon></v-btn>
+                  </v-flex>
+                </v-layout>
+              </div>
+            </v-flex>
+          </v-card>
+        </v-flex>
+        <v-flex xs12>
+          <v-card
+                  tile
+                  flat
+                  dark
+                  class="grey darken-3 text-xs-center"
           >
             <v-card-text>
               <slot />
@@ -139,36 +168,12 @@
         return this.$t('ContactInfo')
         // return this.bakedViews.Contact
       },
-      computedLinks () {
-        if (this.links.length) return this.links
-
-        const social = []
-
-        if (this.github) {
-          social.push({
-            text: this.$t('Layout.Footer.github'),
-            icon: 'mdi-github-circle',
-            href: this.github
-          })
-        }
-
-        if (this.twitter) {
-          social.push({
-            text: this.$t('Layout.Footer.twitter'),
-            icon: 'mdi-twitter-circle',
-            href: this.twitter
-          })
-        }
-
-        if (this.facebook) {
-          social.push({
-            text: this.$t('Layout.Footer.facebook'),
-            icon: 'mdi-facebook-box',
-            href: this.facebook
-          })
-        }
-
-        return social
+      social () {
+        return this.$t('SocialMedia')
+        // return this.bakedViews.Contact
+      },
+      siteLinks () {
+        return this.$t('Layout.Footer.links')
       }
     }
   }

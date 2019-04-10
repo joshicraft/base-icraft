@@ -15,7 +15,21 @@
             </router-link>
         </div>
 
-        <v-spacer/>
+
+        <div class="social-media-toolbar">
+            <v-layout>
+                <v-flex
+                    class="pa-2 py-3 text-xs-center"
+                    v-for="platform in platforms"
+                    :key="'platform-' + platform.text"
+
+                >
+
+                    <v-btn small  :href="platform.to" target="_blank"><v-icon>{{platform.icon}}</v-icon></v-btn><span class="d-none">{{platform.text}}</span>
+                </v-flex>
+            </v-layout>
+        </div>
+
         <!--<h3 class="mdi mr-5 pa-2 pointer-all top-o" :class="{'slide-top': $vuetify.breakpoint.mdAndUp && isScrolling}">-->
             <!--For a free quote call on: <a :href="'tel: ' + contact.phone">{{contact.phone}}</a> or email us at: <a :href="'mailto: ' + contact.email">{{contact.email}}</a>-->
         <!--</h3>-->
@@ -89,12 +103,17 @@
         data: () => ({
             items: [],
             isScrolling: false
+
         }),
         mounted () {
           this.items = this.getItems()
         },
 
         computed: {
+            platforms() {
+                console.log( this.$t('SocialMedia.platforms'))
+                return this.$t('SocialMedia.platforms')
+            },
             contact() {
                 return this.$t('Views.Contact')
             }

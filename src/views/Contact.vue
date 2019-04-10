@@ -9,7 +9,7 @@
                 <v-flex xs12 md6>
                     <v-card  class="pa-4 form-wrap grey lighten-2 align-center d-flex mb-5">
                         <div class="title-a text-lg-left">
-                            <h1 class="mt-0 mb-3 text-uppercase">{{heading.h1}}</h1>
+                            <h4 class="mt-0 mb-3 text-uppercase">{{heading.h1}}</h4>
                             <p class="mb-4">{{heading.h2}}</p>
                             <p v-if="heading.p">{{heading.p}}</p>
                         </div>
