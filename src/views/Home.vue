@@ -53,6 +53,7 @@
                                         :author="testimonial.author"
                                         :title="testimonial.title"
                                         :quote="testimonial.quote"
+                                        :rating="testimonial.rating"
                                 />
 
                             </v-carousel-item>

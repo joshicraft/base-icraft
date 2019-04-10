@@ -18,6 +18,7 @@
       />
       <div class="headline" v-text="author" />
       <div class="title" v-text="title" />
+      <v-rating class="mt-3" v-model="rating" color="yellow darken-3" readonly half-increments></v-rating>
     </footer>
   </div>
 </template>
@@ -28,6 +29,7 @@
       author: String,
       dark: Boolean,
       quote: String,
+      rating: Number,
       title: String
     }
   }
