@@ -114,8 +114,7 @@ let paths = [
     {
         path: '/web-solutions-and-training',
         name: 'ITSolutions',
-        text: "IT Solutions",
-
+        text: "IT Solutions"
     },
     {
         path: '/icraft-web-design-portfolio',

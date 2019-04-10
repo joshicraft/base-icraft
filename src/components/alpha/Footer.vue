@@ -71,6 +71,31 @@
                         dark
                         class="mr-3"
                 >
+                  mdi-domain
+                </v-icon>
+                <p class="p-format" v-text="contact.cityState">
+                </p>
+
+              </v-layout>
+            </li>
+            <li>
+              <v-layout justify-end row>
+                <v-icon
+                        dark
+                        class="mr-3"
+                >
+                  mdi-web
+                </v-icon>
+                <p class="p-format" v-text="contact.country">
+                </p>
+              </v-layout>
+            </li>
+            <li>
+              <v-layout justify-end row>
+                <v-icon
+                        dark
+                        class="mr-3"
+                >
                   mdi-home
                 </v-icon>
                 <p class="p-format" v-text="contact.address">
@@ -87,7 +112,16 @@
                 </v-icon>
                   <p class="p-format" v-text="contact.hours.weekday">
                   </p>
-
+              </v-layout>
+            </li>
+            <li>
+              <v-layout justify-end row>
+                <v-icon
+                        dark
+                        class="mr-3"
+                >
+                  mdi-clock-outline
+                </v-icon>
                   <p class="p-format" v-text="contact.hours.weekend">
                   </p>
               </v-layout>
