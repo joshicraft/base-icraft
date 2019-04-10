@@ -1,0 +1,28 @@
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "LocalBusiness",
+  "name" : "ICRAFT",
+  "url": "https://www.icraft.co.nz",
+  "image": "https://icraft.co.nz/static/web-bg-1.jpg",
+  "telephone" : "021 0285 9043",
+  "email" : "josh@icraft.co.nz",
+  "address" : {
+    "@type" : "PostalAddress",
+    "streetAddress" : "106 North Road Clevedon",
+    "addressLocality" : "Auckland",
+    "addressCountry" : "New Zealand"
+  },
+  "review" : {
+    "@type" : "Review",
+    "author" : {
+      "@type" : "Person",
+      "name" : "John Marshall"
+    },
+    "reviewRating" : {
+      "@type" : "Rating",
+      "ratingValue" : "5"
+    },
+    "reviewBody" : "Working with Icraft was an excellent experience they have taken a daunting process for any business owner and made it easy and streamline. Josh was very understanding and patient with us. It was great that we had a test website to see the progress as it came together. The website has been live for a year now increasing our sales considerably and at any moment I know I could call icraft and they will be happy to help."
+  }
+}</script>
