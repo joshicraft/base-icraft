@@ -153,7 +153,7 @@
 
                     >
 
-                      <v-btn fab light small  :href="platform.to" target="_blank"><v-icon>{{platform.icon}}</v-icon></v-btn>
+                      <v-btn fab light small rel="noopener" :href="platform.to" target="_blank"><v-icon>{{platform.icon}}</v-icon></v-btn>
                     </v-flex>
                   </v-layout>
                 </div>

@@ -25,7 +25,7 @@
 
                 >
 
-                    <v-btn small fab  :href="platform.to" target="_blank"><v-icon>{{platform.icon}}</v-icon></v-btn><span class="d-none">{{platform.text}}</span>
+                    <v-btn small fab  :href="platform.to" target="_blank" rel="noopener"><v-icon>{{platform.icon}}</v-icon></v-btn><span class="d-none">{{platform.text}}</span>
                 </v-flex>
             </v-layout>
         </div>
