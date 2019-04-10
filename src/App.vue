@@ -7,13 +7,14 @@
 
         <core-jumbotron @clicked="clickScrolled" app/>
         <core-view
+                app
                     :scrolled="scrolled"
                    @scroll="handleScroll"
                    @clicked="clickScrolled"
                    :loadTickerCount="loadTickerCount"
-                   :class="{'no-pad': $route.path === '/', 'fixedss': $route.path === '/blog'}"/>
+                   :class="{'no-pad': $route.path === '/'}"/>
 
-        <core-footer v-if="getLoadCount(0)"/>
+        <core-footer />
 
         <custom-contact-icon :atTop="atTop" ></custom-contact-icon>
         <!--<custom-gift-icon :atTop="atTop" v-if="this.$route.path === '/' && $vuetify.breakpoint.mdAndUp"></custom-gift-icon>-->
