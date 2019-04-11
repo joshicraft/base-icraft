@@ -44,17 +44,18 @@ module.exports = {
                 ),
                 threshold: 10240,
                 minRatio: 0.8
-            }),
-            new PreloadWebpackPlugin({
-                rel: 'preload',
-                as(entry) {
-                    if (/\.css$/.test(entry)) return 'style';
-                    if (/\.woff$/.test(entry)) return 'font';
-                    if (/\.png$/.test(entry)) return 'image';
-                    return 'script';
-                },
-                include: 'all'
             })
+            // new HtmlWebpackPlugin(),
+            // new PreloadWebpackPlugin({
+            //     rel: 'preload',
+            //     as(entry) {
+            //         if (/\.css$/.test(entry)) return 'style';
+            //         if (/\.woff$/.test(entry)) return 'font';
+            //         if (/\.png$/.test(entry)) return 'image';
+            //         return 'script';
+            //     },
+            //     include: 'all'
+            // })
             // new PreloadWebpackPlugin({
             //     rel: 'preload',
             //     as: 'style'
