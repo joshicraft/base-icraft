@@ -17,7 +17,9 @@
         </div>
 
 
-        <div class="social-media-toolbar"
+        <div
+                v-if="$vuetify.breakpoint.mdAndUp"
+                class="social-media-toolbar"
 
         >
             <v-layout>
@@ -95,7 +97,7 @@
                 :class="isScrolling ? '--icon-dark' : '--icon-light'"
         >
             <v-icon
-
+            large
             >mdi-menu
             </v-icon>
         </v-btn>
