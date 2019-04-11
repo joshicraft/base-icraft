@@ -1,80 +1,79 @@
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
         <loc>https://www.icraft.co.nz</loc>
-        <lastmod>2019-04-09</lastmod>
+        <lastmod>2019-04-11</lastmod>
         <priority>1</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
-        <loc>https://www.icraft.co.nz/web-design/web-design-discovery</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>0.5</priority>
+        <loc>https://www.icraft.co.nz/web-design/website-discovery</loc>
+        <lastmod>2019-04-11</lastmod>
+        <priority>0.8</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
-        <loc>https://www.icraft.co.nz/web-design/why-icraft-web-design</loc>
-        <lastmod>2019-04-09</lastmod>
+        <loc>https://www.icraft.co.nz/web-design/why-icraft-website-development</loc>
+        <lastmod>2019-04-11</lastmod>
         <priority>1</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
-        <loc>https://www.icraft.co.nz/web-design/web-design-packages</loc>
-        <lastmod>2019-04-09</lastmod>
+        <loc>https://www.icraft.co.nz/web-design/website-packages</loc>
+        <lastmod>2019-04-11</lastmod>
         <priority>1</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
-        <loc>https://www.icraft.co.nz/web-design/web-design-process</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>0.5</priority>
+        <loc>https://www.icraft.co.nz/web-design/website-development-process</loc>
+        <lastmod>2019-04-11</lastmod>
+        <priority>0.8</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
-        <loc>https://www.icraft.co.nz/web-design/mobile-web-design</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>0.5</priority>
+        <loc>https://www.icraft.co.nz/web-design/mobile-web-development</loc>
+        <lastmod>2019-04-11</lastmod>
+        <priority>0.8</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
-        <loc>https://www.icraft.co.nz/web-design/icraft-web-design-terms</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>0.5</priority>
+        <loc>https://www.icraft.co.nz/web-design/icraft-website-terms</loc>
+        <lastmod>2019-04-11</lastmod>
+        <priority>0.8</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
         <loc>https://www.icraft.co.nz/web-design</loc>
-        <lastmod>2019-04-09</lastmod>
-        <priority>1</priority>
+        <lastmod>2019-04-11</lastmod>
+        <priority>0.5</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
         <loc>https://www.icraft.co.nz/graphic-design</loc>
-        <lastmod>2019-04-09</lastmod>
+        <lastmod>2019-04-11</lastmod>
         <priority>0.5</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
         <loc>https://www.icraft.co.nz/web-solutions-and-training</loc>
-        <lastmod>2019-04-09</lastmod>
+        <lastmod>2019-04-11</lastmod>
         <priority>0.5</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
         <loc>https://www.icraft.co.nz/contact-icraft-web-design</loc>
-        <lastmod>2019-04-09</lastmod>
+        <lastmod>2019-04-11</lastmod>
         <priority>0.5</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
         <loc>https://www.icraft.co.nz/privacy-policy</loc>
-        <lastmod>2019-04-09</lastmod>
+        <lastmod>2019-04-11</lastmod>
         <priority>0.5</priority>
         <changefreq>hourly</changefreq>
     </url>
     <url>
         <loc>https://www.icraft.co.nz/sitemap</loc>
-        <lastmod>2019-04-09</lastmod>
+        <lastmod>2019-04-11</lastmod>
         <priority>0.5</priority>
         <changefreq>hourly</changefreq>
     </url>

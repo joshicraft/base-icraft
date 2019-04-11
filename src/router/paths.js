@@ -54,40 +54,40 @@ let paths = [
         nestedItems: [
 
             {
-                path: 'web-design-discovery',
+                path: 'website-discovery',
                 name: 'Discovery',
                 text: "Discovery",
                 nestedPath: 'Websites',
             },
             {
-                path: 'why-icraft-web-design',
+                path: 'why-icraft-website-development',
                 name: 'WhyUsWebsites',
                 text: "Why ICRAFT",
                 nestedPath: 'Websites',
                 priority: 1
             },
             {
-                path: 'web-design-packages',
+                path: 'website-packages',
                 name: 'Packages',
                 text: "Packages",
                 nestedPath: 'Websites',
                 priority: 1
             },
             {
-                path: 'web-design-process',
+                path: 'website-development-process',
                 name: 'Process',
                 text: "Process",
                 nestedPath: 'Websites',
 
             },
             {
-                path: 'mobile-web-design',
+                path: 'mobile-web-development',
                 name: 'Mobile',
                 text: "Mobile",
                 nestedPath: 'Websites',
             },
             {
-                path: 'icraft-web-design-terms',
+                path: 'icraft-website-terms',
                 name: 'WebsiteTerms',
                 text: "Terms",
                 nestedPath: 'Websites',
