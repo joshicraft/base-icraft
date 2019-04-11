@@ -61,6 +61,7 @@
                     </v-flex>
                 </v-layout>
             </v-container>
+            <ui-section-nav-arrow :index="0" direction="next"></ui-section-nav-arrow>
         </v-img>
         <div class="relative">
             <div class="jumbo-bot-arrow">

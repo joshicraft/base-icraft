@@ -24,7 +24,10 @@
             <div class="title-a" :class="{'align-left': i%2===0}">
                 <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
                 <h3 class="mb-4">{{item.text}}</h3>
-                <v-btn @click="goToAndScroll(item.to)" class="ml-0 primary">{{item.button}}</v-btn>
+                <div class="hover-wrap "
+                >
+                <v-btn  @click="goToAndScroll(item.to)" class="ml-0 primary ping-hover">{{item.button}}</v-btn>
+                </div>
             </div>
         </v-flex>
     </v-layout>
@@ -96,6 +99,11 @@
 
     .arrow-bottom
         bottom 30px
+
+
+    .section-title:hover
+        .v-btn
+            animation: wobble-hor-bottom 0.8s infinite  both;
 
 
     .title-a

@@ -7,6 +7,7 @@
             :flat="!isScrolling"
             :color="!isScrolling ? 'transparent' : 'transparent'"
             v-scroll="onScroll"
+            :height="isScrolling ? '38px' : '48px'"
             class="_visible elevation-0"
     >
         <div class="toolbar-svg-wrapper" @click="playSound('click', 0.3)">
@@ -16,13 +17,15 @@
         </div>
 
 
-        <div class="social-media-toolbar">
+        <div class="social-media-toolbar"
+
+        >
             <v-layout>
                 <v-flex
                     class="pa-2 py-3 text-xs-center"
                     v-for="platform in platforms"
                     :key="'platform-' + platform.text"
-
+                    :class="isScrolling ? 'slide-out-blurred-top' : 'slide-in-blurred-top'"
                 >
 
                     <v-btn small fab  :href="platform.to" target="_blank" rel="noopener"><v-icon>{{platform.icon}}</v-icon></v-btn><span class="d-none">{{platform.text}}</span>
@@ -38,6 +41,7 @@
         <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
 
             <v-menu
+
                     open-on-hover
                     offset-y
                     v-for="(item, i) in items"
@@ -51,7 +55,7 @@
                         @click="playSound('click', 0.3)"
                         exact
                         :aria-label="item.path + '-toolbar'"
-                        :class="getCurrentRouteClass(item, item.nestedItems)"
+                        :class="{'primary': $route.name === item.name, 'nested-menu': item.nestedItems}"
                         class="ml-1 mt-0"
                 >
                     {{item.text}}
@@ -61,17 +65,21 @@
                         dark
                         v-if="item.nestedItems"
                 >
-                    <v-btn
-                            dense
-                            v-for="(path, index) in item.nestedItems"
-                            v-if="!path.noToolbar"
-                            :key="index"
-                            :aria-label="path.name + '-toolbar'"
-                            :class="getCurrentRouteClass(path)"
-                            @click="playSound('click', 0.3)"
-                            :to="{name: path.name, params: {nestedPath: item.name}}">
-                        {{ path.text }}
-                    </v-btn>
+                    <template
+                            v-for="(path, index) in item.nestedItems">
+                        <v-btn
+                                dense
+
+                                v-if="!path.noToolbar"
+                                :key="index"
+                                :aria-label="path.name + '-toolbar'"
+                                :class="{'primary': $route.name === path.name}"
+                                @click="playSound('click', 0.3)"
+                                :to="{name: path.name, params: {nestedPath: item.name}}">
+                            {{ path.text }}
+                        </v-btn>
+                    </template>
+
                 </v-list>
             </v-menu>
         </v-toolbar-items>

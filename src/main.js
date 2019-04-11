@@ -255,6 +255,7 @@ Vue.mixin({
             },
             goToAndScroll(to, delay, params) {
                 // this.scrolled = true;
+                console.log(to)
                 this.playSound('click', 0.3);
                 this.$router.push({name: to || '', params: params || {}});
                 setTimeout(() => {
