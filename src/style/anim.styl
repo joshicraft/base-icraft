@@ -70,8 +70,6 @@
 }
 
 
-.pulsate-hover:hover
-  animation: pulsate-bck 0.5s ease-in-out infinite both;
 
 .pulsate-bck {
   animation: pulsate-bck 0.5s ease-in-out infinite both;
@@ -442,3 +440,22 @@
     transform: scale(1.1)
   }
 }
+.squish-anim {
+  animation: squish-anim;
+  animation-duration: 0.5s;
+  opacity: 1;
+}
+@keyframes squish-anim {
+  0% { transform: scale(1,1)}
+  30% { transform:scale(1.1,0.90) }
+  50% { transform:scale(0.95,1.05) }
+  75% { transform:scale(1.02,0.98) }
+  100% { transform: scale(1,1)}
+}
+
+
+.pulsate-hover:hover
+  animation: pulsate-bck 0.5s ease-in-out infinite both;
+
+.pulsate
+  animation: pulsate-bck 0.5s ease-in-out infinite both;

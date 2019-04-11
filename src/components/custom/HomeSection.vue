@@ -26,7 +26,7 @@
                 <h3 class="mb-4">{{item.text}}</h3>
                 <div class="hover-wrap "
                 >
-                <v-btn  @click="goToAndScroll(item.to)" class="ml-0 primary ping-hover">{{item.button}}</v-btn>
+                <v-btn  @click="goToAndScroll(item.to)" class="ml-0 primary pulsate-hover">{{item.button}}</v-btn>
                 </div>
             </div>
         </v-flex>
@@ -103,7 +103,7 @@
 
     .section-title:hover
         .v-btn
-            animation: wobble-hor-bottom 0.8s infinite  both;
+            animation: pulsate-bck 0.5s ease-in-out infinite both;
 
 
     .title-a

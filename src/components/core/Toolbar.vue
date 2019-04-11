@@ -7,10 +7,10 @@
             :flat="!isScrolling"
             :color="!isScrolling ? 'transparent' : 'transparent'"
             v-scroll="onScroll"
-            :height="isScrolling ? '38px' : '48px'"
+
             class="_visible elevation-0"
     >
-        <div class="toolbar-svg-wrapper" @click="playSound('click', 0.3)">
+        <div id="toolbar-logo" class="toolbar-svg-wrapper pulsate-hover" @click="playSound('click', 0.3)">
             <router-link aria-label="home-link" :to="{name: 'Home'}" >
                 <custom-logo-side :hide-text="true"></custom-logo-side>
             </router-link>
@@ -22,7 +22,7 @@
         >
             <v-layout>
                 <v-flex
-                    class="pa-2 py-3 text-xs-center"
+                    class="pa-2 py-3 text-xs-center pulsate-hover"
                     v-for="platform in platforms"
                     :key="'platform-' + platform.text"
                     :class="isScrolling ? 'slide-out-blurred-top' : 'slide-in-blurred-top'"
@@ -37,8 +37,11 @@
             <!--For a free quote call on: <a :href="'tel: ' + contact.phone">{{contact.phone}}</a> or email us at: <a :href="'mailto: ' + contact.email">{{contact.email}}</a>-->
         <!--</h3>-->
         <v-spacer/>
+        <div :style="{'height': isScrolling ? '38px' : '100%'}"
+        >
+        <v-toolbar-items
 
-        <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
+                v-if="$vuetify.breakpoint.mdAndUp">
 
             <v-menu
 
@@ -51,8 +54,7 @@
                 <v-btn
 
                         slot="activator"
-                        :to="{name: item.name}"
-                        @click="playSound('click', 0.3)"
+                        @click="goToAndScroll(item.name)"
                         exact
                         :aria-label="item.path + '-toolbar'"
                         :class="{'primary': $route.name === item.name, 'nested-menu': item.nestedItems}"
@@ -73,9 +75,9 @@
                                 v-if="!path.noToolbar"
                                 :key="index"
                                 :aria-label="path.name + '-toolbar'"
+                                @click="goToAndScroll(path.name, 0, {nestedPath: item.name})"
                                 :class="{'primary': $route.name === path.name}"
-                                @click="playSound('click', 0.3)"
-                                :to="{name: path.name, params: {nestedPath: item.name}}">
+                               >
                             {{ path.text }}
                         </v-btn>
                     </template>
@@ -83,6 +85,7 @@
                 </v-list>
             </v-menu>
         </v-toolbar-items>
+
         <v-btn
                 class="mr-2"
                 aria-label="show-hide-menu"
@@ -96,6 +99,7 @@
             >mdi-menu
             </v-icon>
         </v-btn>
+        </div>
     </v-toolbar>
 </template>
 
@@ -114,7 +118,7 @@
 
         }),
         mounted () {
-          this.items = this.getItems()
+            setTimeout(this.animateLogo, 4000)
         },
 
         computed: {
@@ -128,6 +132,15 @@
         },
         methods: {
             ...mapMutations('app', ['toggleDrawer']),
+            animateLogo(){
+                this.items = this.getItems()
+                let $svg = this.$el.querySelector('#toolbar-logo')
+                let paths = $svg.querySelectorAll('#block-logo polygon')
+                new TimelineMax({repeat: -1, repeatDelay: 1})
+                    .to($svg.querySelector("#log-a-0"), 1.1, {morphSVG:$svg.querySelector("#log-p-1")}, 'a')
+                    .to($svg.querySelector("#log-a-1"), 1.1, {morphSVG:$svg.querySelector("#log-p-2")}, 'a')
+                    .to($svg.querySelector("#log-a-2"), 1.1, {morphSVG:$svg.querySelector("#log-p-0")}, 'a')
+            },
             clickRoute(route){
                 this.playSound('click', 0.3);
               this.$router.push(route)

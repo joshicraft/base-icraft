@@ -185,7 +185,7 @@ router.beforeEach((to, from, next) => {
     //     next()
     //     return
     // }
-    TweenMax.killAll()
+    // TweenMax.killAll()
 
     setTimeout(() => {
 

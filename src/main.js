@@ -257,6 +257,10 @@ Vue.mixin({
                 // this.scrolled = true;
                 console.log(to)
                 this.playSound('click', 0.3);
+                if(this.$route.name === to){
+                    this.$vuetify.goTo(0)
+                    return;
+                }
                 this.$router.push({name: to || '', params: params || {}});
                 setTimeout(() => {
                     this.$vuetify.goTo(window.innerHeight)

@@ -44,7 +44,7 @@
                                 <v-btn
                                         
                                         large
-                                        class="font-weight-bold mt-5 -border-btn elevation-19 -text-anim wobble-hor-bottom"
+                                        class="font-weight-bold mt-5 -border-btn elevation-19 -text-anim pulsate"
                                         @click="goTo('#view')"
                                 >IGNITION</v-btn>
                             </v-layout>
