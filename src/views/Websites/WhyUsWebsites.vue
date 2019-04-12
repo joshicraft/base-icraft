@@ -19,6 +19,10 @@
                         the latest front-end frameworks and get insights on other disciplinary skills including
                         Business, Marketing and Design.
                     </p>
+                    <p>
+                        To read about my journey in life, click the button blow.
+                    </p>
+                    <v-btn href="https://medium.com/@josh_52450/my-path-to-icraft-and-web-design-and-development-6df5a103de75" target="_black" rel="noopener">My journey</v-btn>
                 </v-flex>
                 <v-img class="full-height" lg6 src="/static/josh2.jpg"></v-img>
             </v-layout>
