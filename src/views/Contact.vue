@@ -12,6 +12,7 @@
                             <h4 class="mt-0 mb-3 text-uppercase">{{heading.h1}}</h4>
                             <p class="mb-4">{{heading.h2}}</p>
                             <p v-if="heading.p">{{heading.p}}</p>
+                            <v-btn @click="$vuetify.goTo('#c-form')" class="primary" v-if="$vuetify.breakpoint.smAndDown">Fill out the form</v-btn>
                         </div>
                     </v-card>
                     <v-card class="pa-3 grey lighten-2">
@@ -103,7 +104,7 @@
                         </v-card-text>
                     </v-card>
                 </v-flex>
-            <v-flex xs12 md6 class="ml-5">
+            <v-flex id="c-form" xs12 md6 :class="{'ml-5': $vuetify.breakpoint.mdAndUp, 'mt-4' : $vuetify.breakpoint.smAndDown}">
                 <v-card class="pa-4 form-wrap grey lighten-2">
                     <!--<h2 class="headline mb-2" v-text="heading.h1"/>-->
                     <!--<p class="mb-4" v-text="heading.h2"/>-->
@@ -122,10 +123,10 @@
                             class="v-form-success"
                             dark
                     >
-                        <div class="wrap pa-5">
+                        <div class="wrap mw-100" :class="$vuetify.breakpoint.mdAndUp ? 'pa-5' : 'pa-4'">
                             <h1 class="white--text display-2 text-lg-left mb-4">{{submitStatus.t1}}</h1>
                             <p class="white--text display-1 text-lg-left mb-5">{{submitStatus.t2}}</p>
-                            <img :src="`/static/gif/${contactMethod === 'Phone' ? 'phone.gif' : 'email.gif'}`"/>
+                            <img class='mw-100' :src="`/static/gif/${contactMethod === 'Phone' ? 'phone.gif' : 'email.gif'}`"/>
                         </div>
                         <v-btn aria-label="form-try-again" class="mt-5" v-if="failed" @click="resetForm">TRY AGAIN</v-btn>
                     </v-layout>
