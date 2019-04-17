@@ -123,7 +123,7 @@ function makeRoutes() {
         // })
 
     if (process.env.NODE_ENV === 'development') {
-        getRoutesXML('https://www.icraft.co.nz')
+        getRoutesXML('https://icraft.co.nz')
     }
     routes = nestedRoutes.concat([
         { path: '/404', component: error404 },
