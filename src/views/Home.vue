@@ -4,7 +4,7 @@
                 v-for="(item, i) in items"
                 :key="i"
         >
-            <home-section
+            <home-section v-if="loadPoint(i-1)"
                           :item="item" :i="i"></home-section>
 
         </v-layout>
@@ -18,6 +18,7 @@
         <v-img
                 class=""
                 height="100vh"
+                v-if="loaded"
                 :src="imgC('testimonial')"
                 dark
         >
