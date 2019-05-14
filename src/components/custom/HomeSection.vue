@@ -12,7 +12,8 @@
         <v-img
 
                 class="section-img"
-                lg6
+                :lg5="stagger"
+                :lg6="!stagger"
                 :lazy-src="imgC(item.img, false, false, true)"
                 :alt="item.img"
                 :src="imgC(item.img)"
@@ -20,13 +21,18 @@
         >
         </v-img>
 
-        <v-flex lg6 pa-5 class="d-flex section-title" justify-center>
-            <div class="title-a" :class="{'align-left': i%2===0}">
+        <v-flex
+                :lg6="!stagger"
+                :lg7="stagger"
+                pa-5
+                class="d-flex section-title"
+                justify-center>
+            <div class="title-a" :class="{'align-left': i%2===0, 'wide':wide, 'first': first}">
                 <h1 class="mb-4 font-weight-bold">{{item.title}}</h1>
-                <h3 class="mb-4">{{item.text}}</h3>
-                <div class="hover-wrap "
-                >
-                <v-btn  @click="goToAndScroll(item.to)" class="ml-0 primary pulsate-hover">{{item.button}}</v-btn>
+                <h3 v-if="item.text" class="mb-4">{{item.text}}</h3>
+                <p v-if="item.paragraph" class="mb-4" v-html="item.paragraph"></p>
+                <div class="hover-wrap ">
+                <v-btn v-if="item.button" @click="goToAndScroll(item.to)" class="ml-0 primary pulsate-hover">{{item.buttonText || item.button}}</v-btn>
                 </div>
             </div>
         </v-flex>
@@ -39,6 +45,9 @@
     export default {
         components: {SlideBg},
         props: {
+            wide: false,
+            first: false,
+            stagger: false,
             i: 0,
             item: {
                 type: Object,
@@ -111,6 +120,10 @@
         max-width 64%
         width 70%
         text-align right
+        &.first
+            margin-top 80px
+        &.wide
+            max-width: 600px
 
         h1
             line-height 1.1

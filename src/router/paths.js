@@ -46,6 +46,7 @@ let paths = [
         text: "Home",
         priority: 1
     },
+
     {
         path: '/web-design',
         name: 'Websites',
@@ -60,13 +61,6 @@ let paths = [
                 nestedPath: 'Websites',
             },
             {
-                path: 'why-icraft-website-development',
-                name: 'WhyUsWebsites',
-                text: "Why ICRAFT",
-                nestedPath: 'Websites',
-                priority: 1
-            },
-            {
                 path: 'website-packages',
                 name: 'Packages',
                 text: "Packages",
@@ -79,6 +73,12 @@ let paths = [
                 text: "Process",
                 nestedPath: 'Websites',
 
+            },
+            {
+                path: '10-reasons-for-a-website',
+                name: 'WhyWebsites',
+                text: "Why a website?",
+                nestedPath: 'Websites',
             },
             {
                 path: 'mobile-web-development',
@@ -129,6 +129,13 @@ let paths = [
         text: "Blog",
         noToolbar: true,
         remove: process.env.NODE_ENV === 'production'
+    },
+
+    {
+        path: '/about-icraft-web-design',
+        name: 'About',
+        text: "ABOUT",
+        priority: 1
     },
     {
         path: '/contact-icraft-web-design',
