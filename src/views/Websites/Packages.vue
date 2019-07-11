@@ -1,5 +1,5 @@
 <template>
-    <v-container class="-arrow-buffer-top">
+    <v-container class="-arrow-buffer-top packages">
         <v-layout column wrap class="title-a">
             <h1 class="mt-5 mb-3 text-lg-center" id="packages">
                 BASELINE PACKAGES
@@ -57,8 +57,9 @@
                                         md6
                                         dark
                                         @mouseover="hoverPackage"
-                                        class="elevation-6 column shake-vertical"
+                                        class="elevation-6 column shake-vertical package"
                                 >
+                                    <div class="point"></div>
                                     <div class="text-xs-center top-content pt-4 pl-4 pr-4 pb-1">
                                         <v-flex
                                                 row
@@ -118,6 +119,8 @@
                                                     </v-list-tile-title>
                                                 </v-list-tile-content>
                                             </v-list-tile>
+                                            <div class="line mb-3"></div>
+                                            <v-btn @click="goToAndScroll('Contact')" class="primary mb-4 ml-3 center-btn">GET IN TOUCH <v-icon class="ml-4">mdi-phone</v-icon></v-btn>
                                         </v-list-group>
                                     </v-list>
                                 </v-card>
@@ -157,3 +160,25 @@
         }
     }
 </script>
+<style lang="stylus">
+    .packages .title-a
+        max-width: 800px;
+
+    .package
+        overflow hidden
+        .center-btn
+            margin-left auto !important
+            margin-right auto
+            display block
+        .line
+            height 1px
+            background: rgba(255,255,255,0.12);
+        .point
+            width 100%
+            height 1000px
+            position absolute
+            bottom 0
+            left 0
+            transform: rotate(45deg);
+            background: rgba(179, 179, 179, 0.03)
+</style>
