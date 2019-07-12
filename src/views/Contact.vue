@@ -212,6 +212,7 @@
                                 color="warning"
                                 @click="clear">clear
                         </v-btn>
+                        <vue-recaptcha sitekey="6LeqVa0UAAAAAJLIQFWjIseqWi6tTwnZEToLKreh">
                         <v-btn
                                 aria-label="submit-form"
                                 class=""
@@ -221,6 +222,7 @@
                         >
                             submit
                         </v-btn>
+                        </vue-recaptcha>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -233,8 +235,10 @@
 <script>
     /* eslint-disable no-console */
     // import content from '../lang/en/Views/Contact'
+    import VueRecaptcha from 'vue-recaptcha';
 
     export default {
+        components: { VueRecaptcha },
         data() {
             return {
                 submitStatus: {
