@@ -97,6 +97,7 @@
   },
   "dependencies": {
     "showdown": "^1.9.0",
+    "vue-recaptcha": "^1.2.0",
     "vue-router-sitemap": "0.0.4",
     "vue-showdown": "^2.4.0"
   }
