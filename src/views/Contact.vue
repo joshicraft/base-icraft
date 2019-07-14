@@ -222,6 +222,7 @@
                         >
                             submit
                         </v-btn>
+
                         </vue-recaptcha>
                     </v-card-actions>
                 </v-card>
