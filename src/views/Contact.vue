@@ -212,7 +212,12 @@
                                 color="warning"
                                 @click="clear">clear
                         </v-btn>
-                        <vue-recaptcha sitekey="6LeqVa0UAAAAAJLIQFWjIseqWi6tTwnZEToLKreh">
+                        <vue-recaptcha
+                                @verify="valid = true"
+                                @expired="valid = false"
+                                size="invisible"
+                                sitekey="6Le7kK0UAAAAAJYOxjd26CGvaTR4yIiPmSZltApj"
+                        >
                         <v-btn
                                 aria-label="submit-form"
                                 class=""
@@ -230,6 +235,7 @@
 
             </v-layout>
         </v-layout>
+
     </v-container>
 </template>
 
