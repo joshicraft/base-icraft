@@ -50,7 +50,11 @@
                 >
                   mdi-phone
                 </v-icon>
-                <a class="p-format" :href="'tel:' + contact.phone" v-text="contact.phone">
+                <a
+                        target="_blank"
+                        class="p-format"
+                        :href="'tel:' + contact.phone"
+                        v-text="contact.phone">
                 </a>
               </v-layout>
             </li>
@@ -63,9 +67,10 @@
                   mdi-email
                 </v-icon>
                 <a
-                          class="p-format"
-                          :href="'mailto:' + contact.email"
-                          v-text="contact.email">
+                        target="_blank"
+                        class="p-format"
+                        :href="'mailto:' + contact.email"
+                        v-text="contact.email">
                   </a>
               </v-layout>
             </li>
