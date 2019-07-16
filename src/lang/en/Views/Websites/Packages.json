@@ -4,6 +4,86 @@
   "jumbotronTitle": "OUR WEB DESIGN PACKAGES",
   "jumbotronSubTitle": "So you can understand what goes into a website.",
   "heading1": "",
+  "packageItems":[
+    {
+      "icon": "mdi-web",
+      "text": "Browser Coverage",
+      "key": "Browser Coverage",
+      "info": "Ensuring your website works across a range of commonly used browsers including Chrome, IE, Edge, Firefox and Safari."
+    },
+    {
+      "icon": "mdi-cellphone-link",
+      "text": "Device Coverage",
+      "key": "Device Coverage",
+      "info": "Making your website look good on a range of different devices from phones to tablet to desktop devices."
+    },
+    {
+      "icon": "mdi-file-document-outline",
+      "text": "Web Page",
+      "key": "Web Page",
+      "info": "The number of pages the website will have. For example a Home, Contact and About page will be 3 pages."
+    },
+    {
+      "icon": "mdi-domain",
+      "text": "Domain",
+      "key": "Domain",
+      "info": "A domain is the address that the website is located at. For example www.icraft.co.nz is our domain. This is also associated with emails so you can have email addresses like info@icraft.co.nz. They typically cost between $30-$40 a year."
+    },
+    {
+      "icon": "mdi-email",
+      "text": "Email",
+      "key": "Email",
+      "info": "This allows you to have an email address associated with the domain name. You can have multiple address's or one address. These come at a yearly cost from anywhere between $2-$10 a month."
+    },
+    {
+      "icon": "mdi-search-web",
+      "text": "SEO",
+      "key": "SEO",
+      "info": "This provides a few options to help the search engines like google find your website."
+    },
+    {
+      "icon": "mdi-account-multiple",
+      "text": "Revisions",
+      "key": "Revisions",
+      "info": "The number of times you can provide feedback during the development process so we can adjust your website before it goes live."
+    },
+    {
+      "icon": "mdi-map",
+      "key": "Google Maps",
+      "text": "Google Maps",
+      "info": "Google Maps provides uses the power of Google's amazing maps platform. This gives visitors the ability to find the physical location of your store, business or place of operation."
+    },
+    {
+      "icon": "mdi-message-text",
+      "key": "Contact Forms",
+      "text": "Contact Forms",
+      "info": "Having a contact form can help with conversion rates. This means that people are more likely to get in touch with you."
+    },
+    {
+      "icon": "mdi-monitor-dashboard",
+      "key": "Custom Template",
+      "text": "Custom Template",
+      "info": "If you want something that is unique with effective animations, engaging sound effects and or custom visual effects. This is for you!"
+    },
+    {
+      "icon": "mdi-blogger",
+      "key": "Blog",
+      "text": "Blog",
+      "info": "A blog is great for Search Engine Optimization (SEO). It helps your site rank higher on google and also helps your brand act as an authority in the industry its in. "
+    },
+    {
+      "icon": "mdi-comment-account",
+      "key": "Chat Bot",
+      "text": "Chat Bot",
+      "info": "A chat bot can help streamline and automatic common communication you might face with returning visitors."
+    },
+    {
+      "icon": "mdi-cart",
+      "key": "Store",
+      "text": "Store",
+      "info": "A store is a website that allows the ability to display and handle the processing of a variety of products all on one platform."
+    }
+  ],
   "contents": [
     {
       "title": "Index",
@@ -41,32 +121,27 @@
       "iconColor": "amber",
       "items": [
         {
-          "icon": "mdi-web",
-          "text": "Browser Coverage"
+          "key": "Browser Coverage"
         },
         {
-          "icon": "mdi-cellphone-link",
-          "text": "Device Coverage"
+          "key": "Device Coverage"
         },
         {
-          "icon": "mdi-file-document-outline",
-          "text": "Web Page - up to 3"
+          "key": "Web Page",
+          "suffix": " - up to 3"
         },
         {
-          "icon": "mdi-domain",
-          "text": "Domain"
+          "key": "Domain"
         },
         {
-          "icon": "mdi-email",
-          "text": "Email"
+          "key": "Email"
         },
         {
-          "icon": "mdi-search-web",
-          "text": "SEO"
+          "key": "SEO"
         },
         {
-          "icon": "mdi-account-multiple",
-          "text": "Revisions - up to 2"
+          "key": "Revisions",
+          "suffix": " - up to 2"
         }
       ]
     },
@@ -80,40 +155,33 @@
       "iconColor": "#d6d6d6",
       "items": [
         {
-          "icon": "mdi-web",
-          "text": "Browser Coverage"
+          "key": "Browser Coverage"
         },
         {
-          "icon": "mdi-cellphone-link",
-          "text": "Device Coverage"
+          "key": "Device Coverage"
         },
         {
-          "icon": "mdi-file-document-outline",
-          "text": "Web Page - up to 8"
+          "key": "Web Page",
+          "suffix": " - up to 8"
         },
         {
-          "icon": "mdi-domain",
-          "text": "Domain"
+          "key": "Domain"
         },
         {
-          "icon": "mdi-email",
-          "text": "Email"
+          "key": "Email"
         },
         {
-          "icon": "mdi-search-web",
-          "text": "SEO"
+          "key": "SEO"
         },
         {
-          "icon": "mdi-map",
-          "text": "Google Maps"
+          "key": "Google Maps"
         },
         {
-          "icon": "mdi-message-text",
-          "text": "Contact Forms"
+          "key": "Contact Forms"
         },
         {
-          "icon": "mdi-account-multiple",
-          "text": "Revisions - up to 3"
+          "key": "Revisions",
+          "suffix": " - up to 3"
         }
       ]
     },
@@ -127,52 +195,42 @@
       "iconColor": "blue",
       "items": [
         {
-          "icon": "mdi-web",
-          "text": "Browser Coverage"
+          "key": "Browser Coverage"
         },
         {
-          "icon": "mdi-cellphone-link",
-          "text": "Device Coverage"
+          "key": "Device Coverage"
         },
         {
-          "icon": "mdi-file-document-outline",
-          "text": "Web Pages - up to 15"
+          "key": "Web Page",
+          "suffix": " - up to 15"
         },
         {
-          "icon": "mdi-domain",
-          "text": "Domain"
+          "key": "Domain"
         },
         {
-          "icon": "mdi-email",
-          "text": "Email"
+          "key": "Email"
         },
         {
-          "icon": "mdi-search-web",
-          "text": "SEO"
+          "key": "SEO"
         },
         {
-          "icon": "mdi-map",
-          "text": "Google Maps"
+          "key": "Google Maps"
         },
         {
-          "icon": "mdi-message-text",
-          "text": "Forms"
+          "key": "Contact Forms"
         },
         {
-          "icon": "mdi-monitor-dashboard",
-          "text": "Custom Template"
+          "key": "Custom Template"
         },
         {
-          "icon": "mdi-blogger",
-          "text": "Blog"
+          "key": "Blog"
         },
         {
-          "icon": "mdi-account-multiple",
-          "text": "Revisions - up to 5"
+          "key": "Revisions",
+          "suffix": " - up to 5"
         },
         {
-          "icon": "mdi-comment-account",
-          "text": "Chat Bot"
+          "key": "Chat Bot"
         }
       ]
     },
@@ -186,44 +244,36 @@
       "iconColor": "green",
       "items": [
         {
-          "icon": "mdi-web",
-          "text": "Browser Coverage"
+          "key": "Browser Coverage"
         },
         {
-          "icon": "mdi-cellphone-link",
-          "text": "Device Coverage"
+          "key": "Device Coverage"
         },
         {
-          "icon": "mdi-file-document-outline",
-          "text": "Web Page - up to 15"
+          "key": "Web Page",
+          "suffix": " - up to 15"
         },
         {
-          "icon": "mdi-domain",
-          "text": "Domain"
+          "key": "Domain"
         },
         {
-          "icon": "mdi-email",
-          "text": "Email"
+          "key": "Email"
         },
         {
-          "icon": "mdi-search-web",
-          "text": "SEO"
+          "key": "SEO"
         },
         {
-          "icon": "mdi-map",
-          "text": "Google Maps"
+          "key": "Google Maps"
         },
         {
-          "icon": "mdi-message-text",
-          "text": "Forms"
+          "key": "Contact Forms"
         },
         {
-          "icon": "mdi-cart",
-          "text": "Store"
+          "key": "Store"
         },
         {
-          "icon": "mdi-account-multiple",
-          "text": "Revisions - up to 3"
+          "key": "Revisions",
+          "suffix": " - up to 5"
         }
       ]
     }

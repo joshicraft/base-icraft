@@ -249,6 +249,7 @@ Vue.mixin({
             goToID(id, offset) {
                 // this.scrolled = true;
                 this.playSound('click', 0.3);
+
                 setTimeout(() => {
                     this.$vuetify.goTo(id, {offset: offset || 0})
                 }, 250)
