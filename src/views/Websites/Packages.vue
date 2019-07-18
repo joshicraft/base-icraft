@@ -1,5 +1,5 @@
 <template>
-    <v-container class="-arrow-buffer-top packages">
+    <v-container class="-arrow-buffer-top packages" @mousedown="showInfo=false">
         <v-layout column wrap class="title-a">
             <h1 class="mt-5 mb-3 text-lg-center" id="packages">
                 BASELINE PACKAGES
@@ -12,7 +12,7 @@
             </p>
             <div class="btn-wrap">
             <v-btn @click="goToAndScroll('Discovery')" class="primary max-width-200 mr-2">Discover</v-btn>
-            <v-btn @click="goToID('#packages')" class="primary max-width-200 ml-2">Packages</v-btn>
+            <v-btn @click="goToID('#package-items', 100)" class="primary max-width-200 ml-2">Packages</v-btn>
             </div>
         </v-layout>
         <v-layout
@@ -51,6 +51,7 @@
                                 row
                                 wrap
                                 mt-4
+                                id="package-items"
 
                         >
                             <v-flex
