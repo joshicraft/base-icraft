@@ -8,20 +8,20 @@
     {
       "icon": "mdi-web",
       "text": "Browser Coverage",
-      "key": "Browser Coverage",
+      "key": "Browser-Coverage",
       "info": "Ensuring your website works across a range of commonly used browsers including Chrome, IE, Edge, Firefox and Safari.",
       "moreInfo": "Making your website work on every browser is not very cost efficient and it limits the creative freedom of an website. Some agencies support ancient browsers, some only support the latest and sometimes it depends on the nature of the product but here at ICRAFT we choose to support upwards of 95% of browsers."
     },
     {
       "icon": "mdi-cellphone-link",
       "text": "Device Coverage",
-      "key": "Device Coverage",
+      "key": "Device-Coverage",
       "info": "Making your website look good on a range of different devices from phones to tablet to desktop devices."
     },
     {
       "icon": "mdi-file-document-outline",
       "text": "Web Page",
-      "key": "Web Page",
+      "key": "Web-Page",
       "info": "The number of pages the website will have. For example a Home, Contact and About page will be 3 pages."
     },
     {
@@ -50,19 +50,19 @@
     },
     {
       "icon": "mdi-map",
-      "key": "Google Maps",
+      "key": "Google-Maps",
       "text": "Google Maps",
       "info": "Google Maps provides uses the power of Google's amazing maps platform. This gives visitors the ability to find the physical location of your store, business or place of operation."
     },
     {
       "icon": "mdi-message-text",
-      "key": "Contact Forms",
+      "key": "Contact-Forms",
       "text": "Contact Forms",
       "info": "Having a contact form can help with conversion rates. This means that people are more likely to get in touch with you."
     },
     {
       "icon": "mdi-monitor-dashboard",
-      "key": "Custom Template",
+      "key": "Custom-Template",
       "text": "Custom Template",
       "info": "If you want something that is unique with effective animations, engaging sound effects and or custom visual effects. This is for you!"
     },
@@ -74,7 +74,7 @@
     },
     {
       "icon": "mdi-comment-account",
-      "key": "Chat Bot",
+      "key": "Chat-Bot",
       "text": "Chat Bot",
       "info": "A chat bot can help streamline and automatic common communication you might face with returning visitors."
     },
@@ -122,13 +122,13 @@
       "iconColor": "amber",
       "items": [
         {
-          "key": "Browser Coverage"
+          "key": "Browser-Coverage"
         },
         {
-          "key": "Device Coverage"
+          "key": "Device-Coverage"
         },
         {
-          "key": "Web Page",
+          "key": "Web-Page",
           "suffix": " - up to 3"
         },
         {
@@ -156,13 +156,13 @@
       "iconColor": "#d6d6d6",
       "items": [
         {
-          "key": "Browser Coverage"
+          "key": "Browser-Coverage"
         },
         {
-          "key": "Device Coverage"
+          "key": "Device-Coverage"
         },
         {
-          "key": "Web Page",
+          "key": "Web-Page",
           "suffix": " - up to 8"
         },
         {
@@ -175,10 +175,10 @@
           "key": "SEO"
         },
         {
-          "key": "Google Maps"
+          "key": "Google-Maps"
         },
         {
-          "key": "Contact Forms"
+          "key": "Contact-Forms"
         },
         {
           "key": "Revisions",
@@ -196,13 +196,13 @@
       "iconColor": "blue",
       "items": [
         {
-          "key": "Browser Coverage"
+          "key": "Browser-Coverage"
         },
         {
-          "key": "Device Coverage"
+          "key": "Device-Coverage"
         },
         {
-          "key": "Web Page",
+          "key": "Web-Page",
           "suffix": " - up to 15"
         },
         {
@@ -215,13 +215,13 @@
           "key": "SEO"
         },
         {
-          "key": "Google Maps"
+          "key": "Google-Maps"
         },
         {
-          "key": "Contact Forms"
+          "key": "Contact-Forms"
         },
         {
-          "key": "Custom Template"
+          "key": "Custom-Template"
         },
         {
           "key": "Blog"
@@ -231,7 +231,7 @@
           "suffix": " - up to 5"
         },
         {
-          "key": "Chat Bot"
+          "key": "Chat-Bot"
         }
       ]
     },
@@ -245,13 +245,13 @@
       "iconColor": "green",
       "items": [
         {
-          "key": "Browser Coverage"
+          "key": "Browser-Coverage"
         },
         {
-          "key": "Device Coverage"
+          "key": "Device-Coverage"
         },
         {
-          "key": "Web Page",
+          "key": "Web-Page",
           "suffix": " - up to 15"
         },
         {
@@ -264,10 +264,10 @@
           "key": "SEO"
         },
         {
-          "key": "Google Maps"
+          "key": "Google-Maps"
         },
         {
-          "key": "Contact Forms"
+          "key": "Contact-Forms"
         },
         {
           "key": "Store"

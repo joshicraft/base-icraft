@@ -129,8 +129,10 @@
                                                     </v-list-tile-title>
                                                 </v-list-tile-content>
                                                 <template>
-                                                <v-list-tile-action @mouseover="hoverInfo($event, subItem)"
-                                                                    @mouseleave="hoverOffInfo(subItem)" class="pointer">
+                                                <v-list-tile-action
+                                                        @click="goToPackageItem(subItem.key)"
+                                                        @mouseover="hoverInfo($event, subItem)"
+                                                        @mouseleave="hoverOffInfo(subItem)" class="pointer">
                                                     <v-icon right small :class="{'ping': subItem.active}">mdi-information-outline</v-icon>
                                                 </v-list-tile-action>
                                                 </template>
@@ -160,13 +162,13 @@
                         :key="'faq-exp-panel-'+i"
                 >
                     <template v-slot:header>
-                        <v-layout row>
+                        <v-layout row :id="item.key + '-id'" @click="playSound('Click', 0.3)">
                         <v-icon class="mr-4">{{item.icon}}</v-icon>
                         <div class="mt-1">{{item.text}}</div>
                         </v-layout>
                     </template>
                     <v-card class="">
-                        <v-card-text class="px-5 grey lighten-4">
+                        <v-card-text class="px-5 grey lighten-5">
                             <VueShowdown :markdown="item.info"/>
 
                             <v-flex v-if="item.links" v-for="(link, l) in item.links"
@@ -233,6 +235,13 @@
             },
             hoverPackage() {
                 this.resultName = ''
+            },
+            goToPackageItem(item){
+                this.$vuetify.goTo('#' + item + '-id', {offset:50})
+                this.playSound('click', 0.3);
+                setTimeout(()=>{
+                    document.getElementById(item + '-id').click()
+                },910)
             },
             clickPackage (loc) {
                 this.showInfo = false
