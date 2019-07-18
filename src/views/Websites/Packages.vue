@@ -10,6 +10,10 @@
             <p class="text-lg-center">
                 {{ data.disclaimer }}
             </p>
+            <div class="btn-wrap">
+            <v-btn @click="goToAndScroll('Discovery')" class="primary max-width-200 mr-2">Discover</v-btn>
+            <v-btn @click="goToID('#packages')" class="primary max-width-200 ml-2">Packages</v-btn>
+            </div>
         </v-layout>
         <v-layout
 
@@ -126,7 +130,7 @@
                                                 <template>
                                                 <v-list-tile-action @mouseover="hoverInfo($event, subItem)"
                                                                     @mouseleave="hoverOffInfo(subItem)" class="pointer">
-                                                    <v-icon right :class="{'ping': subItem.active}">mdi-information-outline</v-icon>
+                                                    <v-icon right small :class="{'ping': subItem.active}">mdi-information-outline</v-icon>
                                                 </v-list-tile-action>
                                                 </template>
                                             </v-list-tile>
@@ -144,6 +148,36 @@
                 </v-flex>
             </v-flex>
         </v-layout>
+        <v-container class="mb-5">
+            <v-layout column class="title-a mb-5 mt-4 text-lg-center">
+                <h1>Website Contents Itinerary</h1>
+                <h3>Here's a quick break down of some common items or features that go into a website.</h3>
+            </v-layout>
+            <v-expansion-panel focusable>
+                <v-expansion-panel-content
+                        v-for="(item,i) in packageItems"
+                        :key="'faq-exp-panel-'+i"
+                >
+                    <template v-slot:header>
+                        <v-layout row>
+                        <v-icon class="mr-4">{{item.icon}}</v-icon>
+                        <div class="mt-1">{{item.text}}</div>
+                        </v-layout>
+                    </template>
+                    <v-card class="">
+                        <v-card-text class="px-5 grey lighten-4">
+                            <VueShowdown :markdown="item.info"/>
+
+                            <v-flex v-if="item.links" v-for="(link, l) in item.links"
+                                    :key="'faq-answer-'+ l"
+                            >
+                                <v-btn class="primary" :to="{name: link.to}">{{link.name}}</v-btn>
+                            </v-flex>
+                        </v-card-text>
+                    </v-card>
+                </v-expansion-panel-content>
+            </v-expansion-panel>
+        </v-container>
     </v-container>
 </template>
 
@@ -258,8 +292,15 @@
                 top: 27px
                 background: inherit
                 transform: rotate(45deg)
-    .title-a
-            max-width: 800px;
+        .title-a
+                max-width: 800px;
+            .btn-wrap
+                text-align center
+                width: 100%;
+                button
+                    margin-left auto
+                    margin-right auto
+                    max-width:200px;
 
     .package
         overflow hidden

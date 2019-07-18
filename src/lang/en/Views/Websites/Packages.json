@@ -9,7 +9,8 @@
       "icon": "mdi-web",
       "text": "Browser Coverage",
       "key": "Browser Coverage",
-      "info": "Ensuring your website works across a range of commonly used browsers including Chrome, IE, Edge, Firefox and Safari."
+      "info": "Ensuring your website works across a range of commonly used browsers including Chrome, IE, Edge, Firefox and Safari.",
+      "moreInfo": "Making your website work on every browser is not very cost efficient and it limits the creative freedom of an website. Some agencies support ancient browsers, some only support the latest and sometimes it depends on the nature of the product but here at ICRAFT we choose to support upwards of 95% of browsers."
     },
     {
       "icon": "mdi-cellphone-link",
@@ -108,7 +109,7 @@
   ],
   "title": "Take a look at our eb design packages",
   "subTitle": "Built with the latest technology and current web design trends, our packages suite a variety of needs.",
-  "disclaimer": "These packages give you an outline of what we can do, each package will be customized to your individual needs. The price's are mere indicators to help meet common requirements.",
+  "disclaimer": "These packages give you an outline of what we can do, each package will be customized to your individual needs. If you'd like to know what package best suites you — find out by clicking Discover below. Otherwise view our packages.",
   "image": "static/web-1.jpg",
   "items": [
     {
