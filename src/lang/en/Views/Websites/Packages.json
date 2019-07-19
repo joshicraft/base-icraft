@@ -1,8 +1,8 @@
 {
   "headTitle": "ICRAFT | Web Design Packages | Auckland",
   "headDescription": "ICRAFT has a range of packages to suit your web design needs. Check out these web design packages to get an idea today :). For a free consultation we're located in Auckland.",
-  "jumbotronTitle": "OUR WEB DESIGN PACKAGES",
-  "jumbotronSubTitle": "So you can understand what goes into a website.",
+  "jumbotronTitle": "LOOKING FOR A WEBSITE PACKAGE?",
+  "jumbotronSubTitle": "ICRAFT can help you with that. Checkout our baseline packages.",
   "heading1": "",
   "packageItems":[
     {
@@ -10,13 +10,17 @@
       "text": "Browser Coverage",
       "key": "Browser-Coverage",
       "info": "Ensuring your website works across a range of commonly used browsers including Chrome, IE, Edge, Firefox and Safari.",
-      "moreInfo": "Making your website work on every browser is not very cost efficient and it limits the creative freedom of an website. Some agencies support ancient browsers, some only support the latest and sometimes it depends on the nature of the product but here at ICRAFT we choose to support upwards of 95% of browsers."
+      "moreInfo": "Making your website work on every browser is not very cost efficient and it limits the creative freedom of an website. Some agencies support ancient browsers, some only support the latest and sometimes it depends on the nature of the product but here at ICRAFT we choose to support upwards of 95% of browsers.",
+      "links": [{"name": "Stat Counter", "link":  "http://gs.statcounter.com/"}]
     },
     {
       "icon": "mdi-cellphone-link",
       "text": "Device Coverage",
       "key": "Device-Coverage",
-      "info": "Making your website look good on a range of different devices from phones to tablet to desktop devices."
+      "info": "Making your website look good on a range of different devices from phones to tablet to desktop devices.",
+      "embed": "<iframe width='600' height='400' src='http://archive.stats.govt.nz/sitecore/media library/Statistics/browse-categories/industry-sectors/information-technology-communications/isp-2017-mobile-connections-story/isp-2017-mobile-connections-graph.aspx' frameborder='0' scrolling='no' ></iframe>",
+      "moreInfo": "<ul><li>In January 2019<b>, </b><a href=\"https://www.statista.com/statistics/617136/digital-population-worldwide/\" target=\"_blank\" rel=\"noopener noreferrer\">4.4 billion people</a> were active internet users and 3.5 billion were social media users.</li><li>More than half of all video streaming comes from a mobile device.</li><li>In the US, consumers spent 90% of their mobile time in apps.</li><li>Mobile internet <a href=\"https://qz.com/1303375/internet-usage-will-finally-surpass-tv-in-2019-zenith-predicts/\" target=\"_blank\" rel=\"noopener noreferrer\">has grown 504% in daily media consumption</a> since 2011.</li><li>76% of US citizens <a href=\"https://www.statista.com/statistics/455377/smartphone-usage-while-watching-tv/\" target=\"_blank\" rel=\"noopener noreferrer\">use their phones to open and respond to emails</a> while watching TV.</li><li>In July 2009 only 65,000 apps used to be available on the <a href=\"https://www.statista.com/statistics/263795/number-of-available-apps-in-the-apple-app-store/\">App Store</a>. In 2019 there are <a href=\"https://www.statista.com/statistics/263795/number-of-available-apps-in-the-apple-app-store/\" target=\"_blank\" rel=\"noopener noreferrer\">3.262 billion</a>, 811 million of which are gaming apps.</li></ul>",
+      "links": [{"name":  "User Percentage", "link":  "https://hostingtribunal.com/blog/mobile-percentage-of-traffic/"}]
     },
     {
       "icon": "mdi-file-document-outline",

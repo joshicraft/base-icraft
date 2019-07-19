@@ -170,7 +170,8 @@
                     <v-card class="">
                         <v-card-text class="px-5 grey lighten-5">
                             <VueShowdown :markdown="item.info"/>
-
+                            <VueShowdown v-if="item.moreInfo" :markdown="item.moreInfo"/>
+                            <div v-if="item.embed" v-html='item.embed'></div>
                             <v-flex v-if="item.links" v-for="(link, l) in item.links"
                                     :key="'faq-answer-'+ l"
                             >

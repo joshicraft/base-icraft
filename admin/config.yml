@@ -47,7 +47,6 @@ collections:
   sort: date:desc
   preview_path: blog/
   slug: {{year}}-{{month}}-{{day}}-{{slug}}
-
   fields:
     - {label: Title, name: title, widget: string}
     - {label: Layout, name: layout, default: post-layout}
