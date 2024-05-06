@@ -105,7 +105,7 @@
                     </v-card>
                 </v-flex>
             <v-flex id="c-form" xs12 md6 :class="{'ml-5': $vuetify.breakpoint.mdAndUp, 'mt-4' : $vuetify.breakpoint.smAndDown}">
-                <v-card class="pa-4 form-wrap grey lighten-2">
+                <v-card class="pa-4 form-wrap grey lighten-5">
                     <!--<h2 class="headline mb-2" v-text="heading.h1"/>-->
                     <!--<p class="mb-4" v-text="heading.h2"/>-->
                     <div v-if="submitting" class="progress-wrap">
