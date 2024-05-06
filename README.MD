@@ -2,6 +2,8 @@
 
 Follow the steps below to get the development code.
 
+Might need to update node
+
 ### Build Setup
 
 #### Install Node.js
