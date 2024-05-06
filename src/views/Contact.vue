@@ -7,7 +7,7 @@
 
             <v-layout class="justify-center" :class="{'column': $vuetify.breakpoint.smAndDown}">
                 <v-flex xs12 md6 >
-                    <v-card class="pa-4 form-wrap grey lighten-2 align-center d-flex mb-5">
+                    <v-card class="pa-4 form-wrap grey lighten-4 align-center d-flex mb-5">
                         <div class="title-a text-lg-left">
                             <h4 class="mt-0 mb-3 text-uppercase">{{heading.h1}}</h4>
                             <p class="mb-4">{{heading.h2}}</p>
@@ -15,7 +15,7 @@
                             <v-btn @click="$vuetify.goTo('#c-form')" class="primary" v-if="$vuetify.breakpoint.smAndDown">Fill out the form</v-btn>
                         </div>
                     </v-card>
-                    <v-card class="pa-3 grey lighten-2">
+                    <v-card class="pa-3 grey lighten-4">
                         <div class="contact-logo ml-3 mt-4">
                             <custom-logo-side white></custom-logo-side>
                         </div>
@@ -105,7 +105,7 @@
                     </v-card>
                 </v-flex>
             <v-flex id="c-form" xs12 md6 :class="{'ml-5': $vuetify.breakpoint.mdAndUp, 'mt-4' : $vuetify.breakpoint.smAndDown}">
-                <v-card class="pa-4 form-wrap grey lighten-5">
+                <v-card class="pa-4 form-wrap grey lighten-4">
                     <!--<h2 class="headline mb-2" v-text="heading.h1"/>-->
                     <!--<p class="mb-4" v-text="heading.h2"/>-->
                     <div v-if="submitting" class="progress-wrap">
